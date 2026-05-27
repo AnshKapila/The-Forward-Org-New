@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useScrolled } from "../hooks/useScrolled";
 import { useAppRoute } from "../context/RouteContext";
 import { motion, AnimatePresence } from "motion/react";
+import { InteractiveButton } from "./InteractiveButton";
 
 export function Nav() {
   const isScrolled = useScrolled(12);
@@ -116,13 +117,15 @@ export function Nav() {
 
           {/* Nav Right (CTA & Hamburger) */}
           <div className="flex items-center gap-4">
-            <button
+            <InteractiveButton
               id="nav-cta-book"
               onClick={() => handleLinkClick("book-a-call")}
-              className="hidden md:inline-flex py-3 px-6 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-xs tracking-wider uppercase cursor-pointer hover:scale-[1.02] transition-colors transition-transform duration-150 shadow-sm"
+              variant="gold"
+              size="sm"
+              className="hidden md:inline-flex"
             >
               Book a Call
-            </button>
+            </InteractiveButton>
 
             {/* Mobile Hamburger */}
             <button
@@ -180,13 +183,14 @@ export function Nav() {
               </motion.button>
             </div>
 
-            <div className="space-y-6">
-              <button
+            <div className="space-y-6 flex flex-col items-stretch">
+              <InteractiveButton
                 onClick={() => handleLinkClick("book-a-call")}
-                className="w-full py-4 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-center uppercase tracking-wider text-sm cursor-pointer block"
+                variant="gold"
+                className="w-full text-center"
               >
                 Book a Call
-              </button>
+              </InteractiveButton>
               
               <div className="text-center font-mono text-[10px] uppercase tracking-widest text-off-white/50">
                 INTELLIGENCE. STRUCTURE. DIRECTION.

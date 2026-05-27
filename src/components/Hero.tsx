@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import panHeroImg from "../assets/images/regenerated_image_1779884368446.png";
+import { InteractiveButton } from "./InteractiveButton";
+import panHeroImg from "../assets/images/chatgpt_hero_image.png";
 
 export function Hero() {
   const phrases = [
@@ -113,20 +114,22 @@ export function Hero() {
             className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center pt-2"
           >
             {/* Primary Action Button (White filled) */}
-            <button
+            <InteractiveButton
               onClick={() => handleScrollTo("ai-index")}
-              className="py-4 px-8 bg-off-white hover:bg-white text-ink font-sans font-bold text-xs uppercase tracking-wider select-none cursor-pointer flex items-center justify-center gap-1.5 shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all duration-150 text-center"
+              variant="primary"
+              className="text-center"
             >
-              Take the AI Alignment Index <ArrowUpRight size={14} className="text-teal" />
-            </button>
+              Take the AI Alignment Index
+            </InteractiveButton>
             
             {/* Secondary Action Button (Outline transparent) */}
-            <button
+            <InteractiveButton
               onClick={() => handleScrollTo("book-a-call")}
-              className="py-4 px-8 border border-white/20 hover:border-white/50 bg-transparent text-white font-sans font-bold text-xs uppercase tracking-wider select-none cursor-pointer transition-all duration-150 text-center hover:bg-white/5"
+              variant="secondary"
+              className="text-center"
             >
               Book a Call
-            </button>
+            </InteractiveButton>
           </motion.div>
         </motion.div>
       </div>

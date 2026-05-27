@@ -3,7 +3,8 @@ import { Nav } from "./Nav";
 import { Footer } from "./Footer";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { LinkedInPost } from "../types";
-import { ArrowUpRight, Loader2, Calendar } from "lucide-react";
+import { Loader2, Calendar } from "lucide-react";
+import { InteractiveButton } from "./InteractiveButton";
 
 export function PostsView() {
   const [posts, setPosts] = useState<LinkedInPost[]>([]);
@@ -248,14 +249,12 @@ export function PostsView() {
                     </div>
 
                     <div className="flex md:flex-col justify-end md:justify-center items-start md:items-end">
-                      <a
-                        href={featuredPost.linkedin_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="py-4.5 px-8 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-xs tracking-wider uppercase inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-gold shadow"
+                      <InteractiveButton
+                        onClick={() => window.open(featuredPost.linkedin_url, "_blank", "noopener,noreferrer")}
+                        variant="gold"
                       >
-                        Read on LinkedIn <ArrowUpRight size={14} />
-                      </a>
+                        Read on LinkedIn
+                      </InteractiveButton>
                     </div>
                   </div>
                 </ScrollReveal>
@@ -303,13 +302,13 @@ export function PostsView() {
 
               {/* PAGINATION: LOAD MORE BUTTON */}
               {posts.length > visibleCount + 1 && (
-                <div className="pt-10 text-center">
-                  <button
+                <div className="pt-10 flex justify-center">
+                  <InteractiveButton
                     onClick={handleLoadMore}
-                    className="py-4 px-10 border border-teal text-teal hover:bg-teal hover:text-off-white font-sans font-semibold text-xs tracking-wider uppercase cursor-pointer select-none transition-all duration-200"
+                    variant="teal"
                   >
                     Load More Thinking
-                  </button>
+                  </InteractiveButton>
                 </div>
               )}
 

@@ -1,6 +1,6 @@
 {
-  "name": "",
-  "description": "",
+  "name": "Pan Seth Advisory",
+  "description": "An elite strategic and organizational alignment advisor for corporate AI enterprise integration.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

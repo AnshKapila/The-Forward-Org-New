@@ -1,7 +1,8 @@
 import React from "react";
 import { PanImage } from "./PanImage";
 import { ScrollReveal } from "./ScrollReveal";
-import { ArrowUpRight, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
+import { InteractiveButton } from "./InteractiveButton";
 import panFounderImg from "../assets/images/regenerated_image_1779884368446.png";
 
 export function ConnectWithPan() {
@@ -92,12 +93,13 @@ export function ConnectWithPan() {
 
                   {/* Stunning stark button trigger */}
                   <div className="relative z-10 pt-2">
-                    <button
+                    <InteractiveButton
                       onClick={handleScrollToCall}
-                      className="w-full py-4 px-6 bg-off-white hover:bg-white text-ink font-sans font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-md transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] rounded-xl cursor-pointer"
+                      variant="primary"
+                      className="w-full text-center"
                     >
-                      Book your call <ArrowUpRight size={14} className="text-teal" />
-                    </button>
+                      Book your call
+                    </InteractiveButton>
                   </div>
 
                 </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FreebieModal } from "./FreebieModal";
 import { ScrollReveal } from "./ScrollReveal";
+import { InteractiveButton } from "./InteractiveButton";
 
 export function Freebie() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -32,13 +33,14 @@ export function Freebie() {
               </div>
 
               {/* Right Column: CTA & Instant Action */}
-              <div className="md:flex md:flex-col md:items-start lg:items-center justify-center space-y-3.5">
-                <button
+              <div className="md:flex md:flex-col md:items-start lg:items-center justify-center space-y-3.5 w-full sm:w-auto">
+                <InteractiveButton
                   onClick={() => setModalOpen(true)}
-                  className="py-4.5 px-10 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-sm cursor-pointer hover:scale-[1.02] active:scale-[0.98] transition-all duration-150 inline-block text-center w-full sm:w-auto shadow-md"
+                  variant="gold"
+                  className="w-full sm:w-auto text-center"
                 >
                   Get It Now
-                </button>
+                </InteractiveButton>
                 
                 <p className="font-sans text-xs text-off-white/60 tracking-normal text-left md:text-left lg:text-center block">
                   Instant PDF download. No spam.

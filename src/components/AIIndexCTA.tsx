@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
-import { ChevronRight, ArrowLeft, RotateCcw, CheckSquare } from "lucide-react";
+import { ChevronRight, ArrowLeft, RotateCcw } from "lucide-react";
+import { InteractiveButton } from "./InteractiveButton";
 
 interface Question {
   id: number;
@@ -144,13 +145,14 @@ export function AIIndexCTA() {
                 Used by senior leaders across Finance, SaaS, and Enterprise. Produces a maturity score and a dimension-by-dimension gap analysis.
               </p>
 
-              <div>
-                <button
+              <div className="flex justify-center">
+                <InteractiveButton
                   onClick={() => setQuizStarted(true)}
-                  className="py-4 px-10 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] select-none cursor-pointer transition-all duration-150 shadow-md hover:scale-[1.02] active:scale-[0.98] inline-flex items-center gap-2"
+                  variant="gold"
+                  icon={ChevronRight}
                 >
-                  Take the AI Alignment Index <ChevronRight size={18} />
-                </button>
+                  Take the AI Alignment Index
+                </InteractiveButton>
               </div>
 
               <p className="font-sans text-[13px] text-off-white/50 pt-2">
@@ -263,19 +265,22 @@ export function AIIndexCTA() {
 
             {/* Action Row */}
             <div className="pt-6 border-t border-off-white/10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-              <button
+              <InteractiveButton
                 onClick={handleScrollToCall}
-                className="py-4 px-6 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-sm cursor-pointer shadow-md text-center shrink-0 flex items-center justify-center gap-2"
+                variant="gold"
+                className="shrink-0 text-center"
               >
                 Book a Call to Review
-              </button>
+              </InteractiveButton>
 
-              <button
+              <InteractiveButton
                 onClick={handleRestart}
-                className="py-4 px-6 border border-off-white/20 hover:border-off-white/50 text-off-white/80 font-sans text-sm cursor-pointer hover:bg-canvas/5 transition-all flex items-center justify-center gap-2 shrink-0"
+                variant="secondary"
+                icon={RotateCcw}
+                className="shrink-0 text-center"
               >
-                <RotateCcw size={14} /> Reset Diagnostic
-              </button>
+                Reset Diagnostic
+              </InteractiveButton>
             </div>
           </div>
         )}

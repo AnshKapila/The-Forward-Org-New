@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { Calendar, Check, Clock, Globe } from "lucide-react";
+import { InteractiveButton } from "./InteractiveButton";
 
 export function BookACall() {
   const [bookingStarted, setBookingStarted] = useState(false);
@@ -44,13 +45,13 @@ export function BookACall() {
                 30 minutes. No pitch. Just clarity on where you stand and what to do next.
               </h2>
 
-              <div className="pt-2">
-                <button
+              <div className="pt-2 flex justify-center">
+                <InteractiveButton
                   onClick={() => setBookingStarted(true)}
-                  className="py-4 px-10 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] cursor-pointer shadow-md select-none hover:scale-[1.02] active:scale-[0.98] transition-all"
+                  variant="gold"
                 >
                   Book a Call
-                </button>
+                </InteractiveButton>
               </div>
 
               <p className="font-sans text-[13px] text-off-white/50">
@@ -161,12 +162,14 @@ export function BookACall() {
                     </div>
                   </div>
 
-                  <button
+                  <InteractiveButton
                     type="submit"
-                    className="w-full py-4 bg-teal hover:bg-teal-light text-off-white font-sans font-semibold text-xs uppercase tracking-wider cursor-pointer shadow-md select-none transform hover:scale-[1.01] active:scale-[0.99] transition-all flex items-center justify-center gap-1.5"
+                    variant="teal"
+                    className="w-full"
+                    icon={Calendar}
                   >
-                    Confirm Meeting Selection <Calendar size={13} />
-                  </button>
+                    Confirm Meeting Selection
+                  </InteractiveButton>
                 </div>
               )}
 

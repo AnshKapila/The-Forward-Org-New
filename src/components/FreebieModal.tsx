@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { X, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { InteractiveButton } from "./InteractiveButton";
 
 interface FreebieModalProps {
   isOpen: boolean;
@@ -123,17 +124,14 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                   </div>
                 </div>
 
-                <button
+                <InteractiveButton
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-4 px-6 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] cursor-pointer shadow-sm hover:scale-[1.02] transition-colors transition-transform duration-150 flex items-center justify-center gap-2"
+                  variant="gold"
+                  className="w-full text-center"
                 >
-                  {isSubmitting ? (
-                    <span className="inline-block border-2 border-ink border-t-transparent animate-spin rounded-full w-4 h-4" />
-                  ) : (
-                    "Send Me the Framework"
-                  )}
-                </button>
+                  {isSubmitting ? "Sending..." : "Send Me the Framework"}
+                </InteractiveButton>
 
                 <p className="text-center text-[11px] text-ink-faint">
                   We respect corporate privacy. No unsolicited spam, unsubscribe anytime.
