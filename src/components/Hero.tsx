@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import panHeroImg from "../assets/images/regenerated_image_1779859475822.png";
+import panHeroImg from "../assets/images/chatgpt_hero_image.png";
 
 export function Hero() {
   const phrases = [
@@ -57,15 +57,15 @@ export function Hero() {
         <img
           src={panHeroImg}
           alt="Pan Seth, Corporate Strategy Advisor"
-          className="w-full h-full object-cover object-center lg:object-[80%_center] opacity-80 lg:opacity-90"
+          className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1920&h=1080";
           }}
           referrerPolicy="no-referrer"
         />
-        {/* Principles of accessibility: High-contrast rich dark gradients layering to enable white text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1A1C1A]/95 via-[#1A1C1A]/80 via-[#1A1C1A]/50 to-transparent hidden lg:block" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1A1C1A]/95 via-[#1A1C1A]/85 to-[#1A1C1A]/40 lg:hidden" />
+        {/* Deep, smooth left-aligned dark gradient to protect text legibility, keeping right side completely clean & raw */}
+        <div className="absolute inset-y-0 left-0 w-full md:w-[55%] lg:w-[48%] bg-gradient-to-r from-ink via-ink/75 to-transparent hidden md:block z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/60 to-transparent md:hidden z-10 pointer-events-none" />
       </div>
 
       <div className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col justify-center pt-20 md:pt-16 pb-8 text-left">
