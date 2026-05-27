@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #F7F4EF;
+  --color-teal: #1E5F5F;
+  --color-teal-light: #2A7A7A;
+  --color-teal-dim: #164848;
+  --color-gold: #C9A55A;
+  --color-gold-hover: #B8934A;
+  --color-sand: #E8D5B5;
+  --color-ink: #1A1C1A;
+  --color-ink-muted: #4A5450;
+  --color-ink-faint: #7A8078;
+  --color-teal-text: #1E5F5F;
+  --color-off-white: #F0E6D3;
+
+  --font-serif: "Libre Baskerville", Georgia, serif;
+  --font-sans: "Figtree", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+  
+  /* Focus-visible style */
+  *:focus-visible {
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
+  }
+}
