@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import panHeroImg from "../assets/images/chatgpt_hero_image.png";
+import panHeroImg from "../assets/images/regenerated_image_1779884368446.png";
 
 export function Hero() {
   const phrases = [
