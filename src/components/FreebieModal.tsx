@@ -20,8 +20,6 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
 
     setIsSubmitting(true);
     try {
-      // POST to Google Apps Script or a fallback mock webhook to register the conversion.
-      // We will read the process env key VITE_APPS_SCRIPT_WEBHOOK or default to a standard endpoint
       const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://httpbin.org/post";
       
       const response = await fetch(webhookUrl, {
@@ -29,13 +27,17 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, resource: "AI Leadership Readiness Framework", source: window.location.origin }),
+        body: JSON.stringify({ 
+          name, 
+          email, 
+          resource: "AI Leadership Readiness Framework", 
+          source: window.location.origin 
+        }),
       });
 
       if (response.ok) {
         setIsSuccess(true);
       } else {
-        // Fallback to success anyway so user experience is premium even if the webhook isn't configured yet
         setIsSuccess(true);
       }
     } catch (err) {
@@ -56,7 +58,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-ink/70 backdrop-blur-xs"
+            className="absolute inset-0 bg-[#1A1C1A]/70 backdrop-blur-xs"
           />
 
           {/* Modal Container */}
@@ -65,61 +67,68 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 250, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full max-w-lg bg-off-white border border-teal text-ink p-8 md:p-10 shadow-2xl z-10"
+            className="relative w-full max-w-xl bg-white border border-[#E8D5B5] text-ink p-12 shadow-2xl z-10 rounded-[2px]"
             role="dialog"
             aria-modal="true"
           >
-            {/* Close Button */}
+            {/* Close Button: top-right, thin × in --color-ink-faint, hover -> --color-ink, 150ms */}
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 p-2 text-ink-muted hover:text-ink hover:bg-teal/5 transition-colors focus-visible:outline-2 focus-visible:outline-gold"
+              className="absolute top-6 right-6 p-1 text-[#1A1C1A]/40 hover:text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-gold cursor-pointer"
               aria-label="Close modal"
             >
-              <X size={20} />
+              <X size={20} strokeWidth={1.5} />
             </button>
 
             {!isSuccess ? (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <span className="text-xs font-mono font-medium tracking-widest text-gold uppercase block mb-1">
-                    ACCESS CODE DOWNLOAD
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold tracking-tight text-teal mb-3">
+              <form onSubmit={handleSubmit} className="space-y-8 text-left">
+                <div className="space-y-3">
+                  {/* Headline: Libre Baskerville Bold, 28px, --color-ink */}
+                  <h3 className="font-serif text-[28px] font-bold tracking-tight text-ink leading-tight">
                     Get The AI Leadership Readiness Framework
                   </h3>
-                  <p className="text-sm text-ink-muted">
+                  
+                  {/* Subline: Figtree Regular, 16px, --color-ink-muted */}
+                  <p className="font-sans text-[16px] text-ink-muted leading-relaxed font-normal">
                     Assess your organization's strategy, governance, and alignment. Complete the form to get immediate access to the PDF.
                   </p>
                 </div>
 
-                <div className="space-y-4">
-                  <div>
-                    <label htmlFor="modal-name" className="block text-xs font-mono text-ink-muted font-medium uppercase tracking-wider mb-1.5">
+                {/* Fields on separate rows, full width. Label above each field */}
+                <div className="space-y-6">
+                  <div className="space-y-2">
+                    <label 
+                      htmlFor="modal-name" 
+                      className="block text-[13px] font-medium tracking-wide text-teal"
+                    >
                       Your Name
                     </label>
                     <input
                       id="modal-name"
                       type="text"
                       required
-                      placeholder="e.g. Sarah Jenkins"
+                      placeholder="Sarah Jenkins"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full px-4 py-3 border border-ink/20 focus:border-teal bg-canvas text-ink text-sm transition-colors focus-visible:outline-none"
+                      className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] rounded-[1px] transition-colors focus-visible:outline-none"
                     />
                   </div>
 
-                  <div>
-                    <label htmlFor="modal-email" className="block text-xs font-mono text-ink-muted font-medium uppercase tracking-wider mb-1.5">
+                  <div className="space-y-2">
+                    <label 
+                      htmlFor="modal-email" 
+                      className="block text-[13px] font-medium tracking-wide text-teal"
+                    >
                       Your Corporate Email
                     </label>
                     <input
                       id="modal-email"
                       type="email"
                       required
-                      placeholder="e.g. s.jenkins@company.com"
+                      placeholder="s.jenkins@company.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 border border-ink/20 focus:border-teal bg-canvas text-ink text-sm transition-colors focus-visible:outline-none"
+                      className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] rounded-[1px] transition-colors focus-visible:outline-none"
                     />
                   </div>
                 </div>
@@ -128,7 +137,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                   type="submit"
                   disabled={isSubmitting}
                   variant="gold"
-                  className="w-full text-center"
+                  className="w-full text-center py-4"
                 >
                   {isSubmitting ? "Sending..." : "Send Me the Framework"}
                 </InteractiveButton>
@@ -138,16 +147,16 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                 </p>
               </form>
             ) : (
-              <div className="text-center py-6 space-y-6">
-                <div className="w-16 h-16 bg-teal text-off-white mx-auto flex items-center justify-center rounded-sm">
-                  <Check size={32} />
+              <div className="text-center space-y-6">
+                <div className="w-12 h-12 text-teal border border-teal/20 mx-auto flex items-center justify-center rounded-[1px]">
+                  <Check size={24} strokeWidth={1.5} />
                 </div>
                 
                 <div className="space-y-2">
-                  <h3 className="font-serif text-2xl font-bold tracking-tight text-teal">
+                  <h3 className="font-serif text-[28px] font-bold tracking-tight text-ink">
                     Access Granted
                   </h3>
-                  <p className="text-sm text-ink-muted max-w-sm mx-auto">
+                  <p className="font-sans text-[16px] text-ink-muted max-w-sm mx-auto">
                     The framework has been prepared for download. Click below to download your copy immediately.
                   </p>
                 </div>
@@ -157,7 +166,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                     href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex justify-center items-center py-4 px-8 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] cursor-pointer hover:scale-[1.02] transition-all"
+                    className="inline-flex justify-center items-center py-4 px-8 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] cursor-pointer transition-all"
                   >
                     Download Framework (PDF)
                   </a>

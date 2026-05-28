@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { useLocation } from "wouter";
 import { InteractiveButton } from "./InteractiveButton";
 import panHeroImg from "../assets/images/chatgpt_hero_image.png";
 
 export function Hero() {
+  const [location, setLocation] = useLocation();
+  const [isMobile, setIsMobile] = useState(false);
   const phrases = [
-    "CLARITY. STRATEGY. EXECUTION.",
-    "AI. WITHOUT THE CHAOS.",
-    "BUILT TO LEAD.",
-    "INTELLIGENCE. STRUCTURE. DIRECTION.",
+    "YOUR BOARD IS WATCHING.",
+    "THE GAP IS NOT THE TOOLS.",
+    "AI WITHOUT THE CHAOS.",
+    "BUILT FOR WHAT'S NEXT.",
   ];
 
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -21,12 +23,27 @@ export function Hero() {
     return () => clearInterval(timer);
   }, [phrases.length]);
 
-  const handleScrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const handleScrollToCall = () => {
+    const el = document.getElementById("book-a-call");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      setLocation("/");
+      setTimeout(() => {
+        const target = document.getElementById("book-a-call");
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+      }, 200);
+    }
   };
 
-  // Entry animation parameters
+  // Entry animation   parameters
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -59,6 +76,9 @@ export function Hero() {
           src={panHeroImg}
           alt="Pan Seth, Corporate Strategy Advisor"
           className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
+          style={{
+            objectPosition: isMobile ? "80% center" : undefined
+          }}
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1920&h=1080";
           }}
@@ -66,15 +86,15 @@ export function Hero() {
         />
         {/* Deep, smooth left-aligned dark gradient to protect text legibility, keeping right side completely clean & raw */}
         <div className="absolute inset-y-0 left-0 w-full md:w-[55%] lg:w-[48%] bg-gradient-to-r from-ink via-ink/75 to-transparent hidden md:block z-10 pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/60 to-transparent md:hidden z-10 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-transparent md:hidden z-10 pointer-events-none" />
       </div>
 
-      <div className="flex-1 w-full max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col justify-center pt-20 md:pt-16 pb-8 text-left">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-7xl px-6 md:px-12 z-20 text-left">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="space-y-6 md:space-y-8 max-w-3xl"
+          className="max-w-3xl flex flex-col items-start"
         >
           {/* Tagline Ticker with gold font-sans wrapper */}
           <div className="h-6 overflow-hidden">
@@ -92,30 +112,30 @@ export function Hero() {
             </AnimatePresence>
           </div>
 
-          {/* Heading H1 set strictly at 56px based on design Decisions of Elyte layout */}
+          {/* Heading H1 set strictly fluid using custom --text-hero property clamp */}
           <motion.h1
             variants={itemVariants}
-            className="font-serif text-[36px] sm:text-[46px] md:text-[56px] leading-[1.12] font-bold tracking-tight text-white text-balance"
+            className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
           >
-            I help leadership teams integrate AI into how they think, decide, and operate.
+            Your AI investments deserve more than another pilot.
           </motion.h1>
 
           {/* Subheadline description with white-dimmed styling for accessibility */}
           <motion.p
             variants={itemVariants}
-            className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-xl"
+            className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
           >
-            Without the chaos, the guesswork, or the wasted experiments.
+            Most organizations are running AI experiments. Forward ones are building the leadership infrastructure that makes AI irreversible — and measurably profitable.
           </motion.p>
 
           {/* Double Active Hero Action Buttons side-by-side inspired by the wireframe */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center pt-2"
+            className="flex flex-col sm:flex-row gap-[24px] items-stretch sm:items-center mt-8 pt-0 w-full"
           >
             {/* Primary Action Button (White filled) */}
             <InteractiveButton
-              onClick={() => handleScrollTo("ai-index")}
+              onClick={() => setLocation("/index")}
               variant="primary"
               className="text-center"
             >
@@ -124,32 +144,22 @@ export function Hero() {
             
             {/* Secondary Action Button (Outline transparent) */}
             <InteractiveButton
-              onClick={() => handleScrollTo("book-a-call")}
+              onClick={handleScrollToCall}
               variant="secondary"
               className="text-center"
             >
               Book a Call
             </InteractiveButton>
           </motion.div>
-        </motion.div>
-      </div>
 
-      {/* Ticker bottom bar inspired by the wireframe footer strip */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12">
-        <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 text-left">
-          <div className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 bg-gold rounded-full"></span>
-            <span className="font-mono text-xs tracking-wider text-off-white/50 uppercase">
-              Build with intention
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-xs tracking-wider text-off-white/50 uppercase">
-              Scale with alignment
-            </span>
-            <span className="w-1.5 h-1.5 bg-teal-light rounded-full"></span>
-          </div>
-        </div>
+          {/* New Trust Line below CTAs */}
+          <motion.p
+            variants={itemVariants}
+            className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left"
+          >
+            Used by CEOs and C-suite leaders who are done experimenting and ready to build.
+          </motion.p>
+        </motion.div>
       </div>
 
     </section>

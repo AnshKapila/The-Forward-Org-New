@@ -13,6 +13,16 @@ export function ConnectWithPan() {
 
   return (
     <section id="connect-with-pan" className="relative bg-canvas py-24 md:py-32 overflow-hidden">
+      {/* Secondary background paper texture blended with sand/canvas */}
+      <img
+        src="/images/texture-paper.jpg"
+        alt="Fine Grain Linen Paper Texture"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-12 mix-blend-multiply z-0"
+        onError={(e) => {
+          e.currentTarget.style.display = "none";
+        }}
+        referrerPolicy="no-referrer"
+      />
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <ScrollReveal duration={0.65}>
           {/* Main Rounded Frame inspired by the reference image, using our premium teal palette */}

@@ -12,6 +12,11 @@ export function SlidingArrow({ className = "text-current" }: { className?: strin
 
 interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  className?: string;
+  id?: string;
   variant?: "primary" | "secondary" | "gold" | "teal" | "dark" | "outline-dark";
   size?: "sm" | "md";
   icon?: LucideIcon | React.ComponentType<{ className?: string; size?: number }>;
@@ -33,7 +38,7 @@ export function InteractiveButton({
 }: InteractiveButtonProps) {
   // Define standard base styles
   const sizeClasses = size === "sm" ? "py-2.5 px-5" : "py-4 px-8";
-  const baseStyle = `group relative ${sizeClasses} font-sans font-bold text-xs uppercase tracking-wider select-none cursor-pointer flex items-center justify-center gap-2 shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] border rounded-none overflow-hidden`;
+  const baseStyle = `group relative ${sizeClasses} font-sans font-bold text-xs uppercase tracking-wider select-none cursor-pointer flex items-center justify-center gap-2 shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] border rounded-none overflow-hidden leading-none`;
 
   let variantStyle = "";
 

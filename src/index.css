@@ -3,20 +3,29 @@
 
 @theme {
   --color-canvas: #F7F4EF;
-  --color-teal: #1E5F5F;
-  --color-teal-light: #2A7A7A;
-  --color-teal-dim: #164848;
+  --color-teal: #1A3C34;
+  --color-teal-light: #235048;
+  --color-teal-dim: #122B24;
   --color-gold: #C9A55A;
   --color-gold-hover: #B8934A;
   --color-sand: #E8D5B5;
   --color-ink: #1A1C1A;
   --color-ink-muted: #4A5450;
   --color-ink-faint: #7A8078;
-  --color-teal-text: #1E5F5F;
+  --color-teal-text: #1A3C34;
   --color-off-white: #F0E6D3;
 
   --font-serif: "Libre Baskerville", Georgia, serif;
   --font-sans: "Figtree", sans-serif;
+
+  --text-hero: clamp(38px, 11px + 3.5156vw, 56px);
+  --text-h1: clamp(38px, 11px + 3.5156vw, 56px);
+  --text-h2: clamp(28px, 10px + 2.3438vw, 40px);
+  --text-h3: clamp(22px, 2.2vw, 30px);
+  --text-lead: clamp(17px, 1.5vw, 20px);
+  --text-body: 17px;
+  --text-small: 14px;
+  --text-label: 12px;
 }
 
 @layer base {
@@ -24,9 +33,14 @@
     background-color: var(--color-canvas);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    font-size: 17px;
+    font-size: var(--text-body);
     line-height: 1.7;
     overflow-x: hidden;
+    font-optical-sizing: auto;
+  }
+  
+  h1, h2, h3 {
+    text-wrap: balance;
   }
   
   /* Focus-visible style */

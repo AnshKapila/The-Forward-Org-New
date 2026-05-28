@@ -96,19 +96,6 @@ export function CredibilityBar() {
               ))}
             </div>
 
-            {/* Separator rule & patent badge */}
-            <div className="shrink-0 flex items-center gap-6 self-stretch md:self-auto justify-center">
-              <div className="hidden md:block w-[1px] h-8 bg-gold/30" />
-              <div className="flex flex-col items-center md:items-start">
-                <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.18em]">
-                  2 AI PATENTS
-                </span>
-                <span className="text-[10px] font-mono text-ink-faint uppercase mt-0.5">
-                  ISSUED IN US
-                </span>
-              </div>
-            </div>
-
           </div>
         </ScrollReveal>
       </div>

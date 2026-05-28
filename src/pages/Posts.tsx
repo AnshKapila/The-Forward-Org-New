@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Nav } from "./Nav";
-import { Footer } from "./Footer";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
+import { Link } from "wouter";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { LinkedInPost } from "../types";
-import { Loader2, Calendar } from "lucide-react";
-import { InteractiveButton } from "./InteractiveButton";
+import { Loader2, Calendar, ArrowUpRight } from "lucide-react";
+import { InteractiveButton } from "../components/InteractiveButton";
 
-export function PostsView() {
+export default function Posts() {
   const [posts, setPosts] = useState<LinkedInPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [visibleCount, setVisibleCount] = useState(8);
+  const [activeFilter, setActiveFilter] = useState("All");
 
-  // Fallback high-caliber articles (Pan's real thoughts) for out-of-the-box preview and error cases
   const fallbackPosts: LinkedInPost[] = [
     {
       date: "May 24, 2026",
@@ -76,33 +75,21 @@ export function PostsView() {
     const fetchPosts = async () => {
       setLoading(true);
       setError(null);
-
-      // Webhook comments & execution pathways as requested:
-      // Posts are automatically synced from LinkedIn
-      // via a Zapier/Make webhook that writes new 
-      // posts to the Google Sheet on publish.
-      // Sheet URL: set in .env as VITE_POSTS_SHEET_URL
-      // No manual update required after setup.
       const sheetUrl = (import.meta as any).env.VITE_POSTS_SHEET_URL;
 
       if (!sheetUrl) {
-        // Fallback gracefully to preset catalog if sheet is undefined or missing
-        // This ensures the site always displays high-quality content instantly
         setTimeout(() => {
           setPosts(fallbackPosts);
           setLoading(false);
-        }, 800);
+        }, 600);
         return;
       }
 
       try {
         const response = await fetch(sheetUrl);
         if (!response.ok) throw new Error("Network response was not ok");
-        
-        // Attempt to parse standard published CSV or JSON payload
         const text = await response.text();
         
-        // Let's check if the response is Google Sheet gviz JSON wrapper or normal JSON
         if (text.includes("google.visualization.Query.setResponse")) {
           const rawJsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
           if (rawJsonMatch && rawJsonMatch[1]) {
@@ -123,13 +110,11 @@ export function PostsView() {
             setPosts(fallbackPosts);
           }
         } else {
-          // Fallback to parsed JSON array structure
           const parsed = JSON.parse(text);
           setPosts(Array.isArray(parsed) ? parsed : fallbackPosts);
         }
       } catch (err) {
         console.warn("Unable to fetch sheet data, using secure fallback content", err);
-        // Fallback on error to secure visual finish
         setPosts(fallbackPosts);
       } finally {
         setLoading(false);
@@ -139,24 +124,49 @@ export function PostsView() {
     fetchPosts();
   }, []);
 
-  // Separate featured and non-featured posts
-  const featuredPost = posts.find((p) => p.featured) || posts[0];
-  const regularPosts = posts.filter((p) => p !== featuredPost);
+  const matchesFilter = (postTag: string) => {
+    const normTag = postTag.toUpperCase();
+    if (activeFilter === "All") return true;
+    if (activeFilter === "AI Governance") {
+      return normTag.includes("GOVERNANCE") || normTag.includes("COMPLIANCE") || normTag.includes("RISK") || normTag.includes("SAFELIGHTS");
+    }
+    if (activeFilter === "Leadership") {
+      return normTag.includes("LEADERSHIP") || normTag.includes("STRATEGY");
+    }
+    if (activeFilter === "Decision Making") {
+      return normTag.includes("DECISION") || normTag.includes("VELOCITY") || normTag.includes("ROI");
+    }
+    if (activeFilter === "Org Culture") {
+      return normTag.includes("CULTURE") || normTag.includes("ADOPTION") || normTag.includes("ORGANIZATION");
+    }
+    return false;
+  };
+
+  // Filter the posts list
+  const filteredPosts = posts.filter((p) => matchesFilter(p.tag));
+
+  // Determine featured post from filtered list (fallback to first of filtered)
+  const featuredPost = filteredPosts.find((p) => p.featured) || filteredPosts[0];
+  const regularPosts = filteredPosts.filter((p) => p !== featuredPost);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 8);
   };
 
-  return (
-    <div className="min-h-screen bg-canvas flex flex-col justify-between">
-      {/* Scroll-aligned Navigation Header */}
-      <Nav />
+  const filterTabStyles = (name: string) => {
+    const isActive = activeFilter === name;
+    return `px-5 py-2.5 rounded-full text-xs font-sans font-semibold border tracking-wider uppercase transition-all duration-150 cursor-pointer ${
+      isActive
+        ? "bg-teal text-white border-teal shadow-smScale"
+        : "bg-white text-teal border-teal/30 hover:bg-teal/10"
+    }`;
+  };
 
-      {/* Page Content Layout */}
+  return (
+    <div className="min-h-screen bg-white text-ink flex flex-col justify-between">
       <main className="flex-1">
-        {/* Compact Hero Block */}
-        <section className="bg-teal pt-32 pb-20 md:pb-24 text-left relative overflow-hidden">
-          {/* Subtle logo vector outline graphic of structural lines */}
+        {/* Compact Hero Block with Avatar */}
+        <section className="bg-[#1A3C34] pt-32 pb-20 md:pb-24 text-left relative overflow-hidden">
           <div className="absolute right-[-100px] bottom-[-100px] w-96 h-96 opacity-10 pointer-events-none select-none text-off-white">
             <svg viewBox="0 0 100 100" className="w-full h-full stroke-current" strokeWidth="0.5">
               <circle cx="50" cy="50" r="45" strokeDasharray="2 2" />
@@ -166,69 +176,88 @@ export function PostsView() {
           </div>
 
           <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 space-y-4">
-            <span className="font-sans font-semibold text-xs text-gold uppercase tracking-[0.2em] block">
+            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block">
               FROM THE FIELD
             </span>
-            <h1 className="font-serif text-[42px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
+            <h1 className="font-serif text-[38px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
               Pan's thinking, published weekly.
             </h1>
-            <p className="font-sans text-base md:text-lg text-off-white/80 leading-relaxed max-w-xl">
-              On AI strategy, leadership alignment, and organizational change.
-            </p>
+            
+            {/* Expanded custom author avatar & description layout */}
+            <div className="flex items-center gap-3.5 pt-2">
+              <div className="w-10 h-10 rounded-full overflow-hidden border border-gold/40 shrink-0 bg-sand">
+                <img 
+                  src="/images/pan-avatar.jpg" 
+                  alt="Pan Seth" 
+                  onError={(e) => {
+                    // Fallback visual
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200&h=200";
+                  }}
+                  className="w-full h-full object-cover" 
+                />
+              </div>
+              <div>
+                <p className="font-sans font-semibold text-[14px] text-off-white">
+                  Pan Seth <span className="text-gold/50 mx-2">•</span> <span className="text-gold uppercase tracking-wider text-xs font-bold">AI Strategy Advisor</span>
+                </p>
+                <p className="font-sans text-[11px] text-off-white/70">
+                  On AI strategy, leadership alignment, and organizational change.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Posts Grid Panel */}
-        <section id="posts-feed" className="py-20 md:py-24 max-w-7xl mx-auto px-6 md:px-12">
+        {/* Filter Bar and Grid Grid Container */}
+        <section id="posts-feed" className="py-16 md:py-20 max-w-7xl mx-auto px-6 md:px-12">
           
+          {/* Five topics Filter Pill Bar */}
+          <div className="flex flex-wrap gap-2.5 mb-12 justify-start md:justify-center">
+            {["All", "AI Governance", "Leadership", "Decision Making", "Org Culture"].map((filter) => (
+              <button
+                key={filter}
+                onClick={() => {
+                  setActiveFilter(filter);
+                  setVisibleCount(8);
+                }}
+                className={filterTabStyles(filter)}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
+
           {loading ? (
-            /* Loading Skeleton States */
             <div className="space-y-12">
-              {/* Featured post skeleton */}
               <div className="h-64 bg-teal/5 animate-pulse border border-teal/15 flex items-center justify-center">
                 <Loader2 className="animate-spin text-teal opacity-50" size={24} />
               </div>
-              
-              {/* Regular posts skeleton grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[1, 2, 3].map((s) => (
-                  <div key={s} className="p-8 bg-canvas border border-teal/10 animate-pulse space-y-6">
+                  <div key={s} className="p-8 bg-white border border-teal/10 animate-pulse space-y-6">
                     <div className="h-4 w-24 bg-teal/10 rounded-sm" />
                     <div className="space-y-2">
                       <div className="h-3 w-full bg-teal/10 rounded-sm" />
                       <div className="h-3 w-5/6 bg-teal/10 rounded-sm" />
                       <div className="h-3 w-4/5 bg-teal/10 rounded-sm" />
                     </div>
-                    <div className="h-3 w-32 bg-gold/10 rounded-sm pt-4" />
                   </div>
                 ))}
               </div>
             </div>
-          ) : error && posts.length === 0 ? (
-            /* Error State (Never shown due to reliable fallback posts array) */
-            <div className="py-20 text-center space-y-4">
-              <h3 className="font-serif text-2xl italic text-teal">
-                Unable to sync content streams.
-              </h3>
-              <p className="font-sans text-sm text-ink-muted">
-                Please confirm connection credentials inside environment variables.
-              </p>
-            </div>
-          ) : posts.length === 0 ? (
-            /* Empty State */
+          ) : filteredPosts.length === 0 ? (
             <div className="py-24 text-center">
-              <p className="font-serif text-2xl italic text-teal">
-                No posts yet. Check back soon.
+              <p className="font-serif text-[22px] italic text-teal">
+                No matching posts for "{activeFilter}". Check back soon.
               </p>
             </div>
           ) : (
-            /* Main Content Feed */
             <div className="space-y-12">
               
-              {/* FEATURED POST (Full-width card at top) */}
+              {/* FEATURED POST */}
               {featuredPost && (
                 <ScrollReveal duration={0.65}>
-                  <div className="relative border border-teal bg-teal/5 flex flex-col md:grid md:grid-cols-[65%_35%] justify-between gap-8 p-8 md:p-12 text-left">
+                  <div className="relative border border-teal bg-white flex flex-col md:grid md:grid-cols-[65%_35%] justify-between gap-8 p-8 md:p-12 text-left shadow-sm">
                     <div className="space-y-6">
                       <div className="flex items-center gap-3">
                         <span className="inline-block px-3 py-1 border border-gold/30 bg-gold/10 text-[10px] font-mono font-bold tracking-wider text-gold uppercase">
@@ -260,7 +289,7 @@ export function PostsView() {
                 </ScrollReveal>
               )}
 
-              {/* REGULAR POSTS GRID */}
+              {/* REGULAR FEED GRID */}
               <StaggerContainer>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {regularPosts.slice(0, visibleCount).map((post, idx) => (
@@ -270,7 +299,7 @@ export function PostsView() {
                           href={post.linkedin_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-gold hover:-translate-y-1 transition-all duration-200 rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between"
+                          className="group block p-8 bg-white border border-teal hover:border-gold hover:-translate-y-1 transition-all duration-200 rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between shadow-sm"
                         >
                           <div className="space-y-4">
                             <div className="flex items-center justify-between">
@@ -300,8 +329,8 @@ export function PostsView() {
                 </div>
               </StaggerContainer>
 
-              {/* PAGINATION: LOAD MORE BUTTON */}
-              {posts.length > visibleCount + 1 && (
+              {/* PAGINATION */}
+              {filteredPosts.length > visibleCount + 1 && (
                 <div className="pt-10 flex justify-center">
                   <InteractiveButton
                     onClick={handleLoadMore}
@@ -314,12 +343,8 @@ export function PostsView() {
 
             </div>
           )}
-
         </section>
       </main>
-
-      {/* Global Brand Footer */}
-      <Footer />
     </div>
   );
 }

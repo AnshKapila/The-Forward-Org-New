@@ -1,9 +1,15 @@
-import { useAppRoute } from "../context/RouteContext";
+import { useLocation } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 
+// IMAGE: Use architectural/environmental photography.
+// NO stock business people. NO AI/robot imagery.
+// Preferred: boardrooms, glass architecture, 
+// structural details, natural light office spaces.
+// Pan's own photos for sections 07 and 12 only.
+
 export function ThoughtLeadership() {
-  const { navigate } = useAppRoute();
+  const [_, setLocation] = useLocation();
 
   const posts = [
     {
@@ -24,12 +30,12 @@ export function ThoughtLeadership() {
   ];
 
   return (
-    <section id="thought-leadership" className="relative bg-canvas py-24 md:py-32">
+    <section id="thought-leadership" className="relative bg-canvas py-24 md:py-32 text-left">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Header Block with gold route navigate link */}
         <ScrollReveal duration={0.6}>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="space-y-3">
               <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block">
                 RECENT THINKING
@@ -44,11 +50,36 @@ export function ThoughtLeadership() {
 
             <div className="shrink-0">
               <button
-                onClick={() => navigate("/posts")}
+                onClick={() => setLocation("/posts")}
                 className="group font-sans font-semibold text-xs tracking-wider uppercase text-gold hover:text-gold-hover inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-gold select-none cursor-pointer"
               >
                 See all posts <span className="text-sm transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
               </button>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Small author avatar branding above card grid */}
+        <ScrollReveal duration={0.5}>
+          <div className="flex items-center gap-3.5 mb-10 bg-[#F5F2EC]/40 p-3.5 border border-teal/10 inline-flex text-left">
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-gold/40 shrink-0 bg-sand">
+              <img
+                src="/images/pan-avatar.jpg"
+                alt="Pan Seth"
+                className="w-full h-full object-cover"
+                onError={(e) => {
+                  // Fallback tight profile visual
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=150&h=150";
+                }}
+              />
+            </div>
+            <div>
+              <p className="font-sans font-bold text-sm text-ink leading-none">
+                Pan Seth
+              </p>
+              <p className="font-sans text-[11px] font-bold text-teal tracking-widest uppercase mt-1 leading-none">
+                AI Strategy Advisor
+              </p>
             </div>
           </div>
         </ScrollReveal>
