@@ -1,6 +1,6 @@
 import { useLocation } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
-import { ArrowUpRight } from "lucide-react";
+import { LoopingArrow } from "./InteractiveButton";
 
 // IMAGE: Use architectural/environmental photography.
 // NO stock business people. NO AI/robot imagery.
@@ -51,9 +51,10 @@ export function ThoughtLeadership() {
             <div className="shrink-0">
               <button
                 onClick={() => setLocation("/posts")}
-                className="group font-sans font-semibold text-xs tracking-wider uppercase text-gold hover:text-gold-hover inline-flex items-center gap-1.5 focus-visible:outline-2 focus-visible:outline-gold select-none cursor-pointer"
+                className="group font-sans font-semibold text-xs tracking-wider uppercase text-gold hover:text-gold-hover inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold select-none cursor-pointer"
               >
-                See all posts <span className="text-sm transition-transform duration-200 group-hover:translate-x-1" aria-hidden="true">→</span>
+                <span>See all posts</span>
+                <LoopingArrow className="text-gold" size={16} />
               </button>
             </div>
           </div>
@@ -94,7 +95,7 @@ export function ThoughtLeadership() {
                     href="https://www.linkedin.com"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-gold hover:-translate-y-1 transition-all duration-200 rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between"
+                    className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between"
                   >
                     <div>
                       {/* Topic Tag */}
@@ -113,7 +114,7 @@ export function ThoughtLeadership() {
                       <span className="font-sans font-semibold text-xs text-gold uppercase tracking-wider block">
                         Read on LinkedIn
                       </span>
-                      <ArrowUpRight size={14} className="text-gold opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                      <LoopingArrow className="text-gold" size={16} />
                     </div>
                   </a>
                 </StaggerItem>

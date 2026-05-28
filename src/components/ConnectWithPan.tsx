@@ -3,7 +3,10 @@ import { PanImage } from "./PanImage";
 import { ScrollReveal } from "./ScrollReveal";
 import { Calendar } from "lucide-react";
 import { InteractiveButton } from "./InteractiveButton";
-import panFounderImg from "../assets/images/regenerated_image_1779884368446.png";
+
+// Premium high-fidelity likeness representing a South Asian female advisor with a warm wooden library/bookshelf background
+const PAN_PORTRAIT_URL = "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600&h=750";
+const PAN_PORTRAIT_FALLBACK = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=750";
 
 export function ConnectWithPan() {
   const handleScrollToCall = () => {
@@ -12,12 +15,12 @@ export function ConnectWithPan() {
   };
 
   return (
-    <section id="connect-with-pan" className="relative bg-canvas py-24 md:py-32 overflow-hidden">
+    <section id="connect-with-pan" className="relative bg-canvas py-24 md:py-32 overflow-hidden border-t border-[#1A3C34]/5">
       {/* Secondary background paper texture blended with sand/canvas */}
       <img
         src="/images/texture-paper.jpg"
         alt="Fine Grain Linen Paper Texture"
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-12 mix-blend-multiply z-0"
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none opacity-10 mix-blend-multiply z-0"
         onError={(e) => {
           e.currentTarget.style.display = "none";
         }}
@@ -26,49 +29,52 @@ export function ConnectWithPan() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <ScrollReveal duration={0.65}>
           {/* Main Rounded Frame inspired by the reference image, using our premium teal palette */}
-          <div className="bg-teal text-white rounded-[2rem] md:rounded-[3rem] p-8 md:p-12 lg:p-14 shadow-xl relative overflow-hidden">
+          <div className="bg-teal text-white rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-12 lg:p-14 shadow-2xl relative overflow-hidden border border-[#235048]/30">
             
             {/* Subtle light reflections inside the card for that premium finish */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-white/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-light/20 rounded-full blur-2xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-white/[0.06] to-transparent rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-light/10 rounded-full blur-2xl pointer-events-none" />
 
             {/* Grid Layout conforming to the three key sections of the image */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[260px_1fr_280px] xl:grid-cols-[280px_1fr_300px] gap-8 lg:gap-12 xl:gap-14 items-center">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[260px_1fr_280px] xl:grid-cols-[280px_1fr_300px] gap-10 lg:gap-14 items-center">
               
-              {/* Left Column: highly rounded founder image frame inspired by the image */}
+              {/* Left Column (Component 1): Founder image with premium bookshelf background */}
               <div className="flex justify-center lg:justify-start">
-                <div className="relative w-full aspect-[4/5] max-w-[280px] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10 bg-teal-dim/30">
+                <div className="relative w-full aspect-[4/5] max-w-[280px] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(18,43,36,0.5)] border border-white/10 bg-teal-dim/40 image-hover-wrapper">
                   <PanImage
-                    src={panFounderImg}
-                    fallbackSrc="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=600&h=700"
-                    alt="Pan Seth"
-                    className="w-full h-full object-cover rounded-[2rem]"
+                    src={PAN_PORTRAIT_URL}
+                    fallbackSrc={PAN_PORTRAIT_FALLBACK}
+                    alt="Pan Seth - Founder"
+                    className="w-full h-full object-cover rounded-[1.5rem]"
                   />
+                  <div className="hover-overlay" />
                 </div>
               </div>
 
-              {/* Middle Column: beautiful executive biography text */}
-              <div className="space-y-4 text-left">
-                <div className="space-y-2">
-                  <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
+              {/* Middle Column (Component 2): Beautiful biography text with enhanced spacing & typography */}
+              <div className="space-y-6 text-left">
+                <div className="space-y-3">
+                  <span className="font-mono text-[11px] font-bold text-gold uppercase tracking-[0.25em] block leading-none">
                     THE FOUNDER
                   </span>
-                  <h2 className="font-serif text-[40px] md:text-[52px] font-bold text-white leading-tight italic">
+                  <h2 className="font-serif text-[36px] md:text-[46px] font-bold text-white leading-none tracking-tight">
                     Pan Seth
                   </h2>
-                  <p className="font-sans text-lg md:text-xl font-medium text-gold">
-                    Founder & Strategy Advisor
+                  <p className="font-sans text-[15px] md:text-[16px] font-medium text-gold uppercase tracking-wider block">
+                    FOUNDER & STRATEGY ADVISOR
                   </p>
                 </div>
 
-                <p className="font-sans text-[15px] md:text-[16px] text-off-white/90 leading-relaxed font-light max-w-xl">
-                  Pan spent a decade building AI infrastructure inside Citi, PagerDuty, and NielsenIQ, before advising the leaders navigating the same challenges from the outside. She holds 2 AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep piloting it.
-                </p>
+                <div className="border-t border-white/10 pt-5">
+                  <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl">
+                    Pan spent a decade building AI infrastructure inside Citi, PagerDuty, and NielsenIQ, before advising the leaders navigating the same challenges from the outside. She holds 2 AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep piloting it.
+                  </p>
+                </div>
               </div>
 
-              {/* Right Column: high-contrast dark booking widget card from the image */}
-              <div className="h-full">
-                <div className="bg-ink text-off-white rounded-[2rem] p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col justify-between gap-8 h-full min-h-[220px] lg:min-h-[260px] text-left relative overflow-hidden">
+              {/* Right Column: High-contrast responsive booking widget card */}
+              <div className="h-full flex items-stretch">
+                <div className="bg-ink text-off-white rounded-[1.5rem] p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col justify-between gap-8 w-full min-h-[220px] lg:min-h-[260px] text-left relative overflow-hidden">
                   
                   {/* Subtle inner card pattern */}
                   <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
@@ -80,7 +86,7 @@ export function ConnectWithPan() {
                   <div className="relative z-10 space-y-4">
                     {/* Circle wrapper icon matching the visual from the image */}
                     <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gold">
-                      <Calendar size={20} />
+                      <Calendar size={20} strokeWidth={1.5} />
                     </div>
 
                     <div className="space-y-1.5">
@@ -101,7 +107,7 @@ export function ConnectWithPan() {
                     </div>
                   </div>
 
-                  {/* Stunning stark button trigger */}
+                  {/* Booking trigger action */}
                   <div className="relative z-10 pt-2">
                     <InteractiveButton
                       onClick={handleScrollToCall}
@@ -123,3 +129,4 @@ export function ConnectWithPan() {
     </section>
   );
 }
+

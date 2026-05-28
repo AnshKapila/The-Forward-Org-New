@@ -1,5 +1,7 @@
 import { Link } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
+import { LoopingArrow } from "./InteractiveButton";
+import { motion } from "motion/react";
 
 // IMAGE: Use architectural/environmental photography.
 // NO stock business people. NO AI/robot imagery.
@@ -18,9 +20,14 @@ export function HowItWorks() {
         <>
           The AI Alignment Index: 15 questions, 5 dimensions, a precise picture of where your AI strategy has gaps.{" "}
           <Link href="/index">
-            <span className="text-gold font-medium hover:underline inline-block cursor-pointer select-none">
-              Take the Index →
-            </span>
+            <motion.span 
+              className="text-gold font-medium hover:underline inline-flex items-center gap-1 cursor-pointer select-none"
+              initial="initial"
+              whileHover="hover"
+            >
+              <span>Take the Index</span>
+              <LoopingArrow className="text-gold" size={13} />
+            </motion.span>
           </Link>
         </>
       ),

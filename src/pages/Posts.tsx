@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { LinkedInPost } from "../types";
-import { Loader2, Calendar, ArrowUpRight } from "lucide-react";
-import { InteractiveButton } from "../components/InteractiveButton";
+import { Loader2, Calendar } from "lucide-react";
+import { InteractiveButton, LoopingArrow } from "../components/InteractiveButton";
 
 export default function Posts() {
   const [posts, setPosts] = useState<LinkedInPost[]>([]);
@@ -299,7 +299,7 @@ export default function Posts() {
                           href={post.linkedin_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group block p-8 bg-white border border-teal hover:border-gold hover:-translate-y-1 transition-all duration-200 rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between shadow-sm"
+                          className="group block p-8 bg-white border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between shadow-sm"
                         >
                           <div className="space-y-4">
                             <div className="flex items-center justify-between">
@@ -320,7 +320,7 @@ export default function Posts() {
                             <span className="font-sans font-semibold text-xs text-gold uppercase tracking-wider block">
                               Read on LinkedIn
                             </span>
-                            <ArrowUpRight size={13} className="text-gold opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                            <LoopingArrow className="text-gold" size={16} />
                           </div>
                         </a>
                       </StaggerItem>

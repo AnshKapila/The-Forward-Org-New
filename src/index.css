@@ -49,3 +49,47 @@
     outline-offset: 3px;
   }
 }
+
+@layer utilities {
+  /* Change 4 Image Hover Zoom & Reveal system */
+  .image-hover-wrapper {
+    position: relative;
+    overflow: hidden !important;
+    display: block;
+    cursor: pointer;
+  }
+
+  .image-hover-wrapper img {
+    transform: scale(1) !important;
+    transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
+
+  .image-hover-wrapper .hover-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #1A3C34;
+    opacity: 0;
+    transition: opacity 400ms cubic-bezier(0.25, 1, 0.5, 1);
+    pointer-events: none;
+    z-index: 20;
+  }
+
+  .image-hover-wrapper:hover img {
+    transform: scale(1.04) !important;
+  }
+
+  .image-hover-wrapper:hover .hover-overlay {
+    opacity: 0.15 !important;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .image-hover-wrapper img {
+      transition: none !important;
+      transform: none !important;
+    }
+    .image-hover-wrapper .hover-overlay {
+      transition: none !important;
+      opacity: 0 !important;
+    }
+  }
+}

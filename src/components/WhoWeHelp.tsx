@@ -1,160 +1,151 @@
 import { useState } from "react";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
+import { ScrollReveal } from "./ScrollReveal";
+import { ArrowUpRight } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
-// IMAGE: Use architectural/environmental photography.
-// NO stock business people. NO AI/robot imagery.
-// Preferred: boardrooms, glass architecture, 
-// structural details, natural light office spaces.
-// Pan's own photos for sections 07 and 12 only.
+interface AccordionItem {
+  num: string;
+  title: string;
+  description: string;
+}
 
 export function WhoWeHelp() {
-  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-  const targets = [
+  const items: AccordionItem[] = [
     {
-      role: "The Regulated CEO",
-      pain: "My board wants an AI strategy by Q3. I need one that won't create the next compliance headline.",
-      shift: "From defensible activity to defensible results.",
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800",
-      aim: "Dark boardroom table, dramatic side lighting, no people visible"
+      num: "01",
+      title: "Enterprise Boards & CIOs",
+      description: "Navigate past fragmented, bottom-up tool sprawl. We build unified, defensive strategic models to align isolated software projects with board-level EBITDA targets, corporate compliance guidelines, and verified core operational metrics."
     },
     {
-      role: "The Scaling CEO",
-      pain: "We have spent real money on AI tools. I cannot tell my investors what they are producing.",
-      shift: "From scattered experiments to structured, measurable ROI.",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=800",
-      aim: "Editorial, high contrast, minimal architecture"
+      num: "02",
+      title: "Private Equity & Portfolio Operations",
+      description: "Perform deep, quantitative operational reviews for portfolio companies. We isolate high-friction overhead targets, align tech architecture with the investment thesis, and equip operators to trace AI tooling directly to margin expansions and enterprise valuation."
     },
     {
-      role: "The CIO or CDO",
-      pain: "I can build the technology stack. Getting leadership to actually use it is the problem nobody prepared me for.",
-      shift: "From technical authority to organizational impact.",
-      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=800",
-      aim: "Editorial abstract structural architecture"
-    },
+      num: "03",
+      title: "High-Growth SaaS Founders",
+      description: "Restructure product delivery and compute overhead and design defensible generative loops. We help scaling technology teams engineer real leverage, optimizing pipeline speed and scaling capacity without escalating platform or cloud compute debt."
+    }
   ];
+
+  const handleGetStartedClick = () => {
+    const el = document.getElementById("book-a-call");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = "/#book-a-call";
+    }
+  };
 
   return (
     <section
       id="who-we-help"
-      className="relative bg-teal py-32 md:pb-52 overflow-hidden"
-      style={{
-        clipPath: "polygon(0 0, 100% 0, 100% 90%, 0 100%)",
-      }}
+      className="relative bg-[#F7F4EF]/40 py-24 md:py-32 overflow-hidden border-t border-b border-[#1A3C34]/5"
     >
-      {/* Inline SVG faint geometric grid pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.08] select-none">
-        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="dot-grid" width="30" height="30" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="1" fill="#FFFFFF" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#dot-grid)" />
-        </svg>
-      </div>
-
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <ScrollReveal duration={0.6}>
-          <div className="mb-16 md:mb-24">
-            <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-              WHO THIS IS FOR
-            </span>
-            <h2 className="font-serif text-[32px] md:text-[48px] leading-[1.1] font-bold text-off-white text-balance max-w-3xl">
-              Built for leaders who are already in the room.
-            </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-12 lg:gap-16 items-center">
+            
+            {/* Left Column: Big editorial boardroom image with Get Started card */}
+            <div className="relative w-full aspect-[4/5] max-w-[480px] mx-auto lg:mx-0 shadow-lg">
+              <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-teal-dim/10">
+                <img
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
+                  alt="Boardroom with natural light filtering through vertical windows"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="hover-overlay" />
+                
+                {/* Floating "Get started" card layered on the bottom-left of the image */}
+                <div 
+                  onClick={handleGetStartedClick}
+                  className="absolute bottom-0 left-0 bg-white p-6 w-[160px] h-[115px] sm:w-[170px] sm:h-[120px] flex flex-col justify-between shadow-xl cursor-pointer group/gs z-30 border-t border-r border-[#1A3C34]/10 transition-colors duration-150 hover:bg-[#F7F4EF]/85"
+                  aria-label="Get started - book a strategy call"
+                >
+                  <div className="flex justify-end w-full">
+                    <ArrowUpRight 
+                      size={20} 
+                      strokeWidth={1.5} 
+                      strokeLinecap="square" 
+                      strokeLinejoin="miter" 
+                      className="text-[#1A3C34] group-hover/gs:translate-x-1 group-hover/gs:-translate-y-1 transition-transform duration-200"
+                    />
+                  </div>
+                  <span className="font-sans text-[13px] font-bold text-[#1A3C34] uppercase tracking-wider block">
+                    Get started
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Title and interactive accordion list */}
+            <div className="flex flex-col text-left justify-center lg:pl-4">
+              <div className="mb-10 lg:mb-12">
+                <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
+                  WHO WE HELP
+                </span>
+                <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink">
+                  Designed for Leaders at Key Inflection Points
+                </h2>
+              </div>
+
+              {/* Collapsible hover-driven accordion */}
+              <div 
+                onMouseLeave={() => setHoveredIndex(null)}
+                className="border-t border-b border-[#1A3C34]/15 divide-y divide-[#1A3C34]/15"
+              >
+                {items.map((item, idx) => {
+                  const isExpanded = hoveredIndex === idx;
+
+                  return (
+                    <div
+                      key={idx}
+                      onMouseEnter={() => setHoveredIndex(idx)}
+                      onClick={() => setHoveredIndex(isExpanded ? null : idx)}
+                      className={`py-6 cursor-pointer group transition-all duration-200 ${
+                        isExpanded ? "px-2 bg-[#1A3C34]/[0.02]" : "hover:bg-[#1A3C34]/[0.01]"
+                      }`}
+                    >
+                      {/* Row Header */}
+                      <div className="flex justify-between items-center w-full">
+                        <h3 className={`font-serif text-lg md:text-xl font-bold transition-colors duration-200 ${
+                          isExpanded ? "text-[#1A3C34]" : "text-ink group-hover:text-[#1A3C34]"
+                        }`}>
+                          {item.title}
+                        </h3>
+                        <span className="font-sans text-[13px] md:text-[14px] text-ink-muted/65 font-medium select-none">
+                          {item.num}
+                        </span>
+                      </div>
+
+                      {/* Animated Drawer Body */}
+                      <AnimatePresence initial={false}>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <p className="font-sans text-[15px] text-ink-muted leading-[1.65] pt-3 pb-1 pr-4 max-w-xl">
+                              {item.description}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
           </div>
         </ScrollReveal>
-
-        {/* CSS Clustered Grid with staggered desktop padding */}
-        <StaggerContainer>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 relative">
-            
-            {targets.map((target, idx) => {
-              const desktopStaggerStyle =
-                idx === 1
-                  ? { paddingTop: "40px" }
-                  : idx === 2
-                  ? { paddingTop: "20px" }
-                  : { paddingTop: "0px" };
-
-              return (
-                <div key={idx} className="relative flex">
-                  {/* Vertical rule logic: Show on desktop between columns */}
-                  {idx > 0 && (
-                    <div className="hidden md:block absolute left-0 top-12 bottom-12 w-[1px] bg-gold/15" />
-                  )}
-
-                  <div
-                    style={desktopStaggerStyle}
-                    className="flex flex-col flex-1 px-0 md:px-10 lg:px-12 pb-6 text-left"
-                  >
-                    <StaggerItem>
-                      {/* Image container above role column */}
-                      <div className="relative w-full h-[200px] mb-6 overflow-hidden group bg-teal-dim/40 cursor-pointer">
-                        {!imageErrors[idx] ? (
-                          <img
-                            src={target.image}
-                            alt={target.role}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                            referrerPolicy="no-referrer"
-                            onError={() => {
-                              setImageErrors(prev => ({ ...prev, [idx]: true }));
-                            }}
-                          />
-                        ) : (
-                          /* Placeholder fallback text card matching specifications */
-                          <div className="absolute inset-0 bg-[#122B24]/60 flex flex-col justify-center items-center text-center p-5 z-10">
-                            <span className="font-mono text-[9px] text-[#C9A55A] font-bold uppercase tracking-widest block mb-2">
-                              {target.role}
-                            </span>
-                            <span className="font-serif text-[12px] italic text-[#F0E6D3]/90">
-                              {target.aim}
-                            </span>
-                          </div>
-                        )}
-                        {/* Forest Green overlay at 20% opacity. Reduces to 8% on hover. */}
-                        <div className="absolute inset-0 bg-[#1A3C34]/20 group-hover:bg-[#1A3C34]/8 transition-all duration-300 z-20 pointer-events-none" />
-                      </div>
-
-                      {/* Large role title */}
-                      <h3 className="font-serif text-2xl md:text-[28px] font-bold text-off-white mb-4 leading-snug">
-                        {target.role}
-                      </h3>
-                      
-                      {/* Gold separator rule */}
-                      <div className="w-10 h-[1px] bg-gold mb-6" />
-
-                      {/* Pain Point */}
-                      <p className="font-sans text-[16px] text-off-white/75 leading-[1.75] mb-8 min-h-[50px]">
-                        {target.pain}
-                      </p>
-
-                      {/* What Shift */}
-                      <div className="mt-auto flex items-start gap-2">
-                        <span className="text-gold text-lg select-none shrink-0" aria-hidden="true">→</span>
-                        <p className="font-sans font-medium text-[15px] text-off-white leading-[1.6]">
-                          {target.shift}
-                        </p>
-                      </div>
-                    </StaggerItem>
-                  </div>
-                </div>
-              );
-            })}
-
-          </div>
-        </StaggerContainer>
       </div>
-
-      <style>{`
-        @media (max-width: 767px) {
-          #who-we-help {
-            clip-path: none !important;
-            padding-bottom: 6rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }

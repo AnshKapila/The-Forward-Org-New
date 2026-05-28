@@ -1,31 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
+import { ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+
+interface DimensionItem {
+  num: string;
+  name: string;
+  weight: number;
+  weightLabel: string;
+  measures: string;
+  matters: string;
+}
 
 export default function IndexPage() {
   const [location, setLocation] = useLocation();
+  const [expandedIndex, setExpandedIndex] = useState<number>(0);
 
-  const dimensions = [
+  const dimensions: DimensionItem[] = [
     {
+      num: "01",
       name: "Strategy & Vision",
-      desc: "Aligning AI priorities directly with business model margin expanders and board goals.",
+      weight: 100, // full bar or equivalent representation
+      weightLabel: "30% Complexity Cap",
+      measures: "Direct alignment of artificial intelligence investments with core profit-margin expansion targets, board-level efficiency goals, and defensible market differentiation.",
+      matters: "Without strategic alignment, companies spend millions on isolated AI pilots that generate positive internal press but fail to move corporate EBITDA or build durable equity value.",
     },
     {
+      num: "02",
       name: "Governance & Risk",
-      desc: "Establishing active compliance check-gates and monitoring live employee endpoints.",
+      weight: 85,
+      weightLabel: "25% Complexity Cap",
+      measures: "Active compliance containment gates, rigorous data leakage security rules, user endpoints auditing, and model training bias controls.",
+      matters: "Deploying generative technologies without structural containment leaves the enterprise directly vulnerable to catastrophic IP contamination, data loss liability, and costly compliance headlines.",
     },
     {
+      num: "03",
       name: "Leadership Alignment",
-      desc: "Ensuring executive team unity and a cohesive, shared long-term corporate roadmap.",
+      weight: 70,
+      weightLabel: "20% Complexity Cap",
+      measures: "Cross-functional consensus among executive sponsors and department heads regarding investment priority, budget accountability, and technology roadmaps.",
+      matters: "Siloed, departmental AI experiments create fragmented enterprise architectures, redundant software license fees, and executive friction that halts broad adoption.",
     },
     {
+      num: "04",
       name: "Workforce Adoption KPI",
-      desc: "Redesigning frontline procedures around AI-powered workflows with verified usage tracking.",
+      weight: 55,
+      weightLabel: "15% Complexity Cap",
+      measures: "Proactive redesign of daily frontline procedures alongside transparent, automated feedback logs measuring exact hour-reductions and output quality improvements.",
+      matters: "The most sophisticated artificial intelligence stack delivers exactly zero return if workforce resistance, lack of trust, or rigid habits prevent models from being integrated into day-to-day procedures.",
     },
     {
-      name: "Roadmap & ROI",
-      desc: "Tracing return on AI spend directly to quantifiable performance and balance-sheet line items.",
+      num: "05",
+      name: "Roadmap & ROI Trace",
+      weight: 40,
+      weightLabel: "10% Complexity Cap",
+      measures: "Attribution mechanisms tracing capital costs directly from compute and vendor licensing to verifiable balance-sheet improvements and workforce hours saved.",
+      matters: "Without structured ROI attribution, technology spend remains a speculative operational cost center subject to cost-cutting rather than a highly compounding capital asset.",
     },
   ];
 
@@ -35,7 +67,7 @@ export default function IndexPage() {
       <section className="w-full max-w-5xl mx-auto text-center px-6 md:px-12 pt-28 pb-12 flex flex-col justify-center md:min-h-[calc(100vh-80px)]">
         <ScrollReveal duration={0.6}>
           <div className="space-y-5 sm:space-y-6">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
+            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block animate-fade-in">
               THE AI ALIGNMENT INDEX
             </span>
             
@@ -60,6 +92,7 @@ export default function IndexPage() {
               <InteractiveButton
                 onClick={() => setLocation("/scorecard")}
                 variant="gold"
+                id="cta-take-index"
               >
                 Take the Index
               </InteractiveButton>
@@ -68,56 +101,117 @@ export default function IndexPage() {
         </ScrollReveal>
       </section>
 
-      {/* Five Dimensions Section */}
-      <section className="bg-[#F7F4EF] py-20 px-6">
-        <div className="max-w-[1100px] mx-auto">
-          <ScrollReveal duration={0.5}>
-            <div className="text-center mb-12">
-              <span className="font-sans font-bold text-xs text-teal uppercase tracking-widest block mb-2">
+      {/* Five Dimensions Section — Change 5 Luxury Redesign */}
+      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6">
+        <div className="max-w-[1000px] mx-auto">
+          <ScrollReveal duration={0.55}>
+            <div className="text-left mb-16 md:mb-20">
+              <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
                 ASSESSMENT BREAKDOWN
               </span>
-              <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
-                What We Measure
+              <h2 className="font-serif text-[32px] md:text-[44px] leading-tight font-bold text-ink max-w-2xl">
+                The Five Dimensions of AI Alignment
               </h2>
-            </div>
-
-            {/* Grid of dimensions: row of 3 + row of 2 centered */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {dimensions.slice(0, 3).map((dim, i) => (
-                <div
-                  key={i}
-                  className="p-8 bg-white border border-teal/40 flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1"
-                >
-                  <div>
-                    <h3 className="font-serif text-[22px] font-semibold text-teal mb-3">
-                      {dim.name}
-                    </h3>
-                    <p className="font-sans text-[14px] text-ink-muted leading-relaxed">
-                      {dim.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 max-w-[730px] mx-auto">
-              {dimensions.slice(3).map((dim, i) => (
-                <div
-                  key={i}
-                  className="p-8 bg-white border border-teal/40 flex flex-col justify-between transition-all duration-300 hover:border-gold hover:-translate-y-1"
-                >
-                  <div>
-                    <h3 className="font-serif text-[22px] font-semibold text-teal mb-3">
-                      {dim.name}
-                    </h3>
-                    <p className="font-sans text-[14px] text-ink-muted leading-relaxed">
-                      {dim.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              <p className="font-sans text-base text-ink-muted leading-relaxed max-w-xl mt-4">
+                We measure your organization across these functional disciplines to map exact operational gaps between capital deployment and positive bottom-line margin expansion.
+              </p>
             </div>
           </ScrollReveal>
+
+          {/* Luxury Expanding Row List */}
+          <div className="border-t border-[#1A3C34]/15 divide-y divide-[#1A3C34]/15">
+            {dimensions.map((dim, idx) => {
+              const isExpanded = expandedIndex === idx;
+
+              return (
+                <div 
+                  key={idx}
+                  className={`group transition-colors duration-200 ${isExpanded ? "bg-[#1A3C34]/[0.02]" : "hover:bg-[#1A3C34]/[0.01]"}`}
+                >
+                  {/* Row Trigger Header */}
+                  <button
+                    onClick={() => setExpandedIndex(isExpanded ? -1 : idx)}
+                    className="w-full text-left py-8 px-4 sm:px-6 flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer focus-visible:outline-2 focus-visible:outline-gold focus-visible:outline-offset-1 select-none"
+                    aria-expanded={isExpanded}
+                    aria-controls={`dimension-info-${idx}`}
+                  >
+                    {/* Left: Oversized number and Title */}
+                    <div className="flex items-center gap-6 md:gap-8 flex-1">
+                      <span className="font-serif text-[32px] md:text-[38px] font-bold text-gold/40 select-none w-10 shrink-0 leading-none">
+                        {dim.num}
+                      </span>
+                      <h3 className="font-serif text-xl md:text-2xl font-bold text-ink group-hover:text-[#1A3C34] transition-colors duration-150">
+                        {dim.name}
+                      </h3>
+                    </div>
+
+                    {/* Right: Progress outline meter and expand Indicator */}
+                    <div className="flex items-center gap-8 justify-between md:justify-end shrink-0 w-full md:w-auto">
+                      {/* Outline Progress Weight Meter */}
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-[10px] uppercase tracking-wider text-ink-muted text-right">
+                          {dim.weightLabel}
+                        </span>
+                        {/* Micro horizontal meter */}
+                        <div className="w-16 h-1.5 bg-transparent border border-[#1A3C34]/20 p-[1px] inline-block">
+                          <div 
+                            className="bg-gold h-full transition-all duration-500"
+                            style={{ width: `${dim.weight}%` }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Rotating Toggle Chevron */}
+                      <ChevronDown
+                        size={20}
+                        strokeWidth={1.5}
+                        strokeLinecap="square"
+                        strokeLinejoin="miter"
+                        className={`text-gold transition-transform duration-300 ${isExpanded ? "rotate-180" : "rotate-0"}`}
+                      />
+                    </div>
+                  </button>
+
+                  {/* Expansion Area */}
+                  <AnimatePresence initial={false}>
+                    {isExpanded && (
+                      <motion.div
+                        id={`dimension-info-${idx}`}
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.28, ease: [0.25, 1, 0.5, 1] }}
+                        className="overflow-hidden"
+                      >
+                        {/* Interactive Contents */}
+                        <div className="px-4 sm:px-6 pb-10 pt-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-b border-[#1A3C34]/5 ml-0 md:ml-16">
+                          {/* Column 1 - Measures */}
+                          <div className="space-y-3">
+                            <span className="font-sans font-bold text-[10px] text-[#1A3C34] uppercase tracking-widest block">
+                              What We Measure
+                            </span>
+                            <p className="font-sans text-[15px] text-ink leading-relaxed font-normal">
+                              {dim.measures}
+                            </p>
+                          </div>
+
+                          {/* Column 2 - Matters */}
+                          <div className="space-y-3">
+                            <span className="font-sans font-bold text-[10px] text-gold uppercase tracking-widest block">
+                              Why It Matters
+                            </span>
+                            <p className="font-serif text-[14px] italic text-ink-muted leading-relaxed">
+                              {dim.matters}
+                            </p>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
     </div>

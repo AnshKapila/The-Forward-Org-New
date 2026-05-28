@@ -77,7 +77,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
               className="absolute top-6 right-6 p-1 text-[#1A1C1A]/40 hover:text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-gold cursor-pointer"
               aria-label="Close modal"
             >
-              <X size={20} strokeWidth={1.5} />
+              <X size={20} strokeWidth={1.5} strokeLinecap="square" strokeLinejoin="miter" />
             </button>
 
             {!isSuccess ? (

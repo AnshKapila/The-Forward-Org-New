@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
+import { ChevronDown } from "lucide-react";
 
 interface FAQItem {
   id: number;
@@ -107,23 +108,17 @@ export function FAQ() {
                         {item.question}
                       </span>
 
-                      {/* Customized rotating chevron right */}
+                      {/* Customized rotating chevron down */}
                       <span className="shrink-0">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="var(--color-teal)"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
+                        <ChevronDown
+                          size={20}
+                          strokeWidth={1.5}
+                          strokeLinecap="square"
+                          strokeLinejoin="miter"
                           className={`transition-transform duration-250 ease-in-out ${
-                            isOpen ? "rotate-90 text-teal" : "rotate-0 text-ink/40"
+                            isOpen ? "rotate-180 text-teal" : "rotate-0 text-ink/40"
                           }`}
-                        >
-                          <polyline points="9 18 15 12 9 6" />
-                        </svg>
+                        />
                       </span>
                     </button>
 

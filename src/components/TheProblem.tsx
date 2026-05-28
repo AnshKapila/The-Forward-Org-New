@@ -17,20 +17,25 @@ export function TheProblem() {
           <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-12 md:gap-14 items-center">
             
             {/* Left 45%: Large Sourced Image with shadow offset */}
-            <div className="relative w-full h-[320px] md:h-[480px] bg-sand/30">
+            <div 
+              className="relative w-full h-[320px] md:h-[480px] bg-sand/30 image-hover-wrapper"
+              style={{
+                boxShadow: "6px 6px 0 0 #C9A55A"
+              }}
+            >
               {!imageError ? (
-                <img
-                  src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=800"
-                  alt="Empty executive meeting room seen through glass"
-                  className="w-full h-full object-cover transform transition-all duration-300"
-                  style={{
-                    boxShadow: "6px 6px 0 0 #C9A55A"
-                  }}
-                  onError={() => {
-                    setImageError(true);
-                  }}
-                  referrerPolicy="no-referrer"
-                />
+                <>
+                  <img
+                    src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=800"
+                    alt="Empty executive meeting room seen through glass"
+                    className="w-full h-full object-cover transform transition-all duration-300"
+                    onError={() => {
+                      setImageError(true);
+                    }}
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="hover-overlay" />
+                </>
               ) : (
                 /* Sourced metadata fallback description visual block */
                 <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8 select-none border border-gold/40">
@@ -42,7 +47,6 @@ export function TheProblem() {
                   </p>
                 </div>
               )}
-              <div className="absolute inset-0 bg-[#1A3C34]/5 pointer-events-none" />
             </div>
 
             {/* Right 55%: Existing Copy and Editorial Typography */}
@@ -65,6 +69,30 @@ export function TheProblem() {
               <p className="font-sans text-[17px] text-ink-muted leading-[1.75] font-light">
                 The gap is never the technology. It is always what sits underneath it: whether your leadership team is aligned, whether your governance can handle the speed, whether your people have been given permission to actually change how they work. That is what we fix.
               </p>
+
+              {/* McKinsey Stat Chips */}
+              <div className="pt-4 space-y-3">
+                <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 md:gap-10 w-full">
+                  {/* Chip 1 */}
+                  <div className="flex-1 flex flex-col justify-start items-start text-left">
+                    <span className="font-serif text-[32px] md:text-[36px] font-bold text-gold leading-none">88%</span>
+                    <span className="font-sans text-[13px] text-ink-muted mt-2 leading-tight">of companies report AI use</span>
+                  </div>
+                  {/* Chip 2 */}
+                  <div className="flex-1 flex flex-col justify-start items-start text-left">
+                    <span className="font-serif text-[32px] md:text-[36px] font-bold text-gold leading-none">40%</span>
+                    <span className="font-sans text-[13px] text-ink-muted mt-2 leading-tight">actually generate real value</span>
+                  </div>
+                  {/* Chip 3 */}
+                  <div className="flex-1 flex flex-col justify-start items-start text-left">
+                    <span className="font-serif text-[32px] md:text-[36px] font-bold text-gold leading-none">10x</span>
+                    <span className="font-sans text-[13px] text-ink-muted mt-2 leading-tight">output in forward organizations</span>
+                  </div>
+                </div>
+                <div className="text-left pt-1">
+                  <span className="font-sans text-[11px] text-ink-faint">Source: McKinsey Global AI Report</span>
+                </div>
+              </div>
             </div>
 
           </div>

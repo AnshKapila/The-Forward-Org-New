@@ -75,15 +75,15 @@ export default function About() {
 
             {/* Right Photo Column (45%) */}
             <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div className="relative w-full aspect-[4/5] max-w-[420px] bg-sand">
+              <div 
+                className="relative w-full aspect-[4/5] max-w-[420px] bg-sand image-hover-wrapper"
+                style={{
+                  boxShadow: "8px 8px 0 0 rgba(201, 165, 90, 0.4)"
+                }}
+              >
                 {/* Visual placeholder box with details */}
-                <div className="absolute inset-0 bg-teal/20 mix-blend-multiply z-10" />
-                <div 
-                  className="w-full h-full object-cover transform transition-all duration-300"
-                  style={{
-                    boxShadow: "8px 8px 0 0 rgba(201, 165, 90, 0.4)"
-                  }}
-                >
+                <div className="absolute inset-0 bg-teal/20 mix-blend-multiply z-10 pointer-events-none" />
+                <div className="w-full h-full object-cover">
                   <div className="w-full h-full bg-sand/60 flex flex-col justify-center items-center p-8 text-center border border-gold/20 select-none">
                     <span className="font-mono text-xs text-teal font-bold uppercase tracking-widest block mb-1">
                       FOUNDER PHOTOGRAPH
@@ -96,6 +96,7 @@ export default function About() {
                     </p>
                   </div>
                 </div>
+                <div className="hover-overlay" />
               </div>
             </div>
           </div>

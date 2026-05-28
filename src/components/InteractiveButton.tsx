@@ -1,13 +1,60 @@
 import React from "react";
-import { ArrowUpRight, LucideIcon } from "lucide-react";
+import { ArrowRight, LucideIcon } from "lucide-react";
+import { motion } from "motion/react";
 
-export function SlidingArrow({ className = "text-current" }: { className?: string }) {
+export function LoopingArrow({ className = "text-current", size = 16 }: { className?: string; size?: number }) {
   return (
-    <span className="relative overflow-hidden w-4 h-4 flex items-center justify-center shrink-0">
-      <ArrowUpRight className={`w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-4 group-hover:-translate-y-4 absolute ${className}`} />
-      <ArrowUpRight className={`w-4 h-4 transition-transform duration-300 ease-in-out -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 absolute ${className}`} />
+    <span 
+      className="relative overflow-hidden inline-flex items-center justify-center shrink-0"
+      style={{ width: `${size}px`, height: `${size}px` }}
+    >
+      {/* Existing arrow exits to right */}
+      <motion.span
+        className="absolute inline-flex items-center justify-center"
+        variants={{
+          initial: { x: 0, opacity: 1 },
+          hover: { 
+            x: "100%", 
+            opacity: 0,
+            transition: { duration: 0.18, ease: "easeIn" }
+          }
+        }}
+      >
+        <ArrowRight 
+          size={size} 
+          strokeWidth={1.5} 
+          strokeLinecap="square" 
+          strokeLinejoin="miter" 
+          className={className} 
+        />
+      </motion.span>
+      {/* New arrow enters from left */}
+      <motion.span
+        className="absolute inline-flex items-center justify-center"
+        variants={{
+          initial: { x: "-100%", opacity: 0 },
+          hover: { 
+            x: 0, 
+            opacity: 1,
+            transition: { delay: 0.06, duration: 0.18, ease: "easeOut" }
+          }
+        }}
+      >
+        <ArrowRight 
+          size={size} 
+          strokeWidth={1.5} 
+          strokeLinecap="square" 
+          strokeLinejoin="miter" 
+          className={className} 
+        />
+      </motion.span>
     </span>
   );
+}
+
+// Keep a compatible wrapper named SlidingArrow for any legacy references, using the new looping mechanism
+export function SlidingArrow({ className = "text-current" }: { className?: string }) {
+  return <LoopingArrow className={className} size={16} />;
 }
 
 interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -17,7 +64,7 @@ interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   disabled?: boolean;
   className?: string;
   id?: string;
-  variant?: "primary" | "secondary" | "gold" | "teal" | "dark" | "outline-dark";
+  variant?: "primary" | "secondary" | "gold" | "teal" | "dark" | "outline-dark" | "outline-teal";
   size?: "sm" | "md";
   icon?: LucideIcon | React.ComponentType<{ className?: string; size?: number }>;
   noIcon?: boolean;
@@ -36,57 +83,105 @@ export function InteractiveButton({
   id,
   ...props
 }: InteractiveButtonProps) {
-  // Define standard base styles
   const sizeClasses = size === "sm" ? "py-2.5 px-5" : "py-4 px-8";
-  const baseStyle = `group relative ${sizeClasses} font-sans font-bold text-xs uppercase tracking-wider select-none cursor-pointer flex items-center justify-center gap-2 shadow-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] border rounded-none overflow-hidden leading-none`;
+  
+  // Base button styles
+  const baseStyle = `group relative ${sizeClasses} font-sans font-bold text-xs uppercase tracking-wider select-none cursor-pointer flex items-center justify-center gap-2 border rounded-none overflow-hidden leading-none transition-all duration-300 active:scale-[0.98]`;
 
   let variantStyle = "";
+  let isGhostOutline = false;
 
   switch (variant) {
-    case "primary": // Light background, text dark ink
+    case "primary": 
       variantStyle = "bg-off-white text-ink border-transparent hover:bg-ink hover:text-white hover:border-white/20";
       break;
-    case "secondary": // Outline transparent, white borders/text
+    case "secondary": 
+      // Secondary acts as the standard white outline button
       variantStyle = "border-white/20 bg-transparent text-white hover:bg-white hover:text-ink hover:border-white";
       break;
-    case "gold": // Classic high-performance Gold background
-      variantStyle = "bg-gold text-ink border-gold hover:bg-ink hover:text-gold hover:border-gold";
+    case "gold": 
+      // Change 4 Gold Button Hover specifications:
+      // Default: gold background background color gold (#C9A55A), ink text text-ink (#1A1C1A), no transform.
+      // On hover: background shifts to gold-hover (#B8934A), translateY SVG shadow appear.
+      variantStyle = "bg-gold text-ink border-gold hover:bg-gold-hover hover:-translate-y-[1px] hover:shadow-[0_4px_12px_rgba(201,165,90,0.3)] active:translate-y-0 active:shadow-none duration-150 ease-out transition-all";
       break;
-    case "teal": // Mid-range teal bg with gold accents/white text
+    case "teal": 
       variantStyle = "bg-teal text-white border-teal hover:bg-white hover:text-teal hover:border-teal";
       break;
-    case "dark": // Ink dark background
+    case "dark": 
       variantStyle = "bg-ink text-off-white border-white/5 hover:bg-off-white hover:text-ink hover:border-transparent";
       break;
-    case "outline-dark": // Dark outline
+    case "outline-dark": 
       variantStyle = "border-ink/20 bg-transparent text-ink hover:bg-ink hover:text-white hover:border-ink";
+      break;
+    case "outline-teal":
+      // Change 4 Outline / Ghost specifications:
+      // Default: transparent background, forest green border and text (#1A3C34).
+      // On hover: Forest green fill slides in from left using clip-path, text transitions to off-white simultaneously.
+      isGhostOutline = true;
+      variantStyle = "border-[#1A3C34] bg-transparent text-[#1A3C34] hover:text-off-white transition-colors duration-200";
       break;
     default:
       variantStyle = "bg-off-white text-ink border-transparent hover:bg-ink hover:text-white";
   }
 
   return (
-    <button
+    <motion.button
       id={id}
       type={type}
       disabled={disabled}
       onClick={onClick}
       className={`${baseStyle} ${variantStyle} ${className}`}
+      initial="initial"
+      whileHover="hover"
       {...props}
     >
+      {isGhostOutline && (
+        <motion.span
+          className="absolute inset-0 bg-[#1A3C34] pointer-events-none z-0"
+          initial={{ clipPath: "inset(0 100% 0 0)" }}
+          whileHover={{ clipPath: "inset(0 0% 0 0)" }}
+          transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
+        />
+      )}
+      
       <span className="relative z-10 flex items-center justify-center gap-2">
         {children}
         {!noIcon && (
           CustomIcon ? (
             <span className="relative overflow-hidden w-4 h-4 flex items-center justify-center shrink-0">
-              <CustomIcon className="w-4 h-4 transition-transform duration-300 ease-in-out group-hover:translate-x-4 group-hover:-translate-y-4 absolute text-current" />
-              <CustomIcon className="w-4 h-4 transition-transform duration-300 ease-in-out -translate-x-4 translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 absolute text-current" />
+              <motion.span
+                className="absolute inline-flex items-center justify-center"
+                variants={{
+                  initial: { x: 0, opacity: 1 },
+                  hover: { 
+                    x: "100%", 
+                    opacity: 0,
+                    transition: { duration: 0.18, ease: "easeIn" }
+                  }
+                }}
+              >
+                <CustomIcon className="w-4 h-4 text-current" strokeWidth={1.5} strokeLinecap="square" strokeLinejoin="miter" />
+              </motion.span>
+              <motion.span
+                className="absolute inline-flex items-center justify-center"
+                variants={{
+                  initial: { x: "-100%", opacity: 0 },
+                  hover: { 
+                    x: 0, 
+                    opacity: 1,
+                    transition: { delay: 0.06, duration: 0.18, ease: "easeOut" }
+                  }
+                }}
+              >
+                <CustomIcon className="w-4 h-4 text-current" strokeWidth={1.5} strokeLinecap="square" strokeLinejoin="miter" />
+              </motion.span>
             </span>
           ) : (
-            <SlidingArrow />
+            <LoopingArrow className="text-current" size={16} />
           )
         )}
       </span>
-    </button>
+    </motion.button>
   );
 }

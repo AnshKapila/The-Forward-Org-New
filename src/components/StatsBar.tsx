@@ -49,13 +49,13 @@ export function StatsBar() {
           {/* Column 1 */}
           <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
             <div className="mb-2">
-              <CountUp end={88} suffix="%" />
+              <CountUp end={10} suffix="+" />
             </div>
             <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
-              of companies report regular AI use
+              Years inside the organizations she now advises
             </p>
             <p className="font-sans text-sm text-off-white/65 mt-2 leading-relaxed">
-              Yet most cannot measure what it produces.
+              At Citi, PagerDuty, and NielsenIQ: building what most consultants only theorize about.
             </p>
           </div>
 
@@ -65,13 +65,16 @@ export function StatsBar() {
           {/* Column 2 */}
           <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
             <div className="mb-2">
-              <CountUp end={40} suffix="%" />
+              {/* COPY PENDING — Pan to confirm exact framing of $6M figure before launch */}
+              <span className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
+                $6M+
+              </span>
             </div>
             <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
-              actually generate real value from it
+              In AI-driven operational value influenced across engagements
             </p>
             <p className="font-sans text-sm text-off-white/65 mt-2 leading-relaxed">
-              The other 60% are running pilots that never become strategy.
+              Across Finance, SaaS, and Enterprise Technology.
             </p>
           </div>
 
@@ -81,23 +84,15 @@ export function StatsBar() {
           {/* Column 3 */}
           <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
             <div className="mb-2">
-              <span className="font-serif text-[52px] md:text-[64px] font-bold text-gold">10x</span>
+              <CountUp end={2} suffix="" />
             </div>
             <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
-              output from the same headcount
+              AI patents held
             </p>
             <p className="font-sans text-sm text-off-white/65 mt-2 leading-relaxed">
-              What forward organizations produce when AI is infrastructure, not initiative.
+              Practitioner-level depth that most advisors do not have and cannot fake.
             </p>
           </div>
-        </div>
-
-        {/* Separator and fine source line */}
-        <div className="mt-12 flex flex-col items-center">
-          <div className="w-[60px] h-[1px] bg-gold/40 mb-4" />
-          <p className="font-sans text-xs text-off-white/45 tracking-wide text-center">
-            Source: McKinsey Global AI Report · The Forward Org Research
-          </p>
         </div>
       </div>
     </motion.section>

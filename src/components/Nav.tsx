@@ -93,7 +93,7 @@ export function Nav() {
                   >
                     {link.label}
                     <span 
-                      className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-gold transition-transform duration-300 origin-left ${
+                      className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-gold transition-transform duration-[200ms] ease-out origin-left ${
                         isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                       }`} 
                     />
@@ -122,7 +122,11 @@ export function Nav() {
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? (
+                <X size={24} strokeWidth={1.5} strokeLinecap="square" strokeLinejoin="miter" />
+              ) : (
+                <Menu size={24} strokeWidth={1.5} strokeLinecap="square" strokeLinejoin="miter" />
+              )}
             </button>
           </div>
         </div>
