@@ -25,10 +25,10 @@ function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?
   }, [isInView, end, duration]);
 
   return (
-    <span ref={ref} className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
+    <h2 ref={ref} className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
       {count}
       <span className="font-serif">{suffix}</span>
-    </span>
+    </h2>
   );
 }
 
@@ -66,9 +66,9 @@ export function StatsBar() {
           <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
             <div className="mb-2">
               {/* COPY PENDING — Pan to confirm exact framing of $6M figure before launch */}
-              <span className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
+              <h2 className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
                 $6M+
-              </span>
+              </h2>
             </div>
             <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
               In AI-driven operational value influenced across engagements
