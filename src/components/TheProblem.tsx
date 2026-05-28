@@ -58,12 +58,12 @@ export function TheProblem() {
 
               {/* Premium Pull Quote */}
               <blockquote className="font-serif italic text-2xl md:text-[28px] leading-relaxed text-teal text-balance">
-                "Your teams are using AI. Your board is asking about AI. But the results are not matching the investment — and you already know why."
+                "Your teams are using AI. Your board is asking about AI. But the results are not matching the investment, and you already know why."
               </blockquote>
 
               {/* Body Text */}
               <p className="font-sans text-[17px] text-ink-muted leading-[1.75] font-light">
-                The gap is never the technology. It is always what sits underneath it — whether your leadership team is aligned, whether your governance can handle the speed, whether your people have been given permission to actually change how they work. That is what we fix.
+                The gap is never the technology. It is always what sits underneath it: whether your leadership team is aligned, whether your governance can handle the speed, whether your people have been given permission to actually change how they work. That is what we fix.
               </p>
             </div>
 

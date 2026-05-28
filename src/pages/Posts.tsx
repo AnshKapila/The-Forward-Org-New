@@ -65,7 +65,7 @@ export default function Posts() {
     {
       date: "Apr 15, 2026",
       tag: "THE INDEX SUMMARY",
-      excerpt: "Over fifteen business dimensions, average corporate AI strategy indexes at only 42% maturity. The leakage is not technical ability—it is the governance bridge connecting tech to business ROI. This is the structural gap we close first.",
+      excerpt: "Over fifteen business dimensions, average corporate AI strategy indexes at only 42% maturity. The leakage is not technical ability; it is the governance bridge connecting tech to business ROI. This is the structural gap we close first.",
       linkedin_url: "https://www.linkedin.com",
       featured: false,
     },

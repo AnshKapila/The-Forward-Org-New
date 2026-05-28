@@ -49,12 +49,15 @@ export function Nav() {
     }
   };
 
+  const isHomePage = location === "/";
+  const showDarkNavbar = !isHomePage || isScrolled;
+
   return (
     <>
       <nav
         id="main-nav"
         className={`fixed top-0 left-0 w-full z-90 transition-all duration-300 ${
-          isScrolled
+          showDarkNavbar
             ? "bg-[#1A1C1A]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.15)] py-4"
             : "bg-transparent py-6"
         }`}

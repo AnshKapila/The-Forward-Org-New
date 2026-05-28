@@ -14,7 +14,7 @@ export function FAQ() {
     {
       id: 1,
       question: "How is this different from hiring an AI consultant?",
-      answer: "Traditional consultants sell armies of junior developers to write dense PowerPoint decks and build theoretical prototypes. I operate solo as a direct strategy and advisory advisor for C-suite leaders. I help construct governance, secure alignment, and ensure strategy coordinates with real-life balance sheets before budgets are signed—not write reports.",
+      answer: "Traditional consultants sell armies of junior developers to write dense PowerPoint decks and build theoretical prototypes. I operate solo as a direct strategy and advisory advisor for C-suite leaders. I help construct governance, secure alignment, and ensure strategy coordinates with real-life balance sheets before budgets are signed, rather than writing reports.",
     },
     {
       id: 2,
@@ -29,7 +29,7 @@ export function FAQ() {
     {
       id: 4,
       question: "What industries do you work with?",
-      answer: "My advisory practices specialize heavily inside highly regulated environments—primarily Financial Services, Insurance, Enterprise SaaS, and high-growth technology platforms. These are reputation-sensitive spaces that require absolute rigor, compliance safeguards, and bulletproof security.",
+      answer: "My advisory practices specialize heavily inside highly regulated environments, primarily Financial Services, Insurance, Enterprise SaaS, and high-growth technology platforms. These are reputation-sensitive spaces that require absolute rigor, compliance safeguards, and bulletproof security.",
     },
     {
       id: 5,
@@ -44,7 +44,7 @@ export function FAQ() {
     {
       id: 7,
       question: "How do I know if my organization is ready?",
-      answer: "If you are allocating capital into corporate AI tools today but cannot measure operational margin expansions or employee hour reductions, or if you suspect your workers are inputting protected trade data into consumer tools without governance lines, your organization is ready—and needs immediate structuring.",
+      answer: "If you are allocating capital into corporate AI tools today but cannot measure operational margin expansions or employee hour reductions, or if you suspect your workers are inputting protected trade data into consumer tools without governance lines, your organization is ready and needs immediate structuring.",
     },
   ];
 

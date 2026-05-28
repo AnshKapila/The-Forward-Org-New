@@ -31,24 +31,24 @@ export default function IndexPage() {
 
   return (
     <div className="bg-white min-h-screen text-ink">
-      {/* Hero Block (not full-screen) */}
-      <section className="max-w-[800px] mx-auto text-center pt-32 pb-24 px-6">
+      {/* Hero Block — Redesigned for exact 100vh viewport fitting */}
+      <section className="w-full max-w-5xl mx-auto text-center px-6 md:px-12 pt-28 pb-12 flex flex-col justify-center md:min-h-[calc(100vh-80px)]">
         <ScrollReveal duration={0.6}>
-          <div className="space-y-6">
+          <div className="space-y-5 sm:space-y-6">
             <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
               THE AI ALIGNMENT INDEX
             </span>
             
-            <h1 className="font-serif text-[38px] md:text-[56px] leading-[1.15] font-bold text-ink text-balance">
+            <h2 className="font-serif text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] leading-[1.2] font-bold text-ink text-balance">
               Your organization is using AI. The question is whether the infrastructure underneath it is built to make it stick.
-            </h1>
+            </h2>
             
-            <p className="font-sans text-[17px] text-ink-muted leading-[1.75] max-w-[560px] mx-auto">
+            <p className="font-sans text-[15px] sm:text-[17px] text-ink-muted leading-[1.7] max-w-[680px] mx-auto">
               A 15-question diagnostic across five organizational dimensions. Used by senior leaders to find the exact gaps between AI investment and AI results.
             </p>
 
             {/* Two stats inline (small, horizontal) */}
-            <div className="flex justify-center items-center gap-4 text-[14px] font-sans font-medium text-teal py-2">
+            <div className="flex justify-center items-center gap-4 text-[13px] sm:text-[14px] font-sans font-medium text-[#1A3C34] py-1">
               <span>15 questions</span>
               <span className="text-gold/50">•</span>
               <span>5 dimensions</span>
@@ -56,7 +56,7 @@ export default function IndexPage() {
               <span>3 minutes</span>
             </div>
 
-            <div className="flex justify-center pt-4">
+            <div className="flex justify-center pt-3">
               <InteractiveButton
                 onClick={() => setLocation("/scorecard")}
                 variant="gold"

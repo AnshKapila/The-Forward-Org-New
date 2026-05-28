@@ -125,7 +125,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
           >
-            Most organizations are running AI experiments. Forward ones are building the leadership infrastructure that makes AI irreversible — and measurably profitable.
+            Most organizations are running AI experiments. Forward ones are building the leadership infrastructure that makes AI irreversible and measurably profitable.
           </motion.p>
 
           {/* Double Active Hero Action Buttons side-by-side inspired by the wireframe */}

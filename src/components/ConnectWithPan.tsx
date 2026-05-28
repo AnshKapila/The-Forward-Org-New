@@ -62,7 +62,7 @@ export function ConnectWithPan() {
                 </div>
 
                 <p className="font-sans text-[15px] md:text-[16px] text-off-white/90 leading-relaxed font-light max-w-xl">
-                  Pan spent a decade building AI infrastructure inside Citi, PagerDuty, and NielsenIQ — before advising the leaders navigating the same challenges from the outside. She holds 2 AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep piloting it.
+                  Pan spent a decade building AI infrastructure inside Citi, PagerDuty, and NielsenIQ, before advising the leaders navigating the same challenges from the outside. She holds 2 AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep piloting it.
                 </p>
               </div>
 

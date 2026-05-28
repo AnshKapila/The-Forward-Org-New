@@ -28,7 +28,7 @@ export function Freebie() {
                 </h2>
                 
                 <p className="font-sans text-base md:text-[17px] text-off-white/80 leading-[1.7] max-w-xl">
-                  A structured self-assessment used by senior leaders to identify where AI investments are stalling — and what to address first.
+                  A structured self-assessment used by senior leaders to identify where AI investments are stalling, and what to address first.
                 </p>
               </div>
 

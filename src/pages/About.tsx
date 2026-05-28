@@ -38,7 +38,7 @@ export default function About() {
   return (
     <div className="bg-white min-h-screen text-ink">
       
-      {/* Section 1 — Founder Hero */}
+      {/* Section 1 - Founder Hero */}
       <section className="pt-32 pb-24 md:py-36 px-6 md:px-12 max-w-7xl mx-auto">
         <ScrollReveal duration={0.65}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -62,7 +62,7 @@ export default function About() {
                   Holder of two distinct AI patents in data structure and automated classification systems, Pan understands the deep operational limits of technologies that theorists tend to gloss over. Her strategic model was born out of a stark contrast she witnessed repeatedly: the absolute gap between technologists launching features and executive teams understanding how those features drive bottom-line margin expansion.
                 </p>
                 <p>
-                  Today, through Pan Seth Advisory and The Forward Org, she advises Fortune 500 boards, enterprise CIOs, and scaling SaaS leadership teams on structural alignment. Her work centers on moving organizations past infinite, expensive "AI pilots" and into a state where AI acts as fundamental infrastructure—hardened, secure, and measured.
+                  Today, through Pan Seth Advisory and The Forward Org, she advises Fortune 500 boards, enterprise CIOs, and scaling SaaS leadership teams on structural alignment. Her work centers on moving organizations past infinite, expensive "AI pilots" and into a state where AI acts as fundamental infrastructure: hardened, secure, and measured.
                 </p>
               </div>
 
@@ -102,7 +102,7 @@ export default function About() {
         </ScrollReveal>
       </section>
 
-      {/* Section 1.5 — Video Segment */}
+      {/* Section 1.5 - Video Segment */}
       <section className="bg-[#F7F4EF] py-16 md:py-24 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <ScrollReveal duration={0.65}>
@@ -137,7 +137,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 2 — Credibility Timeline */}
+      {/* Section 2 - Credibility Timeline */}
       <section className="bg-[#F7F4EF] py-24 px-6 md:px-12 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-left mb-16">
@@ -194,7 +194,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 3 — Patents & Recognition */}
+      {/* Section 3 - Patents & Recognition */}
       <section className="bg-white py-24 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="text-left mb-12">
           <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-2">
@@ -244,7 +244,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Section 4 — Philosophy */}
+      {/* Section 4 - Philosophy */}
       <section className="bg-[#122B24] py-24 px-6 md:px-12 text-center text-off-white">
         <div className="max-w-[720px] mx-auto space-y-6">
           <p className="font-serif text-[22px] md:text-[32px] font-medium leading-relaxed text-off-white italic">
@@ -252,7 +252,7 @@ export default function About() {
           </p>
           <div className="w-[60px] h-[1px] bg-gold/40 mx-auto pt-2" />
           <p className="font-sans font-medium text-sm text-gold tracking-wide uppercase">
-            — Pan Seth
+            - Pan Seth
           </p>
         </div>
       </section>

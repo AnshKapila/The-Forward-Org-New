@@ -16,7 +16,7 @@ export function HowItWorks() {
       iconAim: "Abstract: a compass or measuring instrument",
       description: (
         <>
-          The AI Alignment Index — 15 questions, 5 dimensions, a precise picture of where your AI strategy has gaps.{" "}
+          The AI Alignment Index: 15 questions, 5 dimensions, a precise picture of where your AI strategy has gaps.{" "}
           <Link href="/index">
             <span className="text-gold font-medium hover:underline inline-block cursor-pointer select-none">
               Take the Index →
