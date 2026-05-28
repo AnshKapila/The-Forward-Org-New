@@ -8,7 +8,7 @@ export function Freebie() {
 
   return (
     <>
-      <section id="freebie" className="relative bg-teal py-20 md:py-24 overflow-hidden">
+      <section id="freebie" className="relative bg-teal py-24 md:py-32 overflow-hidden">
         
         {/* Fine gold horizontal rule divider top */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gold opacity-30" />

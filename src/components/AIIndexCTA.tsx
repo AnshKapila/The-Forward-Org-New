@@ -7,7 +7,7 @@ export function AIIndexCTA() {
   const [, setLocation] = useLocation();
 
   return (
-    <section id="ai-index" className="w-full bg-[#1A3C34] py-[72px] px-6">
+    <section id="ai-index" className="w-full bg-[#1A3C34] py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-[640px] mx-auto text-center">
         <ScrollReveal duration={0.6}>
           <div className="flex flex-col items-center gap-6">

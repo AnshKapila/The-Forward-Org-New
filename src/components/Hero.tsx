@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "./InteractiveButton";
-import panHeroImg from "../assets/images/chatgpt_hero_image.png";
+import panHeroImg from "../assets/images/heroback.png";
 
 export function Hero() {
   const [location, setLocation] = useLocation();

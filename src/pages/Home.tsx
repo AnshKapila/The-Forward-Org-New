@@ -26,8 +26,8 @@ export default function Home() {
       <VisionStatement />
       <ThoughtLeadership />
       <Freebie />
-      <FAQ />
       <ConnectWithPan />
+      <FAQ />
       <BookACall />
     </>
   );

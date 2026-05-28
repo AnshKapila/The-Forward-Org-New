@@ -3,9 +3,9 @@ import { PanImage } from "./PanImage";
 import { ScrollReveal } from "./ScrollReveal";
 import { Calendar } from "lucide-react";
 import { InteractiveButton } from "./InteractiveButton";
+import prof1Img from "../assets/images/prof1.jpg";
 
 // Premium high-fidelity likeness representing a South Asian female advisor with a warm wooden library/bookshelf background
-const PAN_PORTRAIT_URL = "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80&w=600&h=750";
 const PAN_PORTRAIT_FALLBACK = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=750";
 
 export function ConnectWithPan() {
@@ -42,7 +42,7 @@ export function ConnectWithPan() {
               <div className="flex justify-center lg:justify-start">
                 <div className="relative w-full aspect-[4/5] max-w-[280px] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(18,43,36,0.5)] border border-white/10 bg-teal-dim/40 image-hover-wrapper">
                   <PanImage
-                    src={PAN_PORTRAIT_URL}
+                    src={prof1Img}
                     fallbackSrc={PAN_PORTRAIT_FALLBACK}
                     alt="Pan Seth - Founder"
                     className="w-full h-full object-cover rounded-[1.5rem]"

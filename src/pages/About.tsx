@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { useInView, motion } from "motion/react";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
+import founderImg from "../assets/images/prof1.jpg";
 
 export default function About() {
   const timelineRef = useRef<HTMLDivElement>(null);
@@ -31,7 +32,7 @@ export default function About() {
   ];
 
   const handleBookClick = () => {
-    // Navigate home and scroll to call section
+    // Navigate home   and scroll to call section
     window.location.href = "/#book-a-call";
   };
 
@@ -83,18 +84,18 @@ export default function About() {
               >
                 {/* Visual placeholder box with details */}
                 <div className="absolute inset-0 bg-teal/20 mix-blend-multiply z-10 pointer-events-none" />
-                <div className="w-full h-full object-cover">
-                  <div className="w-full h-full bg-sand/60 flex flex-col justify-center items-center p-8 text-center border border-gold/20 select-none">
-                    <span className="font-mono text-xs text-teal font-bold uppercase tracking-widest block mb-1">
-                      FOUNDER PHOTOGRAPH
-                    </span>
-                    <span className="font-sans text-[11px] text-ink-muted">
-                      /images/pan-founder.jpg
-                    </span>
-                    <p className="font-serif text-sm italic text-ink mt-3">
-                      "Focused boardroom/executive stance, natural workspace light."
-                    </p>
-                  </div>
+                <div className="w-full h-full">
+                  {/* STANDBY IMAGE: Manually replace the asset file in `/src/assets/images/prof1.jpg` or swap the image path below */}
+                  <img
+                    src={founderImg}
+                    alt="Pan Seth, AI Strategy & Leadership Advisor"
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                    onError={(e) => {
+                      // Fallback professional executive advisor portrait if the local asset is missing or fails
+                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000";
+                    }}
+                  />
                 </div>
                 <div className="hover-overlay" />
               </div>
@@ -104,7 +105,7 @@ export default function About() {
       </section>
 
       {/* Section 1.5 - Video Segment */}
-      <section className="bg-[#F7F4EF] py-16 md:py-24 px-6">
+      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <ScrollReveal duration={0.65}>
             <div className="space-y-3">
@@ -139,7 +140,7 @@ export default function About() {
       </section>
 
       {/* Section 2 - Credibility Timeline */}
-      <section className="bg-[#F7F4EF] py-24 px-6 md:px-12 w-full overflow-hidden">
+      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-left mb-16">
             <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-2">
@@ -196,7 +197,7 @@ export default function About() {
       </section>
 
       {/* Section 3 - Patents & Recognition */}
-      <section className="bg-white py-24 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="bg-white py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="text-left mb-12">
           <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-2">
             RESEARCH & PATENTS
@@ -246,7 +247,7 @@ export default function About() {
       </section>
 
       {/* Section 4 - Philosophy */}
-      <section className="bg-[#122B24] py-24 px-6 md:px-12 text-center text-off-white">
+      <section className="bg-[#122B24] py-24 md:py-32 px-6 md:px-12 text-center text-off-white">
         <div className="max-w-[720px] mx-auto space-y-6">
           <p className="font-serif text-[22px] md:text-[32px] font-medium leading-relaxed text-off-white italic">
             "The gap between what AI promises and what organizations actually experience is never the technology. It is always the human infrastructure underneath it."

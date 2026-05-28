@@ -18,6 +18,7 @@ export default function Posts() {
       tag: "AI STRATEGY",
       excerpt: "If you ask five of your executive peers what their AI adoption strategy looks like, you will get five variations on 'we are piloting tools.' The board is happy with pilots, but pilots don't defend margins. Real scale requires restructuring operational hours, shifting headcount, and creating automated feedback loops that increase decision speed. That is the human infrastructure alignment problem. Stop piloting; start aligning.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
       featured: true,
     },
     {
@@ -25,6 +26,7 @@ export default function Posts() {
       tag: "AI GOVERNANCE",
       excerpt: "Most compliance issues don't happen because of engineering gaps. They happen because a junior analyst pastes protected IP or healthcare records into consumer ChatGPT windows. If your organization doesn't have custom enterprise gateways active today, you are bleeding secrets. Governance is a structural business lever.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
@@ -32,6 +34,7 @@ export default function Posts() {
       tag: "LEADERSHIP ALIGNMENT",
       excerpt: "Executive inertia in AI isn't a tech phobia. It is reputation protection. A CEO of 30 years isn't going to look vulnerable in front of their CIO. Break that pattern: introduce structured, objective maturity assessments that measure organizational speed rather than coding deep dives.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
@@ -39,6 +42,7 @@ export default function Posts() {
       tag: "DECISION VELOCITY",
       excerpt: "The value of AI is not in typing emails faster. It is in compressing the decision cycles of your executive team from days to minutes. If your CDO keeps building models inside isolated silos without shifting operational governance, you are burning capital for zero speed gains.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
@@ -46,6 +50,7 @@ export default function Posts() {
       tag: "CULTURAL ADOPTION",
       excerpt: "If your teams think AI is coming to thin their ranks, they will sabotage adoption with passive operational resistance. Reframe the narrative: AI is a co-thinking buffer that turns a mid-tier manager into an autonomous director. Align adoption with promotion paths to unlock velocity.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
@@ -53,6 +58,7 @@ export default function Posts() {
       tag: "STRUCTURED ROI",
       excerpt: "ROI in AI isn't an abstract prediction. It's a headcount and hour equation. If you implement writing assistants and compress a marketing drafting cycle by 80%, you must either ship 5x the volume or allocate hours to client closing. Anything else is fake efficiency.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
@@ -60,6 +66,7 @@ export default function Posts() {
       tag: "COMPLIANCE SAFELIGHTS",
       excerpt: "Regulated brands operate inside high-friction rules. You cannot afford to hallucinate contract language or health diagnoses. Build deterministic auditing safeguards: AI generates, strict non-AI validation rules sanitize, and senior directors sign. Safety is a feature.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
@@ -67,6 +74,7 @@ export default function Posts() {
       tag: "THE INDEX SUMMARY",
       excerpt: "Over fifteen business dimensions, average corporate AI strategy indexes at only 42% maturity. The leakage is not technical ability; it is the governance bridge connecting tech to business ROI. This is the structural gap we close first.",
       linkedin_url: "https://www.linkedin.com",
+      imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
   ];
@@ -257,34 +265,57 @@ export default function Posts() {
               {/* FEATURED POST */}
               {featuredPost && (
                 <ScrollReveal duration={0.65}>
-                  <div className="relative border border-teal bg-white flex flex-col md:grid md:grid-cols-[65%_35%] justify-between gap-8 p-8 md:p-12 text-left shadow-sm">
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-3">
-                        <span className="inline-block px-3 py-1 border border-gold/30 bg-gold/10 text-[10px] font-mono font-bold tracking-wider text-gold uppercase">
-                          Featured
-                        </span>
-                        <span className="font-sans text-teal tracking-[0.15em] uppercase text-xs font-semibold">
-                          {featuredPost.tag}
-                        </span>
+                  <div className="relative border border-teal bg-white flex flex-col lg:grid lg:grid-cols-[58%_42%] justify-between gap-8 p-6 md:p-10 text-left shadow-sm">
+                    <div className="space-y-5 flex flex-col justify-between">
+                      <div className="space-y-5">
+                        <div className="flex items-center gap-3">
+                          <span className="inline-block px-3 py-1 border border-gold/30 bg-gold/10 text-[10px] font-mono font-bold tracking-wider text-gold uppercase">
+                            Featured
+                          </span>
+                          <span className="font-sans text-teal tracking-[0.15em] uppercase text-xs font-semibold">
+                            {featuredPost.tag}
+                          </span>
+                        </div>
+
+                        <p className="font-sans text-base md:text-[17px] text-ink leading-[1.75]">
+                          "{featuredPost.excerpt}"
+                        </p>
                       </div>
 
-                      <p className="font-sans text-lg md:text-xl text-ink leading-[1.75]">
-                        "{featuredPost.excerpt}"
-                      </p>
-
-                      <div className="flex items-center gap-2 text-xs text-ink-faint font-mono">
-                        <Calendar size={13} /> Published on {featuredPost.date}
+                      <div className="space-y-4 pt-4 border-t border-gold/10">
+                        <div className="flex items-center gap-2 text-xs text-ink-faint font-mono">
+                          <Calendar size={13} /> Published on {featuredPost.date}
+                        </div>
+                        <div>
+                          <InteractiveButton
+                            onClick={() => window.open(featuredPost.linkedin_url, "_blank", "noopener,noreferrer")}
+                            variant="gold"
+                          >
+                            Read on LinkedIn
+                          </InteractiveButton>
+                        </div>
                       </div>
                     </div>
 
-                    <div className="flex md:flex-col justify-end md:justify-center items-start md:items-end">
-                      <InteractiveButton
-                        onClick={() => window.open(featuredPost.linkedin_url, "_blank", "noopener,noreferrer")}
-                        variant="gold"
-                      >
-                        Read on LinkedIn
-                      </InteractiveButton>
-                    </div>
+                    {featuredPost.imageUrl ? (
+                      <div className="w-full aspect-[16/10] lg:aspect-auto lg:h-full min-h-[220px] overflow-hidden bg-sand border border-teal/10">
+                        <img
+                          src={featuredPost.imageUrl}
+                          alt={`${featuredPost.tag} attachment`}
+                          className="w-full h-full object-cover"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex md:flex-col justify-end md:justify-center items-start md:items-end">
+                        <InteractiveButton
+                          onClick={() => window.open(featuredPost.linkedin_url, "_blank", "noopener,noreferrer")}
+                          variant="gold"
+                        >
+                          Read on LinkedIn
+                        </InteractiveButton>
+                      </div>
+                    )}
                   </div>
                 </ScrollReveal>
               )}
@@ -311,9 +342,20 @@ export default function Posts() {
                               </span>
                             </div>
 
-                            <p className="font-sans text-sm md:text-base text-ink-muted leading-[1.7] line-clamp-5">
+                            <p className="font-sans text-[14px] md:text-[15px] text-ink-muted leading-[1.7] line-clamp-6">
                               "{post.excerpt}"
                             </p>
+
+                            {post.imageUrl && (
+                              <div className="w-full aspect-[16/10] overflow-hidden bg-sand border border-teal/10 mt-3">
+                                <img
+                                  src={post.imageUrl}
+                                  alt={`${post.tag} attachment`}
+                                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[400ms] ease-out"
+                                  referrerPolicy="no-referrer"
+                                />
+                              </div>
+                            )}
                           </div>
 
                           <div className="mt-8 pt-4 border-t border-gold/10 flex items-center justify-between">

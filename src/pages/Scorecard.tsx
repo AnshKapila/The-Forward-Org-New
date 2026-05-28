@@ -17,8 +17,7 @@ interface Question {
 export default function Scorecard() {
   const [location, setLocation] = useLocation();
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [answers, setAnswers] = useState<number[]>([]);
-  const [selectedOptionIndex, setSelectedOptionIndex] = useState<number | null>(null);
+  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(5).fill(null));
   const [quizComplete, setQuizComplete] = useState(false);
 
   const questions: Question[] = [
@@ -80,81 +79,86 @@ export default function Scorecard() {
   ];
 
   const handleSelectOptionLocal = (optionIdx: number) => {
-    setSelectedOptionIndex(optionIdx);
-  };
-
-  const handleNext = () => {
-    if (selectedOptionIndex === null) return;
-    const points = questions[currentIdx].options[selectedOptionIndex].points;
-    const nextAnswers = [...answers, points];
+    const nextAnswers = [...answers];
+    nextAnswers[currentIdx] = optionIdx;
     setAnswers(nextAnswers);
-    setSelectedOptionIndex(null);
 
+    // If it is not the final question, proceed automatically to the next section
     if (currentIdx < questions.length - 1) {
-      setCurrentIdx(currentIdx + 1);
-    } else {
-      setQuizComplete(true);
+      setTimeout(() => {
+        setCurrentIdx((prevIdx) => prevIdx + 1);
+      }, 180);
     }
   };
 
+  const handleSubmit = () => {
+    if (answers[questions.length - 1] === null) return;
+    setQuizComplete(true);
+  };
+
   const handleRestart = () => {
-    setAnswers([]);
+    setAnswers(Array(questions.length).fill(null));
     setCurrentIdx(0);
-    setSelectedOptionIndex(null);
     setQuizComplete(false);
   };
 
   const handleBack = () => {
     if (currentIdx > 0) {
-      const nextAnswers = [...answers];
-      nextAnswers.pop();
-      setAnswers(nextAnswers);
-      setSelectedOptionIndex(null);
       setCurrentIdx(currentIdx - 1);
     }
   };
 
   // Score Analysis
-  const totalScore = answers.reduce((sum, val) => sum + val, 0);
+  const totalScore = answers.reduce<number>((sum, val, idx) => {
+    if (val === null) return sum;
+    return sum + questions[idx].options[val].points;
+  }, 0);
+
   let rating = "";
   let feedback = "";
   let gapFocus = "";
+  let ratingColor = "";
+  let badgeColor = "";
 
   if (totalScore >= 80) {
     rating = "Vanguard Aligned";
     feedback = "Your organization exhibits strong architectural maturity. Your strategic foundations, risk limits, and structural governance are positioned to scale and defend margins.";
     gapFocus = "Refinement of operational execution margins and exploring custom intellectual property pipelines.";
+    ratingColor = "text-emerald-600 font-bold";
+    badgeColor = "border-emerald-600 bg-emerald-50 text-emerald-700";
   } else if (totalScore >= 50) {
     rating = "Operational Disconnect";
     feedback = "While you have made active, positive preliminary moves, there is a distinct gap between the tools and the quantifiable business outcomes. Strategy or frontline adoption requires immediate structuring.";
     gapFocus = "Establishing clear bottom-line ROI metrics and unified executive alignment regarding compliance.";
+    ratingColor = "text-amber-500 font-bold";
+    badgeColor = "border-amber-500 bg-amber-50 text-amber-700";
   } else {
     rating = "Highly Vulnerable";
     feedback = "Your AI efforts are fragmented, ad-hoc, and likely exposing you to severe governance and compliance risks. Without cohesive leadership alignment, value is draining rapidly.";
     gapFocus = "Drafting standard governance guidelines, securing enterprise endpoints, and formalizing a board-approved strategy.";
+    ratingColor = "text-rose-600 font-bold";
+    badgeColor = "border-rose-600 bg-rose-50 text-rose-700";
   }
 
-  const handleScrollToCall = () => {
-    setLocation("/#book-a-call");
-    setTimeout(() => {
-      const el = document.getElementById("book-a-call");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    }, 200);
+  const handleGoToCallBooking = () => {
+    setLocation("/book-a-call");
   };
 
+  const selectedOptionIndex = answers[currentIdx];
+
   return (
-    <div className="bg-white min-h-screen text-ink relative select-none">
+    <div className="bg-canvas min-h-screen text-ink relative select-none">
       
       {!quizComplete ? (
-        /* SURVEY CONTAINER FOR GLOBAL FIXED NAV BAR — FITS EXACTLY 100VH WITHOUT OVERFLOW */
-        <div className="w-full h-screen max-h-screen overflow-hidden flex flex-col items-center justify-center pt-24 pb-6 px-4 md:px-6 relative bg-[#F7F4EF]/30">
+        /* SURVEY CONTAINER DESIGNED TO PERFECTLY OFFSET FIXED GLOBAL NAVIGATION */
+        <div className="w-full min-h-screen flex flex-col items-center justify-start pt-36 md:pt-40 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
           
           {/* Header strip for controls to prevent colliding with the nav bar */}
-          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-2">
+          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
             {/* Cancel / Back floating menu */}
             <button
               onClick={currentIdx === 0 ? () => setLocation("/index") : handleBack}
-              className="text-xs font-sans uppercase tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors"
+              className="text-xs font-sans uppercase tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
             >
               <ArrowLeft size={14} /> {currentIdx === 0 ? "Cancel" : "Back"}
             </button>
@@ -166,7 +170,7 @@ export default function Scorecard() {
           </div>
 
           {/* Progress Bar styled as a premium track spanning the width of the main content */}
-          <div className="w-full max-w-[620px] mx-auto h-[3px] bg-[#1A3C34]/15 mb-4 relative">
+          <div className="w-full max-w-[620px] mx-auto h-[3px] bg-[#1A3C34]/15 mb-6 relative">
             <div 
               className="absolute left-0 top-0 h-full bg-[#C9A55A] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
@@ -174,27 +178,27 @@ export default function Scorecard() {
           </div>
 
           {/* Card core contents centered */}
-          <div className="max-w-[620px] w-full flex flex-col gap-3 sm:gap-4 relative">
+          <div className="max-w-[620px] w-full flex flex-col gap-4 sm:gap-5 relative">
             
             {/* Category of the Question */}
             <div className="text-left">
-              <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] uppercase tracking-widest block mb-0.5">
+              <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] uppercase tracking-widest block mb-1">
                 {questions[currentIdx].category}
               </span>
-              <h3 className="font-serif text-[16px] sm:text-[20px] md:text-[22px] font-bold text-ink leading-tight sm:leading-snug">
+              <h3 className="font-serif text-[18px] sm:text-[20px] md:text-[23px] font-bold text-ink leading-snug">
                 {questions[currentIdx].question}
               </h3>
             </div>
 
             {/* Answer Options list */}
-            <div className="space-y-2 sm:space-y-2.5 text-left">
+            <div className="space-y-2.5 text-left">
               {questions[currentIdx].options.map((opt, i) => {
                 const isSelected = selectedOptionIndex === i;
                 return (
                   <button
                     key={i}
                     onClick={() => handleSelectOptionLocal(i)}
-                    className={`w-full text-left p-2.5 sm:p-3 border cursor-pointer transition-all duration-150 flex items-start gap-3 rounded-none ${
+                    className={`w-full text-left p-3.5 sm:p-4 border cursor-pointer transition-all duration-150 flex items-start gap-4 rounded-none ${
                       isSelected
                         ? "border-[#1A3C34] bg-[#1A3C34]/5 shadow-[0_0_0_2px_rgba(26,60,52,0.08)]"
                         : "border-[#D4C9B8] bg-white hover:border-[#1A3C34]/60 hover:bg-[#1A3C34]/2"
@@ -205,7 +209,7 @@ export default function Scorecard() {
                     }`}>
                       {opt.label}
                     </span>
-                    <span className="font-sans text-[12px] sm:text-[13.5px] text-ink leading-relaxed">
+                    <span className="font-sans text-[13px] sm:text-[14px] text-ink leading-relaxed">
                       {opt.text}
                     </span>
                   </button>
@@ -214,19 +218,25 @@ export default function Scorecard() {
             </div>
 
             {/* Footer Control Actions with fixed height to prevent layout shifts */}
-            <div className="min-h-[44px] flex items-center justify-end mt-1">
-              {selectedOptionIndex !== null ? (
-                <InteractiveButton 
-                  onClick={handleNext}
-                  variant="gold" 
-                  className="w-full md:w-auto text-center py-2 px-8 uppercase tracking-wider text-xs font-semibold"
-                  id="scorecard-next-button"
-                >
-                  Next Question
-                </InteractiveButton>
+            <div className="min-h-[44px] flex items-center justify-end mt-2">
+              {currentIdx === questions.length - 1 ? (
+                answers[currentIdx] !== null ? (
+                  <InteractiveButton 
+                    onClick={handleSubmit}
+                    variant="gold" 
+                    className="w-full md:w-auto text-center py-2.5 px-8 uppercase tracking-wider text-xs font-semibold"
+                    id="scorecard-submit-button"
+                  >
+                    Submit Diagnostic
+                  </InteractiveButton>
+                ) : (
+                  <p className="text-xs font-sans text-ink-muted/50 italic text-right w-full select-none pr-1">
+                    Select an option for the final question to submit
+                  </p>
+                )
               ) : (
                 <p className="text-xs font-sans text-ink-muted/50 italic text-right w-full select-none pr-1">
-                  Select an option to proceed
+                  Select an option above to proceed
                 </p>
               )}
             </div>
@@ -234,8 +244,8 @@ export default function Scorecard() {
           </div>
         </div>
       ) : (
-        /* RESULTS SCREEN (Ordinary scrolling layout for readability with top navbar spacing) */
-        <div className="min-h-screen pt-28 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
+        /* RESULTS SCREEN */
+        <div className="min-h-screen pt-36 md:pt-40 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
           <div className="max-w-[720px] w-full bg-[#F7F4EF] border border-[#E8D5B5] p-6 sm:p-8 md:p-12 text-left rounded-sm shadow-sm space-y-8">
             <div className="text-center space-y-4 pb-8 border-b border-ink/10">
               <span className="font-sans font-semibold text-xs text-[#1A3C34] uppercase tracking-[0.2em] block">
@@ -243,13 +253,13 @@ export default function Scorecard() {
               </span>
 
               <div className="flex items-baseline justify-center gap-1.5">
-                <span className="font-serif text-[72px] font-bold text-ink leading-none">
+                <span className={`font-serif text-[72px] font-bold leading-none ${ratingColor}`}>
                   {totalScore}
                 </span>
                 <span className="font-serif text-2xl text-[#C9A55A]">/ 100</span>
               </div>
 
-              <div className="inline-block px-4 py-1.5 border border-[#1A3C34] bg-[#1A3C34]/5 text-[#1A3C34] text-xs font-mono font-bold tracking-widest uppercase rounded-none">
+              <div className={`inline-block px-4 py-1.5 border font-mono text-xs font-bold tracking-widest uppercase rounded-none ${badgeColor}`}>
                 MATURITY RATING: {rating}
               </div>
             </div>
@@ -263,8 +273,8 @@ export default function Scorecard() {
                 </p>
               </div>
 
-              <div className="p-5 bg-white border-l-2 border-[#C9A55A] space-y-1 rounded-none shadow-sm">
-                <h5 className="font-mono text-xs text-[#C9A55A] font-bold uppercase tracking-wider">
+              <div className={`p-5 bg-white border-l-2 space-y-1 rounded-none shadow-sm ${totalScore >= 80 ? "border-emerald-600" : totalScore >= 50 ? "border-amber-500" : "border-rose-600"}`}>
+                <h5 className={`font-mono text-xs font-bold uppercase tracking-wider ${totalScore >= 80 ? "text-emerald-700" : totalScore >= 50 ? "text-amber-700" : "text-rose-700"}`}>
                   PRIMARY GAP EXPOSURE KEY
                 </h5>
                 <p className="font-sans text-[15px] text-ink leading-relaxed">
@@ -276,7 +286,7 @@ export default function Scorecard() {
             {/* Action Buttons */}
             <div className="pt-6 border-t border-ink/10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
               <InteractiveButton
-                onClick={handleScrollToCall}
+                onClick={handleGoToCallBooking}
                 variant="gold"
                 className="shrink-0 text-center"
               >

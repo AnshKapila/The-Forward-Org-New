@@ -1,0 +1,183 @@
+/* ==========================================
+   THE FORWARD ORG DESIGN SYSTEM — TOKENS.CSS
+   This is the single source of truth for design tokens.
+   ========================================== */
+
+:root {
+  /* ==========================================
+     SECTION 1 — COLOR TOKENS
+     ========================================== */
+
+  /* TIER 1 — BRAND PRIMITIVES (Raw color values. Never use directly in components.) */
+  --primitive-green-900: #1A3C34;
+  --primitive-green-800: #235048;
+  --primitive-green-700: #2D6459;
+  --primitive-green-100: #E8F0EE;
+  --primitive-green-50:  #F4F8F7;
+
+  --primitive-gold-600:  #C9A55A;
+  --primitive-gold-700:  #B8934A;
+  --primitive-gold-800:  #A07A35;
+  --primitive-gold-200:  #EDD9A3;
+  --primitive-gold-100:  #F7EDCF;
+
+  --primitive-ink-900:   #1A1C1A;
+  --primitive-ink-700:   #2C3030;
+  --primitive-ink-500:   #4A5450;
+  --primitive-ink-300:   #7A8078;
+  --primitive-ink-100:   #C4C9C4;
+
+  --primitive-sand-300:  #E8D5B5;
+  --primitive-sand-100:  #F7F4EF;
+  --primitive-sand-50:   #FDFCFA;
+
+  --primitive-white:     #FFFFFF;
+
+  /* TIER 2 — SEMANTIC SURFACE TOKENS */
+  --color-bg-primary:       var(--primitive-sand-100);
+  --color-bg-secondary:     var(--primitive-sand-50);
+  --color-bg-white:         var(--primitive-white);
+  --color-bg-dark:          var(--primitive-ink-900);
+  --color-bg-brand:         var(--primitive-green-900);
+  --color-bg-brand-deep:    var(--primitive-ink-900);
+  --color-bg-accent:        var(--primitive-sand-300);
+  --color-bg-subtle:        var(--primitive-green-50);
+
+  /* TIER 3 — SEMANTIC TEXT TOKENS */
+  --color-text-primary:     var(--primitive-ink-900);
+  --color-text-secondary:   var(--primitive-ink-500);
+  --color-text-tertiary:    var(--primitive-ink-300);
+  --color-text-on-dark:     var(--primitive-sand-100);
+  --color-text-on-dark-dim: rgba(247, 244, 239, 0.7);
+  --color-text-brand:       var(--primitive-green-900);
+  --color-text-accent:      var(--primitive-gold-600);
+  --color-text-link:        var(--primitive-green-900);
+  --color-text-link-hover:  var(--primitive-gold-600);
+
+  /* TIER 4 — SEMANTIC COMPONENT TOKENS */
+  --color-border-default:   rgba(26, 60, 52, 0.15);
+  --color-border-strong:    var(--primitive-green-900);
+  --color-border-accent:    var(--primitive-gold-600);
+  --color-border-subtle:    rgba(26, 60, 52, 0.08);
+
+  --color-btn-primary-bg:         var(--primitive-gold-600);
+  --color-btn-primary-bg-hover:   var(--primitive-gold-700);
+  --color-btn-primary-text:       var(--primitive-ink-900);
+  --color-btn-ghost-border:       var(--primitive-green-900);
+  --color-btn-ghost-text:         var(--primitive-green-900);
+  --color-btn-ghost-bg-hover:     var(--primitive-green-900);
+  --color-btn-ghost-text-hover:   var(--primitive-sand-100);
+
+  --color-icon-default:     var(--primitive-ink-500);
+  --color-icon-brand:       var(--primitive-green-900);
+  --color-icon-accent:      var(--primitive-gold-600);
+  --color-icon-on-dark:     var(--primitive-sand-100);
+
+  --color-stat-number:      var(--primitive-gold-600);
+  --color-stat-on-dark:     var(--primitive-sand-100);
+
+  --color-overlay-image:    rgba(26, 60, 52, 0.2);
+  --color-overlay-hover:    rgba(26, 60, 52, 0.08);
+
+  /* ==========================================
+     SECTION 2 — TYPOGRAPHY TOKENS
+     ========================================== */
+  --font-display:   'Libre Baskerville', Georgia, serif;
+  --font-body:      'Figtree', system-ui, sans-serif;
+
+  /* TYPE SCALE (Multiples of 8, fluid design via clamp()) */
+  --text-display:   clamp(40px, 5vw, 64px);          /* Hero Headline Main */
+  --text-h1:        clamp(32px, 4vw, 56px);          /* Page Headlines */
+  --text-h2:        clamp(24px, 3vw, 40px);          /* Section Headlines */
+  --text-h3:        clamp(20px, 2vw, 32px);          /* Card & Subsection Titles (Mobile floor: 20px) */
+  --text-h4:        24px;                            /* Fixed — Smaller Section/FAQ titles */
+  --text-lead:      clamp(18px, 1.5vw, 20px);        /* Subheadlines and introductions */
+  --text-body:      16px;                            /* Standard body copy */
+  --text-body-lg:   18px;                            /* Deliberate exception — Large body sections */
+  --text-small:     14px;                            /* Deliberate exception — Captions / metadata */
+  --text-label:     12px;                            /* Deliberate exception — UPPERCASE Labels & Eyebrows */
+  --text-ui:        14px;                            /* Deliberate exception — Interactive element texts */
+
+  /* LINE HEIGHT TOKENS */
+  --leading-tight:    1.2;                           /* Headlines */
+  --leading-snug:     1.4;                           /* Subheadlines / UI elements */
+  --leading-normal:   1.6;                           /* Body copy */
+  --leading-relaxed:  1.75;                          /* Body on dark backgrounds */
+
+  /* LETTER SPACING TOKENS */
+  --tracking-tight:   -0.02em;                       /* Display headlines */
+  --tracking-normal:  0em;                           /* Standard body copy */
+  --tracking-wide:    0.05em;                        /* H4 labels and subheaders */
+  --tracking-wider:   0.1em;                         /* Labels — must pair with uppercase */
+
+  /* ==========================================
+     SECTION 3 — SPACING TOKENS
+     Values strictly follow 8-point grid.
+     ========================================== */
+  --space-4:    4px;                                 /* Deliberate exception: Micro spacing of components */
+  --space-8:    8px;                                 /* Tight inline spacing */
+  --space-16:   16px;                                /* Component inside padding */
+  --space-24:   24px;                                /* Component outer padding / small layout gaps */
+  --space-32:   32px;                                /* Component padding / medium layout gaps */
+  --space-40:   40px;                                /* Section interior layout gaps */
+  --space-48:   48px;                                /* Section padding on mobile clients */
+  --space-56:   56px;                                /* Deliberate exception: Section padding on tablets (7x8) */
+  --space-64:   64px;                                /* Section padding on minor desktop dimensions */
+  --space-80:   80px;                                /* Standard section padding on desktop */
+  --space-96:   96px;                                /* Large block padding (Heros / CTA) */
+  --space-128:  128px;                               /* Extra Large section boundaries */
+
+  /* GRID GAPS */
+  --gap-sm:   var(--space-16);
+  --gap-md:   var(--space-24);
+  --gap-lg:   var(--space-32);
+  --gap-xl:   var(--space-48);
+
+  /* ==========================================
+     SECTION 4 — BORDER AND RADIUS TOKENS
+     ========================================== */
+  --border-thin:    1px;                             /* Deliberate exception: standard dividers and component outlines */
+  --border-medium:  2px;                             /* Deliberate exception: key indicators and focus ring width */
+  --border-thick:   4px;                             /* Deliberate exception: decorative thick boundaries and underlines */
+  --border-rule:    1px;                             /* Deliberate exception: separator rules */
+
+  --radius-none:    0px;                             /* Default core sharp grid layout aesthetics */
+  --radius-sm:      4px;                             /* Deliberate exception: chips and pill labels only */
+  --radius-full:    9999px;                          /* Circular frames / avatar profiles only */
+
+  /* ==========================================
+     SECTION 5 — SHADOW AND ELEVATION TOKENS
+     ========================================== */
+  --shadow-none:    none;                            /* Standard cards are completely flat */
+  --shadow-offset-gold:   6px 6px 0 0 rgba(201, 165, 90, 0.4);   /* Graphic solid shadow for premium elements */
+  --shadow-offset-green:  4px 4px 0 0 rgba(26, 60, 52, 0.3);     /* Graphic solid shadow for secondary assets */
+  --shadow-btn-hover:      0 4px 16px rgba(201, 165, 90, 0.25);   /* Primary CTA button hover glow */
+  --shadow-nav:            0 1px 0 rgba(26, 60, 52, 0.08);       /* Header separation on vertical scroll */
+
+  /* ==========================================
+     SECTION 6 — ICON SYSTEM TOKENS
+     ========================================== */
+  --icon-stroke:        1.5px;                       /* Deliberate exception: stroke weights */
+  --icon-linecap:       square;
+  --icon-linejoin:      miter;
+
+  --icon-sm:    16px;                                /* Inline utility buttons */
+  --icon-md:    24px;                                /* Regular system controls */
+  --icon-lg:    32px;                                /* Grouping descriptors */
+  --icon-xl:    48px;                                /* Core section headers and large milestones */
+
+  /* ==========================================
+     SECTION 7 — MOTION TOKENS
+     ========================================== */
+  --duration-instant:   80ms;                        /* Click events and immediate active feedback */
+  --duration-fast:      150ms;                       /* Base button toggles and menu lists */
+  --duration-normal:    250ms;                       /* Structural reveals and drop-down accordions */
+  --duration-slow:      400ms;                       /* Entire screen router page transitions */
+  --duration-crawl:     600ms;                       /* Scroll intercept reveals and visual timelines */
+
+  /* EASING CURVES */
+  --ease-out-standard:  cubic-bezier(0.16, 1, 0.3, 1);  /* For objects moving on screen */
+  --ease-in-standard:   cubic-bezier(0.7, 0, 1, 0.6);   /* For objects departing the stage */
+  --ease-in-out:        cubic-bezier(0.65, 0, 0.35, 1);  /* Internal collapsible state transitions */
+  --ease-linear:        linear;                          /* Progression metrics and step indicators */
+}

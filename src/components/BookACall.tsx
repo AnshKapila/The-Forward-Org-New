@@ -3,8 +3,12 @@ import { ScrollReveal } from "./ScrollReveal";
 import { Calendar, Check, Clock, Globe } from "lucide-react";
 import { InteractiveButton } from "./InteractiveButton";
 
-export function BookACall() {
-  const [bookingStarted, setBookingStarted] = useState(false);
+interface BookACallProps {
+  startWithForm?: boolean;
+}
+
+export function BookACall({ startWithForm = false }: BookACallProps) {
+  const [bookingStarted, setBookingStarted] = useState(startWithForm);
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [company, setCompany] = useState("");

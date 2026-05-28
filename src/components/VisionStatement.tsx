@@ -53,9 +53,9 @@ export function VisionStatement() {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
         <ScrollReveal duration={0.7} y={32}>
           <div className="max-w-4xl mx-auto">
-            <h2 className="font-serif text-[32px] md:text-[46px] lg:text-[56px] leading-[1.25] font-bold text-off-white tracking-tight text-balance">
+            <h3 className="font-serif text-[26px] md:text-[38px] lg:text-[46px] leading-[1.25] font-bold text-off-white tracking-tight text-balance">
               The organizations that win the next decade will not be the ones with the most AI tools; they will be the ones where leadership learned to <span className="text-gold font-bold italic">[think]</span> with it.
-            </h2>
+            </h3>
           </div>
         </ScrollReveal>
       </div>

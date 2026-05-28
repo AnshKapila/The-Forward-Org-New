@@ -16,16 +16,19 @@ export function ThoughtLeadership() {
       span: "lg:col-span-5",
       tag: "AI GOVERNANCE",
       excerpt: "88% of companies report regular AI use. Only 40% generate real value from it. The difference is never the tools. It's the five organizational dimensions underneath them...",
+      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
     },
     {
       span: "lg:col-span-4",
       tag: "LEADERSHIP ALIGNMENT",
       excerpt: "If you asked three of your department heads to describe your AI strategy right now, would they say the same thing? Most executive teams can't answer yes. That gap costs more than you think...",
+      imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
     },
     {
       span: "lg:col-span-3",
       tag: "DECISION VELOCITY",
       excerpt: "The executives who move fastest with AI are not the ones with the best tools. They're the ones who restructured how decisions get made before deploying anything...",
+      imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
     },
   ];
 
@@ -99,14 +102,26 @@ export function ThoughtLeadership() {
                   >
                     <div>
                       {/* Topic Tag */}
-                      <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] uppercase block mb-6">
+                      <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] uppercase block mb-4">
                         {post.tag}
                       </span>
 
                       {/* Post Excerpt */}
-                      <p className="font-sans text-[16px] text-ink-muted leading-[1.75] mb-8 group-hover:text-ink transition-colors duration-150">
+                      <p className="font-sans text-[15px] md:text-[16px] text-ink-muted leading-[1.7] mb-6 group-hover:text-ink transition-colors duration-150">
                         "{post.excerpt}"
                       </p>
+
+                      {/* Attached LinkedIn-style Image */}
+                      {post.imageUrl && (
+                        <div className="w-full aspect-[16/10] mb-6 overflow-hidden bg-sand border border-teal/10">
+                          <img
+                            src={post.imageUrl}
+                            alt={`${post.tag} attachment`}
+                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[400ms] ease-out"
+                            referrerPolicy="no-referrer"
+                          />
+                        </div>
+                      )}
                     </div>
 
                     {/* Bottom Link Anchor */}

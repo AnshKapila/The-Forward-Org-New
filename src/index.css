@@ -1,57 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@300;400;500;600;700&display=swap');
+/* ==========================================================================
+   THE FORWARD ORG — CORE GLOBAL ENTRY STYLES — TAILWIND V4 INTEGRATION
+   
+   8-POINT GRID SYSTEM MAIN:
+   - This file imports and integrates the full design system styles.
+   - For backwards compatibility with older static color references, Tailwind CSS v4 `@theme`
+     aliases are defined here to link directly to our new token semantic system.
+   ========================================================================== */
+
+/* 1. Import Tailwind v4 base directives */
 @import "tailwindcss";
 
+/* 2. Import core tokens, typography, and component libraries */
+@import "./styles/index.css";
+
+/* 3. Configure/Extend Tailwind CSS v4 compiler theme directives based on design tokens */
 @theme {
-  --color-canvas: #F7F4EF;
-  --color-teal: #1A3C34;
-  --color-teal-light: #235048;
-  --color-teal-dim: #122B24;
-  --color-gold: #C9A55A;
-  --color-gold-hover: #B8934A;
-  --color-sand: #E8D5B5;
-  --color-ink: #1A1C1A;
-  --color-ink-muted: #4A5450;
-  --color-ink-faint: #7A8078;
-  --color-teal-text: #1A3C34;
-  --color-off-white: #F0E6D3;
+  --color-canvas: var(--color-bg-primary);
+  --color-teal: var(--primitive-green-900);
+  --color-teal-light: var(--primitive-green-800);
+  --color-teal-dim: var(--primitive-green-900);
+  --color-gold: var(--primitive-gold-600);
+  --color-gold-hover: var(--primitive-gold-700);
+  --color-sand: var(--primitive-sand-300);
+  --color-ink: var(--primitive-ink-900);
+  --color-ink-muted: var(--primitive-ink-500);
+  --color-ink-faint: var(--primitive-ink-300);
+  --color-teal-text: var(--primitive-green-900);
+  --color-off-white: var(--primitive-sand-100);
 
-  --font-serif: "Libre Baskerville", Georgia, serif;
-  --font-sans: "Figtree", sans-serif;
+  --font-serif: var(--font-display);
+  --font-sans: var(--font-body);
 
-  --text-hero: clamp(38px, 11px + 3.5156vw, 56px);
-  --text-h1: clamp(38px, 11px + 3.5156vw, 56px);
-  --text-h2: clamp(28px, 10px + 2.3438vw, 40px);
-  --text-h3: clamp(22px, 2.2vw, 30px);
-  --text-lead: clamp(17px, 1.5vw, 20px);
-  --text-body: 17px;
-  --text-small: 14px;
-  --text-label: 12px;
+  --text-hero: var(--text-display);
+  --text-h1: var(--text-h1);
+  --text-h2: var(--text-h2);
+  --text-h3: var(--text-h3);
+  --text-lead: var(--text-lead);
+  --text-body: var(--text-body);
+  --text-small: var(--text-small);
+  --text-label: var(--text-label);
 }
 
-@layer base {
-  body {
-    background-color: var(--color-canvas);
-    color: var(--color-ink);
-    font-family: var(--font-sans);
-    font-size: var(--text-body);
-    line-height: 1.7;
-    overflow-x: hidden;
-    font-optical-sizing: auto;
-  }
-  
-  h1, h2, h3 {
-    text-wrap: balance;
-  }
-  
-  /* Focus-visible style */
-  *:focus-visible {
-    outline: 2px solid var(--color-gold);
-    outline-offset: 3px;
-  }
-}
-
+/* 4. Legacy and responsive system utilities */
 @layer utilities {
-  /* Change 4 Image Hover Zoom & Reveal system */
+  /* Image Hover Zoom & Reveal system using core design tokens */
   .image-hover-wrapper {
     position: relative;
     overflow: hidden !important;
@@ -61,15 +53,15 @@
 
   .image-hover-wrapper img {
     transform: scale(1) !important;
-    transition: transform 500ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+    transition: transform var(--duration-crawl) var(--ease-out-standard) !important;
   }
 
   .image-hover-wrapper .hover-overlay {
     position: absolute;
     inset: 0;
-    background-color: #1A3C34;
+    background-color: var(--color-bg-brand);
     opacity: 0;
-    transition: opacity 400ms cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity var(--duration-slow) var(--ease-out-standard);
     pointer-events: none;
     z-index: 20;
   }

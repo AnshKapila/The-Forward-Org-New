@@ -1,0 +1,31 @@
+/* ==========================================================================
+   THE FORWARD ORG DESIGN SYSTEM — MAIN INDEX
+   
+   8-POINT GRID RULE REFERENCE:
+   - Every size, spacing, radius, and dimension value must be a multiple of 8 (8px, 16px, 24px, etc.)
+   - Deliberate exceptions (e.g., 1px borders, 1.5px icons, 2px focus rings) are documented as exceptions.
+   ========================================================================== */
+
+/* 1. Import Foundations, Typography and Core Components */
+@import "./tokens.css";
+@import "./typography.css";
+@import "./components.css";
+
+/* 2. Base HTML Elements and Body Treatment with design tokens */
+@layer base {
+  body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--leading-normal);
+    overflow-x: hidden;
+    font-optical-sizing: auto;
+  }
+
+  /* Standard Selection/Focus outline */
+  *:focus-visible {
+    outline: 2px solid var(--color-border-accent);
+    outline-offset: 3px;
+  }
+}

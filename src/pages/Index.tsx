@@ -16,7 +16,7 @@ interface DimensionItem {
 
 export default function IndexPage() {
   const [location, setLocation] = useLocation();
-  const [expandedIndex, setExpandedIndex] = useState<number>(0);
+  const [expandedIndex, setExpandedIndex] = useState<number>(-1);
 
   const dimensions: DimensionItem[] = [
     {
@@ -64,7 +64,7 @@ export default function IndexPage() {
   return (
     <div className="bg-white min-h-screen text-ink">
       {/* Hero Block — Redesigned for exact 100vh viewport fitting */}
-      <section className="w-full max-w-5xl mx-auto text-center px-6 md:px-12 pt-28 pb-12 flex flex-col justify-center md:min-h-[calc(100vh-80px)]">
+      <section className="w-full max-w-7xl mx-auto text-center px-6 md:px-12 flex flex-col justify-center min-h-screen pt-24 pb-12">
         <ScrollReveal duration={0.6}>
           <div className="space-y-5 sm:space-y-6">
             <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block animate-fade-in">
@@ -102,8 +102,8 @@ export default function IndexPage() {
       </section>
 
       {/* Five Dimensions Section — Change 5 Luxury Redesign */}
-      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6">
-        <div className="max-w-[1000px] mx-auto">
+      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12">
+        <div className="max-w-7xl mx-auto">
           <ScrollReveal duration={0.55}>
             <div className="text-left mb-16 md:mb-20">
               <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
@@ -126,7 +126,9 @@ export default function IndexPage() {
               return (
                 <div 
                   key={idx}
-                  className={`group transition-colors duration-200 ${isExpanded ? "bg-[#1A3C34]/[0.02]" : "hover:bg-[#1A3C34]/[0.01]"}`}
+                  onMouseEnter={() => setExpandedIndex(idx)}
+                  onMouseLeave={() => setExpandedIndex(-1)}
+                  className={`group transition-all duration-200 ${isExpanded ? "bg-[#1A3C34]/[0.02]" : "hover:bg-[#1A3C34]/[0.01]"}`}
                 >
                   {/* Row Trigger Header */}
                   <button

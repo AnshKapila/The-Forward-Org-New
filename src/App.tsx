@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import IndexPage from "./pages/Index";
 import Scorecard from "./pages/Scorecard";
+import BookCallPage from "./pages/BookCall";
 import Posts from "./pages/Posts";
 
 function MainAppContent() {
@@ -21,6 +22,7 @@ function MainAppContent() {
           <Route path="/about" component={About} />
           <Route path="/index" component={IndexPage} />
           <Route path="/scorecard" component={Scorecard} />
+          <Route path="/book-a-call" component={BookCallPage} />
           <Route path="/posts" component={Posts} />
           {/* Default fallback route pointing to Home */}
           <Route path="/:rest*" component={Home} />

@@ -72,7 +72,7 @@ export function FAQ() {
         </svg>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 relative z-10 text-left">
+      <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-left">
         <ScrollReveal duration={0.6}>
           <div className="mb-16">
             <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">

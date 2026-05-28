@@ -25,7 +25,7 @@ function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?
   }, [isInView, end, duration]);
 
   return (
-    <h2 ref={ref} className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
+    <h2 ref={ref} className="font-serif text-[42px] md:text-[54px] font-bold text-gold inline-flex items-center">
       {count}
       <span className="font-serif">{suffix}</span>
     </h2>
@@ -42,54 +42,54 @@ export function StatsBar() {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-teal w-full text-off-white overflow-hidden py-12 md:py-14"
+      className="bg-white w-full border-y border-gold/15 overflow-hidden py-24 md:py-32"
     >
-      <div className="max-w-[1100px] mx-auto px-6 md:px-0">
-        <div className="flex flex-col md:flex-row md:items-stretch justify-between gap-8 md:gap-0">
-          {/* Column 1 */}
-          <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        <div className="flex flex-col md:flex-row md:items-stretch justify-between gap-12 md:gap-0">
+          {/* Column 1 - Left Aligned */}
+          <div className="flex-1 flex flex-col text-left items-start justify-start md:pr-12">
             <div className="mb-2">
               <CountUp end={10} suffix="+" />
             </div>
-            <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
+            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
               Years inside the organizations she now advises
             </p>
-            <p className="font-sans text-sm text-off-white/65 mt-2 leading-relaxed">
+            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
               At Citi, PagerDuty, and NielsenIQ: building what most consultants only theorize about.
             </p>
           </div>
 
-          {/* Thin Gold Rule 1 */}
-          <div className="hidden md:block w-[1px] bg-gold/40 self-stretch my-2" />
+          {/* Divider Mark 1 */}
+          <div className="hidden md:block w-[1px] bg-gold/30 self-stretch my-2" />
 
-          {/* Column 2 */}
-          <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
+          {/* Column 2 - Center Aligned */}
+          <div className="flex-1 flex flex-col text-center items-center justify-start md:px-12">
             <div className="mb-2">
               {/* COPY PENDING — Pan to confirm exact framing of $6M figure before launch */}
-              <h2 className="font-serif text-[52px] md:text-[64px] font-bold text-gold inline-flex items-center">
+              <h2 className="font-serif text-[42px] md:text-[54px] font-bold text-gold inline-flex items-center">
                 $6M+
               </h2>
             </div>
-            <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
+            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-center">
               In AI-driven operational value influenced across engagements
             </p>
-            <p className="font-sans text-sm text-off-white/65 mt-2 leading-relaxed">
+            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-center">
               Across Finance, SaaS, and Enterprise Technology.
             </p>
           </div>
 
-          {/* Thin Gold Rule 2 */}
-          <div className="hidden md:block w-[1px] bg-gold/40 self-stretch my-2" />
+          {/* Divider Mark 2 */}
+          <div className="hidden md:block w-[1px] bg-gold/30 self-stretch my-2" />
 
-          {/* Column 3 */}
-          <div className="flex flex-col text-left justify-start md:flex-1 md:px-8">
+          {/* Column 3 - Right Aligned */}
+          <div className="flex-1 flex flex-col text-right items-end justify-start md:pl-12">
             <div className="mb-2">
               <CountUp end={2} suffix="" />
             </div>
-            <p className="font-sans font-semibold text-base text-off-white leading-tight min-h-[44px]">
+            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-right">
               AI patents held
             </p>
-            <p className="font-sans text-sm text-off-white/65 mt-2 leading-relaxed">
+            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-right">
               Practitioner-level depth that most advisors do not have and cannot fake.
             </p>
           </div>

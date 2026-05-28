@@ -1,0 +1,227 @@
+/* ==========================================
+   THE FORWARD ORG DESIGN SYSTEM — COMPONENTS.CSS
+   Base components styled using core design tokens.
+   ========================================== */
+
+/* 1. BUTTONS */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-text);
+  font-family: var(--font-body);
+  font-size: var(--text-ui);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  padding: var(--space-16) var(--space-32);
+  border-radius: var(--radius-none);
+  border: none;
+  min-height: 48px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) var(--ease-out-standard),
+              transform var(--duration-fast) var(--ease-out-standard),
+              box-shadow var(--duration-fast) var(--ease-out-standard);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-btn-primary-bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-btn-hover);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-border-accent);
+  outline-offset: 3px;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-btn-ghost-text);
+  font-family: var(--font-body);
+  font-size: var(--text-ui);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  padding: 15px 31px; /* 15px and 31px account for the 1px border */
+  border: var(--border-thin) solid var(--color-btn-ghost-border);
+  border-radius: var(--radius-none);
+  min-height: 48px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color var(--duration-normal) var(--ease-out-standard),
+              color var(--duration-normal) var(--ease-out-standard),
+              border-color var(--duration-normal) var(--ease-out-standard);
+}
+
+.btn-ghost:hover {
+  background-color: var(--color-btn-ghost-bg-hover);
+  color: var(--color-btn-ghost-text-hover);
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--color-border-accent);
+  outline-offset: 3px;
+}
+
+/* BUTTON — SIZE VARIANTS */
+
+.btn-lg {
+  padding: 20px 40px; /* Net padding 20px vertical, 40px horizontal */
+  min-height: 56px;
+}
+
+.btn-sm {
+  padding: var(--space-8) var(--space-16);
+  font-size: var(--text-small);
+  min-height: 40px;
+}
+
+/* 2. FORM FIELDS */
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-label {
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  color: var(--color-text-brand);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-8);
+}
+
+.form-input {
+  background-color: var(--color-bg-white);
+  border: var(--border-thin) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  padding: var(--space-16);
+  min-height: 48px;
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-text-primary);
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color var(--duration-fast) var(--ease-out-standard),
+              box-shadow var(--duration-fast) var(--ease-out-standard);
+}
+
+.form-input::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-border-strong);
+  border-width: var(--border-medium);
+  box-shadow: 0 0 0 var(--space-8) rgba(26, 60, 52, 0.1);
+}
+
+/* 3. CARDS */
+
+.card-base {
+  background-color: var(--color-bg-white);
+  border: var(--border-thin) solid var(--color-border-default);
+  border-radius: var(--radius-none);
+  padding: var(--space-32);
+  box-shadow: var(--shadow-none);
+  transition: border-color var(--duration-normal) var(--ease-out-standard),
+              transform var(--duration-normal) var(--ease-out-standard);
+}
+
+.card-base:hover {
+  border-color: var(--color-border-accent);
+  transform: translateY(-4px); /* 4px is nearest sensible exception */
+}
+
+/* 4. STAT ELEMENTS */
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 5vw, 64px);
+  color: var(--color-stat-number);
+  line-height: var(--leading-tight);
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--color-stat-on-dark);
+}
+
+.stat-sublabel {
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  color: rgba(247, 244, 239, 0.7); /* rgba version of --color-stat-on-dark/sand-100 */
+}
+
+/* 5. SECTIONS / DIVIDERS */
+
+.section-eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  color: var(--color-text-accent);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  margin-bottom: var(--space-16);
+  display: block;
+}
+
+.divider-rule {
+  height: var(--border-rule);
+  background-color: var(--color-border-accent);
+  opacity: 0.4;
+  border: none;
+}
+
+/* 6. IMAGE TREATMENTS */
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-none);
+}
+
+.image-container img {
+  transform: scale(1);
+  transition: transform 500ms var(--ease-out-standard);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-container:hover img {
+  transform: scale(1.04);
+}
+
+.image-container .image-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-overlay-image);
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out-standard);
+  pointer-events: none;
+}
+
+.image-container:hover .image-overlay {
+  opacity: 0.15;
+}
