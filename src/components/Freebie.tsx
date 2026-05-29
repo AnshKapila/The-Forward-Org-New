@@ -155,7 +155,7 @@ export function Freebie() {
                 </div>
 
                 {/* Instant Action Button and PDF tag */}
-                <div className="flex flex-col sm:flex-row sm:items-center gap-4 w-full">
+                <div className="flex flex-col items-start gap-2.5 w-full">
                   <InteractiveButton
                     onClick={() => setModalOpen(true)}
                     variant="gold"
@@ -164,7 +164,7 @@ export function Freebie() {
                     Get It Now
                   </InteractiveButton>
                   
-                  <p className="font-sans text-xs text-off-white/60 tracking-normal block pt-1 sm:pt-0">
+                  <p className="font-sans text-xs text-off-white/60 tracking-normal block pt-1 ml-0.5">
                     Instant PDF download. No spam.
                   </p>
                 </div>

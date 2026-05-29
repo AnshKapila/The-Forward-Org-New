@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "./InteractiveButton";
 import panHeroImg from "../assets/images/heroback.png";
@@ -7,6 +7,19 @@ import panHeroImg from "../assets/images/heroback.png";
 export function Hero() {
   const [location, setLocation] = useLocation();
   const [isMobile, setIsMobile] = useState(false);
+  const [hasEntered, setHasEntered] = useState(false);
+  const heroRef = useRef<HTMLDivElement>(null);
+  
+  const shouldReduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  // Scale zooms in +20% as the hero drives down (from scale 1.0 to 1.2)
+  const scrollScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.2]);
+  const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
+
   const phrases = [
     "YOUR BOARD IS WATCHING.",
     "THE GAP IS NOT THE TOOLS.",
@@ -28,6 +41,14 @@ export function Hero() {
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    // Delay setting hasEntered to allow the 1.2s entry animation to finish first.
+    const timer = setTimeout(() => {
+      setHasEntered(true);
+    }, 1200);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleScrollToCall = () => {
@@ -69,7 +90,7 @@ export function Hero() {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden">
+    <section ref={heroRef} id="hero" className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden">
       
       {/* Absolute Background image of founder with accessible dark gradient fallback mapping */}
       <div className="absolute inset-0 z-0 select-none overflow-hidden">
@@ -81,7 +102,8 @@ export function Hero() {
           alt="Pan Seth, Corporate Strategy Advisor"
           className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
           style={{
-            objectPosition: isMobile ? "80% center" : undefined
+            objectPosition: isMobile ? "80% center" : undefined,
+            scale: hasEntered ? scaleValue : undefined,
           }}
           onError={(e) => {
             (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1920&h=1080";

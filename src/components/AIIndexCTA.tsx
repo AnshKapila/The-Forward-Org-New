@@ -1,20 +1,13 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "./InteractiveButton";
-import { ChevronRight, ArrowUpRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 
 export function AIIndexCTA() {
   const [, setLocation] = useLocation();
   const [isLeftHovered, setIsLeftHovered] = useState(false);
   const [isRightHovered, setIsRightHovered] = useState(false);
-
-  // High-quality professional corporate headshots for avatars
-  const leaderAvatars = [
-    "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120",
-    "https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&q=80&w=120",
-    "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=120",
-  ];
 
   return (
     <section id="ai-index" className="w-full bg-[#F7F4EF]/25 py-12 md:py-16 px-6 md:px-12 border-t border-b border-[#1A3C34]/5">
@@ -152,7 +145,7 @@ export function AIIndexCTA() {
                 THE ALIGNMENT INDEX
               </span>
               <h3 className="font-serif text-[30px] md:text-[36px] font-bold leading-[1.15] text-[#1A3C34] max-w-xl">
-                Find out exactly where your AI strategy has gaps.
+                Take the AI alignment index to find out exactly where your strategy has gaps.
               </h3>
               <p className="font-sans text-[15px] md:text-[16px] text-[#1A3C34]/80 leading-relaxed max-w-xl">
                 A 15-question, 3-minute dimension-by-dimension assessment designed exclusively for corporate boards to audit AI readiness, governance loopholes, and scaling risk.
@@ -194,47 +187,18 @@ export function AIIndexCTA() {
               </motion.svg>
             </div>
 
-            {/* Bottom Row containing button and avatar group */}
+            {/* Bottom Row containing button */}
             <div className="relative z-10 mt-8 md:mt-12 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 w-full pt-6 border-t border-[#1A3C34]/5">
               
               {/* Left Side: Solid interactive button conforming to color guidelines */}
               <div className="flex">
                 <InteractiveButton
                   onClick={() => setLocation("/index")}
-                  variant="teal"
-                  icon={ChevronRight}
-                  className="px-7 py-3.5 tracking-wide shadow-md"
+                  variant="gold"
+                  className="shadow-md"
                 >
-                  Take the AI Alignment Index
+                  Take the AI Index
                 </InteractiveButton>
-              </div>
-
-              {/* Right Side: Overlapping Corporate Leader Avatars representation */}
-              <div className="flex items-center gap-3 self-start sm:self-auto">
-                <div className="flex -space-x-3.5">
-                  {leaderAvatars.map((url, i) => (
-                    <motion.div
-                      key={i}
-                      whileHover={{ scale: 1.12, zIndex: 30 }}
-                      className="w-10 h-10 rounded-full border-2 border-[#F7F4EF] overflow-hidden shadow-md flex-shrink-0 cursor-pointer relative z-20"
-                    >
-                      <img 
-                        src={url} 
-                        alt="Audited Corporate Advisor" 
-                        className="w-full h-full object-cover"
-                        referrerPolicy="no-referrer"
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-                <div className="text-left">
-                  <p className="font-mono text-[9px] font-extrabold text-[#1A3C34] uppercase tracking-wider block leading-none mb-1">
-                    VERIFIED ACCESS
-                  </p>
-                  <p className="font-sans text-[11px] text-[#1A3C34]/60 leading-none">
-                    420+ Leaders Audited
-                  </p>
-                </div>
               </div>
 
             </div>
