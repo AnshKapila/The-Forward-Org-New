@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
+import { motion } from "motion/react";
 
 interface Question {
   id: number;
@@ -83,11 +84,11 @@ export default function Scorecard() {
     nextAnswers[currentIdx] = optionIdx;
     setAnswers(nextAnswers);
 
-    // If it is not the final question, proceed automatically to the next section
+    // If it is not  the final question, proceed automatically to the next section after 450ms animation completed
     if (currentIdx < questions.length - 1) {
       setTimeout(() => {
         setCurrentIdx((prevIdx) => prevIdx + 1);
-      }, 180);
+      }, 450);
     }
   };
 
@@ -151,24 +152,24 @@ export default function Scorecard() {
       
       {!quizComplete ? (
         /* SURVEY CONTAINER DESIGNED TO PERFECTLY OFFSET FIXED GLOBAL NAVIGATION */
-        <div className="w-full min-h-screen flex flex-col items-center justify-start pt-36 md:pt-40 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
+        <div className="w-full min-h-screen flex flex-col items-center justify-start pt-6 md:pt-12 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
           
           {/* Header strip for controls to prevent colliding with the nav bar */}
-          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
-            {/* Cancel / Back floating menu */}
+          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between md:justify-end mb-4">
+            {/* Cancel / Back floating menu for desktop only (md and up) */}
             <button
               onClick={currentIdx === 0 ? () => setLocation("/index") : handleBack}
-              className="text-xs font-sans uppercase tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
+              className="hidden md:flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
             >
               <ArrowLeft size={14} /> {currentIdx === 0 ? "Cancel" : "Back"}
             </button>
-
+ 
             {/* Right-aligned Question tracking label */}
             <span className="font-sans text-[12px] text-[#1A3C34]/65 font-medium">
               Question {currentIdx + 1} of {questions.length}
             </span>
           </div>
-
+ 
           {/* Progress Bar styled as a premium track spanning the width of the main content */}
           <div className="w-full max-w-[620px] mx-auto h-[3px] bg-[#1A3C34]/15 mb-6 relative">
             <div 
@@ -176,7 +177,7 @@ export default function Scorecard() {
               style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
             />
           </div>
-
+ 
           {/* Card core contents centered */}
           <div className="max-w-[620px] w-full flex flex-col gap-4 sm:gap-5 relative">
             
@@ -189,8 +190,8 @@ export default function Scorecard() {
                 {questions[currentIdx].question}
               </h3>
             </div>
-
-            {/* Answer Options list */}
+ 
+            {/* Answer Options list with custom thick outline trail tracer */}
             <div className="space-y-2.5 text-left">
               {questions[currentIdx].options.map((opt, i) => {
                 const isSelected = selectedOptionIndex === i;
@@ -198,54 +199,85 @@ export default function Scorecard() {
                   <button
                     key={i}
                     onClick={() => handleSelectOptionLocal(i)}
-                    className={`w-full text-left p-3.5 sm:p-4 border cursor-pointer transition-all duration-150 flex items-start gap-4 rounded-none ${
-                      isSelected
-                        ? "border-[#1A3C34] bg-[#1A3C34]/5 shadow-[0_0_0_2px_rgba(26,60,52,0.08)]"
-                        : "border-[#D4C9B8] bg-white hover:border-[#1A3C34]/60 hover:bg-[#1A3C34]/2"
-                    }`}
+                    className="w-full text-left p-3.5 sm:p-4 border cursor-pointer transition-all duration-150 flex items-start gap-4 rounded-none relative overflow-hidden focus:outline-none"
+                    style={{
+                      borderColor: isSelected ? "#1A3C34" : "#D4C9B8",
+                      backgroundColor: isSelected ? "rgba(26, 60, 52, 0.05)" : "white"
+                    }}
                   >
-                    <span className={`w-5 h-5 shrink-0 rounded-full border text-[11px] flex items-center justify-center font-serif bg-canvas/40 font-bold mt-0.5 ${
+                    {/* Dark and thick Golden Outline Trail Tracker Animation (0.4s) */}
+                    {isSelected && (
+                      <div className="absolute inset-0 pointer-events-none z-30">
+                        <svg className="w-full h-full absolute inset-0">
+                          <motion.rect
+                            x="0"
+                            y="0"
+                            width="100%"
+                            height="100%"
+                            fill="none"
+                            stroke="#C9A55A"
+                            strokeWidth="5"
+                            strokeLinecap="round"
+                            initial={{ pathLength: 0 }}
+                            animate={{ pathLength: 1 }}
+                            transition={{ duration: 0.4, ease: "linear" }}
+                          />
+                        </svg>
+                      </div>
+                    )}
+
+                    <span className={`w-5 h-5 shrink-0 rounded-full border text-[11px] flex items-center justify-center font-serif bg-canvas/40 font-bold mt-0.5 relative z-10 ${
                       isSelected ? "border-[#1A3C34] text-[#1A3C34] bg-white" : "border-[#1A3C34]/40 text-[#1A3C34]/70"
                     }`}>
                       {opt.label}
                     </span>
-                    <span className="font-sans text-[13px] sm:text-[14px] text-ink leading-relaxed">
+                    <span className="font-sans text-[13px] sm:text-[14px] text-ink leading-relaxed relative z-10">
                       {opt.text}
                     </span>
                   </button>
                 );
               })}
             </div>
-
+ 
             {/* Footer Control Actions with fixed height to prevent layout shifts */}
-            <div className="min-h-[44px] flex items-center justify-end mt-2">
-              {currentIdx === questions.length - 1 ? (
-                answers[currentIdx] !== null ? (
-                  <InteractiveButton 
-                    onClick={handleSubmit}
-                    variant="gold" 
-                    className="w-full md:w-auto text-center py-2.5 px-8 uppercase tracking-wider text-xs font-semibold"
-                    id="scorecard-submit-button"
-                  >
-                    Submit Diagnostic
-                  </InteractiveButton>
-                ) : (
-                  <p className="text-xs font-sans text-ink-muted/50 italic text-right w-full select-none pr-1">
-                    Select an option for the final question to submit
-                  </p>
-                )
-              ) : (
-                <p className="text-xs font-sans text-ink-muted/50 italic text-right w-full select-none pr-1">
-                  Select an option above to proceed
-                </p>
-              )}
-            </div>
+            <div className="min-h-[44px] flex items-center justify-between gap-4 mt-2">
+              {/* Mobile bottom-left Cancel/Back button */}
+              <button
+                onClick={currentIdx === 0 ? () => setLocation("/index") : handleBack}
+                className="md:hidden text-xs font-sans uppercase tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-2 focus:outline-none"
+              >
+                <ArrowLeft size={14} /> {currentIdx === 0 ? "Cancel" : "Back"}
+              </button>
 
+              <div className="ml-auto">
+                {currentIdx === questions.length - 1 ? (
+                  answers[currentIdx] !== null ? (
+                    <InteractiveButton 
+                      onClick={handleSubmit}
+                      variant="gold" 
+                      className="w-full md:w-auto text-center py-2.5 px-8 uppercase tracking-wider text-xs font-semibold"
+                      id="scorecard-submit-button"
+                    >
+                      Submit Diagnostic
+                    </InteractiveButton>
+                  ) : (
+                    <p className="text-xs font-sans text-ink-muted/50 italic text-right select-none pr-1">
+                      Select an option for the final question to submit
+                    </p>
+                  )
+                ) : (
+                  <p className="text-xs font-sans text-ink-muted/50 italic text-right select-none pr-1">
+                    Select an option above to proceed
+                  </p>
+                )}
+              </div>
+            </div>
+ 
           </div>
         </div>
       ) : (
-        /* RESULTS SCREEN */
-        <div className="min-h-screen pt-36 md:pt-40 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
+        /* RESULTS SCREEN WITH REDUCED TOP MARGINS */
+        <div className="min-h-screen pt-6 md:pt-12 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
           <div className="max-w-[720px] w-full bg-[#F7F4EF] border border-[#E8D5B5] p-6 sm:p-8 md:p-12 text-left rounded-sm shadow-sm space-y-8">
             <div className="text-center space-y-4 pb-8 border-b border-ink/10">
               <span className="font-sans font-semibold text-xs text-[#1A3C34] uppercase tracking-[0.2em] block">

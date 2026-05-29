@@ -40,7 +40,7 @@ export function Nav() {
     <>
       <nav
         id="main-nav"
-        className={`fixed top-0 left-0 w-full z-90 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full z-[90] transition-all duration-300 ${
           showDarkNavbar
             ? "bg-[#1A1C1A]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.15)] py-4"
             : "bg-transparent py-6"
@@ -61,7 +61,7 @@ export function Nav() {
               </div>
             </button>
           </Link>
-
+ 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8 lg:gap-10">
             {navLinks.map((link) => {
@@ -86,7 +86,7 @@ export function Nav() {
               );
             })}
           </div>
-
+ 
           {/* Navigation CTA Actions */}
           <div className="flex items-center gap-4">
             <InteractiveButton
@@ -98,11 +98,11 @@ export function Nav() {
             >
               Book a Call
             </InteractiveButton>
-
+ 
             {/* Mobile Hamburger Burger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 text-white hover:text-gold focus-visible:outline-2 focus-visible:outline-gold cursor-pointer transition-colors duration-300 flex items-center justify-center"
+              className="md:hidden p-2 text-white hover:text-gold focus-visible:outline-2 focus-visible:outline-gold cursor-pointer transition-colors duration-300 flex items-center justify-center relative z-[100] pointer-events-auto"
               aria-expanded={isMobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -115,36 +115,39 @@ export function Nav() {
           </div>
         </div>
       </nav>
-
+ 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-nav-overlay"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 300, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 bg-[#1A3C34]/95 backdrop-blur-md z-80 flex flex-col justify-between pt-28 pb-12 px-8"
+            initial={{ clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)", opacity: 1 }}
+            exit={{ clipPath: "inset(0% 0% 100% 0%)", opacity: 0 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed inset-0 bg-[#1A3C34]/98 backdrop-blur-md z-[80] flex flex-col justify-between pt-28 pb-12 px-8"
           >
             <div className="flex flex-col gap-6 pt-10 text-left">
               {navLinks.map((link, idx) => {
                 const isActive = location === link.path;
                 return (
                   <Link key={link.path} href={link.path}>
-                    <button
+                    <motion.button
+                      initial={{ opacity: 0, x: -15 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + idx * 0.05, duration: 0.3 }}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`font-serif text-3xl font-bold py-2 cursor-pointer text-left ${
+                      className={`font-serif text-3xl font-bold py-2 cursor-pointer text-left focus:outline-none ${
                         isActive ? "text-gold" : "text-white/90 hover:text-gold"
                       }`}
                     >
                       {link.label}
-                    </button>
+                    </motion.button>
                   </Link>
                 );
               })}
             </div>
-
+ 
             <div className="space-y-6 flex flex-col items-stretch">
               <InteractiveButton
                 onClick={handleBookACall}
