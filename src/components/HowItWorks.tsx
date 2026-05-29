@@ -60,20 +60,20 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
       <AnimatePresence>
         {isHovered && (
           <motion.div
-            initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            animate={{ opacity: 1, backdropFilter: "blur(12px)" }}
-            exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            initial={{ clipPath: "inset(100% 0% 0% 0%)", backdropFilter: "blur(0px)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0%)", backdropFilter: "blur(12px)" }}
+            exit={{ clipPath: "inset(100% 0% 0% 0%)", backdropFilter: "blur(0px)" }}
+            transition={{ duration: 0.42, ease: [0.25, 1, 0.5, 1] }}
             className="absolute inset-0 z-20 p-8 md:p-10 flex flex-col justify-between text-left"
             style={{
-              background: "linear-gradient(to top, rgba(18, 45, 39, 0.95) 0%, rgba(18, 45, 39, 0.6) 60%, rgba(18, 45, 39, 0.25) 100%)"
+              background: "linear-gradient(to top, rgba(18, 45, 39, 0.95) 0%, rgba(18, 45, 39, 0.55) 60%, rgba(18, 45, 39, 0.18) 100%)"
             }}
           >
             {/* Top Area: Step number & Step Title with glass reveal animation */}
             <motion.div 
-              initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+              initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
               animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-              transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.38, ease: "easeOut", delay: 0.06 }}
               className="pt-4"
             >
               <span className="font-mono text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">
@@ -86,9 +86,9 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
 
             {/* Bottom Area: Description & Golden Button CTA with staggered glass reveal effect */}
             <motion.div 
-              initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
+              initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
               animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-              transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
+              transition={{ duration: 0.38, ease: "easeOut", delay: 0.12 }}
               className="space-y-6"
             >
               <p className="font-sans text-[15px] sm:text-[16px] text-white/90 leading-[1.7] max-w-sm">
@@ -162,7 +162,7 @@ export function HowItWorks() {
   return (
     <>
       {/* Option A: Minimalist Line Process */}
-      <section id="how-it-works" className="relative bg-canvas py-24 md:py-32 overflow-hidden border-b border-gold/15">
+      <section id="how-it-works" className="relative bg-canvas py-12 md:py-16 overflow-hidden border-b border-gold/15">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <ScrollReveal duration={0.6}>
             <div className="mb-20">
@@ -265,7 +265,7 @@ export function HowItWorks() {
       </section>
 
       {/* Option B: Editorial Image Wireframe Block */}
-      <section id="how-it-works-cards" className="relative bg-[#F7F4EF]/25 py-24 md:py-32 overflow-hidden">
+      <section id="how-it-works-cards" className="relative bg-[#F7F4EF]/25 py-12 md:py-16 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <ScrollReveal duration={0.6}>
             <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">

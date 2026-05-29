@@ -14,7 +14,7 @@ export function TheProblem() {
   const [, setLocation] = useLocation();
 
   return (
-    <section id="the-problem" className="relative bg-canvas py-24 md:py-32 overflow-hidden">
+    <section id="the-problem" className="relative bg-canvas py-12 md:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal duration={0.65}>
           <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-12 md:gap-14 items-center">

@@ -54,7 +54,7 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative bg-canvas py-24 md:py-32 overflow-hidden">
+    <section id="faq" className="relative bg-canvas py-12 md:py-16 overflow-hidden">
       
       {/* Inline SVG faint topographic contour lines pattern */}
       <div className="absolute inset-0 pointer-events-none select-none opacity-[0.05]">

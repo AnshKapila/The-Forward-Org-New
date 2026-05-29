@@ -15,7 +15,7 @@ export function ConnectWithPan() {
   };
 
   return (
-    <section id="connect-with-pan" className="relative bg-canvas py-24 md:py-32 overflow-hidden border-t border-[#1A3C34]/5">
+    <section id="connect-with-pan" className="relative bg-canvas py-12 md:py-16 overflow-hidden border-t border-[#1A3C34]/5">
       {/* Secondary background paper texture blended with sand/canvas */}
       <img
         src="/images/texture-paper.jpg"
@@ -36,10 +36,10 @@ export function ConnectWithPan() {
             <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-light/10 rounded-full blur-2xl pointer-events-none" />
 
             {/* Grid Layout conforming to the three key sections of the image */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[260px_1fr_280px] xl:grid-cols-[280px_1fr_300px] gap-10 lg:gap-14 items-center">
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[260px_1fr_280px] xl:grid-cols-[280px_1fr_300px] gap-10 lg:gap-14 lg:items-stretch items-center">
               
               {/* Left Column (Component 1): Founder image with premium bookshelf background */}
-              <div className="flex justify-center lg:justify-start">
+              <div className="flex justify-center lg:justify-start lg:items-center">
                 <div className="relative w-full aspect-[4/5] max-w-[280px] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(18,43,36,0.5)] border border-white/10 bg-teal-dim/40 image-hover-wrapper">
                   <PanImage
                     src={prof1Img}
@@ -52,7 +52,7 @@ export function ConnectWithPan() {
               </div>
 
               {/* Middle Column (Component 2): Beautiful biography text with enhanced spacing & typography */}
-              <div className="space-y-6 text-left">
+              <div className="text-left lg:h-full lg:flex lg:flex-col lg:justify-between lg:py-2">
                 <div className="space-y-3">
                   <span className="font-mono text-[11px] font-bold text-gold uppercase tracking-[0.25em] block leading-none">
                     THE FOUNDER
@@ -65,7 +65,7 @@ export function ConnectWithPan() {
                   </p>
                 </div>
 
-                <div className="border-t border-white/10 pt-5">
+                <div className="border-t border-white/10 pt-5 lg:mt-auto">
                   <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl">
                     Pan spent a decade building AI infrastructure inside Citi, PagerDuty, and NielsenIQ, before advising the leaders navigating the same challenges from the outside. She holds 2 AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep piloting it.
                   </p>
@@ -73,8 +73,8 @@ export function ConnectWithPan() {
               </div>
 
               {/* Right Column: High-contrast responsive booking widget card */}
-              <div className="h-full flex items-stretch">
-                <div className="bg-ink text-off-white rounded-[1.5rem] p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col justify-between gap-8 w-full min-h-[220px] lg:min-h-[260px] text-left relative overflow-hidden">
+              <div className="lg:h-full flex items-stretch">
+                <div className="bg-ink text-off-white rounded-[1.5rem] p-6 lg:p-8 border border-white/5 shadow-2xl flex flex-col justify-between gap-6 w-full min-h-[220px] lg:min-h-0 text-left relative overflow-hidden">
                   
                   {/* Subtle inner card pattern */}
                   <div className="absolute inset-0 pointer-events-none opacity-[0.02]">

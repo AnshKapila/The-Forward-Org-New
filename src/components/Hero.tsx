@@ -62,7 +62,7 @@ export function Hero() {
       y: 0,
       filter: "blur(0px)",
       transition: {
-        duration: 0.96, // 960-millisecond animation
+        duration: 1.2, // 1200-millisecond animation
         ease: [0.16, 1, 0.3, 1], // premium cubic-bezier ease
       },
     },
@@ -76,7 +76,7 @@ export function Hero() {
         <motion.img
           initial={{ scale: 1.2 }}
           animate={{ scale: 1.0 }}
-          transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           src={panHeroImg}
           alt="Pan Seth, Corporate Strategy Advisor"
           className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"

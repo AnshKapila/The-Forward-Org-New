@@ -33,7 +33,7 @@ export function ThoughtLeadership() {
   ];
 
   return (
-    <section id="thought-leadership" className="relative bg-canvas py-24 md:py-32 text-left">
+    <section id="thought-leadership" className="relative bg-canvas py-12 md:py-16 text-left">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Header Block with gold route navigate link */}
