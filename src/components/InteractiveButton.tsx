@@ -117,9 +117,9 @@ export function InteractiveButton({
     case "outline-teal":
       // Change 4 Outline / Ghost specifications:
       // Default: transparent background, forest green border and text (#1A3C34).
-      // On hover: Forest green fill slides in from left using clip-path, text transitions to off-white simultaneously.
+      // On hover: Forest green fill slides in from left using clip-path, text transitions to light green simultaneously.
       isGhostOutline = true;
-      variantStyle = "border-[#1A3C34] bg-transparent text-[#1A3C34] hover:text-off-white transition-colors duration-200";
+      variantStyle = "border-[#1A3C34] bg-transparent text-[#1A3C34] hover:text-[#E8F0EE] transition-colors duration-200";
       break;
     default:
       variantStyle = "bg-off-white text-ink border-transparent hover:bg-ink hover:text-white";

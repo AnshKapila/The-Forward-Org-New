@@ -1,22 +1,7 @@
 import { ScrollReveal } from "./ScrollReveal";
+import { LogoMark } from "./LogoMark";
 
 export function Footer() {
-  const LogoMark = () => (
-    <svg
-      width="22"
-      height="22"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="var(--color-gold)"
-      strokeWidth="1.5"
-      className="shrink-0"
-    >
-      <circle cx="12" cy="12" r="9" />
-      <line x1="12" y1="6" x2="12" y2="12" />
-      <line x1="12" y1="12" x2="15.5" y2="15.5" />
-    </svg>
-  );
-
   return (
     <footer id="footer" className="bg-canvas border-t border-gold/30">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
@@ -24,7 +9,7 @@ export function Footer() {
           
           {/* Left Column: Logo mark & Wordmark */}
           <div className="flex items-center justify-center md:justify-start gap-2.5">
-            <LogoMark />
+            <LogoMark width="22" height="22" className="shrink-0" />
             <div className="flex flex-col text-left">
               <span className="font-serif text-[13px] font-bold tracking-wider text-ink">
                 THE FORWARD ORG

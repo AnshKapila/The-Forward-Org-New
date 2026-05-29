@@ -24,9 +24,9 @@ export default function Home() {
       <HowItWorks />
       <AIIndexCTA />
       <VisionStatement />
-      <ThoughtLeadership />
       <Freebie />
       <ConnectWithPan />
+      <ThoughtLeadership />
       <FAQ />
       <BookACall />
     </>

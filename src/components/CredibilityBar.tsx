@@ -1,6 +1,24 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { ScrollReveal } from "./ScrollReveal";
 
 export function CredibilityBar() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Starts to enter from left (negative translate-x), as it enters near 0.4 we reach center (0px).
+  // Beyond center, scroll progress from 0.4 to 1.0 translates it slightly rightwards at a slowed pace.
+  const translateX = useTransform(
+    scrollYProgress,
+    [0, 0.4, 0.7, 1.0],
+    shouldReduceMotion ? [0, 0, 0, 0] : [-150, 0, 25, 50]
+  );
+
   const logos = [
     {
       name: "Citi",
@@ -70,12 +88,15 @@ export function CredibilityBar() {
   ];
 
   return (
-    <div id="credibility-bar" className="w-full bg-canvas py-10 relative">
+    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas py-10 relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gold opacity-40" />
       
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal duration={0.6}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 max-w-[960px] mx-auto">
+          <motion.div
+            style={{ x: translateX }}
+            className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 max-w-[960px] mx-auto"
+          >
             
             {/* Left Eyebrow Label */}
             <div className="shrink-0 flex flex-col items-center md:items-start">
@@ -96,7 +117,7 @@ export function CredibilityBar() {
               ))}
             </div>
 
-          </div>
+          </motion.div>
         </ScrollReveal>
       </div>
 

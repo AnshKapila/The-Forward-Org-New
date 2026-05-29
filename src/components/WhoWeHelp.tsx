@@ -46,43 +46,10 @@ export function WhoWeHelp() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         <ScrollReveal duration={0.6}>
-          <div className="grid grid-cols-1 lg:grid-cols-[45%_55%] gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-stretch">
             
-            {/* Left Column: Big editorial boardroom image with Get Started card */}
-            <div className="relative w-full aspect-[4/5] max-w-[480px] mx-auto lg:mx-0 shadow-lg">
-              <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-teal-dim/10">
-                <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
-                  alt="Boardroom with natural light filtering through vertical windows"
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="hover-overlay" />
-                
-                {/* Floating "Get started" card layered on the bottom-left of the image */}
-                <div 
-                  onClick={handleGetStartedClick}
-                  className="absolute bottom-0 left-0 bg-white p-6 w-[160px] h-[115px] sm:w-[170px] sm:h-[120px] flex flex-col justify-between shadow-xl cursor-pointer group/gs z-30 border-t border-r border-[#1A3C34]/10 transition-colors duration-150 hover:bg-[#F7F4EF]/85"
-                  aria-label="Get started - book a strategy call"
-                >
-                  <div className="flex justify-end w-full">
-                    <ArrowUpRight 
-                      size={20} 
-                      strokeWidth={1.5} 
-                      strokeLinecap="square" 
-                      strokeLinejoin="miter" 
-                      className="text-[#1A3C34] group-hover/gs:translate-x-1 group-hover/gs:-translate-y-1 transition-transform duration-200"
-                    />
-                  </div>
-                  <span className="font-sans text-[13px] font-bold text-[#1A3C34] uppercase tracking-wider block">
-                    Get started
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Title and interactive accordion list */}
-            <div className="flex flex-col text-left justify-center lg:pl-4">
+            {/* Left Column: Title and interactive accordion list */}
+            <div className="flex flex-col text-left justify-center lg:pr-4">
               <div className="mb-10 lg:mb-12">
                 <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
                   WHO WE HELP
@@ -140,6 +107,39 @@ export function WhoWeHelp() {
                     </div>
                   );
                 })}
+              </div>
+            </div>
+
+            {/* Right Column: Big editorial boardroom image with Get Started card */}
+            <div className="relative w-full h-full min-h-[440px] lg:min-h-0 max-w-[480px] mx-auto lg:ml-auto lg:mr-0 shadow-lg">
+              <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-teal-dim/10">
+                <img
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
+                  alt="Boardroom with natural light filtering through vertical windows"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="hover-overlay" />
+                
+                {/* Floating "Get started" card layered on the bottom-left of the image */}
+                <div 
+                  onClick={handleGetStartedClick}
+                  className="absolute bottom-0 left-0 bg-white p-6 w-[160px] h-[115px] sm:w-[170px] sm:h-[120px] flex flex-col justify-between shadow-xl cursor-pointer group/gs z-30 border-t border-r border-[#1A3C34]/10 transition-all duration-300 hover:bg-[#1A3C34] hover:border-transparent"
+                  aria-label="Get started - book a strategy call"
+                >
+                  <div className="flex justify-end w-full">
+                    <ArrowUpRight 
+                      size={20} 
+                      strokeWidth={1.5} 
+                      strokeLinecap="square" 
+                      strokeLinejoin="miter" 
+                      className="text-[#1A3C34] group-hover/gs:text-[#E8F0EE] group-hover/gs:translate-x-1 group-hover/gs:-translate-y-1 transition-all duration-300"
+                    />
+                  </div>
+                  <span className="font-sans text-[13px] font-bold text-[#1A3C34] group-hover/gs:text-[#E8F0EE] uppercase tracking-wider block transition-colors duration-300">
+                    Get started
+                  </span>
+                </div>
               </div>
             </div>
 

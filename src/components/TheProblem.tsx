@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import { ScrollReveal } from "./ScrollReveal";
+import { InteractiveButton } from "./InteractiveButton";
 
 // IMAGE: Use architectural/environmental photography.
 // NO stock business people. NO AI/robot imagery.
@@ -9,6 +11,7 @@ import { ScrollReveal } from "./ScrollReveal";
 
 export function TheProblem() {
   const [imageError, setImageError] = useState(false);
+  const [, setLocation] = useLocation();
 
   return (
     <section id="the-problem" className="relative bg-canvas py-24 md:py-32 overflow-hidden">
@@ -69,6 +72,17 @@ export function TheProblem() {
               <p className="font-sans text-[17px] text-ink-muted leading-[1.75] font-light">
                 The gap is never the technology. It is always what sits underneath it: whether your leadership team is aligned, whether your governance can handle the speed, whether your people have been given permission to actually change how they work. That is what we fix.
               </p>
+
+              {/* Action Button */}
+              <div className="pt-2">
+                <InteractiveButton 
+                  variant="outline-teal"
+                  onClick={() => setLocation("/scorecard")}
+                  id="problem-take-index-btn"
+                >
+                  Take the Index
+                </InteractiveButton>
+              </div>
 
               {/* McKinsey Stat Chips */}
               <div className="pt-4 space-y-3">

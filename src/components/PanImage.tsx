@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 
 interface PanImageProps {
   src: string;
@@ -12,6 +13,7 @@ export function PanImage({ src, fallbackSrc, alt, className = "", style }: PanIm
   const [currentSrc, setCurrentSrc] = useState(src);
   const [hasError, setHasError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const shouldReduceMotion = useReducedMotion();
 
   const handleError = () => {
     if (!hasError) {
@@ -27,7 +29,11 @@ export function PanImage({ src, fallbackSrc, alt, className = "", style }: PanIm
           <span className="text-xs font-mono text-gold tracking-widest uppercase">LOADING...</span>
         </div>
       )}
-      <img
+      <motion.img
+        initial={shouldReduceMotion ? { scale: 1.0 } : { scale: 1.2 }}
+        whileInView={shouldReduceMotion ? { scale: 1.0 } : { scale: 1.0 }}
+        viewport={{ once: true, margin: "-120px" }}
+        transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1] }}
         src={currentSrc}
         alt={alt}
         referrerPolicy="no-referrer"

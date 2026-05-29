@@ -5,28 +5,12 @@ import { useScrolled } from "../hooks/useScrolled";
 import { motion, AnimatePresence } from "motion/react";
 import { InteractiveButton } from "./InteractiveButton";
 
+import { LogoMark } from "./LogoMark";
+
 export function Nav() {
   const isScrolled = useScrolled(12);
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Logo clock markup
-  const LogoMark = () => (
-    <svg
-      id="nav-logo-mark"
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="var(--color-gold)"
-      strokeWidth="1.5"
-      className="shrink-0"
-    >
-      <circle cx="12" cy="12" r="9" />
-      <line x1="12" y1="6" x2="12" y2="12" />
-      <line x1="12" y1="12" x2="15.5" y2="15.5" />
-    </svg>
-  );
 
   const navLinks = [
     { label: "Home", path: "/" },
@@ -66,7 +50,7 @@ export function Nav() {
           {/* Logo click routes to home */}
           <Link href="/">
             <button className="flex items-center gap-2.5 group focus-visible:outline-2 focus-visible:outline-gold cursor-pointer text-left leading-none">
-              <LogoMark />
+              <LogoMark width="28" height="28" className="shrink-0" />
               <div className="flex flex-col select-none leading-none">
                 <span className="font-serif text-[15px] font-bold tracking-wider text-white leading-none">
                   THE FORWARD ORG

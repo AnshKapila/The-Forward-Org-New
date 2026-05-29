@@ -56,12 +56,13 @@ export function Hero() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 20, filter: "blur(12px)" },
     visible: {
       opacity: 1,
       y: 0,
+      filter: "blur(0px)",
       transition: {
-        duration: 0.6,
+        duration: 0.96, // 960-millisecond animation
         ease: [0.16, 1, 0.3, 1], // premium cubic-bezier ease
       },
     },
@@ -71,8 +72,11 @@ export function Hero() {
     <section id="hero" className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden">
       
       {/* Absolute Background image of founder with accessible dark gradient fallback mapping */}
-      <div className="absolute inset-0 z-0 select-none">
-        <img
+      <div className="absolute inset-0 z-0 select-none overflow-hidden">
+        <motion.img
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1.0 }}
+          transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1] }}
           src={panHeroImg}
           alt="Pan Seth, Corporate Strategy Advisor"
           className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
