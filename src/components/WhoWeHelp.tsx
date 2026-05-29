@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react";
 
 interface AccordionItem {
   num: string;
@@ -11,6 +11,31 @@ interface AccordionItem {
 
 export function WhoWeHelp() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "start 0.4"],
+  });
+
+  const leftX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    shouldReduceMotion ? [0, 0] : [-150, 0]
+  );
+
+  const rightX = useTransform(
+    scrollYProgress,
+    [0, 1],
+    shouldReduceMotion ? [0, 0] : [150, 0]
+  );
+
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [0, 1]
+  );
 
   const items: AccordionItem[] = [
     {
@@ -41,15 +66,18 @@ export function WhoWeHelp() {
 
   return (
     <section
+      ref={sectionRef}
       id="who-we-help"
       className="relative bg-[#F7F4EF]/40 py-24 md:py-32 overflow-hidden border-t border-b border-[#1A3C34]/5"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-        <ScrollReveal duration={0.6}>
-          <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-stretch">
+        <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-stretch">
             
             {/* Left Column: Title and interactive accordion list */}
-            <div className="flex flex-col text-left justify-center lg:pr-4">
+            <motion.div
+              style={{ x: leftX, opacity }}
+              className="flex flex-col text-left justify-center lg:pr-4"
+            >
               <div className="mb-10 lg:mb-12">
                 <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
                   WHO WE HELP
@@ -108,10 +136,13 @@ export function WhoWeHelp() {
                   );
                 })}
               </div>
-            </div>
+            </motion.div>
 
             {/* Right Column: Big editorial boardroom image with Get Started card */}
-            <div className="relative w-full h-full min-h-[440px] lg:min-h-0 max-w-[480px] mx-auto lg:ml-auto lg:mr-0 shadow-lg">
+            <motion.div
+              style={{ x: rightX, opacity }}
+              className="relative w-full h-full min-h-[440px] lg:min-h-0 max-w-[480px] lg:max-w-none mx-auto lg:mx-0 shadow-lg"
+            >
               <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-teal-dim/10">
                 <img
                   src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
@@ -141,10 +172,9 @@ export function WhoWeHelp() {
                   </span>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
           </div>
-        </ScrollReveal>
       </div>
     </section>
   );
