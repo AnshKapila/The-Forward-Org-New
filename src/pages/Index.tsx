@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react";
 
 interface DimensionItem {
   num: string;
@@ -17,6 +17,45 @@ interface DimensionItem {
 export default function IndexPage() {
   const [location, setLocation] = useLocation();
   const [expandedIndex, setExpandedIndex] = useState<number>(-1);
+
+  // Parallax Scroll Elements configuration targetting image wrapper viewports
+  const imageRef1 = useRef<HTMLDivElement>(null);
+  const imageRef2 = useRef<HTMLDivElement>(null);
+  const imageRef3 = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress: scrollY1 } = useScroll({
+    target: imageRef1,
+    offset: ["start end", "end start"],
+  });
+
+  const { scrollYProgress: scrollY2 } = useScroll({
+    target: imageRef2,
+    offset: ["start end", "end start"],
+  });
+
+  const { scrollYProgress: scrollY3 } = useScroll({
+    target: imageRef3,
+    offset: ["start end", "end start"],
+  });
+
+  const shouldReduceMotion = useReducedMotion();
+
+  // Scroll parallax transforms: actual image height is 1.5x (h-[150%]) of viewport bounding boxes
+  const yParallax1 = useTransform(scrollY1, [0, 1], ["-15%", "15%"]);
+  const yParallax2 = useTransform(scrollY2, [0, 1], ["-25%", "8%"]);
+  const yParallax3 = useTransform(scrollY3, [0, 1], ["-10%", "20%"]);
+
+  const scaleZoom1 = useTransform(scrollY1, [0, 1], [1.02, 1.18]);
+  const scaleZoom2 = useTransform(scrollY2, [0, 1], [1.0, 1.25]);
+  const scaleZoom3 = useTransform(scrollY3, [0, 1], [1.05, 1.15]);
+
+  const yVal1 = shouldReduceMotion ? "0%" : yParallax1;
+  const yVal2 = shouldReduceMotion ? "0%" : yParallax2;
+  const yVal3 = shouldReduceMotion ? "0%" : yParallax3;
+
+  const scaleVal1 = shouldReduceMotion ? 1.0 : scaleZoom1;
+  const scaleVal2 = shouldReduceMotion ? 1.0 : scaleZoom2;
+  const scaleVal3 = shouldReduceMotion ? 1.0 : scaleZoom3;
 
   const dimensions: DimensionItem[] = [
     {
@@ -62,43 +101,113 @@ export default function IndexPage() {
   ];
 
   return (
-    <div className="bg-white min-h-screen text-ink">
-      {/* Hero Block — Redesigned for exact 100vh viewport fitting */}
-      <section className="w-full max-w-7xl mx-auto text-center px-6 md:px-12 flex flex-col justify-center min-h-screen pt-24 pb-12">
-        <ScrollReveal duration={0.6}>
-          <div className="space-y-5 sm:space-y-6">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block animate-fade-in">
-              THE AI ALIGNMENT INDEX
-            </span>
-            
-            <h2 className="font-serif text-[24px] sm:text-[32px] md:text-[40px] lg:text-[44px] leading-[1.2] font-bold text-ink text-balance">
-              Your organization is using AI. The question is whether the infrastructure underneath it is built to make it stick.
-            </h2>
-            
-            <p className="font-sans text-[15px] sm:text-[17px] text-ink-muted leading-[1.7] max-w-[680px] mx-auto">
-              A 15-question diagnostic across five organizational dimensions. Used by senior leaders to find the exact gaps between AI investment and AI results.
-            </p>
+    <div className="bg-canvas min-h-screen text-ink">
+      {/* Hero Block — Redesigned for exact 100vh viewport fitting including Nav spacing and avoiding cropping */}
+      <section className="relative w-full min-h-screen flex flex-col justify-between pt-24 pb-16 bg-[#FAF9F5]">
+        <div className="absolute inset-0 bg-[#1A3C34]/[0.015] bg-[linear-gradient(rgba(26,60,52,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(26,60,52,0.04)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+        
+        {/* Upper Content - Symmetrically proportioned */}
+        <div className="w-full max-w-4xl mx-auto text-center px-6 md:px-12 flex-grow flex flex-col justify-center relative z-10 py-6 mb-8">
+          <ScrollReveal duration={0.6}>
+            <div className="space-y-4 md:space-y-6">
+              
+              {/* Category tag as structurally shown inside the reference image */}
+              <div className="flex items-center justify-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block animate-pulse" />
+                <span className="font-sans font-bold text-[10px] md:text-xs text-gold uppercase tracking-[0.25em] block">
+                  The AI Alignment Index
+                </span>
+              </div>
+              
+              <h1 className="font-serif text-[32px] sm:text-[44px] md:text-[52px] lg:text-[58px] leading-[1.12] font-semibold text-[#1A3C34] tracking-tight text-balance">
+                Your Strategy Partner for <span className="font-serif italic font-normal text-gold">Growth</span>
+              </h1>
+              
+              <p className="font-sans text-xs sm:text-sm md:text-base text-ink-muted leading-[1.65] max-w-[650px] mx-auto font-light">
+                A 15-question strategic audit mapping enterprise gaps between technological investments and net margin expansion. Used by senior leaders to align systems and build results.
+              </p>
 
-            {/* Two stats inline (small, horizontal) */}
-            <div className="flex justify-center items-center gap-4 text-[13px] sm:text-[14px] font-sans font-medium text-[#1A3C34] py-1">
-              <span>15 questions</span>
-              <span className="text-gold/50">•</span>
-              <span>5 dimensions</span>
-              <span className="text-gold/50">•</span>
-              <span>3 minutes</span>
-            </div>
+              {/* Stats Inline Info Row */}
+              <div className="flex justify-center items-center gap-3 md:gap-4 text-[11px] font-sans font-medium text-[#1A3C34]/75 tracking-wider py-1 select-none flex-wrap">
+                <span className="bg-[#1A3C34]/5 py-1 px-3 rounded-none border border-[#1A3C34]/10">15 questions</span>
+                <span className="text-gold/50">•</span>
+                <span className="bg-[#1A3C34]/5 py-1 px-3 rounded-none border border-[#1A3C34]/10">5 dimensions</span>
+                <span className="text-gold/50">•</span>
+                <span className="bg-[#1A3C34]/5 py-1 px-3 rounded-none border border-[#1A3C34]/10">3 minutes</span>
+              </div>
 
-            <div className="flex justify-center pt-3">
-              <InteractiveButton
-                onClick={() => setLocation("/scorecard")}
-                variant="gold"
-                id="cta-take-index"
-              >
-                Take the Index
-              </InteractiveButton>
+              {/* Golden primary CTA directly above images below text */}
+              <div className="flex justify-center pt-3">
+                <InteractiveButton
+                  onClick={() => setLocation("/scorecard")}
+                  variant="gold"
+                  className="px-10 py-3.5 uppercase tracking-[0.18em] text-xs font-bold shadow-sm"
+                  id="cta-take-index"
+                >
+                  Start Assessment
+                </InteractiveButton>
+              </div>
             </div>
+          </ScrollReveal>
+        </div>
+
+        {/* Bottom Three-Column Images Section matching structure from screenshot */}
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+          <div className="grid grid-cols-3 gap-4 md:gap-8 items-start">
+            
+            {/* Piece 1: Large company interacting with tech */}
+            <motion.div 
+              ref={imageRef1}
+              initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-[#D4C9B8]/40 bg-[#1A3C34]/5 group"
+            >
+              <motion.img
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
+                alt="Large corporations analyzing technology trends"
+                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
+                style={{ y: yVal1, scale: scaleVal1 }}
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+
+            {/* Piece 2: C-Suite person in leadership leading team with tech */}
+            <motion.div 
+              ref={imageRef2}
+              initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-[#D4C9B8]/40 bg-[#1A3C34]/5 group"
+            >
+              <motion.img
+                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200"
+                alt="C-suite executives leading operations"
+                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
+                style={{ y: yVal2, scale: scaleVal2 }}
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+
+            {/* Piece 3: Growth of the team in corporate world */}
+            <motion.div 
+              ref={imageRef3}
+              initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="relative aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-[#D4C9B8]/40 bg-[#1A3C34]/5 group"
+            >
+              <motion.img
+                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200"
+                alt="Corporate team growth and collaboration"
+                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
+                style={{ y: yVal3, scale: scaleVal3 }}
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
+
           </div>
-        </ScrollReveal>
+        </div>
       </section>
 
       {/* Five Dimensions Section — Change 5 Luxury Redesign */}

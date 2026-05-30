@@ -8,7 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center text-center md:text-left">
           
           {/* Left Column: Logo mark & Wordmark */}
-          <div className="flex items-center justify-center md:justify-start gap-2.5">
+          <div className="flex items-center justify-center md:justify-start gap-1">
             <LogoMark width="22" height="22" className="shrink-0" />
             <div className="flex flex-col text-left">
               <span className="font-serif text-[13px] font-bold tracking-wider text-ink">

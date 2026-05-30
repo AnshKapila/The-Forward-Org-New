@@ -68,9 +68,10 @@ interface ScrollRevealProps {
   delay?: number;
   duration?: number;
   y?: number;
+  className?: string;
 }
 
-export function ScrollReveal({ children, delay = 0, duration = 0.6, y = 24 }: ScrollRevealProps) {
+export function ScrollReveal({ children, delay = 0, duration = 0.6, y = 24, className }: ScrollRevealProps) {
   const shouldReduceMotion = useReducedMotion();
   
   const processedChildren = React.useMemo(() => {
@@ -79,6 +80,7 @@ export function ScrollReveal({ children, delay = 0, duration = 0.6, y = 24 }: Sc
 
   return (
     <motion.div
+      className={className}
       initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y }}
       whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
