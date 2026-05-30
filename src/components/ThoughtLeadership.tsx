@@ -93,7 +93,7 @@ export function ThoughtLeadership() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {posts.map((post, idx) => (
               <div key={idx} className={`${post.span} col-span-1`}>
-                <StaggerItem>
+                <StaggerItem index={idx}>
                   <a
                     href="https://www.linkedin.com"
                     target="_blank"

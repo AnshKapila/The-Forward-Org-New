@@ -4,11 +4,13 @@ import { motion, useInView } from "motion/react";
 function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
   useEffect(() => {
     if (!isInView) return;
     let startTimestamp: number | null = null;
+    let frameId: number;
+
     const step = (timestamp: number) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
@@ -16,12 +18,15 @@ function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?
       const easeProgress = progress * (2 - progress);
       setCount(Math.floor(easeProgress * end));
       if (progress < 1) {
-        window.requestAnimationFrame(step);
+        frameId = window.requestAnimationFrame(step);
       } else {
         setCount(end);
       }
     };
-    window.requestAnimationFrame(step);
+    frameId = window.requestAnimationFrame(step);
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
   }, [isInView, end, duration]);
 
   return (
@@ -34,13 +39,19 @@ function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?
 
 export function StatsBar() {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.1 });
+  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const [willChangeActive, setWillChangeActive] = useState(true);
 
   return (
     <motion.section
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
+      onAnimationComplete={() => setWillChangeActive(false)}
+      style={{
+        transform: "translateZ(0)",
+        willChange: willChangeActive ? "transform, opacity" : "auto",
+      }}
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="bg-white w-full border-y border-gold/15 overflow-hidden py-24 md:py-32"
     >

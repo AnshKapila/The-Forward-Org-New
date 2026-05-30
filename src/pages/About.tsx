@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useInView, motion } from "motion/react";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
@@ -6,7 +6,8 @@ import founderImg from "../assets/images/prof1.jpg";
 
 export default function About() {
   const timelineRef = useRef<HTMLDivElement>(null);
-  const isTimelineInView = useInView(timelineRef, { once: true, amount: 0.2 });
+  const isTimelineInView = useInView(timelineRef, { once: true, margin: "-10% 0px" });
+  const [lineWillChange, setLineWillChange] = useState(true);
 
   const timelineNodes = [
     {
@@ -164,6 +165,8 @@ export default function About() {
                   strokeWidth="2"
                   initial={{ pathLength: 0 }}
                   animate={isTimelineInView ? { pathLength: 1 } : { pathLength: 0 }}
+                  onAnimationComplete={() => setLineWillChange(false)}
+                  style={{ willChange: lineWillChange ? "transform" : "auto" }}
                   transition={{ duration: 1.2, ease: "easeOut" }}
                 />
               </svg>

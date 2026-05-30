@@ -162,12 +162,13 @@ export default function IndexPage() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
               className="relative aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-[#D4C9B8]/40 bg-[#1A3C34]/5 group"
+              style={{ transform: "translateZ(0)", isolation: "isolate" }}
             >
               <motion.img
                 src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
                 alt="Large corporations analyzing technology trends"
                 className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
-                style={{ y: yVal1, scale: scaleVal1 }}
+                style={{ y: yVal1, scale: scaleVal1, transformOrigin: "center center", willChange: "transform" }}
                 referrerPolicy="no-referrer"
               />
             </motion.div>
@@ -179,12 +180,13 @@ export default function IndexPage() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="relative aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-[#D4C9B8]/40 bg-[#1A3C34]/5 group"
+              style={{ transform: "translateZ(0)", isolation: "isolate" }}
             >
               <motion.img
                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200"
                 alt="C-suite executives leading operations"
                 className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
-                style={{ y: yVal2, scale: scaleVal2 }}
+                style={{ y: yVal2, scale: scaleVal2, transformOrigin: "center center", willChange: "transform" }}
                 referrerPolicy="no-referrer"
               />
             </motion.div>
@@ -196,12 +198,13 @@ export default function IndexPage() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
               className="relative aspect-[4/5] w-full overflow-hidden rounded-xl md:rounded-2xl border border-[#D4C9B8]/40 bg-[#1A3C34]/5 group"
+              style={{ transform: "translateZ(0)", isolation: "isolate" }}
             >
               <motion.img
                 src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200"
                 alt="Corporate team growth and collaboration"
                 className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
-                style={{ y: yVal3, scale: scaleVal3 }}
+                style={{ y: yVal3, scale: scaleVal3, transformOrigin: "center center", willChange: "transform" }}
                 referrerPolicy="no-referrer"
               />
             </motion.div>

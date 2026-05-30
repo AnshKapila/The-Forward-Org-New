@@ -110,7 +110,7 @@ export function FAQ() {
         {/* Accordion List Block */}
         <StaggerContainer>
           <div className="border-t border-gold/30">
-            {faqItems.map((item) => {
+            {faqItems.map((item, idx) => {
               const isOpen = hoveredId === item.id || clickedId === item.id;
               
               return (
@@ -120,7 +120,7 @@ export function FAQ() {
                   onMouseEnter={() => handleMouseEnterItem(item.id)}
                   onMouseLeave={() => handleMouseLeaveItem(item.id)}
                 >
-                  <StaggerItem>
+                  <StaggerItem index={idx}>
                     {/* Collapsible Trigger Row */}
                     <button
                       onClick={() => toggleItem(item.id)}

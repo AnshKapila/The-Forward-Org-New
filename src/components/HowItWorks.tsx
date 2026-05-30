@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { LoopingArrow } from "./InteractiveButton";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useInView } from "motion/react";
 
 // Option B Interactive   Card Sub-component with premium hover states
 function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc: string }) {
   const [isHovered, setIsHovered] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
+  const [willChangeActive, setWillChangeActive] = useState(true);
 
   // Link destinations
   const buttonPath = "/index"; 
@@ -14,20 +17,29 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
 
   return (
     <div
+      ref={ref}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(!isHovered)}
       className="relative w-full h-[90vh] overflow-hidden bg-teal-dim/10 shadow-xl border border-teal/15 group cursor-pointer transition-shadow"
+      style={{
+        transform: "translateZ(0)",
+        isolation: "isolate"
+      }}
     >
       {/* Step Image */}
       <motion.img
         initial={{ scale: 1.2 }}
-        whileInView={{ scale: 1.0 }}
-        viewport={{ once: true, margin: "-120px" }}
-        transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1] }}
+        animate={isInView ? { scale: 1.0 } : {}}
+        onAnimationComplete={() => setWillChangeActive(false)}
+        transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
         src={imageSrc}
         alt={step.title}
-        className="w-full h-full object-cover grayscale contrast-[1.12] brightness-[0.82] transition-transform duration-960 ease-out"
+        className="w-full h-full object-cover grayscale contrast-[1.12] brightness-[0.82]"
+        style={{
+          transformOrigin: "center center",
+          willChange: willChangeActive ? "transform" : "auto",
+        }}
         referrerPolicy="no-referrer"
       />
 
@@ -180,7 +192,7 @@ export function HowItWorks() {
               
               {steps.map((step, idx) => (
                 <div key={idx} className="relative">
-                  <StaggerItem>
+                  <StaggerItem index={idx}>
                     <div className="relative group flex flex-col pt-14 pb-4">
                       
                       {/* Oversized gold background numeral (z-index layering) */}
@@ -285,7 +297,7 @@ export function HowItWorks() {
               
               {steps.map((step, idx) => (
                 <div key={idx} className="relative flex flex-col">
-                  <StaggerItem>
+                  <StaggerItem index={idx}>
                     <OptionBCard
                       step={step}
                       idx={idx}

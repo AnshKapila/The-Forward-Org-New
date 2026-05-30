@@ -325,7 +325,7 @@ export default function Posts() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                   {regularPosts.slice(0, visibleCount).map((post, idx) => (
                     <div key={idx} className="h-full">
-                      <StaggerItem>
+                      <StaggerItem index={idx}>
                         <a
                           href={post.linkedin_url}
                           target="_blank"
