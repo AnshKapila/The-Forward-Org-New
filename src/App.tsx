@@ -1,5 +1,5 @@
-import React from "react";
-import { Switch, Route } from "wouter";
+import React, { useEffect } from "react";
+import { Switch, Route, useLocation } from "wouter";
 import { Nav } from "./components/Nav";
 import { Footer } from "./components/Footer";
 import Home from "./pages/Home";
@@ -8,8 +8,15 @@ import IndexPage from "./pages/Index";
 import Scorecard from "./pages/Scorecard";
 import BookCallPage from "./pages/BookCall";
 import Posts from "./pages/Posts";
+import ContactPage from "./pages/Contact";
 
 function MainAppContent() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <div className="relative min-h-screen bg-canvas overflow-x-hidden selection:bg-gold selection:text-ink flex flex-col justify-between">
       {/* Persistent global Navigation */}
@@ -24,6 +31,7 @@ function MainAppContent() {
           <Route path="/scorecard" component={Scorecard} />
           <Route path="/book-a-call" component={BookCallPage} />
           <Route path="/posts" component={Posts} />
+          <Route path="/contact" component={ContactPage} />
           {/* Default fallback route pointing to Home */}
           <Route path="/:rest*" component={Home} />
         </Switch>

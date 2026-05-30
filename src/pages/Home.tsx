@@ -11,6 +11,7 @@ import { ThoughtLeadership } from "../components/ThoughtLeadership";
 import { Freebie } from "../components/Freebie";
 import { FAQ } from "../components/FAQ";
 import { ConnectWithPan } from "../components/ConnectWithPan";
+import { ContactSection } from "../components/ContactSection";
 import { BookACall } from "../components/BookACall";
 
 export default function Home() {
@@ -29,6 +30,7 @@ export default function Home() {
       <ThoughtLeadership />
       <FAQ />
       <BookACall />
+      <ContactSection />
     </>
   );
 }

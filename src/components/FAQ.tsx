@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { ChevronDown } from "lucide-react";
 
@@ -9,7 +9,19 @@ interface FAQItem {
 }
 
 export function FAQ() {
-  const [openId, setOpenId] = useState<number | null>(null);
+  const [clickedId, setClickedId] = useState<number | null>(null);
+  const [hoveredId, setHoveredId] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleDocumentClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-faq-button]")) {
+        setClickedId(null);
+      }
+    };
+    document.addEventListener("click", handleDocumentClick);
+    return () => document.removeEventListener("click", handleDocumentClick);
+  }, []);
 
   const faqItems: FAQItem[] = [
     {
@@ -50,7 +62,18 @@ export function FAQ() {
   ];
 
   const toggleItem = (id: number) => {
-    setOpenId(openId === id ? null : id);
+    setClickedId(clickedId === id ? null : id);
+  };
+
+  const handleMouseEnterItem = (id: number) => {
+    if (clickedId !== null && clickedId !== id) {
+      setClickedId(null);
+    }
+    setHoveredId(id);
+  };
+
+  const handleMouseLeaveItem = (id: number) => {
+    setHoveredId((prev) => (prev === id ? null : prev));
   };
 
   return (
@@ -88,14 +111,20 @@ export function FAQ() {
         <StaggerContainer>
           <div className="border-t border-gold/30">
             {faqItems.map((item) => {
-              const isOpen = openId === item.id;
+              const isOpen = hoveredId === item.id || clickedId === item.id;
               
               return (
-                <div key={item.id} className="border-b border-gold/30">
+                <div 
+                  key={item.id} 
+                  className="border-b border-gold/30"
+                  onMouseEnter={() => handleMouseEnterItem(item.id)}
+                  onMouseLeave={() => handleMouseLeaveItem(item.id)}
+                >
                   <StaggerItem>
                     {/* Collapsible Trigger Row */}
                     <button
                       onClick={() => toggleItem(item.id)}
+                      data-faq-button="true"
                       className="w-full text-left py-6 flex items-center justify-between gap-6 cursor-pointer focus-visible:outline-2 focus-visible:outline-gold relative group select-none"
                       aria-expanded={isOpen}
                       aria-controls={`faq-answer-${item.id}`}

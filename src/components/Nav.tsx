@@ -14,8 +14,8 @@ export function Nav() {
 
   const navLinks = [
     { label: "Home", path: "/" },
-    { label: "About", path: "/about" },
     { label: "The Index", path: "/index" },
+    { label: "About", path: "/about" },
     { label: "Posts", path: "/posts" },
   ];
 
