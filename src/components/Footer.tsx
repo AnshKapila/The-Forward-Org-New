@@ -1,20 +1,43 @@
 import { ScrollReveal } from "./ScrollReveal";
 import { LogoMark } from "./LogoMark";
+import logoSrc from "../assets/images/regenerated_image_1780126552851.png";
 
 export function Footer() {
   return (
-    <footer id="footer" className="bg-canvas border-t border-gold/30">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12">
+    <footer id="footer" className="relative bg-canvas border-t border-gold/30 overflow-hidden">
+      
+      {/* 50% opacity watermark of the logo on the left side. 
+          To make only the top-left quadrant of the logo visible while the rest flows outside 
+          the container boundaries, we position it relative to the left side with bottom/right overflow. */}
+      <div 
+        className="absolute pointer-events-none select-none z-0 overflow-hidden opacity-50"
+        style={{
+          width: "240px",
+          height: "240px",
+          left: "-120px",
+          top: "-120px",
+          transform: "translateZ(0)",
+        }}
+      >
+        <img
+          src={logoSrc}
+          alt=""
+          className="w-full h-full object-contain rounded-full"
+          referrerPolicy="no-referrer"
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-12 z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center text-center md:text-left">
           
           {/* Left Column: Logo mark & Wordmark */}
           <div className="flex items-center justify-center md:justify-start gap-1">
-            <LogoMark width="22" height="22" className="shrink-0" />
-            <div className="flex flex-col text-left">
-              <span className="font-serif text-[13px] font-bold tracking-wider text-ink">
+            <LogoMark width={22} height={22} className="shrink-0" />
+            <div className="flex flex-col text-left justify-center">
+              <span className="font-serif text-[13px] font-bold tracking-wider text-ink leading-none">
                 THE FORWARD ORG
               </span>
-              <span className="text-[8px] font-mono tracking-widest text-gold uppercase">
+              <span className="text-[8px] font-mono tracking-widest text-gold uppercase mt-[1px] leading-none">
                 PAN SETH ADVISORY
               </span>
             </div>
@@ -74,3 +97,4 @@ export function Footer() {
     </footer>
   );
 }
+
