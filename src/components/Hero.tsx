@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "./InteractiveButton";
-import panHeroImg from "../assets/images/heroback.png";
+import panHeroImg from "../../hero2.png";
 
 export function Hero() {
   const [location, setLocation] = useLocation();
   const [isMobile, setIsMobile] = useState(false);
   const [hasEntered, setHasEntered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
   
   const shouldReduceMotion = useReducedMotion();
@@ -90,26 +91,45 @@ export function Hero() {
   };
 
   return (
-    <section ref={heroRef} id="hero" className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden">
+    <section 
+      ref={heroRef} 
+      id="hero" 
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden"
+    >
       
       {/* Absolute Background image of founder with accessible dark gradient fallback mapping */}
-      <div className="absolute inset-0 z-0 select-none overflow-hidden">
-        <motion.img
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1.0 }}
+      <div 
+        className="absolute inset-0 z-0 select-none overflow-hidden"
+        style={{ transform: "translateZ(0)", isolation: "isolate" }}
+      >
+        <motion.div
+          className="w-full h-full"
+          animate={{ scale: isHovered ? 1.05 : 1.0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          src={panHeroImg}
-          alt="Pan Seth, Corporate Strategy Advisor"
-          className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
           style={{
-            objectPosition: isMobile ? "80% center" : undefined,
-            scale: hasEntered ? scaleValue : undefined,
+            transformOrigin: "center center",
+            willChange: "transform",
           }}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1920&h=1080";
-          }}
-          referrerPolicy="no-referrer"
-        />
+        >
+          <motion.img
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1.0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            src={panHeroImg}
+            alt="Pan Seth, Corporate Strategy Advisor"
+            className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
+            style={{
+              objectPosition: isMobile ? "80% center" : undefined,
+              scale: hasEntered ? scaleValue : undefined,
+            }}
+            onError={(e) => {
+              (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1920&h=1080";
+            }}
+            referrerPolicy="no-referrer"
+          />
+        </motion.div>
         {/* Deep, smooth left-aligned dark gradient to protect text legibility, keeping right side completely clean & raw */}
         <div className="absolute inset-y-0 left-0 w-full md:w-[55%] lg:w-[48%] bg-gradient-to-r from-ink via-ink/75 to-transparent hidden md:block z-10 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-transparent md:hidden z-10 pointer-events-none" />
