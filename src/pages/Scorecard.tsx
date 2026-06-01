@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface Question {
   id: number;

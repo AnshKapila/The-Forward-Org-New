@@ -1,103 +1,5 @@
-import React, { useRef, useState, useMemo } from "react";
-import { motion, useReducedMotion, useInView } from "motion/react";
-
-const HeadingTags = new Set(["h1", "h2", "h3", "h4", "h5", "h6"]);
-
-export function WrappedHeading({ children, index }: { children: React.ReactNode; index: number }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
-  const [willChangeActive, setWillChangeActive] = useState(true);
-  const shouldReduceMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      ref={ref}
-      key={index}
-      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 15 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      onAnimationComplete={() => setWillChangeActive(false)}
-      transition={{ duration: 0.96, ease: [0.16, 1, 0.3, 1] }}
-      style={{
-        width: "100%",
-        display: "inline-block",
-        transform: "translateZ(0)",
-        willChange: willChangeActive ? "transform, opacity" : "auto",
-      }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function WrappedImg({ alt, className = "", style, ...otherProps }: any) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
-  const [willChangeActive, setWillChangeActive] = useState(true);
-
-  return (
-    <div
-      ref={ref}
-      className={`relative overflow-hidden ${className}`}
-      style={{
-        ...style,
-        display: "block",
-        transform: "translateZ(0)",
-        isolation: "isolate"
-      }}
-    >
-      <motion.img
-        initial={{ scale: 1.2 }}
-        animate={isInView ? { scale: 1.0 } : {}}
-        onAnimationComplete={() => setWillChangeActive(false)}
-        transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-        style={{
-          transformOrigin: "center center",
-          willChange: willChangeActive ? "transform" : "auto",
-        }}
-        className="w-full h-full object-cover"
-        alt={alt}
-        {...otherProps}
-      />
-    </div>
-  );
-}
-
-export function wrapHeadingsAndImages(node: React.ReactNode, index: number = 0): React.ReactNode {
-  if (!node) return node;
-
-  if (React.isValidElement(node)) {
-    const typeStr = typeof node.type === "string" ? node.type.toLowerCase() : "";
-    if (HeadingTags.has(typeStr)) {
-      return <WrappedHeading index={index}>{node}</WrappedHeading>;
-    }
-
-    if (typeStr === "img") {
-      const { className = "", style, ...otherProps } = node.props as any;
-      if (altAttrIsPattern(otherProps.alt)) {
-        return node;
-      }
-      return <WrappedImg key={node.key || index} className={className} style={style} {...otherProps} />;
-    }
-
-    if (node.props && node.props.children) {
-      const childrenArray = React.Children.toArray(node.props.children);
-      if (childrenArray.length > 0) {
-        const mappedChildren = React.Children.map(node.props.children, (child, i) =>
-          wrapHeadingsAndImages(child, i)
-        );
-        return React.cloneElement(node, { ...node.props, children: mappedChildren });
-      }
-    }
-  }
-
-  return node;
-}
-
-function altAttrIsPattern(alt?: string): boolean {
-  if (!alt) return false;
-  const l = alt.toLowerCase();
-  return l.includes("pattern") || l.includes("texture") || l.includes("grain") || l.includes("background");
-}
+import React, { useRef, useState } from "react";
+import { motion, useReducedMotion, useInView } from "framer-motion";
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -114,10 +16,6 @@ export function ScrollReveal({ children, delay = 0, duration = 0.6, y = 24, clas
   // Trigger threshold margin is exactly "-10% 0px" as requested
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
   const [willChangeActive, setWillChangeActive] = useState(true);
-  
-  const processedChildren = useMemo(() => {
-    return shouldReduceMotion ? children : wrapHeadingsAndImages(children);
-  }, [children, shouldReduceMotion]);
 
   return (
     <motion.div
@@ -136,7 +34,7 @@ export function ScrollReveal({ children, delay = 0, duration = 0.6, y = 24, clas
         ease: [0.16, 1, 0.3, 1],
       }}
     >
-      {processedChildren}
+      {children}
     </motion.div>
   );
 }
@@ -183,11 +81,6 @@ export function StaggerContainer({ children, delay = 0 }: StaggerContainerProps)
 
 export function StaggerItem({ children, index }: { children: React.ReactNode; index?: number }) {
   const shouldReduceMotion = useReducedMotion();
-
-  const processedChildren = useMemo(() => {
-    return shouldReduceMotion ? children : wrapHeadingsAndImages(children);
-  }, [children, shouldReduceMotion]);
-
   const [willChangeActive, setWillChangeActive] = useState(true);
 
   // If index is provided, cap stagger delay contribution at 5th element (index 4)
@@ -216,7 +109,7 @@ export function StaggerItem({ children, index }: { children: React.ReactNode; in
         willChange: willChangeActive ? "transform, opacity" : "auto",
       }}
     >
-      {processedChildren}
+      {children}
     </motion.div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { X, Check } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { InteractiveButton } from "./InteractiveButton";
 
 interface FreebieModalProps {
@@ -66,7 +66,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
             initial={{ opacity: 0, scale: 0.95, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
-            transition={{ duration: 250, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="relative w-full max-w-xl bg-white border border-[#E8D5B5] text-ink p-12 shadow-2xl z-10 rounded-[2px]"
             role="dialog"
             aria-modal="true"

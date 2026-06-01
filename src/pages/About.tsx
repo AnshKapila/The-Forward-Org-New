@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useInView, motion } from "motion/react";
+import { useInView, motion } from "framer-motion";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
 import founderImg from "../assets/images/prof1.jpg";

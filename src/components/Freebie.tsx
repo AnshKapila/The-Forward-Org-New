@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FreebieModal } from "./FreebieModal";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveButton } from "./InteractiveButton";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 interface BentoBlockProps {
   num: string;

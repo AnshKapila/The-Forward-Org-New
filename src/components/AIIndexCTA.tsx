@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "./InteractiveButton";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export function AIIndexCTA() {
   const [, setLocation] = useLocation();

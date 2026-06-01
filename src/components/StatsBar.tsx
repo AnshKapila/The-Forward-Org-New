@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 
 function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?: number; suffix: string }) {
   const [count, setCount] = useState(0);

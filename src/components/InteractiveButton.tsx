@@ -1,6 +1,6 @@
 import React from "react";
 import { ArrowRight, LucideIcon } from "lucide-react";
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 
 export function LoopingArrow({ className = "text-current", size = 16 }: { className?: string; size?: number }) {
   return (

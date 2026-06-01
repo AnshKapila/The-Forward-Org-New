@@ -3,7 +3,7 @@ import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 interface DimensionItem {
   num: string;

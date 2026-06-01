@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { useScrolled } from "../hooks/useScrolled";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "framer-motion";
 import { InteractiveButton } from "./InteractiveButton";
 
 import { LogoMark } from "./LogoMark";

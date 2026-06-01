@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveButton } from "./InteractiveButton";
-import { Mail, Linkedin, Check, AlertCircle, Send } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { Mail, Linkedin, Check, AlertCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH THE TEAM" }) {
   const [formData, setFormData] = useState({
@@ -52,18 +52,11 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
     // Simulate advisory communications connection
     setTimeout(() => {
       setStatus("success");
-      // Persist locally in localStorage
-      try {
-        const existingEntries = JSON.parse(localStorage.getItem("contact_inquiries") || "[]");
-        existingEntries.push({
-          ...formData,
-          timestamp: new Date().toISOString(),
-          id: crypto.randomUUID(),
-        });
-        localStorage.setItem("contact_inquiries", JSON.stringify(existingEntries));
-      } catch (err) {
-        console.error("Local queue failed", err);
-      }
+      // Log submission data to console instead of using localStorage
+      console.log("Contact Inquiry Details:", {
+        ...formData,
+        timestamp: new Date().toISOString(),
+      });
     }, 1200);
   };
 
@@ -286,4 +279,3 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
     </section>
   );
 }
-

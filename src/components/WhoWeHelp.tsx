@@ -1,7 +1,7 @@
 import { useState, useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "motion/react";
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
 interface AccordionItem {
   num: string;
