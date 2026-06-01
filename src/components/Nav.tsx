@@ -75,12 +75,22 @@ export function Nav() {
                         : "text-white/90 hover:text-gold font-medium"
                     }`}
                   >
-                    {link.label}
-                    <span 
-                      className={`absolute bottom-0 left-0 w-full h-[1.5px] bg-gold transition-transform duration-[200ms] ease-out origin-left ${
-                        isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                      }`} 
-                    />
+                    <span className="relative z-10">{link.label}</span>
+                    {isActive ? (
+                      <motion.span
+                        layoutId="activeUnderline"
+                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gold"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    ) : (
+                      <motion.span
+                        className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-gold/70"
+                        initial={{ scaleX: 0 }}
+                        whileHover={{ scaleX: 1 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                        style={{ originX: 0 }}
+                      />
+                    )}
                   </button>
                 </Link>
               );
