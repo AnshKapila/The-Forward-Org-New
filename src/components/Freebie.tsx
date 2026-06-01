@@ -41,7 +41,7 @@ function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
 
       {/* Modern Gradient Mask */}
       <div 
-        className="absolute inset-0 bg-gradient-to-t from-[#122D27]/95 via-[#122D27]/70 to-[#122D27]/30 transition-opacity duration-300"
+        className="absolute inset-0 bg-gradient-to-t from-[#222222]/95 via-[#222222]/70 to-[#222222]/30 transition-opacity duration-300"
         style={{ opacity: isHovered ? 0.95 : 0.85 }}
       />
 
