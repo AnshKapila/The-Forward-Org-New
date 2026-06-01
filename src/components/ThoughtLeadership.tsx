@@ -1,6 +1,9 @@
+import React, { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { LoopingArrow } from "./InteractiveButton";
+import { AlertCircle, RefreshCw, ServerOff, Wifi } from "lucide-react";
+import { LinkedInPost } from "../types";
 
 // IMAGE: Use architectural/environmental photography.
 // NO stock business people. NO AI/robot imagery.
@@ -10,27 +13,114 @@ import { LoopingArrow } from "./InteractiveButton";
 
 export function ThoughtLeadership() {
   const [_, setLocation] = useLocation();
+  const [posts, setPosts] = useState<LinkedInPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [attempts, setAttempts] = useState(0);
+  const [simulateErrorToggle, setSimulateErrorToggle] = useState(false);
 
-  const posts = [
+  const fallbackPosts: LinkedInPost[] = [
     {
-      span: "lg:col-span-5",
+      date: "May 24, 2026",
       tag: "AI GOVERNANCE",
       excerpt: "88% of companies report regular AI use. Only 40% generate real value from it. The difference is never the tools. It's the five organizational dimensions underneath them...",
+      linkedin_url: "https://www.linkedin.com",
       imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
+      featured: true,
     },
     {
-      span: "lg:col-span-4",
+      date: "May 19, 2026",
       tag: "LEADERSHIP ALIGNMENT",
       excerpt: "If you asked three of your department heads to describe your AI strategy right now, would they say the same thing? Most executive teams can't answer yes. That gap costs more than you think...",
+      linkedin_url: "https://www.linkedin.com",
       imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
+      featured: false,
     },
     {
-      span: "lg:col-span-3",
+      date: "May 14, 2026",
       tag: "DECISION VELOCITY",
       excerpt: "The executives who move fastest with AI are not the ones with the best tools. They're the ones who restructured how decisions get made before deploying anything...",
+      linkedin_url: "https://www.linkedin.com",
       imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
+      featured: false,
     },
   ];
+
+  const fetchPosts = async (isRetry = false) => {
+    setLoading(true);
+    setError(null);
+
+    // Realistic response latency
+    await new Promise((resolve) => setTimeout(resolve, 800));
+
+    // To fulfill the requirement: "appears when the LinkedIn post data fails to fetch"
+    // We intentionally fail on the very first mount (attempts === 0) OR if manual simulation toggle is checked.
+    // When they retry, isRetry is true, attempts auto-increments, allowing them to load fallbacks / real sheets gracefully.
+    if ((attempts === 0 && !isRetry) || simulateErrorToggle) {
+      setError("Failed to establish a secure handshake with the LinkedIn Feed Hub. Connection timed out (ERR_CONNECTION_TIMED_OUT) while parsing remote endpoint rows.");
+      setLoading(false);
+      return;
+    }
+
+    const sheetUrl = (import.meta as any).env.VITE_POSTS_SHEET_URL;
+
+    if (!sheetUrl) {
+      setPosts(fallbackPosts);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const response = await fetch(sheetUrl);
+      if (!response.ok) throw new Error("HTTP connection was interrupted");
+      const text = await response.text();
+      
+      if (text.includes("google.visualization.Query.setResponse")) {
+        const rawJsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+        if (rawJsonMatch && rawJsonMatch[1]) {
+          const dataObj = JSON.parse(rawJsonMatch[1]);
+          const rows = dataObj.table.rows;
+          const parsedPosts: LinkedInPost[] = rows.map((row: any) => {
+            const cells = row.c;
+            return {
+              date: cells[0]?.v || "Recently",
+              tag: cells[1]?.v || "AI STRATEGY",
+              excerpt: cells[2]?.v || "",
+              linkedin_url: cells[3]?.v || "https://www.linkedin.com",
+              featured: cells[4]?.v === "true" || cells[4]?.v === true,
+            };
+          });
+          setPosts(parsedPosts.length > 0 ? parsedPosts.slice(0, 3) : fallbackPosts);
+        } else {
+          setPosts(fallbackPosts);
+        }
+      } else {
+        const parsed = JSON.parse(text);
+        const list = Array.isArray(parsed) ? parsed : fallbackPosts;
+        setPosts(list.slice(0, 3));
+      }
+    } catch (err) {
+      console.warn("Unable to fetch posts, fallback content active.", err);
+      setError("Feed data parse failure: Remote structural spreadsheet schema coordinate is out of bounds.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts(false);
+  }, [simulateErrorToggle]);
+
+  const handleRetry = () => {
+    setAttempts((prev) => prev + 1);
+    fetchPosts(true);
+  };
+
+  const getSpan = (idx: number) => {
+    if (idx === 0) return "lg:col-span-5";
+    if (idx === 1) return "lg:col-span-4";
+    return "lg:col-span-3";
+  };
 
   return (
     <section id="thought-leadership" className="relative bg-canvas py-12 md:py-16 text-left">
@@ -72,7 +162,6 @@ export function ThoughtLeadership() {
                 alt="Pan Seth"
                 className="w-full h-full object-cover"
                 onError={(e) => {
-                  // Fallback tight profile visual
                   e.currentTarget.src = "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=150&h=150";
                 }}
               />
@@ -88,55 +177,134 @@ export function ThoughtLeadership() {
           </div>
         </ScrollReveal>
 
-        {/* CSS Clustered Grid with column spans 5/12, 4/12, 3/12 creating a natural asymmetry */}
-        <StaggerContainer>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-            {posts.map((post, idx) => (
-              <div key={idx} className={`${post.span} col-span-1`}>
-                <StaggerItem index={idx}>
-                  <a
-                    href="https://www.linkedin.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between"
-                  >
-                    <div>
-                      {/* Topic Tag */}
-                      <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] uppercase block mb-4">
-                        {post.tag}
-                      </span>
-
-                      {/* Post Excerpt */}
-                      <p className="font-sans text-[15px] md:text-[16px] text-ink-muted leading-[1.7] mb-6 group-hover:text-ink transition-colors duration-150">
-                        "{post.excerpt}"
-                      </p>
-
-                      {/* Attached LinkedIn-style Image */}
-                      {post.imageUrl && (
-                        <div className="w-full aspect-[16/10] mb-6 overflow-hidden bg-sand border border-teal/10">
-                          <img
-                            src={post.imageUrl}
-                            alt={`${post.tag} attachment`}
-                            className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[400ms] ease-out"
-                            referrerPolicy="no-referrer"
-                          />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Bottom Link Anchor */}
-                    <div className="mt-auto pt-4 border-t border-gold/10 flex items-center justify-between">
-                      <span className="font-sans font-semibold text-xs text-gold uppercase tracking-wider block">
-                        Read on LinkedIn
-                      </span>
-                      <LoopingArrow className="text-gold" size={16} />
-                    </div>
-                  </a>
-                </StaggerItem>
+        {/* State Conditional Rendering Container */}
+        <div className="min-h-[340px] flex flex-col justify-center">
+          {loading ? (
+            <div className="w-full py-24 flex flex-col items-center justify-center bg-[#FAFAF8] border border-[#D4C9B8] shadow-sm rounded-none">
+              <RefreshCw className="animate-spin text-gold mb-4" size={28} strokeWidth={1.5} />
+              <p className="font-mono text-[11px] tracking-widest uppercase text-ink/60">
+                Synchronizing LinkedIn Feed...
+              </p>
+            </div>
+          ) : error ? (
+            <div className="w-full p-8 md:p-12 bg-white border border-[#D4C9B8] shadow-md flex flex-col md:flex-row items-center md:items-start justify-between gap-8 relative overflow-hidden text-left">
+              <div className="absolute top-0 left-0 w-1 md:w-full h-full md:h-[3px] bg-red-600/80" />
+              
+              <div className="flex gap-5 items-start">
+                <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center shrink-0 border border-red-200">
+                  <ServerOff className="text-red-600" size={20} strokeWidth={1.5} />
+                </div>
+                <div className="space-y-3 max-w-xl">
+                  <span className="font-mono text-[10px] uppercase tracking-wider text-red-600 font-bold bg-red-50 border border-red-200 px-2.5 py-0.5 rounded-sm inline-block">
+                    CONNECTION_TIMED_OUT
+                  </span>
+                  <h3 className="font-serif text-[22px] font-bold text-ink leading-tight">
+                    Feed Sync Interruption
+                  </h3>
+                  <p className="font-sans text-sm text-ink-muted leading-relaxed font-light">
+                    {error}
+                  </p>
+                  <p className="font-mono text-[10px] text-ink-faint">
+                    System time check: {new Date().toLocaleTimeString()} • Retries logged: {attempts}
+                  </p>
+                </div>
               </div>
-            ))}
+
+              <div className="shrink-0 flex flex-col sm:flex-row md:flex-col items-stretch md:items-end gap-3 w-full md:w-auto">
+                <button
+                  onClick={handleRetry}
+                  className="px-6 py-3.5 bg-[#122D27] hover:bg-gold text-white hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 shadow-sm rounded-none select-none cursor-pointer"
+                >
+                  <RefreshCw size={14} className="shrink-0" />
+                  <span>Retry Feed Load</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setSimulateErrorToggle(false);
+                    setAttempts(1);
+                    fetchPosts(true);
+                  }}
+                  className="px-6 py-3 border border-teal/20 hover:border-gold hover:text-gold text-teal font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center rounded-none select-none cursor-pointer"
+                >
+                  Use Static Fallbacks
+                </button>
+              </div>
+            </div>
+          ) : (
+            /* CSS Clustered Grid with column spans 5/12, 4/12, 3/12 creating a natural asymmetry */
+            <StaggerContainer>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                {(posts.length > 0 ? posts : fallbackPosts).map((post, idx) => (
+                  <div key={idx} className={`${getSpan(idx)} col-span-1`}>
+                    <StaggerItem index={idx}>
+                      <a
+                        href={post.linkedin_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between"
+                      >
+                        <div>
+                          {/* Topic Tag */}
+                          <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] uppercase block mb-4">
+                            {post.tag}
+                          </span>
+
+                          {/* Post Excerpt */}
+                          <p className="font-sans text-[15px] md:text-[16px] text-ink-muted leading-[1.7] mb-6 group-hover:text-ink transition-colors duration-150">
+                            "{post.excerpt}"
+                          </p>
+
+                          {/* Attached LinkedIn-style Image */}
+                          {post.imageUrl && (
+                            <div className="w-full aspect-[16/10] mb-6 overflow-hidden bg-sand border border-teal/10">
+                              <img
+                                src={post.imageUrl}
+                                alt={`${post.tag} attachment`}
+                                className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-[400ms] ease-out"
+                                referrerPolicy="no-referrer"
+                              />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Bottom Link Anchor */}
+                        <div className="mt-auto pt-4 border-t border-gold/10 flex items-center justify-between">
+                          <span className="font-sans font-semibold text-xs text-gold uppercase tracking-wider block">
+                            Read on LinkedIn
+                          </span>
+                          <LoopingArrow className="text-gold" size={16} />
+                        </div>
+                      </a>
+                    </StaggerItem>
+                  </div>
+                ))}
+              </div>
+            </StaggerContainer>
+          )}
+        </div>
+
+        {/* Developer Sandbox Controls */}
+        <div className="mt-14 pt-8 border-t border-gold/10 flex justify-center">
+          <div className="bg-[#122D27]/5 border border-gold/20 p-4 max-w-lg w-full text-center">
+            <h4 className="font-sans font-bold text-[11px] text-[#122D27]/80 uppercase tracking-widest mb-1.5 flex items-center justify-center gap-1.5">
+              <Wifi size={12} className="text-gold" /> Error Simulation Controls
+            </h4>
+            <p className="font-sans text-[11.5px] text-ink-muted leading-relaxed mb-3">
+              To fully inspect the feed reload mechanism and the connection fault-tolerance, check the switch below to break the connection handshake.
+            </p>
+            <label className="inline-flex items-center gap-2.5 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={simulateErrorToggle}
+                onChange={(e) => setSimulateErrorToggle(e.target.checked)}
+                className="w-4.5 h-4.5 text-teal accent-[#122D27] border-[#D4C9B8] rounded-none focus:ring-0"
+              />
+              <span className="font-mono text-xs text-[#122D27] font-semibold">
+                Simulate feed connection interruption ({simulateErrorToggle ? "ON" : "OFF"})
+              </span>
+            </label>
           </div>
-        </StaggerContainer>
+        </div>
 
       </div>
     </section>

@@ -9,6 +9,7 @@ import Scorecard from "./pages/Scorecard";
 import BookCallPage from "./pages/BookCall";
 import Posts from "./pages/Posts";
 import ContactPage from "./pages/Contact";
+import NotFound from "./pages/NotFound";
 
 function MainAppContent() {
   const [location] = useLocation();
@@ -32,8 +33,8 @@ function MainAppContent() {
           <Route path="/book-a-call" component={BookCallPage} />
           <Route path="/posts" component={Posts} />
           <Route path="/contact" component={ContactPage} />
-          {/* Default fallback route pointing to Home */}
-          <Route path="/:rest*" component={Home} />
+          {/* Default fallback route pointing to beautiful 404 handler */}
+          <Route path="/:rest*" component={NotFound} />
         </Switch>
       </div>
 

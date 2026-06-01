@@ -21,7 +21,7 @@ function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(!isHovered)}
-      className="relative w-full aspect-[1.1] sm:aspect-square overflow-hidden bg-teal-dim/20 border border-gold/15 group cursor-pointer transition-all duration-300 shadow-md"
+      className="relative w-full aspect-[1.1] sm:aspect-square overflow-hidden bg-neutral-800/20 border border-gold/15 group cursor-pointer transition-all duration-300 shadow-md"
     >
       {/* Background Image */}
       <motion.img
@@ -29,7 +29,7 @@ function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
         animate={{ 
           scale: isHovered ? 1.03 : 1.0, 
           filter: isHovered 
-            ? "grayscale(0.6) contrast(1.15) brightness(0.4)" 
+            ? "grayscale(1) contrast(1.15) brightness(0.4)" 
             : "grayscale(1) contrast(1.1) brightness(0.6)" 
         }}
         transition={{ duration: 0.45, ease: "easeOut" }}

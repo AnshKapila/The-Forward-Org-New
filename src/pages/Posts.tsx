@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { LinkedInPost } from "../types";
-import { Loader2, Calendar } from "lucide-react";
+import { Loader2, Calendar, AlertTriangle, RefreshCw } from "lucide-react";
 import { InteractiveButton, LoopingArrow } from "../components/InteractiveButton";
 
 export default function Posts() {
@@ -79,56 +79,56 @@ export default function Posts() {
     },
   ];
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      setLoading(true);
-      setError(null);
-      const sheetUrl = (import.meta as any).env.VITE_POSTS_SHEET_URL;
+  const fetchPosts = async () => {
+    setLoading(true);
+    setError(null);
+    const sheetUrl = (import.meta as any).env.VITE_POSTS_SHEET_URL;
 
-      if (!sheetUrl) {
-        setTimeout(() => {
-          setPosts(fallbackPosts);
-          setLoading(false);
-        }, 600);
-        return;
-      }
-
-      try {
-        const response = await fetch(sheetUrl);
-        if (!response.ok) throw new Error("Network response was not ok");
-        const text = await response.text();
-        
-        if (text.includes("google.visualization.Query.setResponse")) {
-          const rawJsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
-          if (rawJsonMatch && rawJsonMatch[1]) {
-            const dataObj = JSON.parse(rawJsonMatch[1]);
-            const rows = dataObj.table.rows;
-            const parsedPosts: LinkedInPost[] = rows.map((row: any) => {
-              const cells = row.c;
-              return {
-                date: cells[0]?.v || "Recently",
-                tag: cells[1]?.v || "AI STRATEGY",
-                excerpt: cells[2]?.v || "",
-                linkedin_url: cells[3]?.v || "https://www.linkedin.com",
-                featured: cells[4]?.v === "true" || cells[4]?.v === true,
-              };
-            });
-            setPosts(parsedPosts.length > 0 ? parsedPosts : fallbackPosts);
-          } else {
-            setPosts(fallbackPosts);
-          }
-        } else {
-          const parsed = JSON.parse(text);
-          setPosts(Array.isArray(parsed) ? parsed : fallbackPosts);
-        }
-      } catch (err) {
-        console.warn("Unable to fetch sheet data, using secure fallback content", err);
+    if (!sheetUrl) {
+      setTimeout(() => {
         setPosts(fallbackPosts);
-      } finally {
         setLoading(false);
-      }
-    };
+      }, 600);
+      return;
+    }
 
+    try {
+      const response = await fetch(sheetUrl);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const text = await response.text();
+      
+      if (text.includes("google.visualization.Query.setResponse")) {
+        const rawJsonMatch = text.match(/google\.visualization\.Query\.setResponse\(([\s\S]*?)\);/);
+        if (rawJsonMatch && rawJsonMatch[1]) {
+          const dataObj = JSON.parse(rawJsonMatch[1]);
+          const rows = dataObj.table.rows;
+          const parsedPosts: LinkedInPost[] = rows.map((row: any) => {
+            const cells = row.c;
+            return {
+              date: cells[0]?.v || "Recently",
+              tag: cells[1]?.v || "AI STRATEGY",
+              excerpt: cells[2]?.v || "",
+              linkedin_url: cells[3]?.v || "https://www.linkedin.com",
+              featured: cells[4]?.v === "true" || cells[4]?.v === true,
+            };
+          });
+          setPosts(parsedPosts.length > 0 ? parsedPosts : fallbackPosts);
+        } else {
+          setPosts(fallbackPosts);
+        }
+      } else {
+        const parsed = JSON.parse(text);
+        setPosts(Array.isArray(parsed) ? parsed : fallbackPosts);
+      }
+    } catch (err) {
+      console.warn("Unable to fetch sheet data, using secure fallback content", err);
+      setError("Synchronizer was unable to establish a secure handshake to fetch live rows from the Google Sheet feed.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
     fetchPosts();
   }, []);
 
@@ -245,12 +245,50 @@ export default function Posts() {
                   <div key={s} className="p-8 bg-white border border-teal/10 animate-pulse space-y-6">
                     <div className="h-4 w-24 bg-teal/10 rounded-sm" />
                     <div className="space-y-2">
-                      <div className="h-3 w-full bg-teal/10 rounded-sm" />
-                      <div className="h-3 w-5/6 bg-teal/10 rounded-sm" />
-                      <div className="h-3 w-4/5 bg-teal/10 rounded-sm" />
+                       <div className="h-3 w-full bg-teal/10 rounded-sm" />
+                       <div className="h-3 w-5/6 bg-teal/10 rounded-sm" />
+                       <div className="h-3 w-4/5 bg-teal/10 rounded-sm" />
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+          ) : error ? (
+            <div className="p-8 md:p-12 bg-[#FAF9F5] border border-[#D4C9B8] space-y-6 max-w-2xl mx-auto shadow-md text-left relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-red-600/80" />
+              <div className="flex gap-5 items-start">
+                <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center shrink-0 border border-red-150">
+                  <AlertTriangle className="text-red-500" size={18} />
+                </div>
+                <div className="space-y-2 flex-grow">
+                  <span className="font-mono text-[9px] font-bold text-red-600 tracking-wider bg-red-50 px-2 py-0.5 border border-red-150 uppercase rounded-sm inline-block leading-none">
+                    REMOTE_SYNC_INTERRUPTED
+                  </span>
+                  <h3 className="font-serif text-[20px] font-bold text-ink">
+                    Row Sync Fault
+                  </h3>
+                  <p className="font-sans text-sm text-ink-muted leading-relaxed font-light">
+                    {error}
+                  </p>
+                </div>
+              </div>
+              <div className="flex flex-wrap items-center gap-3 pt-3 pl-0 sm:pl-15">
+                <button
+                  onClick={fetchPosts}
+                  className="px-5 py-3 bg-[#122D27] hover:bg-gold text-white hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-2 select-none cursor-pointer rounded-none"
+                >
+                  <RefreshCw size={12} className="shrink-0" />
+                  <span>Retry Feed Load</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setError(null);
+                    setPosts(fallbackPosts);
+                  }}
+                  className="px-5 py-3 border border-teal/20 hover:border-[#122D27] text-teal font-sans text-xs font-bold uppercase tracking-wider transition-colors select-none cursor-pointer rounded-none"
+                >
+                  Use Fallback Feed
+                </button>
               </div>
             </div>
           ) : filteredPosts.length === 0 ? (
