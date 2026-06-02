@@ -17,7 +17,7 @@ export default function Posts() {
       date: "May 24, 2026",
       tag: "AI STRATEGY",
       excerpt: "If you ask five of your executive peers what their AI adoption strategy looks like, you will get five variations on 'we are piloting tools.' The board is happy with pilots, but pilots don't defend margins. Real scale requires restructuring operational hours, shifting headcount, and creating automated feedback loops that increase decision speed. That is the human infrastructure alignment problem. Stop piloting; start aligning.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
       featured: true,
     },
@@ -25,7 +25,7 @@ export default function Posts() {
       date: "May 19, 2026",
       tag: "AI GOVERNANCE",
       excerpt: "Most compliance issues don't happen because of engineering gaps. They happen because a junior analyst pastes protected IP or healthcare records into consumer ChatGPT windows. If your organization doesn't have custom enterprise gateways active today, you are bleeding secrets. Governance is a structural business lever.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -33,7 +33,7 @@ export default function Posts() {
       date: "May 14, 2026",
       tag: "LEADERSHIP ALIGNMENT",
       excerpt: "Executive inertia in AI isn't a tech phobia. It is reputation protection. A CEO of 30 years isn't going to look vulnerable in front of their CIO. Break that pattern: introduce structured, objective maturity assessments that measure organizational speed rather than coding deep dives.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -41,7 +41,7 @@ export default function Posts() {
       date: "May 10, 2026",
       tag: "DECISION VELOCITY",
       excerpt: "The value of AI is not in typing emails faster. It is in compressing the decision cycles of your executive team from days to minutes. If your CDO keeps building models inside isolated silos without shifting operational governance, you are burning capital for zero speed gains.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -49,7 +49,7 @@ export default function Posts() {
       date: "May 05, 2026",
       tag: "CULTURAL ADOPTION",
       excerpt: "If your teams think AI is coming to thin their ranks, they will sabotage adoption with passive operational resistance. Reframe the narrative: AI is a co-thinking buffer that turns a mid-tier manager into an autonomous director. Align adoption with promotion paths to unlock velocity.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -57,7 +57,7 @@ export default function Posts() {
       date: "Apr 29, 2026",
       tag: "STRUCTURED ROI",
       excerpt: "ROI in AI isn't an abstract prediction. It's a headcount and hour equation. If you implement writing assistants and compress a marketing drafting cycle by 80%, you must either ship 5x the volume or allocate hours to client closing. Anything else is fake efficiency.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -65,7 +65,7 @@ export default function Posts() {
       date: "Apr 22, 2026",
       tag: "COMPLIANCE SAFELIGHTS",
       excerpt: "Regulated brands operate inside high-friction rules. You cannot afford to hallucinate contract language or health diagnoses. Build deterministic auditing safeguards: AI generates, strict non-AI validation rules sanitize, and senior directors sign. Safety is a feature.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -73,7 +73,7 @@ export default function Posts() {
       date: "Apr 15, 2026",
       tag: "THE INDEX SUMMARY",
       excerpt: "Over fifteen business dimensions, average corporate AI strategy indexes at only 42% maturity. The leakage is not technical ability; it is the governance bridge connecting tech to business ROI. This is the structural gap we close first.",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -108,7 +108,7 @@ export default function Posts() {
               date: cells[0]?.v || "Recently",
               tag: cells[1]?.v || "AI STRATEGY",
               excerpt: cells[2]?.v || "",
-              linkedin_url: cells[3]?.v || "https://www.linkedin.com",
+              linkedin_url: cells[3]?.v || "https://www.linkedin.com/in/pan-seth/",
               featured: cells[4]?.v === "true" || cells[4]?.v === true,
             };
           });
@@ -326,7 +326,7 @@ export default function Posts() {
                         </div>
                         <div>
                           <InteractiveButton
-                            onClick={() => window.open(featuredPost.linkedin_url, "_blank", "noopener,noreferrer")}
+                            onClick={() => window.open("https://www.linkedin.com/in/pan-seth/", "_blank", "noopener,noreferrer")}
                             variant="gold"
                           >
                             Read on LinkedIn
@@ -347,7 +347,7 @@ export default function Posts() {
                     ) : (
                       <div className="flex md:flex-col justify-end md:justify-center items-start md:items-end">
                         <InteractiveButton
-                          onClick={() => window.open(featuredPost.linkedin_url, "_blank", "noopener,noreferrer")}
+                          onClick={() => window.open("https://www.linkedin.com/in/pan-seth/", "_blank", "noopener,noreferrer")}
                           variant="gold"
                         >
                           Read on LinkedIn
@@ -365,7 +365,7 @@ export default function Posts() {
                     <div key={idx} className="h-full">
                       <StaggerItem index={idx}>
                         <a
-                          href={post.linkedin_url}
+                          href="https://www.linkedin.com/in/pan-seth/"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group block p-8 bg-white border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between shadow-sm"

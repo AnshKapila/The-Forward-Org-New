@@ -1,5 +1,6 @@
 import { ScrollReveal } from "./ScrollReveal";
 import { LogoMark } from "./LogoMark";
+import { Mail } from "lucide-react";
 import logoSrc from "../assets/images/regenerated_image_1780126552851.png";
 
 export function Footer() {
@@ -54,11 +55,19 @@ export function Footer() {
             </a>
           </div>
 
-          {/* Right Column: LinkedIn icon and privacy anchor */}
+          {/* Right Column: LinkedIn icon, email mailto, and privacy anchor */}
           <div className="flex flex-col items-center md:items-end gap-3 justify-center">
             <div className="flex items-center gap-4">
               <a
-                href="https://www.linkedin.com"
+                href="mailto:pan.seth93@gmail.com"
+                className="text-teal hover:text-gold transition-colors duration-200"
+                aria-label="Email Pan Seth"
+              >
+                <Mail size={20} />
+              </a>
+              <span className="text-ink-faint">|</span>
+              <a
+                href="https://www.linkedin.com/in/pan-seth/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-teal hover:text-gold transition-colors duration-200"

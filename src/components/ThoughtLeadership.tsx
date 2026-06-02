@@ -4,6 +4,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 import { LoopingArrow } from "./InteractiveButton";
 import { AlertCircle, RefreshCw, ServerOff, Wifi } from "lucide-react";
 import { LinkedInPost } from "../types";
+import generatedPostImage from "../assets/images/regenerated_image_1780430014552.jpg";
 
 // IMAGE: Use architectural/environmental photography.
 // NO stock business people. NO AI/robot imagery.
@@ -24,15 +25,15 @@ export function ThoughtLeadership() {
       date: "May 24, 2026",
       tag: "AI GOVERNANCE",
       excerpt: "88% of companies report regular AI use. Only 40% generate real value from it. The difference is never the tools. It's the five organizational dimensions underneath them...",
-      linkedin_url: "https://www.linkedin.com",
-      imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
+      imageUrl: generatedPostImage,
       featured: true,
     },
     {
       date: "May 19, 2026",
       tag: "LEADERSHIP ALIGNMENT",
       excerpt: "If you asked three of your department heads to describe your AI strategy right now, would they say the same thing? Most executive teams can't answer yes. That gap costs more than you think...",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -40,7 +41,7 @@ export function ThoughtLeadership() {
       date: "May 14, 2026",
       tag: "DECISION VELOCITY",
       excerpt: "The executives who move fastest with AI are not the ones with the best tools. They're the ones who restructured how decisions get made before deploying anything...",
-      linkedin_url: "https://www.linkedin.com",
+      linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
@@ -114,12 +115,6 @@ export function ThoughtLeadership() {
   const handleRetry = () => {
     setAttempts((prev) => prev + 1);
     fetchPosts(true);
-  };
-
-  const getSpan = (idx: number) => {
-    if (idx === 0) return "lg:col-span-5";
-    if (idx === 1) return "lg:col-span-4";
-    return "lg:col-span-3";
   };
 
   return (
@@ -231,17 +226,17 @@ export function ThoughtLeadership() {
               </div>
             </div>
           ) : (
-            /* CSS Clustered Grid with column spans 5/12, 4/12, 3/12 creating a natural asymmetry */
-            <StaggerContainer>
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            /* Standard Equal Height Grid Layout on the exact same level */
+            <StaggerContainer className="h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                 {(posts.length > 0 ? posts : fallbackPosts).map((post, idx) => (
-                  <div key={idx} className={`${getSpan(idx)} col-span-1`}>
-                    <StaggerItem index={idx}>
+                  <div key={idx} className="h-full flex flex-col">
+                    <StaggerItem index={idx} className="h-full flex flex-col flex-grow">
                       <a
-                        href={post.linkedin_url}
+                        href="https://www.linkedin.com/in/pan-seth/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between"
+                        className="group block p-8 bg-[#FAFAF7] border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none focus-visible:outline-2 focus-visible:outline-gold text-left h-full flex flex-col justify-between flex-grow"
                       >
                         <div>
                           {/* Topic Tag */}
@@ -281,29 +276,6 @@ export function ThoughtLeadership() {
               </div>
             </StaggerContainer>
           )}
-        </div>
-
-        {/* Developer Sandbox Controls */}
-        <div className="mt-14 pt-8 border-t border-gold/10 flex justify-center">
-          <div className="bg-[#122D27]/5 border border-gold/20 p-4 max-w-lg w-full text-center">
-            <h4 className="font-sans font-bold text-[11px] text-[#122D27]/80 uppercase tracking-widest mb-1.5 flex items-center justify-center gap-1.5">
-              <Wifi size={12} className="text-gold" /> Error Simulation Controls
-            </h4>
-            <p className="font-sans text-[11.5px] text-ink-muted leading-relaxed mb-3">
-              To fully inspect the feed reload mechanism and the connection fault-tolerance, check the switch below to break the connection handshake.
-            </p>
-            <label className="inline-flex items-center gap-2.5 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={simulateErrorToggle}
-                onChange={(e) => setSimulateErrorToggle(e.target.checked)}
-                className="w-4.5 h-4.5 text-teal accent-[#122D27] border-[#D4C9B8] rounded-none focus:ring-0"
-              />
-              <span className="font-mono text-xs text-[#122D27] font-semibold">
-                Simulate feed connection interruption ({simulateErrorToggle ? "ON" : "OFF"})
-              </span>
-            </label>
-          </div>
         </div>
 
       </div>

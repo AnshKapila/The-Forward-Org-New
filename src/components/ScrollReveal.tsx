@@ -42,15 +42,16 @@ export function ScrollReveal({ children, delay = 0, duration = 0.6, y = 24, clas
 interface StaggerContainerProps {
   children: React.ReactNode;
   delay?: number;
+  className?: string;
 }
 
-export function StaggerContainer({ children, delay = 0 }: StaggerContainerProps) {
+export function StaggerContainer({ children, delay = 0, className }: StaggerContainerProps) {
   const shouldReduceMotion = useReducedMotion();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
   const [willChangeActive, setWillChangeActive] = useState(true);
 
-  // Maximum 5 items stagger, 80ms delay per child
+  // Maximum  5 items stagger, 80ms delay per child
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -66,6 +67,7 @@ export function StaggerContainer({ children, delay = 0 }: StaggerContainerProps)
     <motion.div
       ref={ref}
       variants={containerVariants}
+      className={className}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       onAnimationComplete={() => setWillChangeActive(false)}
@@ -79,7 +81,7 @@ export function StaggerContainer({ children, delay = 0 }: StaggerContainerProps)
   );
 }
 
-export function StaggerItem({ children, index }: { children: React.ReactNode; index?: number }) {
+export function StaggerItem({ children, index, className }: { children: React.ReactNode; index?: number; className?: string }) {
   const shouldReduceMotion = useReducedMotion();
   const [willChangeActive, setWillChangeActive] = useState(true);
 
@@ -103,6 +105,7 @@ export function StaggerItem({ children, index }: { children: React.ReactNode; in
     <motion.div
       variants={itemVariants}
       custom={customStaggerDelay}
+      className={className}
       onAnimationComplete={() => setWillChangeActive(false)}
       style={{
         transform: "translateZ(0)",
