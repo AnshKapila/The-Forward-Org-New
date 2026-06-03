@@ -10,23 +10,25 @@ export function CredibilityBar() {
       svg: (
         <svg
           viewBox="0 0 80 24"
-          className="h-7 w-auto fill-current transition-all duration-300"
+          className="h-8 w-auto transition-all duration-300"
           aria-label="Citi logo"
         >
-          {/* Citi stylized red/gold arc of trust */}
+          {/* Citi stylized red arc of trust */}
           <path
             d="M36.5 1.5 C41.5 -1.5, 48 3, 48 3 L47 4.5 C47 4.5, 41 0.5, 36.5 3 C32 5.5, 29.5 10.5, 29.5 10.5 L28 9 C28 9, 31 4, 36.5 1.5 Z"
-            fill="var(--color-gold)"
+            fill="#D12E2E"
           />
-          {/* Lowercase word citi */}
-          <path d="M12 8.5 A2.5 2.5 0 0 1 14.5 11 L14.5 16 A2.5 2.5 0 0 1 12 18.5 A2.5 2.5 0 0 1 9.5 16 L9.5 11 A2.5 2.5 0 0 1 12 8.5 Z M12 10.5 A0.8 0.8 0 0 0 11.2 11.3 L11.2 15.7 A0.8 0.8 0 0 0 12 16.5 A0.8 0.8 0 0 0 12.8 15.7 L12.8 11.3 A0.8 0.8 0 0 0 12 10.5 Z" />
-          <path d="M20.5 7.5 L20.5 9.5 L18.5 9.5 L18.5 15.5 A1 1 0 0 0 19.5 16.5 L20.5 16.5 L20.5 18 L19.5 18 A2.5 2.5 0 0 1 17 15.5 L17 9.5 L15.5 9.5 L15.5 7.5 L17 7.5 L17 4.5 L18.5 4.5 L18.5 7.5 Z" />
-          <rect x="23" y="4.5" width="1.6" height="1.6" />
-          <rect x="23" y="7.5" width="1.6" height="11" />
-          <path d="M56 8.5 A2.5 2.5 0 0 1 58.5 11 L58.5 16 A2.5 2.5 0 0 1 56 18.5 A2.5 2.5 0 0 1 53.5 16 L53.5 11 A2.5 2.5 0 0 1 56 8.5 Z M56 10.5 A0.8 0.8 0 0 0 55.2 11.3 L55.2 15.7 A0.8 0.8 0 0 0 56 16.5 A0.8 0.8 0 0 0 56.8 15.7 L56.8 11.3 A0.8 0.8 0 0 0 56 10.5 Z" />
-          <path d="M64.5 7.5 L64.5 9.5 L62.5 9.5 L62.5 15.5 A1 1 0 0 0 63.5 16.5 L64.5 16.5 L64.5 18 L63.5 18 A2.5 2.5 0 0 1 61 15.5 L61 9.5 L59.5 9.5 L59.5 7.5 L61 7.5 L61 4.5 L62.5 4.5 L62.5 7.5 Z" />
-          <rect x="67" y="4.5" width="1.6" height="1.6" />
-          <rect x="67" y="7.5" width="1.6" height="11" />
+          {/* Lowercase word citi in custom brand blue */}
+          <g fill="#002D62">
+            <path d="M12 8.5 A2.5 2.5 0 0 1 14.5 11 L14.5 16 A2.5 2.5 0 0 1 12 18.5 A2.5 2.5 0 0 1 9.5 16 L9.5 11 A2.5 2.5 0 0 1 12 8.5 Z M12 10.5 A0.8 0.8 0 0 0 11.2 11.3 L11.2 15.7 A0.8 0.8 0 0 0 12 16.5 A0.8 0.8 0 0 0 12.8 15.7 L12.8 11.3 A0.8 0.8 0 0 0 12 10.5 Z" />
+            <path d="M20.5 7.5 L20.5 9.5 L18.5 9.5 L18.5 15.5 A1 1 0 0 0 19.5 16.5 L20.5 16.5 L20.5 18 L19.5 18 A2.5 2.5 0 0 1 17 15.5 L17 9.5 L15.5 9.5 L15.5 7.5 L17 7.5 L17 4.5 L18.5 4.5 L18.5 7.5 Z" />
+            <rect x="23" y="4.5" width="1.6" height="1.6" />
+            <rect x="23" y="7.5" width="1.6" height="11" />
+            <path d="M56 8.5 A2.5 2.5 0 0 1 58.5 11 L58.5 16 A2.5 2.5 0 0 1 56 18.5 A2.5 2.5 0 0 1 53.5 16 L53.5 11 A2.5 2.5 0 0 1 56 8.5 Z M56 10.5 A0.8 0.8 0 0 0 55.2 11.3 L55.2 15.7 A0.8 0.8 0 0 0 56 16.5 A0.8 0.8 0 0 0 56.8 15.7 L56.8 11.3 A0.8 0.8 0 0 0 56 10.5 Z" />
+            <path d="M64.5 7.5 L64.5 9.5 L62.5 9.5 L62.5 15.5 A1 1 0 0 0 63.5 16.5 L64.5 16.5 L64.5 18 L63.5 18 A2.5 2.5 0 0 1 61 15.5 L61 9.5 L59.5 9.5 L59.5 7.5 L61 7.5 L61 4.5 L62.5 4.5 L62.5 7.5 Z" />
+            <rect x="67" y="4.5" width="1.6" height="1.6" />
+            <rect x="67" y="7.5" width="1.6" height="11" />
+          </g>
         </svg>
       ),
     },
@@ -34,19 +36,20 @@ export function CredibilityBar() {
       name: "PagerDuty",
       svg: (
         <svg
-          viewBox="0 0 110 24"
-          className="h-5 w-auto fill-current transition-all duration-300"
+          viewBox="0 0 150 32"
+          className="h-8 w-auto transition-all duration-300"
           aria-label="PagerDuty logo"
         >
-          {/* Stylized geometric curves P and D character blocks */}
-          <path d="M4 18.5 L4 5.5 L10 5.5 A4 4 0 0 1 14 9.5 A4 4 0 0 1 10 13.5 L6.5 13.5 L6.5 18.5 Z M6.5 11 L9.5 11 A1.5 1.5 0 0 0 11 9.5 A1.5 1.5 0 0 0 9.5 8 L6.5 8 Z" />
-          <path d="M22 8 A3.5 3.5 0 0 1 25.5 11.5 L25.5 18.5 L23.5 18.5 L23.5 17 A3.5 3.5 0 0 1 20.5 18.5 A3.5 3.5 0 0 1 17 15 A3.5 3.5 0 0 1 20.5 11.5 A3.5 3.5 0 0 1 23.5 13 L23.5 11.5 A1.5 1.5 0 0 0 22 10 A1.5 1.5 0 0 0 20.5 11.5 L18.5 11.5 A3.5 3.5 0 0 1 22 8 Z M22 14.5 A1.5 1.5 0 0 0 20.5 13 A1.5 1.5 0 0 0 19 14.5 A1.5 1.5 0 0 0 20.5 16 A1.5 1.5 0 0 0 22 14.5 Z" />
-          <path d="M34 8.5 A3.5 3.5 0 0 1 37.5 12 L37.5 18.5 L35.5 18.5 L35.5 17.5 A3.5 3.5 0 0 1 32 19 A4 4 0 0 1 28 15 A4 4 0 0 1 32 11 A3.5 3.5 0 0 1 35.5 12.5 L35.5 12 A1.5 1.5 0 0 0 34 10.5 A1.5 1.5 0 0 0 32.5 12 L30.5 12 A3.5 3.5 0 0 1 34 8.5 Z M34 14.5 A1.5 1.5 0 0 0 32.5 13 A1.5 1.5 0 0 0 31 14.5 A1.5 1.5 0 0 0 32.5 16 A1.5 1.5 0 0 0 34 14.5 Z" />
-          <path d="M43 8 A3.5 3.5 0 0 1 46.5 11.5 L44.5 11.5 A1.5 1.5 0 0 0 43 10 A1.5 1.5 0 0 0 41.5 11.5 L41.5 18.5 L39.5 18.5 L39.5 8 L41.5 8 L41.5 9.5 A3.5 3.5 0 0 1 43 8 Z" />
-          <rect x="49" y="8" width="18" height="2" />
-          <path d="M72 18.5 L72 5.5 L78 5.5 A4.5 4.5 0 0 1 82.5 10 A4.5 4.5 0 0 1 78 14.5 L74.5 14.5 L74.5 18.5 Z M74.5 12.5 L77.5 12.5 A2.5 2.5 0 0 0 80 10 A2.5 2.5 0 0 0 77.5 7.5 L74.5 7.5 Z" />
-          <path d="M89 8 L89 15 A1.5 1.5 0 0 0 90.5 16.5 L91.5 16.5 L91.5 18.5 L90.5 18.5 A3.5 3.5 0 0 1 87 15 L87 8 L85.5 8 L85.5 6 L87 6 L87 3.5 L89 3.5 L89 6 L91.5 6 L91.5 8 Z" />
-          <path d="M96 8 L98 8 L98 14 A1.5 1.5 0 0 0 99.5 15.5 A1.5 1.5 0 0 0 101 14 L101 8 L103 8 L103 14 A3.5 3.5 0 0 1 99.5 17.5 A3.5 3.5 0 0 1 96 14 Z" />
+          {/* PagerDuty brand green base icon */}
+          <g transform="translate(2, 2)">
+            <path d="M14 0 C6.3 0 0 6.3 0 14 C0 21.7 6.3 28 14 28 C21.7 28 28 21.7 28 14 C28 6.3 21.7 0 14 0 Z" fill="#00C65D" />
+            <path d="M11 7 H17 C19.2 7 21 8.8 21 11 C21 13.2 19.2 15 17 15 H11 V7 Z" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M11 15 V21" fill="none" stroke="#FFFFFF" strokeWidth="2.5" strokeLinecap="round" />
+          </g>
+          {/* Typographic wordmark */}
+          <text x="38" y="21" fontFamily="system-ui, -apple-system, sans-serif" fontSize="14" fontWeight="800" fill="#1C3F38" letterSpacing="-0.2px">
+            PagerDuty
+          </text>
         </svg>
       ),
     },
@@ -54,19 +57,19 @@ export function CredibilityBar() {
       name: "NielsenIQ",
       svg: (
         <svg
-          viewBox="0 0 100 24"
-          className="h-6 w-auto fill-current transition-all duration-300"
+          viewBox="0 0 100 32"
+          className="h-8 w-auto transition-all duration-300"
           aria-label="NielsenIQ logo"
         >
-          {/* Stylized bold geometric text "NIQ" or "NielsenIQ" */}
-          <path d="M2.5 18.5 L2.5 5.5 L5.5 5.5 L11.5 14.5 L11.5 5.5 L14.5 5.5 L14.5 18.5 L11.5 18.5 L5.5 9.5 L5.5 18.5 Z" />
-          <circle cx="21" cy="5.5" r="1.5" />
-          <rect x="19.5" y="8" width="3" height="10.5" />
-          <path d="M29.5 13 C29.5 15.5 31.5 17.5 34 17.5 C36.5 17.5 38.5 15.5 38.5 13 L38.5 8 L35.5 8 L35.5 13 C35.5 14 34.8 14.5 34 14.5 C33.2 14.5 32.5 14 32.5 13 L32.5 8 L29.5 8 Z" />
-          <path d="M43.5 14.5 C44.5 15.5 46 16 47.5 16 C49 16 50 15 50 14 C50 13 49 12.5 47 12 C44 11 42.5 10 42.5 7.5 C42.5 5 44.5 3.5 47.5 3.5 C49.5 3.5 51.5 4.5 52.5 5.5 L50.5 7.5 C49.5 6.5 48.5 6 47.5 6 C46.5 6 45.5 6.5 45.5 7.5 C45.5 8.5 46.5 9 48.5 9.5 C51.5 10.5 53 11.5 53 14 C53 16.5 51 18.5 47.5 18.5 C45 18.5 43 17.5 41.5 16 Z" />
-          {/* Monogram stylized IQ */}
-          <circle cx="68" cy="13.2" r="4.5" stroke="var(--color-gold)" strokeWidth="2.5" fill="none" />
-          <path d="M72 17.2 L75.5 20.5" stroke="var(--color-gold)" strokeWidth="2.5" strokeLinecap="round" />
+          {/* Rounded solid blue rectangle */}
+          <rect x="0" y="2" width="72" height="28" rx="4" fill="#002F6C" />
+          {/* White letters N I Q */}
+          <g fill="#FFFFFF" transform="translate(1, 0)">
+            <path d="M12 10 L12 22 L14.5 22 L19.5 14.5 L19.5 22 L22 22 L22 10 L19.5 10 L14.5 17.5 L14.5 10 Z" />
+            <rect x="25.5" y="10" width="3" height="12" />
+            <path d="M37 10 C33.5 10 31 12.5 31 16 C31 19.5 33.5 22 37 22 C38.8 22 40.3 21.2 41.2 20 L43.5 22 L45.2 22 L42.8 19.8 C44 18.8 44.5 17.5 44.5 16 C44.5 12.5 42 10 37 10 Z M37 12.2 C39 12.2 40.5 13.7 40.5 16 C40.5 18.3 39 19.8 37 19.8 C35 19.8 33.5 18.3 33.5 16 C33.5 13.7 35 12.2 37 12.2 Z" />
+            <rect x="39.5" y="18" width="4.5" height="2.5" transform="rotate(45 39.5 18)" />
+          </g>
         </svg>
       ),
     },
@@ -87,11 +90,12 @@ export function CredibilityBar() {
             </div>
 
             {/* Middle Corporate Logos */}
-            <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14 text-ink-muted">
+            <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
               {logos.map((logo) => (
                 <div
                   key={logo.name}
-                  className="grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300 transform hover:scale-105"
+                  className="opacity-90 hover:opacity-100 transition-colors duration-300 transform hover:scale-105 flex items-center h-8"
+                  style={{ minHeight: "32px", display: "flex", alignItems: "center" }}
                 >
                   {logo.svg}
                 </div>

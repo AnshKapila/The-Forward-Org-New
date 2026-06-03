@@ -18,7 +18,7 @@ interface Question {
 export default function Scorecard() {
   const [location, setLocation] = useLocation();
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(5).fill(null));
+  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [quizComplete, setQuizComplete] = useState(false);
 
   useEffect(() => {
@@ -53,57 +53,167 @@ export default function Scorecard() {
   const questions: Question[] = [
     {
       id: 1,
-      category: "STRATEGY ALIGNMENT",
-      question: "Does your executive team share a single, precise definition of how AI will defend or expand your core business margins over the next 18 months?",
+      category: "AI Strategy & Vision Clarity",
+      question: "How would you describe your organization's current AI strategy?",
       options: [
-        { label: "A", points: 20, text: "Comprehensive alignment. Executive leadership shares a single, board-approved roadmap with explicit margin targets." },
-        { label: "B", points: 13, text: "Strategic focus. Department heads coordinate on key areas, though we lack a unified long-term business thesis." },
-        { label: "C", points: 7, text: "Tactical experiments. Individual departments test basic AI tools without a central strategic framework." },
-        { label: "D", points: 0, text: "No alignment. There is no strategic roadmap or board-level discussion about defending margins with AI." },
+        { label: "A", points: 1, text: "We have no formal AI strategy yet" },
+        { label: "B", points: 2, text: "We have informal discussions but nothing documented" },
+        { label: "C", points: 3, text: "We have a documented strategy but it isn't tied to specific business outcomes" },
+        { label: "D", points: 4, text: "We have a clear strategy, tied to goals, with ownership assigned" },
       ],
     },
     {
       id: 2,
-      category: "COMPLIANCE & RISK",
-      question: "Are your employees operating under a concrete, written AI governance structure that is actively monitored to prevent compliance exposure?",
+      category: "AI Strategy & Vision Clarity",
+      question: "How is AI progress typically understood across your leadership team today?",
       options: [
-        { label: "A", points: 20, text: "Strict governance. Complete compliance guidelines are fully established, with active tooling and endpoint tracking." },
-        { label: "B", points: 13, text: "Formal policy. A written guidelines document exists, but compliance is trust-based and remains unmonitored." },
-        { label: "C", points: 7, text: "Ad-hoc rules. Employees are given oral directives on safety guidelines, but lack structured operational limits." },
-        { label: "D", points: 0, text: "Completely exposed. No guidelines, screening, or rules exist, leaving sensitive enterprise data vulnerable." },
+        { label: "A", points: 1, text: "We don’t have a clear or consistent answer yet" },
+        { label: "B", points: 2, text: "We highlight tools we’ve purchased or experimented with" },
+        { label: "C", points: 3, text: "We share activity - pilots, teams, and initiatives in motion" },
+        { label: "D", points: 4, text: "We demonstrate measurable business outcomes tied to strategic goals" },
       ],
     },
     {
       id: 3,
-      category: "DECISION VELOCITY",
-      question: "Can your organization transition a verified AI prototype or workflow into standard enterprise production in under 6 weeks?",
+      category: "AI Strategy & Vision Clarity",
+      question: "How are AI initiatives prioritized inside your organization today?",
       options: [
-        { label: "A", points: 20, text: "Frictionless pipeline. Engineering pathways, compliance checkstands, and hosting architectures are built for rapid deployment." },
-        { label: "B", points: 13, text: "Moderate flow. We scale production features occasionally, but backlogs, audits, or legal checks take multiple months." },
-        { label: "C", points: 7, text: "Blocked pipeline. We build functional software pilots fast, but they stay stuck in approvals without going live." },
-        { label: "D", points: 0, text: "No capabilities. We do not have structured workflows or engineers capable of deploying custom secure models." },
+        { label: "A", points: 1, text: "Prioritization is reactive - driven by urgency or internal pressure" },
+        { label: "B", points: 2, text: "Decisions are influenced by vendors or external trends" },
+        { label: "C", points: 3, text: "We have informal criteria, but no consistent decision framework" },
+        { label: "D", points: 4, text: "We use a structured prioritization model balancing business impact, risk, and execution feasibility" },
       ],
     },
     {
       id: 4,
-      category: "ORGANIZATION & ADOPTION",
-      question: "Has your operational front-line adopted custom AI habits with structured workflows, or is it limited to experimental individual use?",
+      category: "Governance & Risk Infrastructure",
+      question: "Does your organization have policies governing how AI tools can be used by employees?",
       options: [
-        { label: "A", points: 20, text: "Integrated routine. Workflows are fully redesigned around AI tools, backed by formal upskilling and adoption KPIs." },
-        { label: "B", points: 13, text: "High active pockets. Selective, high-performance departments run daily integrations, but it is not company-wide." },
-        { label: "C", points: 7, text: "Individually driven. Staff prompt standard web engines on their own, but workflows remain structurally unchanged." },
-        { label: "D", points: 0, text: "No adoption. There are no guidelines, tooling support, training mechanisms, or awareness for front-line teams." },
+        { label: "A", points: 1, text: "No policies exist" },
+        { label: "B", points: 2, text: "Informal guidelines exist but aren't enforced" },
+        { label: "C", points: 3, text: "Policies exist for some departments only" },
+        { label: "D", points: 4, text: "Formal, enterprise-wide AI governance policies are in place" },
       ],
     },
     {
       id: 5,
-      category: "INVESTMENT ROI",
-      question: "Are you currently tracking and demonstrating concrete financial output or quantifiable velocity returns from your AI budget?",
+      category: "Governance & Risk Infrastructure",
+      question: "How visible and controlled is employee use of unsanctioned AI tools (shadow AI) in your organization?",
       options: [
-        { label: "A", points: 20, text: "Direct measurement. We closely track bottom-line returns, accounting for direct labor-hours saved or revenue expansion." },
-        { label: "B", points: 13, text: "Proxy variables. We monitor speed gains or qualitative outputs, but have yet to isolate improvements in balance sheets." },
-        { label: "C", points: 7, text: "Subjective feelings. We gauge success through occasional employee surveys and general product satisfaction feedback." },
-        { label: "D", points: 0, text: "No monitoring. AI expenses are handled as unmeasured cost centers with no structured metrics tracking ROI." },
+        { label: "A", points: 1, text: "We have little to no visibility into how AI is being used" },
+        { label: "B", points: 2, text: "We are aware it’s happening but haven’t addressed it yet" },
+        { label: "C", points: 3, text: "We’ve started discussing it, but no structured response exists" },
+        { label: "D", points: 4, text: "We actively monitor, manage, and guide AI usage across the organization" },
+      ],
+    },
+    {
+      id: 6,
+      category: "Governance & Risk Infrastructure",
+      question: "If an AI-related issue were to arise - impacting a client or a business decision, how prepared would your organization feel today?",
+      options: [
+        { label: "A", points: 1, text: "We are not prepared for that scenario" },
+        { label: "B", points: 2, text: "We would respond reactively without a defined approach" },
+        { label: "C", points: 3, text: "We have partial processes but no formal playbook" },
+        { label: "D", points: 4, text: "We have a defined incident response framework for AI-related risks" },
+      ],
+    },
+    {
+      id: 7,
+      category: "Leadership Alignment & Readiness",
+      question: "How aligned is your leadership team on the role AI should play in your business?",
+      options: [
+        { label: "A", points: 1, text: "There is significant disagreement or confusion" },
+        { label: "B", points: 2, text: "Some alignment at the top but not across departments" },
+        { label: "C", points: 3, text: "General agreement but no shared accountability" },
+        { label: "D", points: 4, text: "Full alignment with defined roles and ownership" },
+      ],
+    },
+    {
+      id: 8,
+      category: "Leadership Alignment & Readiness",
+      question: "How consistently does your leadership team communicate a shared AI vision to the rest of the organization?",
+      options: [
+        { label: "A", points: 1, text: "It hasn't been communicated at all" },
+        { label: "B", points: 2, text: "It's been mentioned once or twice but not reinforced" },
+        { label: "C", points: 3, text: "Some leaders communicate it but messaging is inconsistent across teams" },
+        { label: "D", points: 4, text: "A clear, consistent AI vision is regularly communicated at all levels" },
+      ],
+    },
+    {
+      id: 9,
+      category: "Leadership Alignment & Readiness",
+      question: "To what extent does your leadership team personally model AI adoption in their own work?",
+      options: [
+        { label: "A", points: 1, text: "Leadership support is mostly verbal, not behavioural" },
+        { label: "B", points: 2, text: "A few leaders experiment, but it’s not visible or consistent" },
+        { label: "C", points: 3, text: "Some leaders actively demonstrate usage within their teams" },
+        { label: "D", points: 4, text: "Leadership consistently models AI use, setting the standard for the organization" },
+      ],
+    },
+    {
+      id: 10,
+      category: "Workforce Adoption & Psychological Safety",
+      question: "What best describes your employees’ current mindset toward AI?",
+      options: [
+        { label: "A", points: 1, text: "Significant fear, avoidance or active resistance" },
+        { label: "B", points: 2, text: "Passive compliance — they use it when told to, not by choice" },
+        { label: "C", points: 3, text: "Mixed - some champions, some resistors" },
+        { label: "D", points: 4, text: "Genuine curiosity - people are experimenting and sharing what they find" },
+      ],
+    },
+    {
+      id: 11,
+      category: "Workforce Adoption & Psychological Safety",
+      question: "How equipped do your employees feel to actually use AI in their specific roles?",
+      options: [
+        { label: "A", points: 1, text: "Not at all — most people don't know where to start" },
+        { label: "B", points: 2, text: "Basic awareness — they've been introduced to tools but have no role-specific guidance" },
+        { label: "C", points: 3, text: "Partially — some teams have training, others are figuring it out alone" },
+        { label: "D", points: 4, text: "Well equipped — people have role-specific workflows, prompts, and ongoing support" },
+      ],
+    },
+    {
+      id: 12,
+      category: "Workforce Adoption & Psychological Safety",
+      question: "How embedded is AI in your team's day-to-day workflows right now?",
+      options: [
+        { label: "A", points: 1, text: "Not at all — it's separate from daily work" },
+        { label: "B", points: 2, text: "A few individuals use it on their own" },
+        { label: "C", points: 3, text: "Some teams have integrated it into specific workflows" },
+        { label: "D", points: 4, text: "AI is embedded across functions as a standard way of working" },
+      ],
+    },
+    {
+      id: 13,
+      category: "Roadmap Prioritization & ROI Clarity",
+      question: "How does your organization decide what to build or implement with AI first?",
+      options: [
+        { label: "A", points: 1, text: "We don't have a prioritization process - everything feels equally urgent" },
+        { label: "B", points: 2, text: "We prioritize based on what's easiest to implement" },
+        { label: "C", points: 3, text: "We prioritize based on business impact but it's informal" },
+        { label: "D", points: 4, text: "We use a structured framework that maps effort, risk, and business value before committing" },
+      ],
+    },
+    {
+      id: 14,
+      category: "Roadmap Prioritization & ROI Clarity",
+      question: "How clearly are your AI investments connected to measurable business outcomes?",
+      options: [
+        { label: "A", points: 1, text: "There is no defined connection" },
+        { label: "B", points: 2, text: "We have assumptions, but no clear measurement" },
+        { label: "C", points: 3, text: "Some initiatives have defined KPIs" },
+        { label: "D", points: 4, text: "Every initiative is tied to a measurable business outcome and tracked accordingly" },
+      ],
+    },
+    {
+      id: 15,
+      category: "Roadmap Prioritization & ROI Clarity",
+      question: "How visible is the return on your AI investments to your leadership team right now?",
+      options: [
+        { label: "A", points: 1, text: "There is no visibility — we haven't defined what success looks like" },
+        { label: "B", points: 2, text: "Leadership knows we're investing but can't see what it's producing" },
+        { label: "C", points: 3, text: "Some initiatives have visible results but most don't" },
+        { label: "D", points: 4, text: "Every AI investment has a dashboard or metric that leadership reviews regularly" },
       ],
     },
   ];
@@ -138,11 +248,25 @@ export default function Scorecard() {
     }
   };
 
-  // Score Analysis
-  const totalScore = answers.reduce<number>((sum, val, idx) => {
+  const handleJumpBack = (targetIdx: number) => {
+    if (targetIdx < currentIdx) {
+      const nextAnswers = [...answers];
+      // Reset the target index and all subsequent answers
+      for (let i = targetIdx; i < nextAnswers.length; i++) {
+        nextAnswers[i] = null;
+      }
+      setAnswers(nextAnswers);
+      setCurrentIdx(targetIdx);
+    }
+  };
+
+  // Score Analysis scaled to 0-100 percentage (each of 15 questions has up to 4 points)
+  const totalRawScore = answers.reduce<number>((sum, val, idx) => {
     if (val === null) return sum;
     return sum + questions[idx].options[val].points;
   }, 0);
+
+  const totalScore = Math.round((totalRawScore / (questions.length * 4)) * 100);
 
   let rating = "";
   let feedback = "";
@@ -195,12 +319,71 @@ export default function Scorecard() {
             </span>
           </div>
  
-          {/* Progress Bar styled as a premium track spanning the width of the main content */}
-          <div className="w-full max-w-[620px] mx-auto h-[3px] bg-[#1A3C34]/15 mb-6 relative">
-            <div 
-              className="absolute left-0 top-0 h-full bg-[#C9A55A] transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{ width: `${((currentIdx + 1) / questions.length) * 100}%` }}
-            />
+          {/* Progress Bar styled as a premium track with interactive hover/checkpoint to go back */}
+          <div className="w-full max-w-[620px] mx-auto flex items-center gap-[4px] mb-8 relative select-none">
+            {questions.map((q, idx) => {
+              const isCompleted = idx < currentIdx;
+              const isActive = idx === currentIdx;
+
+              return (
+                <div 
+                  key={idx} 
+                  className="flex-1 relative group py-2"
+                >
+                  <button
+                    onClick={() => {
+                      if (isCompleted) {
+                        handleJumpBack(idx);
+                      }
+                    }}
+                    disabled={!isCompleted}
+                    className={`w-full h-[6px] transition-all duration-300 relative focus:outline-none ${
+                      isCompleted 
+                        ? "bg-[#C9A55A] hover:bg-[#1A3C34] hover:scale-y-[1.4] cursor-pointer" 
+                        : isActive 
+                          ? "bg-[#1A3C34]" 
+                          : "bg-[#1A3C34]/15"
+                    }`}
+                    style={{
+                      borderRadius: "1px"
+                    }}
+                    title={isCompleted ? `Go back to Question ${idx + 1}` : undefined}
+                  >
+                    {isActive && (
+                      <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 block bg-[#1A3C34] h-3 w-3 rounded-full border border-white" />
+                    )}
+                  </button>
+
+                  {/* Tooltip on Hovering Completed Elements */}
+                  {isCompleted && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-2 mb-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 min-w-[200px] text-center">
+                      <div className="bg-[#1A3C34] text-[#F7F4EF] text-[11px] font-sans py-2 px-3 rounded shadow-xl border border-[#C9A55A]/30">
+                        <span className="block font-mono text-[9px] text-gold uppercase tracking-wider font-extrabold mb-1">
+                          Question {idx + 1}
+                        </span>
+                        <p className="font-serif leading-tight text-white mb-1.5 truncate text-[11px]">
+                          {q.question}
+                        </p>
+                        <span className="inline-block text-[9px] bg-red-800 text-white font-bold px-1.5 py-0.5 uppercase tracking-wide">
+                          Click to reset from here
+                        </span>
+                      </div>
+                      <div className="w-2 h-2 bg-[#1A3C34] border-r border-b border-[#C9A55A]/35 rotate-45 mx-auto -mt-1" />
+                    </div>
+                  )}
+
+                  {/* Tooltip for Current Q */}
+                  {isActive && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-2 mb-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 min-w-[140px] text-center">
+                      <div className="bg-[#1A3C34] text-[#F7F4EF] text-[10px] font-mono py-1 px-2 rounded shadow-lg border border-[#C9A55A]/20">
+                        Current Question
+                      </div>
+                      <div className="w-1.5 h-1.5 bg-[#1A3C34] border-r border-b border-[#C9A55A]/20 rotate-45 mx-auto -mt-0.5" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
  
           {/* Card core contents centered */}
