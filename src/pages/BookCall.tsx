@@ -48,7 +48,7 @@ export default function BookCallPage() {
   ];
 
   return (
-    <div className="bg-[#1A3C34] min-h-screen pt-32 pb-24 px-6 md:px-12 text-white selection:bg-gold selection:text-ink">
+    <div className="bg-[#1A3C34] min-h-screen pt-12 pb-24 px-6 md:px-12 text-white selection:bg-gold selection:text-ink">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           

@@ -174,7 +174,7 @@ export default function Posts() {
     <div className="min-h-screen bg-white text-ink flex flex-col justify-between">
       <main className="flex-1">
         {/* Compact Hero Block with Avatar */}
-        <section className="bg-[#1A3C34] pt-32 pb-20 md:pb-24 text-left relative overflow-hidden">
+        <section className="bg-[#1A3C34] pt-12 pb-20 md:pb-24 text-left relative overflow-hidden">
           <div className="absolute right-[-100px] bottom-[-100px] w-96 h-96 opacity-10 pointer-events-none select-none text-off-white">
             <svg viewBox="0 0 100 100" className="w-full h-full stroke-current" strokeWidth="0.5">
               <circle cx="50" cy="50" r="45" strokeDasharray="2 2" />

@@ -102,8 +102,8 @@ export default function IndexPage() {
 
   return (
     <div className="bg-canvas min-h-screen text-ink">
-      {/* Hero Block — Redesigned for exact 100vh viewport fitting including Nav spacing and avoiding cropping */}
-      <section className="relative w-full min-h-screen flex flex-col justify-between pt-24 pb-16 bg-[#FAF9F5]">
+      {/* Hero Block — Redesigned for exact viewport fitting including Nav spacing and avoiding cropping */}
+      <section className="relative w-full min-h-[calc(100vh-80px)] md:min-h-[calc(100vh-96px)] flex flex-col justify-between pt-12 pb-16 bg-[#FAF9F5]">
         <div className="absolute inset-0 bg-[#1A3C34]/[0.015] bg-[linear-gradient(rgba(26,60,52,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(26,60,52,0.04)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
         
         {/* Upper Content - Symmetrically proportioned */}

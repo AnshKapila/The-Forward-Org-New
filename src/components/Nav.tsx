@@ -50,7 +50,7 @@ export function Nav() {
           {/* Logo click routes to home */}
           <Link href="/">
             <button className="flex items-center gap-1 group focus-visible:outline-2 focus-visible:outline-gold cursor-pointer text-left leading-none">
-              <LogoMark width={25.5} height={25.5} className="shrink-0" />
+              <LogoMark width={30.6} height={30.6} className="shrink-0" />
               <div className="flex flex-col select-none leading-none">
                 <span className="font-serif text-[15px] font-bold tracking-wider text-white leading-none">
                   THE FORWARD ORG

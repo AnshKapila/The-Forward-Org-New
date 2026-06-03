@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
@@ -20,35 +20,15 @@ export default function Scorecard() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [quizComplete, setQuizComplete] = useState(false);
+  const timeoutRef = useRef<any>(null);
 
   useEffect(() => {
-    if (!quizComplete) return;
-
-    // Inject the Lunacal embed script for Scorecard Results
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.id = "lunacal-scorecard-script";
-    script.innerHTML = `(function(L,U,N){let p=(a,ar)=>a.q.push(ar),d=L.document;L.Lunacal=L.Lunacal||function(){let lun=L.Lunacal,ar=arguments;if(!lun.loaded){lun.ns={};lun.q=lun.q||[];d.head.appendChild(d.createElement("script")).src=U;lun.loaded=!0}if(ar[0]===N){const api=function(){p(api,arguments)};const ns=ar[1];api.q=api.q||[];if(typeof ns==="string"){lun.ns[ns]=lun.ns[ns]||api;p(lun.ns[ns],ar);p(lun,["initNamespace",ns])}else p(lun,ar);return}p(lun,ar)};if(!L.Cal)L.Cal=L.Lunacal})(window,"https://app.lunacal.ai/embed/embed.js","init");Lunacal("init","focused-aireadiness-debrief",{origin:"https://app.lunacal.ai"});
-                  // Enable auto-forwarding of query parameters
-                  Lunacal.config = Lunacal.config || {};
-                  Lunacal.config.forwardQueryParams = true;
-                  
-        Lunacal.ns["focused-aireadiness-debrief"]("inline", {
-          elementOrSelector:"#my-lunacal-inline-focused-aireadiness-debrief-scorecard",
-          config: {"layout":""},
-          calLink: "pan-seth/focused-aireadiness-debrief",
-        });
-        Lunacal.ns["focused-aireadiness-debrief"]("preload", { calLink: "pan-seth/focused-aireadiness-debrief", type: "inline", options: { prerenderIframe: true } });
-        Lunacal.ns["focused-aireadiness-debrief"]("ui", {"theme":"light","styles":{"branding":{}},"hideEventTypeDetails":false,"layout":"","cssVarsPerTheme":{"light":{"theme-border":"#E4E4E7","theme-background-primary":"#C9A55A","theme-background-secondary":"#F4F4F5","theme-background-card":"#ffffff","theme-background-base":"#ffffff","theme-text-primary":"#111827","theme-text-secondary":"#4B5563","theme-text-card":"#111827","theme-text-base":"#111827","theme-rounded-base":"0px","theme-rounded-calendar":"0px","theme-rounded-timeslot":"4px","theme-rounded-day":"4px","theme-rounded-button":"0px","theme-shadow-calendar":"none","theme-shadow-button":"none","theme-shadow-timeslot":"none","theme-font-family":"Figtree"},"dark":{"theme-border":"#E4E4E7","theme-background-primary":"#C9A55A","theme-background-secondary":"#F4F4F5","theme-background-card":"#ffffff","theme-background-base":"#ffffff","theme-text-primary":"#111827","theme-text-secondary":"#4B5563","theme-text-card":"#111827","theme-text-base":"#111827","theme-rounded-base":"0px","theme-rounded-calendar":"0px","theme-rounded-timeslot":"4px","theme-rounded-day":"4px","theme-rounded-button":"0px","theme-shadow-calendar":"none","theme-shadow-button":"none","theme-shadow-timeslot":"none","theme-font-family":"Figtree"}},"displayedContent":{"image":true,"name":true,"designation":true,"description":true,"eventName":true,"highlightBar":false},"background":{"type":"plain"},"stylePreset":""});`;
-    document.body.appendChild(script);
-
     return () => {
-      const existingScript = document.getElementById("lunacal-scorecard-script");
-      if (existingScript) {
-        existingScript.remove();
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
       }
     };
-  }, [quizComplete]);
+  }, []);
 
   const questions: Question[] = [
     {
@@ -218,6 +198,13 @@ export default function Scorecard() {
     },
   ];
 
+  // Prevent currentIdx from ever exceeding the bounds of the questions array (clamping to the final question)
+  useEffect(() => {
+    if (currentIdx >= questions.length) {
+      setCurrentIdx(questions.length - 1);
+    }
+  }, [currentIdx, questions.length]);
+
   const handleSelectOptionLocal = (optionIdx: number) => {
     const nextAnswers = [...answers];
     nextAnswers[currentIdx] = optionIdx;
@@ -226,7 +213,12 @@ export default function Scorecard() {
     // If it is not  the final question, proceed automatically to the next section after 450ms animation completed
     if (currentIdx < questions.length - 1) {
       setTimeout(() => {
-        setCurrentIdx((prevIdx) => prevIdx + 1);
+        setCurrentIdx((prevIdx) => {
+          if (prevIdx < questions.length - 1) {
+            return prevIdx + 1;
+          }
+          return prevIdx;
+        });
       }, 450);
     }
   };
@@ -262,7 +254,7 @@ export default function Scorecard() {
 
   // Score Analysis scaled to 0-100 percentage (each of 15 questions has up to 4 points)
   const totalRawScore = answers.reduce<number>((sum, val, idx) => {
-    if (val === null) return sum;
+    if (val === null || !questions[idx] || !questions[idx].options || !questions[idx].options[val]) return sum;
     return sum + questions[idx].options[val].points;
   }, 0);
 
@@ -295,6 +287,9 @@ export default function Scorecard() {
   }
 
   const selectedOptionIndex = answers[currentIdx];
+  const currentQuestion = (currentIdx >= 0 && currentIdx < questions.length)
+    ? questions[currentIdx]
+    : (questions[0] || { category: "", question: "", options: [] });
 
   return (
     <div className="bg-canvas min-h-screen text-ink relative select-none">
@@ -304,11 +299,11 @@ export default function Scorecard() {
         <div className="w-full min-h-screen flex flex-col items-center justify-start pt-6 md:pt-12 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
           
           {/* Header strip for controls to prevent colliding with the nav bar */}
-          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between md:justify-end mb-4">
-            {/* Cancel / Back floating menu for desktop only (md and up) */}
+          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
+            {/* Cancel / Back floating menu, displayed on both mobile & desktop aligned with left margin */}
             <button
               onClick={currentIdx === 0 ? () => setLocation("/index") : handleBack}
-              className="hidden md:flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
+              className="flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
             >
               <ArrowLeft size={14} /> {currentIdx === 0 ? "Cancel" : "Back"}
             </button>
@@ -324,7 +319,7 @@ export default function Scorecard() {
             {questions.map((q, idx) => {
               const isCompleted = idx < currentIdx;
               const isActive = idx === currentIdx;
-
+ 
               return (
                 <div 
                   key={idx} 
@@ -353,32 +348,30 @@ export default function Scorecard() {
                       <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 block bg-[#1A3C34] h-3 w-3 rounded-full border border-white" />
                     )}
                   </button>
-
+ 
                   {/* Tooltip on Hovering Completed Elements */}
                   {isCompleted && (
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-2 mb-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 min-w-[200px] text-center">
-                      <div className="bg-[#1A3C34] text-[#F7F4EF] text-[11px] font-sans py-2 px-3 rounded shadow-xl border border-[#C9A55A]/30">
-                        <span className="block font-mono text-[9px] text-gold uppercase tracking-wider font-extrabold mb-1">
-                          Question {idx + 1}
-                        </span>
-                        <p className="font-serif leading-tight text-white mb-1.5 truncate text-[11px]">
-                          {q.question}
-                        </p>
-                        <span className="inline-block text-[9px] bg-red-800 text-white font-bold px-1.5 py-0.5 uppercase tracking-wide">
-                          Click to reset from here
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 whitespace-nowrap text-center">
+                      <div className="bg-[#FAF9F5] text-ink text-[11px] sm:text-xs font-sans font-medium py-1 px-2.5 rounded-none shadow border border-[#1A3C34]/15">
+                        <span className="text-ink/65">Return to question </span>
+                        <span className="text-[#1A3C34] font-extrabold text-[12px] sm:text-[13px]">
+                          {idx + 1}
                         </span>
                       </div>
-                      <div className="w-2 h-2 bg-[#1A3C34] border-r border-b border-[#C9A55A]/35 rotate-45 mx-auto -mt-1" />
+                      <div className="w-1.5 h-1.5 bg-[#FAF9F5] border-r border-b border-[#1A3C34]/15 rotate-45 mx-auto -mt-[4px]" />
                     </div>
                   )}
-
+ 
                   {/* Tooltip for Current Q */}
                   {isActive && (
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-2 mb-1 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 min-w-[140px] text-center">
-                      <div className="bg-[#1A3C34] text-[#F7F4EF] text-[10px] font-mono py-1 px-2 rounded shadow-lg border border-[#C9A55A]/20">
-                        Current Question
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 whitespace-nowrap text-center">
+                      <div className="bg-[#FAF9F5] text-ink text-[11px] sm:text-xs font-sans font-medium py-1 px-2.5 rounded-none shadow border border-[#1A3C34]/15">
+                        <span className="text-ink/65">Current question </span>
+                        <span className="text-[#1A3C34] font-extrabold text-[12px] sm:text-[13px]">
+                          {idx + 1}
+                        </span>
                       </div>
-                      <div className="w-1.5 h-1.5 bg-[#1A3C34] border-r border-b border-[#C9A55A]/20 rotate-45 mx-auto -mt-0.5" />
+                      <div className="w-1.5 h-1.5 bg-[#FAF9F5] border-r border-b border-[#1A3C34]/15 rotate-45 mx-auto -mt-[4px]" />
                     </div>
                   )}
                 </div>
@@ -392,16 +385,16 @@ export default function Scorecard() {
             {/* Category of the Question */}
             <div className="text-left">
               <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] uppercase tracking-widest block mb-1">
-                {questions[currentIdx].category}
+                {currentQuestion.category}
               </span>
               <h3 className="font-serif text-[18px] sm:text-[20px] md:text-[23px] font-bold text-ink leading-snug">
-                {questions[currentIdx].question}
+                {currentQuestion.question}
               </h3>
             </div>
  
             {/* Answer Options list with custom thick outline trail tracer */}
             <div className="space-y-2.5 text-left">
-              {questions[currentIdx].options.map((opt, i) => {
+              {(currentQuestion?.options || []).map((opt, i) => {
                 const isSelected = selectedOptionIndex === i;
                 return (
                   <button
@@ -522,13 +515,25 @@ export default function Scorecard() {
                 </p>
               </div>
 
-              {/* Inline Calendar Container directly below the gap analysis block */}
+              {/* Elegant Book a Call CTA Card directly below the gap analysis block */}
               <div className="mt-8 border-t border-[#C9A55A]/25 pt-8">
-                <div className="bg-white overflow-hidden p-4 rounded-lg shadow-sm border border-[#E8D5B5]">
-                  <div 
-                    id="my-lunacal-inline-focused-aireadiness-debrief-scorecard" 
-                    style={{ width: "100%", height: "650px", overflow: "hidden" }} 
-                  />
+                <div className="bg-white border border-[#E8D5B5] p-6 sm:p-8 rounded-none shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                  <div className="space-y-2 max-w-[420px]">
+                    <h4 className="font-serif text-lg font-bold text-ink leading-snug">
+                      Discuss Your Diagnostic Assessment
+                    </h4>
+                    <p className="font-sans text-xs sm:text-sm text-ink-muted leading-relaxed">
+                      Connect with Pan Seth to dive deeper into your results, isolate compliance exposure risks, and structure your operational technology roadmap.
+                    </p>
+                  </div>
+                  <InteractiveButton
+                    onClick={() => setLocation("/book-a-call")}
+                    variant="gold"
+                    className="w-full md:w-auto uppercase tracking-wider text-xs font-semibold py-3.5 px-6 shrink-0 text-center"
+                    id="scorecard-book-call-cta"
+                  >
+                    Book a Call
+                  </InteractiveButton>
                 </div>
               </div>
             </div>

@@ -41,7 +41,7 @@ export default function About() {
     <div className="bg-white min-h-screen text-ink">
       
       {/* Section 1 - Founder Hero */}
-      <section className="pt-32 pb-24 md:py-36 px-6 md:px-12 max-w-7xl mx-auto">
+      <section className="pt-12 pb-24 md:py-20 px-6 md:px-12 max-w-7xl mx-auto">
         <ScrollReveal duration={0.65}>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content Column (55%) */}
