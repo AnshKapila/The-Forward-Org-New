@@ -28,8 +28,8 @@ export default function Home() {
       <VisionStatement />
       <ConnectWithPan />
       <ThoughtLeadership />
-      <FAQ />
       <BookACall />
+      <FAQ />
       <ContactSection />
     </>
   );

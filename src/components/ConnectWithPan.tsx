@@ -110,9 +110,11 @@ export function ConnectWithPan() {
                   {/* Booking trigger action */}
                   <div className="relative z-10 pt-2">
                     <InteractiveButton
-                      onClick={handleScrollToCall}
                       variant="primary"
                       className="w-full text-center"
+                      data-cal-link="pan-seth/focused-aireadiness-debrief"
+                      data-cal-namespace="focused-aireadiness-debrief"
+                      data-cal-config='{"layout":""}'
                     >
                       Book your call
                     </InteractiveButton>

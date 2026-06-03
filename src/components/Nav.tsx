@@ -101,7 +101,7 @@ export function Nav() {
           <div className="flex items-center gap-4">
             <InteractiveButton
               id="nav-cta-book"
-              onClick={handleBookACall}
+              onClick={() => setLocation("/book-a-call")}
               variant="gold"
               size="sm"
               className="hidden md:inline-flex"
@@ -160,7 +160,10 @@ export function Nav() {
  
             <div className="space-y-6 flex flex-col items-stretch">
               <InteractiveButton
-                onClick={handleBookACall}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setLocation("/book-a-call");
+                }}
                 variant="gold"
                 className="w-full text-center py-4"
               >

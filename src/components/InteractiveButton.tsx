@@ -68,6 +68,7 @@ interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   size?: "sm" | "md";
   icon?: LucideIcon | React.ComponentType<{ className?: string; size?: number }>;
   noIcon?: boolean;
+  [key: `data-${string}`]: string | undefined;
 }
 
 export function InteractiveButton({

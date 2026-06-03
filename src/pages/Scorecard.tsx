@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowLeft, RotateCcw } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
@@ -20,6 +20,35 @@ export default function Scorecard() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(5).fill(null));
   const [quizComplete, setQuizComplete] = useState(false);
+
+  useEffect(() => {
+    if (!quizComplete) return;
+
+    // Inject the Lunacal embed script for Scorecard Results
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.id = "lunacal-scorecard-script";
+    script.innerHTML = `(function(L,U,N){let p=(a,ar)=>a.q.push(ar),d=L.document;L.Lunacal=L.Lunacal||function(){let lun=L.Lunacal,ar=arguments;if(!lun.loaded){lun.ns={};lun.q=lun.q||[];d.head.appendChild(d.createElement("script")).src=U;lun.loaded=!0}if(ar[0]===N){const api=function(){p(api,arguments)};const ns=ar[1];api.q=api.q||[];if(typeof ns==="string"){lun.ns[ns]=lun.ns[ns]||api;p(lun.ns[ns],ar);p(lun,["initNamespace",ns])}else p(lun,ar);return}p(lun,ar)};if(!L.Cal)L.Cal=L.Lunacal})(window,"https://app.lunacal.ai/embed/embed.js","init");Lunacal("init","focused-aireadiness-debrief",{origin:"https://app.lunacal.ai"});
+                  // Enable auto-forwarding of query parameters
+                  Lunacal.config = Lunacal.config || {};
+                  Lunacal.config.forwardQueryParams = true;
+                  
+        Lunacal.ns["focused-aireadiness-debrief"]("inline", {
+          elementOrSelector:"#my-lunacal-inline-focused-aireadiness-debrief-scorecard",
+          config: {"layout":""},
+          calLink: "pan-seth/focused-aireadiness-debrief",
+        });
+        Lunacal.ns["focused-aireadiness-debrief"]("preload", { calLink: "pan-seth/focused-aireadiness-debrief", type: "inline", options: { prerenderIframe: true } });
+        Lunacal.ns["focused-aireadiness-debrief"]("ui", {"theme":"light","styles":{"branding":{}},"hideEventTypeDetails":false,"layout":"","cssVarsPerTheme":{"light":{"theme-border":"#E4E4E7","theme-background-primary":"#C9A55A","theme-background-secondary":"#F4F4F5","theme-background-card":"#ffffff","theme-background-base":"#ffffff","theme-text-primary":"#111827","theme-text-secondary":"#4B5563","theme-text-card":"#111827","theme-text-base":"#111827","theme-rounded-base":"0px","theme-rounded-calendar":"0px","theme-rounded-timeslot":"4px","theme-rounded-day":"4px","theme-rounded-button":"0px","theme-shadow-calendar":"none","theme-shadow-button":"none","theme-shadow-timeslot":"none","theme-font-family":"Figtree"},"dark":{"theme-border":"#E4E4E7","theme-background-primary":"#C9A55A","theme-background-secondary":"#F4F4F5","theme-background-card":"#ffffff","theme-background-base":"#ffffff","theme-text-primary":"#111827","theme-text-secondary":"#4B5563","theme-text-card":"#111827","theme-text-base":"#111827","theme-rounded-base":"0px","theme-rounded-calendar":"0px","theme-rounded-timeslot":"4px","theme-rounded-day":"4px","theme-rounded-button":"0px","theme-shadow-calendar":"none","theme-shadow-button":"none","theme-shadow-timeslot":"none","theme-font-family":"Figtree"}},"displayedContent":{"image":true,"name":true,"designation":true,"description":true,"eventName":true,"highlightBar":false},"background":{"type":"plain"},"stylePreset":""});`;
+    document.body.appendChild(script);
+
+    return () => {
+      const existingScript = document.getElementById("lunacal-scorecard-script");
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
+  }, [quizComplete]);
 
   const questions: Question[] = [
     {
@@ -140,10 +169,6 @@ export default function Scorecard() {
     ratingColor = "text-rose-600 font-bold";
     badgeColor = "border-rose-600 bg-rose-50 text-rose-700";
   }
-
-  const handleGoToCallBooking = () => {
-    setLocation("/book-a-call");
-  };
 
   const selectedOptionIndex = answers[currentIdx];
 
@@ -313,18 +338,20 @@ export default function Scorecard() {
                   Focus operations primarily on: <span className="text-[#1A3C34] font-semibold">{gapFocus}</span>
                 </p>
               </div>
+
+              {/* Inline Calendar Container directly below the gap analysis block */}
+              <div className="mt-8 border-t border-[#C9A55A]/25 pt-8">
+                <div className="bg-white overflow-hidden p-4 rounded-lg shadow-sm border border-[#E8D5B5]">
+                  <div 
+                    id="my-lunacal-inline-focused-aireadiness-debrief-scorecard" 
+                    style={{ width: "100%", height: "650px", overflow: "hidden" }} 
+                  />
+                </div>
+              </div>
             </div>
 
             {/* Action Buttons */}
-            <div className="pt-6 border-t border-ink/10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
-              <InteractiveButton
-                onClick={handleGoToCallBooking}
-                variant="gold"
-                className="shrink-0 text-center"
-              >
-                Book a Call to Review
-              </InteractiveButton>
-
+            <div className="pt-6 border-t border-ink/10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-end">
               <InteractiveButton
                 onClick={handleRestart}
                 variant="dark"
