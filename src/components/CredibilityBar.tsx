@@ -19,16 +19,16 @@ export function CredibilityBar() {
       
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal duration={0.6}>
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 max-w-[960px] mx-auto">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-8 md:gap-16 w-full text-left">
             {/* Left Eyebrow Label */}
-            <div className="shrink-0 flex flex-col items-center md:items-start">
+            <div className="shrink-0 flex flex-col items-start">
               <span className="font-sans font-medium text-[11px] text-gold uppercase tracking-[0.16em]">
                 A DECADE OF PRACTICE INSIDE
               </span>
             </div>
 
             {/* Middle Corporate Logos */}
-            <div className="flex flex-wrap items-center justify-center gap-12 md:gap-16">
+            <div className="flex flex-wrap items-center justify-start gap-12 md:gap-16">
               {logos.map((logo, idx) => (
                 <div
                   key={idx}

@@ -76,15 +76,15 @@ export function StatsBar() {
           {/* Divider Mark 1 */}
           <div className="hidden md:block w-[1px] bg-gold/30 self-stretch my-2" />
 
-          {/* Column 1 - Center Aligned */}
-          <div className="flex-1 flex flex-col text-center items-center justify-start md:px-12">
+          {/* Column 1 - Left Aligned */}
+          <div className="flex-1 flex flex-col text-left items-start justify-start md:px-12">
             <div className="mb-2">
               <CountUp end={10} suffix="+" />
             </div>
-            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-center">
+            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
               Years inside the organizations she now advises
             </p>
-            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-center">
+            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
               At Citi, PagerDuty, and NielsenIQ: building what most consultants only theorize about.
             </p>
           </div>
@@ -92,15 +92,15 @@ export function StatsBar() {
           {/* Divider Mark 2 */}
           <div className="hidden md:block w-[1px] bg-gold/30 self-stretch my-2" />
 
-          {/* Column 3 - Right Aligned */}
-          <div className="flex-1 flex flex-col text-right items-end justify-start md:pl-12">
+          {/* Column 3 - Left Aligned */}
+          <div className="flex-1 flex flex-col text-left items-start justify-start md:pl-12">
             <div className="mb-2">
               <CountUp end={2} suffix="" />
             </div>
-            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-right">
+            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
               AI patents held
             </p>
-            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-right">
+            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
               Practitioner-level depth that most advisors do not have and cannot fake.
             </p>
           </div>
