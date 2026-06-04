@@ -17,11 +17,11 @@ export function TheProblem() {
     <section id="the-problem" className="relative bg-canvas py-12 md:py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal duration={0.65}>
-          <div className="grid grid-cols-1 md:grid-cols-[45%_55%] gap-12 md:gap-14 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-[9fr_11fr] gap-12 md:gap-14 items-center w-full min-w-0">
             
             {/* Left 45%: Large Sourced Image with shadow offset */}
             <div 
-              className="relative w-full h-[320px] md:h-[480px] bg-sand/30 image-hover-wrapper"
+              className="relative w-full h-[320px] md:h-[480px] bg-sand/30 image-hover-wrapper min-w-0"
               style={{
                 boxShadow: "6px 6px 0 0 #C9A55A"
               }}
@@ -53,7 +53,7 @@ export function TheProblem() {
             </div>
 
             {/* Right 55%: Existing Copy and Editorial Typography */}
-            <div className="space-y-6 md:pl-6 text-left">
+            <div className="space-y-6 md:pl-6 text-left min-w-0">
               <div>
                 <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-2">
                   THE CONTEXT

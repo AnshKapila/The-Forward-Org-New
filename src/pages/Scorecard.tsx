@@ -286,10 +286,9 @@ export default function Scorecard() {
     badgeColor = "border-rose-600 bg-rose-50 text-rose-700";
   }
 
-  const selectedOptionIndex = answers[currentIdx];
-  const currentQuestion = (currentIdx >= 0 && currentIdx < questions.length)
-    ? questions[currentIdx]
-    : (questions[0] || { category: "", question: "", options: [] });
+  const clampedIdx = Math.max(0, Math.min(currentIdx, questions.length - 1));
+  const selectedOptionIndex = answers[clampedIdx];
+  const currentQuestion = questions[clampedIdx];
 
   return (
     <div className="bg-canvas min-h-screen text-ink relative select-none">
@@ -302,23 +301,23 @@ export default function Scorecard() {
           <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
             {/* Cancel / Back floating menu, displayed on both mobile & desktop aligned with left margin */}
             <button
-              onClick={currentIdx === 0 ? () => setLocation("/index") : handleBack}
+              onClick={clampedIdx === 0 ? () => setLocation("/index") : handleBack}
               className="flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
             >
-              <ArrowLeft size={14} /> {currentIdx === 0 ? "Cancel" : "Back"}
+              <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Back"}
             </button>
  
             {/* Right-aligned Question tracking label */}
             <span className="font-sans text-[12px] text-[#1A3C34]/65 font-medium">
-              Question {currentIdx + 1} of {questions.length}
+              Question {clampedIdx + 1} of {questions.length}
             </span>
           </div>
  
           {/* Progress Bar styled as a premium track with interactive hover/checkpoint to go back */}
           <div className="w-full max-w-[620px] mx-auto flex items-center gap-[4px] mb-8 relative select-none">
             {questions.map((q, idx) => {
-              const isCompleted = idx < currentIdx;
-              const isActive = idx === currentIdx;
+              const isCompleted = idx < clampedIdx;
+              const isActive = idx === clampedIdx;
  
               return (
                 <div 
@@ -444,15 +443,15 @@ export default function Scorecard() {
             <div className="min-h-[44px] flex items-center justify-between gap-4 mt-2">
               {/* Mobile bottom-left Cancel/Back button */}
               <button
-                onClick={currentIdx === 0 ? () => setLocation("/index") : handleBack}
+                onClick={clampedIdx === 0 ? () => setLocation("/index") : handleBack}
                 className="md:hidden text-xs font-sans uppercase tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-2 focus:outline-none"
               >
-                <ArrowLeft size={14} /> {currentIdx === 0 ? "Cancel" : "Back"}
+                <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Back"}
               </button>
 
               <div className="ml-auto">
-                {currentIdx === questions.length - 1 ? (
-                  answers[currentIdx] !== null ? (
+                {clampedIdx === questions.length - 1 ? (
+                  answers[clampedIdx] !== null ? (
                     <InteractiveButton 
                       onClick={handleSubmit}
                       variant="gold" 
