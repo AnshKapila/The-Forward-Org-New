@@ -9,6 +9,7 @@ import Scorecard from "./pages/Scorecard";
 import BookCallPage from "./pages/BookCall";
 import Posts from "./pages/Posts";
 import ContactPage from "./pages/Contact";
+import Masterclass from "./pages/Masterclass";
 import NotFound from "./pages/NotFound";
 
 function MainAppContent() {
@@ -50,6 +51,7 @@ function MainAppContent() {
           <Route path="/book-a-call" component={BookCallPage} />
           <Route path="/posts" component={Posts} />
           <Route path="/contact" component={ContactPage} />
+          <Route path="/masterclass" component={Masterclass} />
           {/* Default fallback route pointing to beautiful 404 handler */}
           <Route path="/:rest*" component={NotFound} />
         </Switch>

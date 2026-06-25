@@ -9,6 +9,7 @@ import { AIIndexCTA } from "../components/AIIndexCTA";
 import { VisionStatement } from "../components/VisionStatement";
 import { ThoughtLeadership } from "../components/ThoughtLeadership";
 import { Freebie } from "../components/Freebie";
+import { ValueProp } from "../components/ValueProp";
 import { FAQ } from "../components/FAQ";
 import { ConnectWithPan } from "../components/ConnectWithPan";
 import { ContactSection } from "../components/ContactSection";
@@ -26,6 +27,7 @@ export default function Home() {
       <AIIndexCTA />
       <Freebie />
       <VisionStatement />
+      <ValueProp />
       <ConnectWithPan />
       <ThoughtLeadership />
       <BookACall />

@@ -5,6 +5,7 @@ import { LoopingArrow } from "./InteractiveButton";
 import { AlertCircle, RefreshCw, ServerOff, Wifi } from "lucide-react";
 import { LinkedInPost } from "../types";
 import generatedPostImage from "../assets/images/regenerated_image_1780430014552.jpg";
+import panAvatar from "../assets/images/regenerated_image_1782056067058.png";
 
 // IMAGE: Use architectural/environmental photography.
 // NO stock business people. NO AI/robot imagery.
@@ -153,7 +154,7 @@ export function ThoughtLeadership() {
           <div className="flex items-center gap-3.5 mb-10 bg-[#F5F2EC]/40 p-3.5 border border-teal/10 inline-flex text-left">
             <div className="w-10 h-10 rounded-full overflow-hidden border border-gold/40 shrink-0 bg-sand">
               <img
-                src="/images/pan-avatar.jpg"
+                src={panAvatar}
                 alt="Pan Seth"
                 className="w-full h-full object-cover"
                 onError={(e) => {

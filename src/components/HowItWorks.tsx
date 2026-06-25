@@ -12,7 +12,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
 
   // Link destinations
   const buttonPath = "/index"; 
-  const buttonText = idx === 0 ? "Take the Index" : "Get Started";
+  const buttonText = idx === 0 ? "Discover Your Readiness" : "Get Started";
 
   return (
     <div

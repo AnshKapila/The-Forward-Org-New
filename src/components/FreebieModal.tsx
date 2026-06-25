@@ -13,6 +13,25 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [fileMissing, setFileMissing] = useState(false);
+
+  const handleClose = () => {
+    setFileMissing(false);
+    onClose();
+  };
+
+  const handleDownloadClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    try {
+      const response = await fetch("/downloads/ai-readiness-framework.pdf", { method: "HEAD" });
+      if (response.status === 404) {
+        e.preventDefault();
+        setFileMissing(true);
+      }
+    } catch (err) {
+      e.preventDefault();
+      setFileMissing(true);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +76,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute inset-0 bg-[#1A1C1A]/70 backdrop-blur-xs"
           />
 
@@ -73,7 +92,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
           >
             {/* Close Button: top-right, thin × in --color-ink-faint, hover -> --color-ink, 150ms */}
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="absolute top-6 right-6 p-1 text-[#1A1C1A]/40 hover:text-ink transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-gold cursor-pointer"
               aria-label="Close modal"
             >
@@ -85,7 +104,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                 <div className="space-y-3">
                   {/* Headline: Libre Baskerville Bold, 28px, --color-ink */}
                   <h3 className="font-serif text-[28px] font-bold tracking-tight text-ink leading-tight">
-                    Get The AI Leadership Readiness Framework
+                    Get The AI Transformation Readiness Framework
                   </h3>
                   
                   {/* Subline: Figtree Regular, 16px, --color-ink-muted */}
@@ -161,20 +180,27 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                   </p>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-col items-center">
                   <a
-                    href="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                    href="/downloads/ai-readiness-framework.pdf"
+                    download="AI_Transformation_Readiness_Framework.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={handleDownloadClick}
                     className="inline-flex justify-center items-center py-4 px-8 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] cursor-pointer transition-all"
                   >
                     Download Framework (PDF)
                   </a>
+                  {fileMissing && (
+                    <p className="font-sans font-normal text-[13px] text-[#C9A55A] text-center mt-3 max-w-xs">
+                      The framework is being prepared. We'll email it to you within 24 hours.
+                    </p>
+                  )}
                 </div>
 
                 <button
                   type="button"
-                  onClick={onClose}
+                  onClick={handleClose}
                   className="text-xs font-sans text-ink-muted underline hover:text-ink block mx-auto mt-4"
                 >
                   Back to Website

@@ -85,30 +85,30 @@ export function Freebie() {
   const benefits = [
     {
       num: "01",
-      tag: "GAP ANALYSIS",
-      title: "Isolate High-Friction Sprawl",
-      desc: "Identify the exact team silos, redundant API pipelines, and disconnected copilots stalling AI adoption.",
+      tag: "ALIGNMENT",
+      title: "Strategic Clarity",
+      desc: "Define exactly what AI must achieve for your business — moving from technology pilots to board-aligned targets.",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400"
     },
     {
       num: "02",
-      tag: "FINANCIAL METRICS",
-      title: "Map Dev Costs to EBITDA",
-      desc: "Connect bottom-up developer playground experiments directly to corporate margin expansions.",
+      tag: "CAPABILITY",
+      title: "Talent & Systems",
+      desc: "Assess if your organization has the engineering depth, data readiness, and leadership infrastructure to scale.",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400"
     },
     {
       num: "03",
       tag: "GOVERNANCE",
-      title: "Sovereign Risk Playbook",
-      desc: "Deploy checks to monitor corporate liability, hallucination risk, and intellectual property leaks.",
+      title: "Risk & Security",
+      desc: "Establish the policies, compliance checkpoints, and privacy controls needed to prevent liability.",
       image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=400"
     },
     {
       num: "04",
-      tag: "CULTURE",
-      title: "Scale Workforce Leverage",
-      desc: "Leverage proven training blueprints to upskill normal operational workflows without technical debt.",
+      tag: "ADOPTION",
+      title: "Cultural Integration",
+      desc: "Equip your teams to integrate AI into daily workflows so changes stick and drive real productivity.",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400"
     }
   ];
@@ -146,11 +146,11 @@ export function Freebie() {
                   </span>
                   
                   <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-off-white leading-[1.18] text-balance">
-                    The AI Leadership Readiness Framework
+                    The AI Transformation Readiness Framework
                   </h2>
                   
                   <p className="font-sans text-[15px] md:text-[17px] text-off-white/80 leading-[1.7] max-w-xl">
-                    A structured self-assessment built for leadership teams to identify exactly where AI rollouts are stalling, isolate bottom-up developer friction, and audit sovereign data safeguards.
+                    A practical framework used by senior leaders to move their organizations from AI experimentation to coordinated business transformation — with clear priorities, measurable outcomes, and a team ready to execute.
                   </p>
                 </div>
 

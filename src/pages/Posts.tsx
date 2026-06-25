@@ -4,6 +4,7 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/Scrol
 import { LinkedInPost } from "../types";
 import { Loader2, Calendar, AlertTriangle, RefreshCw } from "lucide-react";
 import { InteractiveButton, LoopingArrow } from "../components/InteractiveButton";
+import panAvatar from "../assets/images/regenerated_image_1782056067058.png";
 
 export default function Posts() {
   const [posts, setPosts] = useState<LinkedInPost[]>([]);
@@ -195,7 +196,7 @@ export default function Posts() {
             <div className="flex items-center gap-3.5 pt-2">
               <div className="w-10 h-10 rounded-full overflow-hidden border border-gold/40 shrink-0 bg-sand">
                 <img 
-                  src="/images/pan-avatar.jpg" 
+                  src={panAvatar} 
                   alt="Pan Seth" 
                   onError={(e) => {
                     // Fallback visual

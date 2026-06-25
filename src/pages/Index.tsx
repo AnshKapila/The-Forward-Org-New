@@ -115,16 +115,16 @@ export default function IndexPage() {
               <div className="flex items-center justify-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block animate-pulse" />
                 <span className="font-sans font-bold text-[10px] md:text-xs text-gold uppercase tracking-[0.25em] block">
-                  The AI Alignment Index
+                  The AI Transformation Readiness Index
                 </span>
               </div>
               
               <h1 className="font-serif text-[32px] sm:text-[44px] md:text-[52px] lg:text-[58px] leading-[1.12] font-semibold text-[#1A3C34] tracking-tight text-balance">
-                Your Strategy Partner for <span className="font-serif italic font-normal text-gold">Growth</span>
+                Find Out Exactly Where Your AI <span className="font-serif italic font-normal text-gold">Transformation</span> Stands
               </h1>
               
               <p className="font-sans text-xs sm:text-sm md:text-base text-ink-muted leading-[1.65] max-w-[650px] mx-auto font-light">
-                A 15-question strategic audit mapping enterprise gaps between technological investments and net margin expansion. Used by senior leaders to align systems and build results.
+                A 15-question diagnostic that shows you where your organization is aligned, where it's exposed, and what to fix first to turn AI investment into measurable business outcomes.
               </p>
 
               {/* Stats Inline Info Row */}
@@ -144,7 +144,7 @@ export default function IndexPage() {
                   className="px-10 py-3.5 uppercase tracking-[0.18em] text-xs font-bold shadow-sm"
                   id="cta-take-index"
                 >
-                  Start Assessment
+                  Begin Your Readiness Assessment
                 </InteractiveButton>
               </div>
             </div>

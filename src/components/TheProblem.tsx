@@ -80,7 +80,7 @@ export function TheProblem() {
                   onClick={() => setLocation("/scorecard")}
                   id="problem-take-index-btn"
                 >
-                  Take the Index
+                  Discover Your Readiness
                 </InteractiveButton>
               </div>
 

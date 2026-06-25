@@ -22,7 +22,7 @@ export function Hero() {
   const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
 
   const phrases = [
-    "YOUR BOARD IS WATCHING.",
+    "DISCOVER YOUR READINESS.",
     "THE GAP IS NOT THE TOOLS.",
     "AI WITHOUT THE CHAOS.",
     "BUILT FOR WHAT'S NEXT.",
@@ -185,7 +185,7 @@ export function Hero() {
               variant="primary"
               className="text-center"
             >
-              Take the AI Alignment Index
+              Discover Your AI Transformation Readiness
             </InteractiveButton>
             
             {/* Secondary Action Button (Outline transparent) */}

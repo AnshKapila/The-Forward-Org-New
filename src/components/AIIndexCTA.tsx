@@ -145,7 +145,7 @@ export function AIIndexCTA() {
                 THE ALIGNMENT INDEX
               </span>
               <h3 className="font-serif text-[30px] md:text-[36px] font-bold leading-[1.15] text-[#1A3C34] max-w-xl">
-                Take the AI alignment index to find out exactly where your strategy has gaps.
+                Discover your AI transformation readiness to find out exactly where your strategy has gaps.
               </h3>
               <p className="font-sans text-[15px] md:text-[16px] text-[#1A3C34]/80 leading-relaxed max-w-xl">
                 A 15-question, 3-minute dimension-by-dimension assessment designed exclusively for corporate boards to audit AI readiness, governance loopholes, and scaling risk.
@@ -197,7 +197,7 @@ export function AIIndexCTA() {
                   variant="gold"
                   className="shadow-md"
                 >
-                  Take the AI Index
+                  Discover Your Readiness
                 </InteractiveButton>
               </div>
 
