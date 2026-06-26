@@ -16,7 +16,7 @@ export function Nav() {
     { label: "Home", path: "/" },
     { label: "The Index", path: "/index" },
     { label: "About", path: "/about" },
-    { label: "Posts", path: "/posts" },
+    // { label: "Posts", path: "/posts" },
   ];
 
   const handleBookACall = () => {

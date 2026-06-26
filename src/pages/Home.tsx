@@ -29,7 +29,7 @@ export default function Home() {
       <VisionStatement />
       <ValueProp />
       <ConnectWithPan />
-      <ThoughtLeadership />
+      {/* <ThoughtLeadership /> */}
       <BookACall />
       <FAQ />
       <ContactSection />

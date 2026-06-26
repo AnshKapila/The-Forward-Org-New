@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Check, Calendar, Users, Clock, ShieldCheck, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Clock, Users, Shield, Calendar, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { InteractiveButton } from "../components/InteractiveButton";
@@ -39,10 +39,10 @@ export default function Masterclass() {
   const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
 
   const phrases = [
-    "ESTABLISH REAL LEVERAGE.",
-    "BEYOND THE AI PILOT.",
     "CHATHAM HOUSE RULES.",
     "BUILT FOR THE C-SUITE.",
+    "ESTABLISH REAL LEVERAGE.",
+    "BEYOND THE AI PILOT.",
   ];
 
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -127,66 +127,40 @@ export default function Masterclass() {
     }
   };
 
-  const curriculum = [
-    {
-      num: "01",
-      topic: "The EBITDA of AI",
-      points: [
-        "Escaping the infinite 'AI pilot' trap and setting board-aligned targets.",
-        "Connecting technology spend and model inference directly to your balance sheet.",
-        "Identifying and dismantling redundant or low-leverage software sprawl.",
-      ],
-    },
-    {
-      num: "02",
-      topic: "Governance & Sovereignty",
-      points: [
-        "Hardening corporate data boundaries and preventing intellectual property leaks.",
-        "Navigating model legal liabilities, data privacy compliance, and hallucination risks.",
-        "Building clear board-level compliance reports for enterprise operations.",
-      ],
-    },
-    {
-      num: "03",
-      topic: "Organizational Hardening",
-      points: [
-        "Designing workforce upskilling paths that actually increase daily output.",
-        "Establishing clear standard operating procedures (SOPs) for corporate AI usage.",
-        "Transitioning from localized tech experiments to enterprise-wide infrastructure.",
-      ],
-    },
-  ];
+  const handleScrollToForm = () => {
+    document.getElementById("register-form")?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const faqItems: FAQItem[] = [
     {
       id: 1,
-      question: "What is the format of the Masterclass?",
-      answer: "The masterclass is a 3-hour intensive, highly interactive digital session conducted live under strict Chatham House Rules. We focus entirely on real-world case studies, capital allocation frameworks, and structural policy checklists rather than generic slideshows.",
+      question: "What is this masterclass?",
+      answer: "A 90-minute live session for leaders, not technical teams, on why AI adoption stalls and what to do about it.",
     },
     {
       id: 2,
-      question: "Who is this briefing designed for?",
-      answer: "This program is built exclusively for board directors, CEOs, corporate legal officers, and C-suite leaders who are responsible for strategic direction and budget approval. We do not accept junior staff or vendor generalists to preserve a high-level peer discussion group.",
+      question: "Who is this for?",
+      answer: "Any leader driving AI inside their company, whether you're the CEO, a director, or the person who got handed the AI initiative with no roadmap.",
     },
     {
       id: 3,
-      question: "What is the cost of attendance?",
-      answer: "Pricing and scheduling details are provided once your invitation inquiry is formally approved by our strategy team. Private, bespoke session packaging is also available for entire boards or executive leadership teams.",
+      question: "What will I learn?",
+      answer: "Why your team is quietly resisting, the gaps behind every stalled rollout, and one move you can make right after the session.",
     },
     {
       id: 4,
-      question: "What are the confidentiality terms (Chatham House Rules)?",
-      answer: "To encourage completely candid peer conversations, the masterclass operates strictly under Chatham House Rules. This means participants may use the strategic insights and methodologies discussed, but neither the identity nor the affiliation of any speaker or attendee can be disclosed.",
+      question: "Do I need a technical background?",
+      answer: "No. This is about leadership and culture, not code.",
     },
     {
       id: 5,
-      question: "How many teams participate in each cohort?",
-      answer: "We strictly cap each cohort at 8 executive teams per month. This limitation allows us to address individual organizational roadmaps, structural gaps, and technical budget questions during the interactive coaching segments.",
+      question: "What happens after the masterclass?",
+      answer: "You'll get the chance to take your free AI Readiness Assessment, so you can see exactly where your company stands.",
     },
     {
       id: 6,
-      question: "Can we customize the briefing for our company?",
-      answer: "Yes. While we facilitate monthly multi-organization cohorts, we also host private, bespoke briefings customized directly for your firm's private leadership retreat, board of directors, or compliance team. You may request this during the inquiry process.",
+      question: "Is this free?",
+      answer: "Yes, it's complimentary for all community members in Pan's network.",
     },
   ];
 
@@ -231,7 +205,7 @@ export default function Masterclass() {
 
   return (
     <div className="bg-white min-h-screen text-ink">
-      {/* Hero Section in Homepage Format */}
+      {/* 1. Hero Section in Homepage Format */}
       <section 
         ref={heroRef} 
         id="hero" 
@@ -239,7 +213,7 @@ export default function Masterclass() {
         onMouseLeave={() => setIsHovered(false)}
         className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden"
       >
-        {/* Background image from user attachment */}
+        {/* Background image matching user choice */}
         <div 
           className="absolute inset-0 z-0 select-none overflow-hidden"
           style={{ transform: "translateZ(0)", isolation: "isolate" }}
@@ -258,7 +232,7 @@ export default function Masterclass() {
               animate={{ scale: 1.0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               src={masterclassHeroImg}
-              alt="AI Transformation Masterclass Overview"
+              alt="Live Masterclass: Lead your team through AI"
               className="w-full h-full object-cover object-right lg:object-[85%_center] opacity-100"
               style={{
                 objectPosition: isMobile ? "80% center" : undefined,
@@ -271,9 +245,9 @@ export default function Masterclass() {
             />
           </motion.div>
           
-          {/* Deep left-aligned gradient for text legibility, right is clean */}
-          <div className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[50%] bg-gradient-to-r from-ink via-ink/80 to-transparent hidden md:block z-10 pointer-events-none" />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/85 to-transparent md:hidden z-10 pointer-events-none" />
+          {/* Deep left-aligned gradient for text legibility, matching the homepage format */}
+          <div className="absolute inset-y-0 left-0 w-full md:w-[60%] lg:w-[50%] bg-gradient-to-r from-ink via-ink/85 to-transparent hidden md:block z-10 pointer-events-none" />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/90 to-transparent md:hidden z-10 pointer-events-none" />
         </div>
 
         {/* Hero Content Aligned Left */}
@@ -284,7 +258,7 @@ export default function Masterclass() {
             animate="visible"
             className="max-w-3xl flex flex-col items-start"
           >
-            {/* Tagline Ticker */}
+            {/* Tagline / Category Label */}
             <div className="h-6 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -295,147 +269,209 @@ export default function Masterclass() {
                   transition={{ duration: 0.35, ease: "easeOut" }}
                   className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block"
                 >
-                  {phrases[phraseIdx]}
+                  LIVE MASTERCLASS
                 </motion.span>
               </AnimatePresence>
             </div>
 
-            {/* Title / Heading */}
+            {/* Main Title / Heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
+              className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4 uppercase"
             >
-              AI Transformation Masterclass for Senior Leaders
+              HOW TO LEAD YOUR TEAM THROUGH AI WITHOUT HAVING ALL THE ANSWERS
             </motion.h1>
 
-            {/* Description */}
+            {/* Description Paragraph */}
             <motion.p
               variants={itemVariants}
-              className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
+              className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-4"
             >
-              A 3-hour intensive, interactive live briefing designed exclusively for CEOs, board members, and C-suite executives to move past tool hype and establish real enterprise leverage.
+              I'll show you why your last AI rollout quietly stalled, and what the leaders who get this right do instead. Built for leaders, not engineers.
             </motion.p>
 
-            {/* Action Buttons */}
+            {/* CTA Button */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-[24px] items-stretch sm:items-center mt-8 pt-0 w-full"
             >
               <InteractiveButton
-                onClick={() => {
-                  document.getElementById("register-form")?.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={handleScrollToForm}
                 variant="gold"
-                className="text-center"
+                className="text-center px-8 py-4 font-bold"
               >
-                Request an Invitation
+                Save My Seat
               </InteractiveButton>
             </motion.div>
 
-            {/* Trust Line */}
+            {/* Sub-heading / Hook moved below CTA */}
             <motion.p
               variants={itemVariants}
-              className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left"
+              className="font-serif text-base md:text-lg text-gold/90 italic tracking-wide mt-6 text-left font-normal"
             >
-              Conducted under strict Chatham House Rules. Cohorts limited to 8 executive teams.
+              (Even if you're not the most technical leader in the room)
             </motion.p>
           </motion.div>
         </div>
       </section>
 
-      {/* Overview Bento Cards Section */}
-      <section className="py-16 bg-[#F7F4EF]/40 border-b border-gold/10">
+      {/* 2. Quick Stats / Metadata Bar */}
+      <section className="py-8 bg-[#F7F4EF] border-y border-gold/15 relative z-30">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="p-6 bg-white border border-gold/10 flex flex-col justify-between rounded-[2px] hover:border-gold/30 transition-all duration-300">
-              <Clock className="text-gold mb-4" size={24} />
-              <div>
-                <h4 className="font-serif text-lg font-bold text-ink">3 Hours</h4>
-                <p className="font-sans text-xs text-ink-muted mt-1">High-impact, zero-fluff interactive sessions.</p>
-              </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:divide-x md:divide-gold/20">
+            <div className="flex flex-col justify-center items-center">
+              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Length</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">90 minutes</span>
             </div>
-            <div className="p-6 bg-white border border-gold/10 flex flex-col justify-between rounded-[2px] hover:border-gold/30 transition-all duration-300">
-              <Users className="text-gold mb-4" size={24} />
-              <div>
-                <h4 className="font-serif text-lg font-bold text-ink">8 Executive Teams</h4>
-                <p className="font-sans text-xs text-ink-muted mt-1">Limited cohort size to ensure deep operational analysis.</p>
-              </div>
+            <div className="flex flex-col justify-center items-center">
+              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Level</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Mid-Senior leaders</span>
             </div>
-            <div className="p-6 bg-white border border-gold/10 flex flex-col justify-between rounded-[2px] hover:border-gold/30 transition-all duration-300">
-              <Calendar className="text-gold mb-4" size={24} />
-              <div>
-                <h4 className="font-serif text-lg font-bold text-ink">Monthly Cohorts</h4>
-                <p className="font-sans text-xs text-ink-muted mt-1">Structured for executive calendar flexibility.</p>
-              </div>
+            <div className="flex flex-col justify-center items-center">
+              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Type</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Live Interactive</span>
             </div>
-            <div className="p-6 bg-white border border-gold/10 flex flex-col justify-between rounded-[2px] hover:border-gold/30 transition-all duration-300">
-              <ShieldCheck className="text-gold mb-4" size={24} />
-              <div>
-                <h4 className="font-serif text-lg font-bold text-ink">Confidential Format</h4>
-                <p className="font-sans text-xs text-ink-muted mt-1">Conducted under strict Chatham House Rules.</p>
-              </div>
+            <div className="flex flex-col justify-center items-center">
+              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Access</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1 text-teal">Complimentary (Free)</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Briefing Curriculum Section */}
-      <section id="curriculum" className="py-24 md:py-32 max-w-7xl mx-auto px-6 md:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-[35%_65%] gap-12 lg:gap-16 items-start">
-          <div className="text-left space-y-4">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block">
-              THE CURRICULUM
-            </span>
-            <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
-              A Complete Blueprint for Transformation
-            </h2>
-            <p className="font-sans text-base text-ink-muted leading-relaxed font-light">
-              We skip the basic introductions to generative model architecture. This briefing is entirely focused on strategic execution, governance, and capital allocation.
-            </p>
+      {/* 3. One Core-Concept Section */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-left">
+          <ScrollReveal duration={0.6}>
+            <div className="space-y-6">
+              <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block">
+                THE CORE CHALLENGE
+              </span>
+              <h2 className="font-serif text-[32px] md:text-[45px] leading-tight font-bold text-ink">
+                THE REAL REASON AI STALLS
+              </h2>
+              
+              <p className="font-serif text-xl md:text-2xl text-teal font-medium leading-relaxed border-l-2 border-gold/40 pl-6 my-8">
+                It's never the model. It's never the tool. AI fails inside companies for one reason: nobody addressed the human side first.
+              </p>
+              
+              <p className="font-sans text-base md:text-lg text-ink-muted leading-relaxed font-light mt-6">
+                Your team isn't resisting AI. They're resisting the silence around what it means for them. This masterclass shows you the three gaps behind every stalled rollout, and how to close them, even if you didn't write a line of the strategy yourself.
+              </p>
+
+              <div className="pt-8">
+                <InteractiveButton
+                  onClick={handleScrollToForm}
+                  variant="gold"
+                  className="px-8 py-4 font-bold"
+                >
+                  Save My Seat
+                </InteractiveButton>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* 4. Two-Column "What's Included / What Changes For You" Block */}
+      <section className="py-24 md:py-32 bg-[#F7F4EF]/50 border-t border-b border-gold/10 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          <ScrollReveal duration={0.6}>
+            <div className="mb-16 text-center md:text-left">
+              <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-3">
+                PROGRAM STRUCTURE
+              </span>
+              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
+                WHAT TO EXPECT
+              </h2>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Column 1: What you'll learn */}
+            <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
+              <h3 className="font-serif text-2xl font-bold text-ink border-b border-gold/10 pb-4 flex items-center gap-3">
+                <span className="text-gold font-mono text-xl">01/</span>
+                What you'll learn
+              </h3>
+              
+              <ul className="space-y-4 font-sans text-[15px] md:text-[16px] text-ink-muted">
+                <li className="flex items-start gap-3">
+                  <span className="text-gold font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>The 3 hidden gaps killing AI adoption inside most companies</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-gold font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>The 10 patterns that quietly kill AI projects before they scale</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-gold font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>How to read your team's resistance instead of fighting it</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-gold font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>One move you can make this week, no technical background needed</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 2: What changes for you */}
+            <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
+              <h3 className="font-serif text-2xl font-bold text-teal border-b border-gold/10 pb-4 flex items-center gap-3">
+                <span className="text-teal font-mono text-xl">02/</span>
+                What changes for you
+              </h3>
+              
+              <ul className="space-y-4 font-sans text-[15px] md:text-[16px] text-ink-muted">
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>Stop guessing why AI isn't sticking</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>Lead the shift without pretending to have all the answers</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>Turn your team's pushback into your roadmap</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>Walk away with a clear next step for your company</span>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div className="space-y-12">
-            {curriculum.map((item, idx) => (
-              <div key={idx} className="flex gap-6 md:gap-8 text-left border-b border-gold/10 pb-10 last:border-b-0">
-                <span className="font-mono text-xl font-bold text-gold">
-                  {item.num}
-                </span>
-                <div className="space-y-4">
-                  <h3 className="font-serif text-2xl font-bold text-ink">
-                    {item.topic}
-                  </h3>
-                  <ul className="space-y-3 font-sans text-[15px] text-ink-muted">
-                    {item.points.map((pt, pIdx) => (
-                      <li key={pIdx} className="flex items-start gap-3">
-                        <Check className="text-gold shrink-0 mt-1" size={16} />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+          <div className="mt-16 text-center">
+            <InteractiveButton
+              onClick={handleScrollToForm}
+              variant="gold"
+              className="px-10 py-4 font-bold"
+            >
+              Save My Seat
+            </InteractiveButton>
           </div>
         </div>
       </section>
 
-      {/* Booking Form Section */}
-      <section id="register-form" className="bg-[#F7F4EF]/50 py-24 md:py-32 border-t border-gold/10">
+      {/* 5. Booking/Registration Form Section */}
+      <section id="register-form" className="bg-white py-24 md:py-32">
         <div className="max-w-xl mx-auto px-6 text-center space-y-8">
           <div className="space-y-3">
             <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
-              REGISTRATION INQUIRY
+              SECURE YOUR PLACE
             </span>
             <h2 className="font-serif text-[32px] font-bold text-ink">
-              Request Your Invitation
+              Save Your Seat
             </h2>
             <p className="font-sans text-base text-ink-muted leading-relaxed font-light">
-              Submit your details below. Our team will review your inquiry and schedule a brief compatibility call within 2 business days.
+              Submit your registration details below. Cohorts are strictly limited to senior leaders to ensure deep, interactive case analysis.
             </p>
           </div>
 
           {!isSuccess ? (
-            <form onSubmit={handleSubmit} className="space-y-6 text-left bg-white p-8 md:p-10 border border-gold/10 shadow-md">
+            <form onSubmit={handleSubmit} className="space-y-6 text-left bg-[#F7F4EF]/40 p-8 md:p-10 border border-gold/15 shadow-sm rounded-[2px]">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="mc-name" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
@@ -448,7 +484,7 @@ export default function Masterclass() {
                     placeholder="Marcus Vance"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
                   />
                 </div>
 
@@ -463,7 +499,7 @@ export default function Masterclass() {
                     placeholder="m.vance@vanguard.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
                   />
                 </div>
               </div>
@@ -480,7 +516,7 @@ export default function Masterclass() {
                     placeholder="Vanguard Strategy Group"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
                   />
                 </div>
 
@@ -491,10 +527,10 @@ export default function Masterclass() {
                   <input
                     id="mc-role"
                     type="text"
-                    placeholder="CEO / Board Member"
+                    placeholder="CEO / Director / Partner"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
                   />
                 </div>
               </div>
@@ -504,9 +540,9 @@ export default function Masterclass() {
                   type="submit"
                   disabled={isSubmitting}
                   variant="gold"
-                  className="w-full py-4 text-center"
+                  className="w-full py-4 text-center text-sm font-bold uppercase tracking-wider"
                 >
-                  {isSubmitting ? "Submitting Inquiry..." : "Submit Inquiry"}
+                  {isSubmitting ? "Processing Reservation..." : "Save My Seat"}
                 </InteractiveButton>
               </div>
 
@@ -515,22 +551,22 @@ export default function Masterclass() {
               </p>
             </form>
           ) : (
-            <div className="bg-white p-12 border border-gold/15 shadow-md space-y-4">
+            <div className="bg-white p-12 border border-gold/15 shadow-md space-y-4 rounded-[2px]">
               <div className="w-12 h-12 text-teal border border-teal/20 mx-auto flex items-center justify-center">
                 <Check size={24} strokeWidth={1.5} />
               </div>
-              <h3 className="font-serif text-2xl font-bold text-ink">Inquiry Received</h3>
+              <h3 className="font-serif text-2xl font-bold text-ink">Seat Requested Successfully</h3>
               <p className="font-sans text-[15px] text-ink-muted max-w-sm mx-auto">
-                Thank you for your interest. We will review your application and follow up via email within 2 business days to discuss cohort availability.
+                Thank you. We have saved your request. Our team will review your application and follow up via email within 2 business days with cohort calendars.
               </p>
             </div>
           )}
         </div>
       </section>
 
-      {/* Masterclass Specific FAQs Section */}
-      <section id="faq" className="relative bg-canvas py-24 md:py-32 overflow-hidden border-t border-gold/10">
-        {/* Topographic Contour lines */}
+      {/* 6. FAQ Section */}
+      <section id="faq" className="relative bg-[#F7F4EF]/30 py-24 md:py-32 overflow-hidden border-t border-gold/10">
+        {/* Topographic Contour lines decoration */}
         <div className="absolute inset-0 pointer-events-none select-none opacity-[0.05]">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -552,7 +588,7 @@ export default function Masterclass() {
                 COMMON QUESTIONS
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-none">
-                Masterclass Briefing Details
+                FAQ
               </h2>
             </div>
           </ScrollReveal>
