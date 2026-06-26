@@ -1,5 +1,7 @@
 import React from "react";
+import { Link } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
+import { LoopingArrow } from "./InteractiveButton";
 
 export function ValueProp() {
   const points = [
@@ -26,13 +28,27 @@ export function ValueProp() {
         
         {/* Header section */}
         <ScrollReveal duration={0.65}>
-          <div className="text-center mb-16 md:mb-20 max-w-3xl mx-auto">
-            <span className="font-sans font-semibold text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-              THE VALUE PROPOSITION
-            </span>
-            <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink text-balance">
-              Why Leading Firms Partner With Us
-            </h2>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-20">
+            <div className="text-left max-w-2xl">
+              <span className="font-sans font-semibold text-xs text-gold uppercase tracking-[0.2em] block mb-3">
+                THE VALUE PROPOSITION
+              </span>
+              <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink text-balance">
+                Why Leading Firms Partner With Us
+              </h2>
+            </div>
+            <div className="flex items-start justify-start shrink-0 pb-1 md:pb-2">
+              <Link href="/masterclass">
+                <span className="group inline-flex items-center gap-3 cursor-pointer text-ink hover:text-gold transition-colors duration-300">
+                  <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] border-b border-gold/30 group-hover:border-gold pb-1.5 transition-all duration-300">
+                    Establish Real Enterprise Leverage
+                  </span>
+                  <span className="flex items-center justify-center w-8 h-8 rounded-full border border-gold/20 group-hover:border-gold group-hover:bg-[#F7F4EF]/50 transition-all duration-300">
+                    <LoopingArrow className="text-gold" size={14} />
+                  </span>
+                </span>
+              </Link>
+            </div>
           </div>
         </ScrollReveal>
 

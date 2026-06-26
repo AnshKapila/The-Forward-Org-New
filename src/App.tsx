@@ -14,7 +14,7 @@ import NotFound from "./pages/NotFound";
 
 function MainAppContent() {
   const [location] = useLocation();
-  const isHomePage = location === "/";
+  const isOverlayPage = location === "/" || location === "/masterclass";
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,7 +42,7 @@ function MainAppContent() {
       <Nav />
 
       {/* Pages Container */}
-      <div className={`flex-grow ${isHomePage ? "" : "pt-[80px] md:pt-[96px]"}`}>
+      <div className={`flex-grow ${isOverlayPage ? "" : "pt-[80px] md:pt-[96px]"}`}>
         <Switch>
           <Route path="/" component={Home} />
           <Route path="/about" component={About} />

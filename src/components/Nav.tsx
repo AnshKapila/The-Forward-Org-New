@@ -33,8 +33,8 @@ export function Nav() {
     }
   };
 
-  const isHomePage = location === "/";
-  const showDarkNavbar = !isHomePage || isScrolled;
+  const isTransparentNavbarPage = location === "/" || location === "/masterclass";
+  const showDarkNavbar = !isTransparentNavbarPage || isScrolled;
 
   return (
     <>
