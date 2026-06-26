@@ -39,7 +39,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
 
     setIsSubmitting(true);
     try {
-      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://httpbin.org/post";
+      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://script.google.com/macros/s/AKfycbxGwOYxbmi2-dp08qNBC_c_jMBQJDhcivZd4ruDz6NKuRmgK188s5rLxxm8hk4YElT3/exec";
       
       const response = await fetch(webhookUrl, {
         method: "POST",

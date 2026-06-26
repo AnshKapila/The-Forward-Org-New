@@ -99,11 +99,11 @@ export default function Masterclass() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !company) return;
+    if (!name || !email) return;
 
     setIsSubmitting(true);
     try {
-      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://httpbin.org/post";
+      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://script.google.com/macros/s/AKfycbxGwOYxbmi2-dp08qNBC_c_jMBQJDhcivZd4ruDz6NKuRmgK188s5rLxxm8hk4YElT3/exec";
       await fetch(webhookUrl, {
         method: "POST",
         headers: {
@@ -490,7 +490,7 @@ export default function Masterclass() {
 
                 <div className="space-y-2">
                   <label htmlFor="mc-email" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
-                    Corporate Email
+                    Email
                   </label>
                   <input
                     id="mc-email"
@@ -507,12 +507,11 @@ export default function Masterclass() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="mc-company" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
-                    Organization
+                    Organization <span className="text-ink-muted/60 text-xs font-normal lowercase">(optional)</span>
                   </label>
                   <input
                     id="mc-company"
                     type="text"
-                    required
                     placeholder="Vanguard Strategy Group"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
@@ -522,7 +521,7 @@ export default function Masterclass() {
 
                 <div className="space-y-2">
                   <label htmlFor="mc-role" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
-                    Your Title / Role
+                    Your Title / Role <span className="text-ink-muted/60 text-xs font-normal lowercase">(optional)</span>
                   </label>
                   <input
                     id="mc-role"
