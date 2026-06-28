@@ -135,31 +135,41 @@ export default function Masterclass() {
   const faqItems: FAQItem[] = [
     {
       id: 1,
+      question: "Who's hosting this?",
+      answer: "Pan Seth, founder of The Forward Org. A decade building and governing real AI systems inside companies like Citi, PagerDuty and NielsenIQ. $600M+ in revenue impact, that created two AI patents along the way. She's trained alongside the top AI and Leadership consultants across the world and experienced firsthand what makes AI work inside a company, and what quietly kills it.",
+    },
+    {
+      id: 2,
+      question: "What is The Forward Org?",
+      answer: "The Forward Org closes the gap between what AI promises and what companies get from it. We help organizations identify where AI creates the greatest business value, design an AI strategy aligned with their goals, redesign workflows and processes, and enable teams to successfully adopt AI across the organization.",
+    },
+    {
+      id: 3,
       question: "What is this masterclass?",
       answer: "A 90-minute live session for leaders, not technical teams, on why AI adoption stalls and what to do about it.",
     },
     {
-      id: 2,
+      id: 4,
       question: "Who is this for?",
       answer: "Any leader driving AI inside their company, whether you're the CEO, a director, or the person who got handed the AI initiative with no roadmap.",
     },
     {
-      id: 3,
+      id: 5,
       question: "What will I learn?",
       answer: "Why your team is quietly resisting, the gaps behind every stalled rollout, and one move you can make right after the session.",
     },
     {
-      id: 4,
+      id: 6,
       question: "Do I need a technical background?",
       answer: "No. This is about leadership and culture, not code.",
     },
     {
-      id: 5,
+      id: 7,
       question: "What happens after the masterclass?",
       answer: "You'll get the chance to take your free AI Readiness Assessment, so you can see exactly where your company stands.",
     },
     {
-      id: 6,
+      id: 8,
       question: "Is this free?",
       answer: "Yes, it's complimentary for all community members in Pan's network.",
     },
@@ -280,7 +290,7 @@ export default function Masterclass() {
               variants={itemVariants}
               className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4 uppercase"
             >
-              HOW TO LEAD YOUR TEAM THROUGH AI WITHOUT HAVING ALL THE ANSWERS
+              HOW TO LEAD IN THE AI ERA WITHOUT HAVING ALL THE ANSWERS
             </motion.h1>
 
             {/* Description Paragraph */}
@@ -288,7 +298,7 @@ export default function Masterclass() {
               variants={itemVariants}
               className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-4"
             >
-              I'll show you why your last AI rollout quietly stalled, and what the leaders who get this right do instead. Built for leaders, not engineers.
+              Your team isn't resisting AI. They're resisting the silence around it. Come find out why, and what to do next.
             </motion.p>
 
             {/* CTA Button */}
@@ -310,7 +320,7 @@ export default function Masterclass() {
               variants={itemVariants}
               className="font-serif text-base md:text-lg text-gold/90 italic tracking-wide mt-6 text-left font-normal"
             >
-              (Even if you're not the most technical leader in the room)
+              (Even if you're not the technical one in the room)
             </motion.p>
           </motion.div>
         </div>
