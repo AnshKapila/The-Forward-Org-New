@@ -103,9 +103,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
               className="space-y-6"
             >
               <p className="font-sans text-[15px] sm:text-[16px] text-white/90 leading-[1.7] max-w-sm">
-                {idx === 0 
-                  ? "The AI Alignment Index: 15 questions, 5 dimensions, a precise picture of where your AI strategy has gaps." 
-                  : step.description}
+                {step.description}
               </p>
 
               {/* Luxury Golden Button CTA */}
@@ -132,21 +130,21 @@ export function HowItWorks() {
       title: "Diagnose",
       iconPath: "/images/icon-diagnostic.svg",
       iconAim: "Abstract: a compass or measuring instrument",
-      description: "The AI Alignment Index: 15 questions, 5 dimensions, a precise picture of where your AI strategy has gaps.",
+      description: "We start by understanding your organization's current reality, assessing leadership alignment, cultural readiness, governance maturity, adoption barriers, and where AI can create the greatest business value. You leave this phase knowing exactly where you stand and where the critical gaps are.",
     },
     {
       num: "02",
       title: "Design",
       iconPath: "/images/icon-design.svg",
       iconAim: "Abstract: a grid or blueprint motif",
-      description: "A structured AI integration plan built around your leadership team, your industry, and your actual decision-making architecture.",
+      description: "Together we define where your organization needs to go. We build a practical AI strategy, a clear roadmap, and the organizational design (roles, workflows, governance structures, and decision-making frameworks) that make transformation executable, not theoretical.",
     },
     {
       num: "03",
       title: "Deploy",
       iconPath: "/images/icon-deploy.svg",
       iconAim: "Abstract: an upward arrow or expanding shape",
-      description: "Execution support through leadership alignment, cultural adoption, and governance that makes AI stick beyond the pilot.",
+      description: "We guide execution through the phases that most organizations get wrong: leadership alignment, workforce adoption, and the measurement frameworks that connect AI investments directly to business outcomes. The goal is not a successful pilot. It is irreversible clarity and lasting change.",
     },
   ];
 
@@ -163,7 +161,7 @@ export function HowItWorks() {
           <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="text-left">
               <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink max-w-xl text-balance">
-                How we work together
+                How we work together.
               </h2>
             </div>
           </div>

@@ -30,13 +30,13 @@ export function AIIndexCTA() {
 
             <div className="relative z-10 space-y-4">
               <span className="font-mono text-[10px] text-gold uppercase tracking-[0.25em] block">
-                THE CHALLENGE
+                THE PROBLEM WE SOLVE
               </span>
               <h3 className="font-serif text-[28px] md:text-[32px] font-bold leading-[1.2] text-white">
-                Your strategy blindspots are clear.
+                Most organizations are experimenting with AI. Few are building with it.
               </h3>
               <p className="font-sans text-[14px] md:text-[15px] text-[#F7F4EF]/75 leading-relaxed">
-                To build high-yield output, leadership teams must dissect unstructured AI sprawl, audit dev workflows, and connect engineering to gross margins.
+                Scattered pilots, leadership misalignment, immature governance, and unclear ROI are the real barriers to AI transformation, rather than the technology. We diagnose exactly where your organization stands on each of these dimensions.
               </p>
             </div>
 
@@ -145,10 +145,10 @@ export function AIIndexCTA() {
                 THE ALIGNMENT INDEX
               </span>
               <h3 className="font-serif text-[30px] md:text-[36px] font-bold leading-[1.15] text-[#1A3C34] max-w-xl">
-                Discover your AI transformation readiness to find out exactly where your strategy has gaps.
+                Find out exactly where your AI transformation stands, and what to fix first.
               </h3>
               <p className="font-sans text-[15px] md:text-[16px] text-[#1A3C34]/80 leading-relaxed max-w-xl">
-                A 15-question, 3-minute dimension-by-dimension assessment designed exclusively for corporate boards to audit AI readiness, governance loopholes, and scaling risk.
+                A 15-question organizational diagnostic across five dimensions: strategy, governance, leadership, workforce adoption, and ROI. Designed for senior leaders who need clarity, not another AI readiness survey.
               </p>
             </div>
 
@@ -197,7 +197,7 @@ export function AIIndexCTA() {
                   variant="gold"
                   className="shadow-md"
                 >
-                  Discover Your Readiness
+                  Discover Your AI Transformation Readiness
                 </InteractiveButton>
               </div>
 

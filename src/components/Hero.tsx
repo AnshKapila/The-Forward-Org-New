@@ -22,10 +22,10 @@ export function Hero() {
   const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
 
   const phrases = [
-    "DISCOVER YOUR READINESS.",
-    "THE GAP IS NOT THE TOOLS.",
-    "AI WITHOUT THE CHAOS.",
-    "BUILT FOR WHAT'S NEXT.",
+    "BEYOND THE AI PILOT",
+    "ALIGNING PEOPLE AND STRATEGY",
+    "GOVERNANCE FOR REGULATED INDUSTRIES",
+    "MEASURABLE VALUE FROM AI",
   ];
 
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -163,7 +163,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
           >
-            Your AI investments deserve more than another pilot.
+            Your AI investments are failing to deliver.
           </motion.h1>
 
           {/* Subheadline description with white-dimmed styling for accessibility */}
@@ -171,7 +171,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
           >
-            Most organizations are running AI experiments. Forward ones are building the leadership infrastructure that makes AI irreversible and measurably profitable.
+            Most organizations are already experimenting with AI but struggle to translate pilots into actual business value. We address the strategy, governance, and organizational alignment gaps to turn technology investments into sustainable results.
           </motion.p>
 
           {/* Double Active Hero Action Buttons side-by-side inspired by the wireframe */}
@@ -203,7 +203,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left"
           >
-            Used by CEOs and C-suite leaders who are done experimenting and ready to build.
+            Trusted by senior leaders in regulated industries, high-growth companies, and enterprise technology organizations.
           </motion.p>
         </motion.div>
       </div>

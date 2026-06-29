@@ -136,7 +136,7 @@ export default function Scorecard() {
       question: "What best describes your employees’ current mindset toward AI?",
       options: [
         { label: "A", points: 1, text: "Significant fear, avoidance or active resistance" },
-        { label: "B", points: 2, text: "Passive compliance — they use it when told to, not by choice" },
+        { label: "B", points: 2, text: "Passive compliance, meaning they use it when told to, not by choice" },
         { label: "C", points: 3, text: "Mixed - some champions, some resistors" },
         { label: "D", points: 4, text: "Genuine curiosity - people are experimenting and sharing what they find" },
       ],
@@ -146,10 +146,10 @@ export default function Scorecard() {
       category: "Workforce Adoption & Psychological Safety",
       question: "How equipped do your employees feel to actually use AI in their specific roles?",
       options: [
-        { label: "A", points: 1, text: "Not at all — most people don't know where to start" },
-        { label: "B", points: 2, text: "Basic awareness — they've been introduced to tools but have no role-specific guidance" },
-        { label: "C", points: 3, text: "Partially — some teams have training, others are figuring it out alone" },
-        { label: "D", points: 4, text: "Well equipped — people have role-specific workflows, prompts, and ongoing support" },
+        { label: "A", points: 1, text: "Not at all, as most people don't know where to start" },
+        { label: "B", points: 2, text: "Basic awareness, as they've been introduced to tools but have no role-specific guidance" },
+        { label: "C", points: 3, text: "Partially, where some teams have training, others are figuring it out alone" },
+        { label: "D", points: 4, text: "Well equipped, meaning people have role-specific workflows, prompts, and ongoing support" },
       ],
     },
     {
@@ -157,7 +157,7 @@ export default function Scorecard() {
       category: "Workforce Adoption & Psychological Safety",
       question: "How embedded is AI in your team's day-to-day workflows right now?",
       options: [
-        { label: "A", points: 1, text: "Not at all — it's separate from daily work" },
+        { label: "A", points: 1, text: "Not at all, as it's separate from daily work" },
         { label: "B", points: 2, text: "A few individuals use it on their own" },
         { label: "C", points: 3, text: "Some teams have integrated it into specific workflows" },
         { label: "D", points: 4, text: "AI is embedded across functions as a standard way of working" },
@@ -190,7 +190,7 @@ export default function Scorecard() {
       category: "Roadmap Prioritization & ROI Clarity",
       question: "How visible is the return on your AI investments to your leadership team right now?",
       options: [
-        { label: "A", points: 1, text: "There is no visibility — we haven't defined what success looks like" },
+        { label: "A", points: 1, text: "There is no visibility, since we haven't defined what success looks like" },
         { label: "B", points: 2, text: "Leadership knows we're investing but can't see what it's producing" },
         { label: "C", points: 3, text: "Some initiatives have visible results but most don't" },
         { label: "D", points: 4, text: "Every AI investment has a dashboard or metric that leadership reviews regularly" },

@@ -40,18 +40,18 @@ export function WhoWeHelp() {
   const items: AccordionItem[] = [
     {
       num: "01",
-      title: "Enterprise Boards & CIOs",
-      description: "Navigate past fragmented, bottom-up tool sprawl. We build unified, defensive strategic models to align isolated software projects with board-level EBITDA targets, corporate compliance guidelines, and verified core operational metrics."
+      title: "CEOs of Regulated Industries",
+      description: "\"My board asks about our AI strategy every quarter, but our legal and compliance teams block every initiative because of data privacy and security risks.\" We help you design a defensible AI roadmap and governance structure that satisfies regulators while producing measurable business results."
     },
     {
       num: "02",
-      title: "Private Equity & Portfolio Operations",
-      description: "Perform deep, quantitative operational reviews for portfolio companies. We isolate high-friction overhead targets, align tech architecture with the investment thesis, and equip operators to trace AI tooling directly to margin expansions and enterprise valuation."
+      title: "CEOs of Scaling Companies",
+      description: "\"We have invested heavily in AI tools and our teams are using them, but I cannot show my investors or board what that capital is actually producing on our bottom line.\" We establish clear ROI attribution and workflow metrics to turn isolated software experiments into a coordinated, margin-expanding capability."
     },
     {
       num: "03",
-      title: "High-Growth SaaS Founders",
-      description: "Restructure product delivery and compute overhead and design defensible generative loops. We help scaling technology teams engineer real leverage, optimizing pipeline speed and scaling capacity without escalating platform or cloud compute debt."
+      title: "CIOs and Chief Digital Officers",
+      description: "\"My team can build the technology stack, but leadership misalignment and cultural resistance are stalling workforce adoption and killing our initiatives.\" We address the organizational conditions directly, aligning your leadership team and redesigning day-to-day procedures to make adoption successful and sustainable."
     }
   ];
 
@@ -83,7 +83,7 @@ export function WhoWeHelp() {
                   WHO WE HELP
                 </span>
                 <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink">
-                  Designed for Leaders at Key Inflection Points
+                  Built for leaders navigating a defining business transition.
                 </h2>
               </div>
 

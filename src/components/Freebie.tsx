@@ -87,7 +87,7 @@ export function Freebie() {
       num: "01",
       tag: "ALIGNMENT",
       title: "Strategic Clarity",
-      desc: "Define exactly what AI must achieve for your business — moving from technology pilots to board-aligned targets.",
+      desc: "Define exactly what AI must achieve for your business, moving from technology pilots to board-aligned targets.",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400"
     },
     {
@@ -150,7 +150,7 @@ export function Freebie() {
                   </h2>
                   
                   <p className="font-sans text-[15px] md:text-[17px] text-off-white/80 leading-[1.7] max-w-xl">
-                    A practical framework used by senior leaders to move their organizations from AI experimentation to coordinated business transformation — with clear priorities, measurable outcomes, and a team ready to execute.
+                    A practical framework used by senior leaders to move their organizations from AI experimentation to coordinated business transformation, complete with clear priorities, measurable outcomes, and a team ready to execute.
                   </p>
                 </div>
 

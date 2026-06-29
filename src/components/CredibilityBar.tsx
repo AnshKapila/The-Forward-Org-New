@@ -23,7 +23,7 @@ export function CredibilityBar() {
             {/* Left Eyebrow Label */}
             <div className="shrink-0 flex flex-col items-start">
               <span className="font-sans font-medium text-[11px] text-gold uppercase tracking-[0.16em]">
-                A DECADE OF PRACTICE INSIDE
+                OUR EXPERIENCE BUILT INSIDE
               </span>
             </div>
 

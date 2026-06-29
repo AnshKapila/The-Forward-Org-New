@@ -18,10 +18,10 @@ export function BookACall() {
         <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[48px] font-bold text-white leading-tight tracking-tight mt-4 max-w-2xl px-2">
           30 minutes. No pitch. Just clarity on where you stand and what to do next.
         </h2>
-        <span className="font-sans text-[13px] text-[#F7F4EF]/50 leading-none mt-4 block">
-          Pan personally takes every call.
+        <span className="font-sans text-[13px] text-[#F7F4EF]/70 leading-relaxed mt-4 block max-w-lg">
+          No sales team. You will speak directly with an advisor who has built AI inside the organizations we now advise.
         </span>
-        <div className="mt-8">
+        <div className="mt-8 flex flex-col items-center">
           <InteractiveButton
             onClick={handleGoToBooking}
             variant="gold"
@@ -29,6 +29,9 @@ export function BookACall() {
           >
             Book a Call
           </InteractiveButton>
+          <p className="font-sans text-[11px] text-[#F7F4EF]/55 mt-3 select-none tracking-wide">
+            A peer-level strategy discussion. No follow-up sequences unless you request them.
+          </p>
         </div>
       </div>
     </section>

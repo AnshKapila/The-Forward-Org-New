@@ -59,18 +59,18 @@ export function TheProblem() {
                   THE CONTEXT
                 </span>
                 <h2 className="font-serif text-[32px] md:text-[40px] leading-[1.1] font-bold text-ink">
-                  The Situation
+                  The Gap Is Never the Technology
                 </h2>
               </div>
 
               {/* Premium Pull Quote */}
               <blockquote className="font-serif italic text-2xl md:text-[28px] leading-relaxed text-teal text-balance">
-                "Your teams are using AI. Your board is asking about AI. But the results are not matching the investment, and you already know why."
+                "Organizations aren't struggling to access AI; they're struggling to align strategy, people, processes, and technology to generate measurable business outcomes from it."
               </blockquote>
 
               {/* Body Text */}
               <p className="font-sans text-[17px] text-ink-muted leading-[1.75] font-light">
-                The gap is never the technology. It is always what sits underneath it: whether your leadership team is aligned, whether your governance can handle the speed, whether your people have been given permission to actually change how they work. That is what we fix.
+                Most organizations already have AI tools. What they lack is the strategic clarity, governance maturity, leadership alignment, and cultural readiness to make those tools produce real results. This gap costs senior leaders millions in wasted software licensing, uncoordinated pilots, and hidden compliance risks. We close this gap by aligning strategy, governance, and culture to turn technology investments into sustainable results.
               </p>
 
               {/* Action Button */}
@@ -80,7 +80,7 @@ export function TheProblem() {
                   onClick={() => setLocation("/scorecard")}
                   id="problem-take-index-btn"
                 >
-                  Discover Your Readiness
+                  Discover Your AI Transformation Readiness
                 </InteractiveButton>
               </div>
 

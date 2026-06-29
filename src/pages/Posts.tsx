@@ -49,7 +49,7 @@ export default function Posts() {
     {
       date: "May 05, 2026",
       tag: "CULTURAL ADOPTION",
-      excerpt: "If your teams think AI is coming to thin their ranks, they will sabotage adoption with passive operational resistance. Reframe the narrative: AI is a co-thinking buffer that turns a mid-tier manager into an autonomous director. Align adoption with promotion paths to unlock velocity.",
+      excerpt: "If your teams think AI is coming to thin their ranks, they will sabotage adoption with passive operational resistance. Reframe the narrative: AI is a co-thinking buffer that turns a mid-tier manager into an autonomous director. Align adoption with promotion paths to accelerate adoption.",
       linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
@@ -189,7 +189,7 @@ export default function Posts() {
               FROM THE FIELD
             </span>
             <h1 className="font-serif text-[38px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
-              Pan's thinking, published weekly.
+              Our thinking, published weekly.
             </h1>
             
             {/* Expanded custom author avatar & description layout */}
@@ -210,7 +210,7 @@ export default function Posts() {
                   Pan Seth <span className="text-gold/50 mx-2">•</span> <span className="text-gold uppercase tracking-wider text-xs font-bold">AI Strategy Advisor</span>
                 </p>
                 <p className="font-sans text-[11px] text-off-white/70">
-                  On AI strategy, leadership alignment, and organizational change.
+                  On AI strategy, governance, leadership alignment, and workforce adoption.
                 </p>
               </div>
             </div>

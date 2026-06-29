@@ -60,16 +60,15 @@ export function StatsBar() {
           {/* Column 2 - Left Aligned */}
           <div className="flex-1 flex flex-col text-left items-start justify-start md:pr-12">
             <div className="mb-2">
-              {/* COPY PENDING — Pan to confirm exact framing of $6M figure before launch */}
               <h2 className="font-serif text-[42px] md:text-[54px] font-bold text-gold inline-flex items-center">
                 $6M+
               </h2>
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
-              In AI-driven operational value influenced across engagements
+              In measurable business value influenced across engagements
             </p>
             <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
-              Across Finance, SaaS, and Enterprise Technology.
+              Across regulated industries, enterprise technology, and high-growth companies.
             </p>
           </div>
 
@@ -82,10 +81,10 @@ export function StatsBar() {
               <CountUp end={10} suffix="+" />
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
-              Years inside the organizations she now advises
+              Years inside the organizations we now advise
             </p>
             <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
-              At Citi, PagerDuty, and NielsenIQ: building what most consultants only theorize about.
+              At Citi, PagerDuty, and NielsenIQ, building the infrastructure most consultants only theorize about.
             </p>
           </div>
 
@@ -98,10 +97,10 @@ export function StatsBar() {
               <CountUp end={2} suffix="" />
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
-              AI patents held
+              AI patents (practitioner depth that most advisors cannot replicate)
             </p>
             <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
-              Practitioner-level depth that most advisors do not have and cannot fake.
+              A decade of building inside enterprise AI, not observing from the outside.
             </p>
           </div>
         </div>

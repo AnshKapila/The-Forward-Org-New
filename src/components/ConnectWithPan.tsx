@@ -61,13 +61,16 @@ export function ConnectWithPan() {
                     Pan Seth
                   </h2>
                   <p className="font-sans text-[15px] md:text-[16px] font-medium text-gold uppercase tracking-wider block">
-                    FOUNDER & STRATEGY ADVISOR
+                    FOUNDER · AI STRATEGY & LEADERSHIP ADVISOR
                   </p>
                 </div>
 
                 <div className="border-t border-white/10 pt-5 lg:mt-auto">
                   <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl">
-                    Pan spent a decade building AI infrastructure inside Citi, PagerDuty, and NielsenIQ, before advising the leaders navigating the same challenges from the outside. She holds 2 AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep piloting it.
+                    Pan has spent more than a decade inside the organizations she now advises, including Citi, PagerDuty, and NielsenIQ, building the AI infrastructure that most consultants only theorize about. She holds two AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep experimenting with it.
+                  </p>
+                  <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl mt-4">
+                    Her approach is different because her experience is different. She does not advise on AI from a distance. She has built it, governed it, and driven adoption inside the same kinds of organizations her clients lead today.
                   </p>
                 </div>
               </div>
@@ -91,7 +94,7 @@ export function ConnectWithPan() {
 
                     <div className="space-y-1.5">
                       <h3 className="font-sans font-bold text-sm text-white tracking-wide">
-                        30-min strategy session
+                        30-min AI transformation strategy session
                       </h3>
                       
                       {/* Live calendar status indicator */}
@@ -108,7 +111,7 @@ export function ConnectWithPan() {
                   </div>
 
                   {/* Booking trigger action */}
-                  <div className="relative z-10 pt-2">
+                  <div className="relative z-10 pt-2 space-y-2">
                     <InteractiveButton
                       variant="primary"
                       className="w-full text-center"
@@ -118,6 +121,9 @@ export function ConnectWithPan() {
                     >
                       Book your call
                     </InteractiveButton>
+                    <p className="font-sans text-[11px] text-[#F7F4EF]/60 text-center tracking-wide leading-tight mt-2">
+                      30 minutes. No pitch. <br />Just clarity on where you stand.
+                    </p>
                   </div>
 
                 </div>

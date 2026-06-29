@@ -13,22 +13,22 @@ export default function About() {
     {
       company: "Citi",
       years: "2013-2016",
-      desc: "Architected early machine learning fraud detection systems. Scaled predictive trading models on enterprise infrastructure.",
+      desc: "Architected early machine learning fraud detection systems. Scaled predictive trading models on global enterprise infrastructure.",
     },
     {
       company: "PagerDuty",
       years: "2016-2020",
-      desc: "Developed real-time incident clustering algorithms. Authored primary patents on self-healing operations alerting.",
+      desc: "Developed real-time incident clustering algorithms and authored core patents on automated operations alerting.",
     },
     {
       company: "NielsenIQ",
       years: "2020-2024",
-      desc: "Supervised global retail classification AI systems. Spearheaded model modernization to handle billions of market records.",
+      desc: "Supervised global retail classification AI systems, modernizing model architectures to handle billions of market records.",
     },
     {
       company: "The Forward Org",
       years: "2024–Present",
-      desc: "Advising the leaders navigating the same structural challenges from the outside.",
+      desc: "Advising the leaders navigating the same structural challenges we solved from the inside.",
     },
   ];
 
@@ -58,13 +58,13 @@ export default function About() {
               
               <div className="space-y-4 font-sans text-base text-ink-muted leading-relaxed">
                 <p>
-                  Pan Seth is an elite strategic and organizational alignment advisor for corporate AI enterprise integration. She spent more than a decade building core AI infrastructure inside top-tier organizations like Citi, PagerDuty, and NielsenIQ. Unlike consultants who analyze from a distance, Pan has designed, scaled, and managed AI products and pipelines directly from within the enterprise.
+                  Pan Seth helps leaders in regulated and high-consequence organizations successfully navigate one of the most important transitions of their careers: the shift into the AI era. She works with CEOs, CDOs, and CIOs who are already experimenting with AI but struggle to translate pilots into actual business value.
                 </p>
                 <p>
-                  Holder of two distinct AI patents in data structure and automated classification systems, Pan understands the deep operational limits of technologies that theorists tend to gloss over. Her strategic model was born out of a stark contrast she witnessed repeatedly: the absolute gap between technologists launching features and executive teams understanding how those features drive bottom-line margin expansion.
+                  Unlike theoretical advisors, Pan spent more than a decade inside top-tier enterprises, including Citi, PagerDuty, and NielsenIQ, building and governing real AI infrastructure. Holding two AI patents, she turns invisible organizational misalignment into irreversible clarity, and then returns power to the people who need to act.
                 </p>
                 <p>
-                  Today, through Pan Seth Advisory and The Forward Org, she advises Fortune 500 boards, enterprise CIOs, and scaling SaaS leadership teams on structural alignment. Her work centers on moving organizations past infinite, expensive "AI pilots" and into a state where AI acts as fundamental infrastructure: hardened, secure, and measured.
+                  What makes her approach different is that she does not just focus on technology. She focuses on the specific organizational conditions (strategy, governance, leadership, and cultural adoption) that determine whether AI investments produce measurable outcomes or quietly fail.
                 </p>
               </div>
 
@@ -114,7 +114,7 @@ export default function About() {
                 THE MESSAGE
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
-                How We Build Aligned Organizations
+                How we build aligned, AI-ready organizations.
               </h2>
             </div>
           </ScrollReveal>
@@ -134,7 +134,7 @@ export default function About() {
 
           <ScrollReveal duration={0.65} delay={0.15}>
             <p className="font-sans text-[14px] text-ink/60">
-              A 2-minute overview of our organizational alignment framework.
+              A brief overview of our organizational alignment and strategy framework.
             </p>
           </ScrollReveal>
         </div>
@@ -148,7 +148,7 @@ export default function About() {
               THE PRACTICE
             </span>
             <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
-              Built from the inside.
+              A decade of building inside the enterprise.
             </h2>
           </div>
 
@@ -206,7 +206,7 @@ export default function About() {
             RESEARCH & PATENTS
           </span>
           <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
-            Intellectual Contributions
+            Defensible practitioner-level depth.
           </h2>
         </div>
 
@@ -221,11 +221,11 @@ export default function About() {
                 US Patent 11,482,921
               </h3>
               <p className="font-sans text-[15px] text-ink-muted leading-relaxed">
-                System and Method for Automated Operational Alert Clusters and Threat Triage using Context-Aware Heuristics.
+                A patent for system and method for automated operational alert clustering and threat triage using context-aware heuristics.
               </p>
             </div>
             <span className="font-sans text-xs text-ink/40 mt-6 block">
-              Granted for foundational alarm prediction engines.
+              Foundation for predictive alarm engines.
             </span>
           </div>
 
@@ -239,11 +239,11 @@ export default function About() {
                 US Patent 10,873,144
               </h3>
               <p className="font-sans text-[15px] text-ink-muted leading-relaxed">
-                Multi-Modal Neural Feature Alignment and Dynamic Weighting for Billions of High-Velocity Transaction Records.
+                A patent for multi-modal neural feature alignment and dynamic weighting for high-velocity transaction records.
               </p>
             </div>
             <span className="font-sans text-xs text-ink/40 mt-6 block">
-              Granted for structural high-frequency record categorization.
+              Foundation for high-frequency record categorization.
             </span>
           </div>
         </div>
@@ -253,11 +253,11 @@ export default function About() {
       <section className="bg-[#122B24] py-24 md:py-32 px-6 md:px-12 text-center text-off-white">
         <div className="max-w-[720px] mx-auto space-y-6">
           <p className="font-serif text-[22px] md:text-[32px] font-medium leading-relaxed text-off-white italic">
-            "The gap between what AI promises and what organizations actually experience is never the technology. It is always the human infrastructure underneath it."
+            "Pan turns invisible misalignment into irreversible clarity, and then returns power to the people who need to act."
           </p>
           <div className="w-[60px] h-[1px] bg-gold/40 mx-auto pt-2" />
           <p className="font-sans font-medium text-sm text-gold tracking-wide uppercase">
-            - Pan Seth
+            - Philosophy
           </p>
         </div>
       </section>

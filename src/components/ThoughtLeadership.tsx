@@ -24,24 +24,24 @@ export function ThoughtLeadership() {
   const fallbackPosts: LinkedInPost[] = [
     {
       date: "May 24, 2026",
-      tag: "AI GOVERNANCE",
-      excerpt: "88% of companies report regular AI use. Only 40% generate real value from it. The difference is never the tools. It's the five organizational dimensions underneath them...",
+      tag: "AI STRATEGY",
+      excerpt: "88% of companies are using AI, but only 40% are generating actual business value. The bottleneck is never the technology; it is the strategy, governance, and leadership alignment underneath it. If your executive team cannot tie your AI spend directly to board-level financial targets, why are you still funding pilots?",
       linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: generatedPostImage,
       featured: true,
     },
     {
       date: "May 19, 2026",
-      tag: "LEADERSHIP ALIGNMENT",
-      excerpt: "If you asked three of your department heads to describe your AI strategy right now, would they say the same thing? Most executive teams can't answer yes. That gap costs more than you think...",
+      tag: "WORKFORCE ADOPTION",
+      excerpt: "The most advanced technology stack delivers zero return if your people refuse to adopt it in their day-to-day workflows. Most leaders focus on purchasing licenses while ignoring the cultural resistance and lack of training that quietly kills adoption. If your operational processes haven't changed, how do you expect your outcomes to?",
       linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
     },
     {
       date: "May 14, 2026",
-      tag: "DECISION VELOCITY",
-      excerpt: "The executives who move fastest with AI are not the ones with the best tools. They're the ones who restructured how decisions get made before deploying anything...",
+      tag: "AI GOVERNANCE",
+      excerpt: "The speed of AI is exposing the structural bottlenecks in your corporate decision-making. If your compliance frameworks take six months to approve a simple pilot, you have already fallen behind. How do you design lightweight, secure guardrails that enable speed without exposing your enterprise to data leaks?",
       linkedin_url: "https://www.linkedin.com/in/pan-seth/",
       imageUrl: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=650&h=360",
       featured: false,
@@ -130,10 +130,10 @@ export function ThoughtLeadership() {
                 RECENT THINKING
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight text-balance">
-                From the field.
+                Insights from the field.
               </h2>
               <p className="font-sans text-sm md:text-base text-ink-muted leading-relaxed max-w-lg">
-                Pan publishes weekly on AI strategy, leadership alignment, and organizational change.
+                We publish weekly on AI strategy, governance, leadership alignment, and what it actually takes to make AI produce business value.
               </p>
             </div>
 

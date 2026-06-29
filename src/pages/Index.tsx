@@ -63,40 +63,40 @@ export default function IndexPage() {
       name: "Strategy & Vision",
       weight: 100, // full bar or equivalent representation
       weightLabel: "30% Complexity Cap",
-      measures: "Direct alignment of artificial intelligence investments with core profit-margin expansion targets, board-level efficiency goals, and defensible market differentiation.",
-      matters: "Without strategic alignment, companies spend millions on isolated AI pilots that generate positive internal press but fail to move corporate EBITDA or build durable equity value.",
+      measures: "We measure whether your AI strategy directly aligns with your long-term business goals, board-level financial targets, and defensible market positioning.",
+      matters: "Without strategic clarity, you spend capital on disconnected pilots. Your team builds things that look impressive in presentations but fail to produce business outcomes or competitive advantage.",
     },
     {
       num: "02",
       name: "Governance & Risk",
       weight: 85,
       weightLabel: "25% Complexity Cap",
-      measures: "Active compliance containment gates, rigorous data leakage security rules, user endpoints auditing, and model training bias controls.",
-      matters: "Deploying generative technologies without structural containment leaves the enterprise directly vulnerable to catastrophic IP contamination, data loss liability, and costly compliance headlines.",
+      measures: "We evaluate your active compliance safeguards, data privacy controls, and security policies for AI tools across every department.",
+      matters: "Immature governance is an corporate liability. Deploying tools without clear oversight exposes your organization to regulatory penalties, intellectual property loss, and critical compliance failures.",
     },
     {
       num: "03",
       name: "Leadership Alignment",
       weight: 70,
       weightLabel: "20% Complexity Cap",
-      measures: "Cross-functional consensus among executive sponsors and department heads regarding investment priority, budget accountability, and technology roadmaps.",
-      matters: "Siloed, departmental AI experiments create fragmented enterprise architectures, redundant software license fees, and executive friction that halts broad adoption.",
+      measures: "We measure whether your executive team has consensus on AI investment priorities, budget accountability, and technology roadmaps.",
+      matters: "When leadership is misaligned, departments build competing, redundant AI projects. This creates executive friction, technical debt, and duplicate software licensing fees that stall progress.",
     },
     {
       num: "04",
-      name: "Workforce Adoption KPI",
+      name: "Workforce Adoption",
       weight: 55,
       weightLabel: "15% Complexity Cap",
-      measures: "Proactive redesign of daily frontline procedures alongside transparent, automated feedback logs measuring exact hour-reductions and output quality improvements.",
-      matters: "The most sophisticated artificial intelligence stack delivers exactly zero return if workforce resistance, lack of trust, or rigid habits prevent models from being integrated into day-to-day procedures.",
+      measures: "We evaluate how your organization redesigns day-to-day procedures and supports your teams in adopting new AI-enabled workflows.",
+      matters: "The most advanced technology stack delivers zero value if your people refuse to adopt it. Cultural resistance, fear of change, and lack of training lead to low usage and wasted software spend.",
     },
     {
       num: "05",
-      name: "Roadmap & ROI Trace",
+      name: "Roadmap & ROI",
       weight: 40,
       weightLabel: "10% Complexity Cap",
-      measures: "Attribution mechanisms tracing capital costs directly from compute and vendor licensing to verifiable balance-sheet improvements and workforce hours saved.",
-      matters: "Without structured ROI attribution, technology spend remains a speculative operational cost center subject to cost-cutting rather than a highly compounding capital asset.",
+      measures: "We check whether your organization has clear metrics to trace AI expenditures back to verified hours saved, reduced costs, or direct revenue growth.",
+      matters: "Without clear measurement, AI spending remains a speculative expense. You continue funding initiatives without ever knowing what they are actually producing on your balance sheet.",
     },
   ];
 
@@ -120,7 +120,7 @@ export default function IndexPage() {
               </div>
               
               <h1 className="font-serif text-[32px] sm:text-[44px] md:text-[52px] lg:text-[58px] leading-[1.12] font-semibold text-[#1A3C34] tracking-tight text-balance">
-                Find Out Exactly Where Your AI <span className="font-serif italic font-normal text-gold">Transformation</span> Stands
+                Know Exactly Where Your AI <span className="font-serif italic font-normal text-gold">Transformation</span> Stands, and What to Fix First
               </h1>
               
               <p className="font-sans text-xs sm:text-sm md:text-base text-ink-muted leading-[1.65] max-w-[650px] mx-auto font-light">
@@ -225,7 +225,7 @@ export default function IndexPage() {
                 The Five Dimensions of AI Alignment
               </h2>
               <p className="font-sans text-base text-ink-muted leading-relaxed max-w-xl mt-4">
-                We measure your organization across these functional disciplines to map exact operational gaps between capital deployment and positive bottom-line margin expansion.
+                We measure your organization across these five core dimensions to identify the specific gaps between AI investment and measurable business outcomes.
               </p>
             </div>
           </ScrollReveal>
