@@ -146,11 +146,13 @@ export function Freebie() {
                   </span>
                   
                   <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-off-white leading-[1.18] text-balance">
-                    The AI Transformation Readiness Framework
+                    2x to 10x checklist
                   </h2>
                   
                   <p className="font-sans text-[15px] md:text-[17px] text-off-white/80 leading-[1.7] max-w-xl">
-                    A practical framework used by senior leaders to move their organizations from AI experimentation to coordinated business transformation, complete with clear priorities, measurable outcomes, and a team ready to execute.
+                    You have the same AI tools as the companies pulling ahead. So why are they at 10x and you're stuck at 2x?
+                    <br />
+                    <span className="block mt-2">10 gaps. One checklist. Find yours before your board asks why.</span>
                   </p>
                 </div>
 

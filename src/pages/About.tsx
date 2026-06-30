@@ -105,6 +105,23 @@ export default function About() {
         </ScrollReveal>
       </section>
 
+      {/* Section 1.2 - Our Mission */}
+      <section className="bg-white border-y border-[#1A3C34]/10 py-20 px-6 md:px-12 max-w-7xl mx-auto">
+        <ScrollReveal duration={0.65}>
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
+              OUR MISSION
+            </span>
+            <h2 className="font-serif text-[24px] md:text-[32px] font-bold text-[#1A3C34] leading-relaxed text-balance">
+              At The Forward Org, Our mission is to help organizations confidently move forward in the age of AI by evolving their culture, leadership, and ways of working so their people can embrace change, unlock greater freedom, and achieve extraordinary results.
+            </h2>
+            <p className="font-sans text-[15px] md:text-[17px] text-ink-muted leading-[1.7] max-w-2xl mx-auto">
+              By 2031, we will create more than $100 million in measurable economic impact for our clients while enabling their people to do their most meaningful and valuable work.
+            </p>
+          </div>
+        </ScrollReveal>
+      </section>
+
       {/* Section 1.5 - Video Segment */}
       <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden">
         <div className="max-w-4xl mx-auto text-center space-y-8">

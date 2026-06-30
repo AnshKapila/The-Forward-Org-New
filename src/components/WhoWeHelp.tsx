@@ -143,13 +143,15 @@ export function WhoWeHelp() {
               style={{ x: rightX, opacity }}
               className="relative w-full h-full min-h-[440px] lg:min-h-0 max-w-[480px] lg:max-w-[400px] mx-auto lg:ml-auto lg:mr-8 shadow-lg"
             >
-              <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-teal-dim/10">
+              <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-[#1A3C34]">
                 <img
-                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
-                  alt="Boardroom with natural light filtering through vertical windows"
-                  className="w-full h-full object-cover"
+                  src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80&w=800"
+                  alt="A macro close-up of a chessboard with one black king in focus, surrounded by softly blurred white pawns, styled in a dark cinematic green palette"
+                  className="w-full h-full object-cover grayscale brightness-75 contrast-125 saturate-[0.15] mix-blend-luminosity opacity-85 transition-all duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
+                <div className="absolute inset-0 bg-[#1A3C34]/25 mix-blend-color pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1A3C34]/40 via-transparent to-transparent pointer-events-none" />
                 <div className="hover-overlay" />
                 
                 {/* Floating "Get started" card layered on the bottom-left of the image */}

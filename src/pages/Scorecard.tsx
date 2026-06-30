@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, RotateCcw } from "lucide-react";
+import { ArrowLeft, RotateCcw, Check, AlertCircle } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Question {
   id: number;
@@ -20,6 +20,11 @@ export default function Scorecard() {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
   const [quizComplete, setQuizComplete] = useState(false);
+  const [showEmailGate, setShowEmailGate] = useState(false);
+  const [gateEmail, setGateEmail] = useState("");
+  const [gateName, setGateName] = useState("");
+  const [gateSubmitting, setGateSubmitting] = useState(false);
+  const [gateError, setGateError] = useState("");
   const timeoutRef = useRef<any>(null);
 
   useEffect(() => {
@@ -29,6 +34,8 @@ export default function Scorecard() {
       }
     };
   }, []);
+
+
 
   const questions: Question[] = [
     {
@@ -225,13 +232,17 @@ export default function Scorecard() {
 
   const handleSubmit = () => {
     if (answers[questions.length - 1] === null) return;
-    setQuizComplete(true);
+    setShowEmailGate(true);
   };
 
   const handleRestart = () => {
     setAnswers(Array(questions.length).fill(null));
     setCurrentIdx(0);
     setQuizComplete(false);
+    setShowEmailGate(false);
+    setGateEmail("");
+    setGateName("");
+    setGateError("");
   };
 
   const handleBack = () => {
@@ -250,6 +261,42 @@ export default function Scorecard() {
       setAnswers(nextAnswers);
       setCurrentIdx(targetIdx);
     }
+  };
+
+  const handleGateSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!gateName.trim()) {
+      setGateError("Please enter your name.");
+      return;
+    }
+
+    if (!gateEmail.trim()) {
+      setGateError("Please enter your email address.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(gateEmail.trim())) {
+      setGateError("Please enter a valid email address.");
+      return;
+    }
+
+    setGateError("");
+    setGateSubmitting(true);
+
+    setTimeout(() => {
+      setGateSubmitting(false);
+      console.log("Scorecard Gated Submission:", {
+        name: gateName,
+        email: gateEmail,
+        score: totalScore,
+        rating: rating,
+        timestamp: new Date().toISOString()
+      });
+      setQuizComplete(true);
+      setShowEmailGate(false);
+    }, 1500);
   };
 
   // Score Analysis scaled to 0-100 percentage (each of 15 questions has up to 4 points)
@@ -294,8 +341,94 @@ export default function Scorecard() {
     <div className="bg-canvas min-h-screen text-ink relative select-none">
       
       {!quizComplete ? (
-        /* SURVEY CONTAINER DESIGNED TO PERFECTLY OFFSET FIXED GLOBAL NAVIGATION */
-        <div className="w-full min-h-screen flex flex-col items-center justify-start pt-6 md:pt-12 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
+        showEmailGate ? (
+          /* EMAIL GATE CONTAINER */
+          <div className="w-full min-h-screen flex flex-col items-center justify-center pt-16 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
+            {/* Elegant Header and Form container styled perfectly with the homepage design theme */}
+            <div className="max-w-[580px] w-full bg-[#FAF9F5] border border-[#D4C9B8] py-8 px-6 sm:p-10 md:p-12 shadow-sm relative flex flex-col justify-center">
+              {/* Back button to go back to the scorecard */}
+              <button
+                onClick={() => setShowEmailGate(false)}
+                className="absolute top-6 left-6 flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
+              >
+                <ArrowLeft size={14} /> Back to Survey
+              </button>
+
+              <div className="text-center space-y-4 mb-8 mt-4">
+                <span className="font-sans font-semibold text-[11px] text-[#C9A55A] uppercase tracking-[0.25em] block">
+                  YOUR RESULT IS READY
+                </span>
+                
+                <h2 className="font-serif text-[28px] sm:text-[34px] font-bold text-[#1A3C34] leading-[1.2] tracking-tight text-balance">
+                  Unlock Your <span className="font-serif italic font-normal text-[#C9A55A]">Alignment Score</span>
+                </h2>
+              </div>
+
+              {/* Form fields styled exactly like homepage contact form */}
+              <form onSubmit={handleGateSubmit} className="space-y-6">
+                {/* Name input */}
+                <div className="space-y-2 text-left">
+                  <label htmlFor="gate-name" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
+                    Full name*
+                  </label>
+                  <input
+                    id="gate-name"
+                    type="text"
+                    value={gateName}
+                    onChange={(e) => setGateName(e.target.value)}
+                    placeholder="Enter your name"
+                    disabled={gateSubmitting}
+                    className="w-full font-sans text-sm text-[#1A3C34] bg-white border border-[#D4C9B8] px-4 py-3.5 placeholder-[#1A3C34]/30 focus:border-[#1A3C34] focus:ring-1 focus:ring-[#1A3C34]/20 focus:outline-none transition-all duration-200 rounded-none"
+                    required
+                  />
+                </div>
+
+                {/* Email input */}
+                <div className="space-y-2 text-left">
+                  <label htmlFor="gate-email" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
+                    Email address*
+                  </label>
+                  <input
+                    id="gate-email"
+                    type="email"
+                    value={gateEmail}
+                    onChange={(e) => setGateEmail(e.target.value)}
+                    placeholder="Enter email address"
+                    disabled={gateSubmitting}
+                    className="w-full font-sans text-sm text-[#1A3C34] bg-white border border-[#D4C9B8] px-4 py-3.5 placeholder-[#1A3C34]/30 focus:border-[#1A3C34] focus:ring-1 focus:ring-[#1A3C34]/20 focus:outline-none transition-all duration-200 rounded-none"
+                    required
+                  />
+                </div>
+
+                {/* Error Banner */}
+                {gateError && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-3.5 bg-red-500/5 border border-red-500/20 text-red-600 flex items-center gap-2.5 text-xs text-left animate-none"
+                  >
+                    <AlertCircle size={15} className="shrink-0" />
+                    <p className="font-sans font-medium">{gateError}</p>
+                  </motion.div>
+                )}
+
+                {/* Submit Trigger with matching luxury styling */}
+                <div className="pt-2 text-left">
+                  <InteractiveButton
+                    type="submit"
+                    variant="gold"
+                    disabled={gateSubmitting}
+                    className="w-full justify-center px-8 py-3.5 uppercase tracking-[0.15em] text-xs font-semibold select-none flex items-center gap-2"
+                  >
+                    <span>{gateSubmitting ? "Generating Score Report..." : "Reveal My Score & Analysis"}</span>
+                  </InteractiveButton>
+                </div>
+              </form>
+            </div>
+          </div>
+        ) : (
+          /* SURVEY CONTAINER DESIGNED TO PERFECTLY OFFSET FIXED GLOBAL NAVIGATION */
+          <div className="w-full min-h-screen flex flex-col items-center justify-start pt-6 md:pt-12 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
           
           {/* Header strip for controls to prevent colliding with the nav bar */}
           <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
@@ -475,7 +608,7 @@ export default function Scorecard() {
  
           </div>
         </div>
-      ) : (
+      )) : (
         /* RESULTS SCREEN WITH REDUCED TOP MARGINS */
         <div className="min-h-screen pt-6 md:pt-12 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
           <div className="max-w-[720px] w-full bg-[#F7F4EF] border border-[#E8D5B5] p-6 sm:p-8 md:p-12 text-left rounded-sm shadow-sm space-y-8">
