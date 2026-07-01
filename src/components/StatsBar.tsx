@@ -53,7 +53,7 @@ export function StatsBar() {
         willChange: willChangeActive ? "transform, opacity" : "auto",
       }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="bg-white w-full border-y border-gold/15 overflow-hidden py-24 md:py-32"
+      className="bg-white w-full border-y border-gold/15 overflow-hidden py-10"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-stretch justify-between gap-12 md:gap-0">
@@ -61,14 +61,11 @@ export function StatsBar() {
           <div className="flex-1 flex flex-col text-left items-start justify-start md:pr-12">
             <div className="mb-2">
               <h2 className="font-serif text-[42px] md:text-[54px] font-bold text-gold inline-flex items-center">
-                $6M+
+                $600M+
               </h2>
             </div>
-            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
-              In measurable business value influenced across engagements
-            </p>
-            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
-              Across regulated industries, enterprise technology, and high-growth companies.
+            <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
+              In client business value influenced across engagements
             </p>
           </div>
 
@@ -80,11 +77,8 @@ export function StatsBar() {
             <div className="mb-2">
               <CountUp end={10} suffix="+" />
             </div>
-            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
-              Years inside the organizations we now advise
-            </p>
-            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
-              At Citi, PagerDuty, and NielsenIQ, building the infrastructure most consultants only theorize about.
+            <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
+              Years of leadership inside the organizations we now advise
             </p>
           </div>
 
@@ -96,11 +90,8 @@ export function StatsBar() {
             <div className="mb-2">
               <CountUp end={2} suffix="" />
             </div>
-            <p className="font-sans font-semibold text-base text-teal leading-tight min-h-[44px] text-left">
-              AI patents (practitioner depth that most advisors cannot replicate)
-            </p>
-            <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed text-left">
-              A decade of building inside enterprise AI, not observing from the outside.
+            <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
+              AI patents representing practitioner-level depth in enterprise tech
             </p>
           </div>
         </div>

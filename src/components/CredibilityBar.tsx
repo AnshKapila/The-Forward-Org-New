@@ -1,8 +1,10 @@
 import { useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
-import logo1 from "../assets/images/regenerated_image_1779859475822.png";
-import logo2 from "../assets/images/regenerated_image_1779884368446.png";
-import logo3 from "../assets/images/regenerated_image_1780126552851.png";
+import logo1 from "../assets/images/regenerated_image_1782908519978.jpg";
+import logo2 from "../assets/images/regenerated_image_1782908520790.jpg";
+import logo3 from "../assets/images/regenerated_image_1782908521561.jpg";
+import logo4 from "../assets/images/regenerated_image_1782908522558.jpg";
+import logo5 from "../assets/images/regenerated_image_1780430014552.jpg";
 
 export function CredibilityBar() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,6 +13,8 @@ export function CredibilityBar() {
     { name: "Client Logo 1", src: logo1 },
     { name: "Client Logo 2", src: logo2 },
     { name: "Client Logo 3", src: logo3 },
+    { name: "Client Logo 4", src: logo4 },
+    { name: "Client Logo 5", src: logo5 },
   ];
 
   return (
@@ -19,31 +23,32 @@ export function CredibilityBar() {
       
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal duration={0.6}>
-          <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-8 md:gap-16 w-full text-left">
+          <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-8 md:gap-4 w-full">
             {/* Left Eyebrow Label */}
-            <div className="shrink-0 flex flex-col items-start">
+            <div className="shrink-0 flex items-center">
               <span className="font-sans font-medium text-[11px] text-gold uppercase tracking-[0.16em]">
                 OUR EXPERIENCE BUILT INSIDE
               </span>
             </div>
 
-            {/* Middle Corporate Logos */}
-            <div className="flex flex-wrap items-center justify-start gap-12 md:gap-16">
-              {logos.map((logo, idx) => (
-                <div
-                  key={idx}
-                  className="opacity-90 hover:opacity-100 transition-colors duration-300 transform hover:scale-105 flex items-center h-10"
-                  style={{ minHeight: "40px", display: "flex", alignItems: "center" }}
-                >
-                  <img
-                    src={logo.src}
-                    alt={logo.name}
-                    className="h-10 w-auto object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              ))}
-            </div>
+            {/* Corporate Logos */}
+            {logos.map((logo, idx) => (
+              <div
+                key={idx}
+                className="opacity-80 hover:opacity-100 transition-all duration-300 transform hover:scale-105 flex items-center h-10 shrink-0"
+                style={{ minHeight: "40px", display: "flex", alignItems: "center" }}
+              >
+                <img
+                  src={logo.src}
+                  alt={logo.name}
+                  className="h-10 w-auto object-contain transition-all duration-300"
+                  style={{
+                    filter: "grayscale(100%) brightness(0.6) contrast(1.8) sepia(1) saturate(3) hue-rotate(110deg)"
+                  }}
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+            ))}
           </div>
         </ScrollReveal>
       </div>

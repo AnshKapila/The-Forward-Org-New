@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import chessboardImg from "../assets/images/regenerated_image_1780369204282.jpg";
 
 interface AccordionItem {
   num: string;
@@ -145,9 +146,9 @@ export function WhoWeHelp() {
             >
               <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-[#1A3C34]">
                 <img
-                  src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?auto=format&fit=crop&q=80&w=800"
+                  src={chessboardImg}
                   alt="A macro close-up of a chessboard with one black king in focus, surrounded by softly blurred white pawns, styled in a dark cinematic green palette"
-                  className="w-full h-full object-cover grayscale brightness-75 contrast-125 saturate-[0.15] mix-blend-luminosity opacity-85 transition-all duration-700 hover:scale-105"
+                  className="w-full h-full object-cover brightness-95 contrast-105 transition-all duration-700 hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-[#1A3C34]/25 mix-blend-color pointer-events-none" />
