@@ -4,16 +4,15 @@ import { StatsBar } from "../components/StatsBar";
 import { CredibilityBar } from "../components/CredibilityBar";
 import { TheProblem } from "../components/TheProblem";
 import { WhoWeHelp } from "../components/WhoWeHelp";
+import { VisionStatement } from "../components/VisionStatement";
 import { HowItWorks } from "../components/HowItWorks";
 import { AIIndexCTA } from "../components/AIIndexCTA";
-import { VisionStatement } from "../components/VisionStatement";
-import { ThoughtLeadership } from "../components/ThoughtLeadership";
-import { Freebie } from "../components/Freebie";
 import { ValueProp } from "../components/ValueProp";
-import { FAQ } from "../components/FAQ";
+import { OurOfferings } from "../components/OurOfferings";
 import { ConnectWithPan } from "../components/ConnectWithPan";
-import { ContactSection } from "../components/ContactSection";
+import { FAQ } from "../components/FAQ";
 import { BookACall } from "../components/BookACall";
+import { ContactSection } from "../components/ContactSection";
 
 export default function Home() {
   return (
@@ -23,13 +22,12 @@ export default function Home() {
       <CredibilityBar />
       <TheProblem />
       <WhoWeHelp />
+      <VisionStatement />
       <HowItWorks />
       <AIIndexCTA />
-      <Freebie />
-      <VisionStatement />
       <ValueProp />
+      <OurOfferings />
       <ConnectWithPan />
-      {/* <ThoughtLeadership /> */}
       <BookACall />
       <FAQ />
       <ContactSection />

@@ -7,18 +7,18 @@ export function ValueProp() {
   const points = [
     {
       num: "01",
-      title: "Built from the Inside, Not the Slide",
-      desc: "We don't sell armies of junior consultants or hand over theoretical frameworks. Our strategy is built by advisors who have designed, scaled, and managed complex AI systems inside the world's most demanding enterprises.",
+      title: "Built from the Inside",
+      desc: "We don't send junior consultants or hand over theoretical frameworks. Our work comes from advisors who have designed, shipped, and governed complex AI systems inside the world's most demanding organizations.",
     },
     {
       num: "02",
-      title: "Aligned with EBITDA, Not the Sprawl",
-      desc: "Most AI initiatives are isolated developer playground experiments. We connect technological investments directly to your balance sheet, ensuring every model deployed expands your net margin.",
+      title: "Connected to Business Outcomes",
+      desc: "AI initiatives live or die on their impact on the business. We connect every engagement directly to what your board actually measures. Not adoption rates. Not training completion.",
     },
     {
       num: "03",
-      title: "Operational Hardening, Not Just Pilots",
-      desc: "Moving past infinite, expensive pilots requires structural discipline. We establish the governance frameworks, compliance checkpoints, and organizational models needed to make AI standard, reliable infrastructure.",
+      title: "Built to Last",
+      desc: "Moving past pilots requires governance frameworks and decision-making infrastructure that make AI standard practice — not a recurring experiment. We build those. From the inside out.",
     },
   ];
 
@@ -34,7 +34,7 @@ export function ValueProp() {
                 THE VALUE PROPOSITION
               </span>
               <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink text-balance">
-                Why Leading Firms Partner With Us
+                Why Leading Organizations Partner With Us
               </h2>
             </div>
             <div className="flex items-start justify-start shrink-0 pb-1 md:pb-2">

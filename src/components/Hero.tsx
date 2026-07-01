@@ -22,10 +22,10 @@ export function Hero() {
   const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
 
   const phrases = [
-    "BEYOND THE AI PILOT",
-    "ALIGNING PEOPLE AND STRATEGY",
-    "GOVERNANCE FOR REGULATED INDUSTRIES",
-    "MEASURABLE VALUE FROM AI",
+    "Move forward. With full conviction.",
+    "Build with certainty in an uncertain market.",
+    "Make the call. Every time.",
+    "Own the AI conversation in your boardroom.",
   ];
 
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -33,7 +33,7 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setPhraseIdx((prev) => (prev + 1) % phrases.length);
-    }, 3000);
+    }, 3500);
     return () => clearInterval(timer);
   }, [phrases.length]);
 
@@ -142,8 +142,8 @@ export function Hero() {
           animate="visible"
           className="max-w-3xl flex flex-col items-start"
         >
-          {/* Tagline Ticker with gold font-sans wrapper */}
-          <div className="h-6 overflow-hidden">
+          {/* Rotating Taglines styled exactly like Selection Two (now occupying Selection Two's place) */}
+          <div className="h-5 overflow-hidden mb-1.5">
             <AnimatePresence mode="wait">
               <motion.span
                 key={phraseIdx}
@@ -151,7 +151,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block"
+                className="font-sans font-bold text-[10px] md:text-xs text-gold uppercase tracking-[0.2em] block"
               >
                 {phrases[phraseIdx]}
               </motion.span>
@@ -163,7 +163,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
           >
-            Your AI investments are failing to deliver.
+            Building organizations that lead - and keep leading - in the Age of AI
           </motion.h1>
 
           {/* Subheadline description with white-dimmed styling for accessibility */}
@@ -171,7 +171,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
           >
-            Most organizations are already experimenting with AI but struggle to translate pilots into actual business value. We address the strategy, governance, and organizational alignment gaps to turn technology investments into sustainable results.
+            Empowering Leaders to align their Strategy, People and Processes to unlock greater freedom, and achieve extraordinary results fast
           </motion.p>
 
           {/* Double Active Hero Action Buttons side-by-side inspired by the wireframe */}
@@ -201,9 +201,9 @@ export function Hero() {
           {/* New Trust Line below CTAs */}
           <motion.p
             variants={itemVariants}
-            className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left"
+            className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left max-w-2xl"
           >
-            Trusted by senior leaders in regulated industries, high-growth companies, and enterprise technology organizations.
+            Trusted by leaders transforming organizations across finance, healthcare, insurance, enterprise technology, and other regulated industries.
           </motion.p>
         </motion.div>
       </div>

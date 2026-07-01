@@ -1,189 +1,127 @@
-import React, { useState, useRef } from "react";
-import { Link } from "wouter";
-import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-
-// Option B Interactive Card Sub-component with premium hover states
-function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc: string }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
-  const [willChangeActive, setWillChangeActive] = useState(true);
-
-  // Link destinations
-  const buttonPath = "/index"; 
-  const buttonText = idx === 0 ? "Discover Your Readiness" : "Get Started";
-
-  return (
-    <div
-      ref={ref}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onTouchStart={() => setIsHovered(!isHovered)}
-      className="relative w-full h-[90vh] overflow-hidden bg-teal-dim/10 shadow-xl border border-teal/15 group cursor-pointer transition-shadow"
-      style={{
-        transform: "translateZ(0)",
-        isolation: "isolate"
-      }}
-    >
-      {/* Step Image */}
-      <motion.img
-        initial={{ scale: 1.2 }}
-        animate={isInView ? { scale: 1.0 } : {}}
-        onAnimationComplete={() => setWillChangeActive(false)}
-        transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
-        src={imageSrc}
-        alt={step.title}
-        className="w-full h-full object-cover grayscale contrast-[1.12] brightness-[0.82]"
-        style={{
-          transformOrigin: "center center",
-          willChange: willChangeActive ? "transform" : "auto",
-        }}
-        referrerPolicy="no-referrer"
-      />
-
-      {/* Default Overlay & Heading (visible when NOT hovered) */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-t from-teal/95 via-teal/30 to-black/15 transition-opacity duration-300 ease-in-out" 
-        style={{ opacity: isHovered ? 0 : 0.85 }}
-      />
-
-      {/* Top-Right White Square Badge for Step Num & sleek arrow indicator */}
-      <div className="absolute top-0 right-0 w-12 h-12 bg-white flex flex-col items-center justify-center border-l border-b border-[#1A3C34]/10 z-30">
-        <span className="font-mono text-xs font-bold text-ink leading-none">
-          {step.num}
-        </span>
-        <span className="font-sans text-[10px] text-gold font-bold leading-none mt-0.5">
-          ↗
-        </span>
-      </div>
-
-      {/* Static Step Title at the bottom left (visible when NOT hovered) */}
-      {!isHovered && (
-        <div className="absolute bottom-0 left-0 p-8 z-20 text-left">
-          <h3 className="font-serif text-[32px] md:text-[38px] font-bold text-white tracking-wide leading-none">
-            {step.title}
-          </h3>
-        </div>
-      )}
-
-      {/* Hover State: Glassmorphism Blur Overlay with custom bottom-to-top gradient holding the images always visible */}
-      <AnimatePresence>
-        {isHovered && (
-          <motion.div
-            initial={{ clipPath: "inset(100% 0% 0% 0%)", backdropFilter: "blur(0px)" }}
-            animate={{ clipPath: "inset(0% 0% 0% 0%)", backdropFilter: "blur(12px)" }}
-            exit={{ clipPath: "inset(100% 0% 0% 0%)", backdropFilter: "blur(0px)" }}
-            transition={{ duration: 0.42, ease: [0.25, 1, 0.5, 1] }}
-            className="absolute inset-0 z-20 p-8 md:p-10 flex flex-col justify-between text-left"
-            style={{
-              background: "linear-gradient(to top, rgba(18, 45, 39, 0.95) 0%, rgba(18, 45, 39, 0.55) 60%, rgba(18, 45, 39, 0.18) 100%)"
-            }}
-          >
-            {/* Top Area: Step number & Step Title with glass reveal animation */}
-            <motion.div 
-               initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
-               animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-               transition={{ duration: 0.38, ease: "easeOut", delay: 0.06 }}
-               className="pt-4"
-            >
-              <span className="font-mono text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">
-                STEP {step.num}
-              </span>
-              <h3 className="font-serif text-[32px] md:text-[40px] font-bold text-white tracking-wide leading-tight">
-                {step.title}
-              </h3>
-            </motion.div>
-
-            {/* Bottom Area: Description & Golden Button CTA with staggered glass reveal effect */}
-            <motion.div 
-              initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
-              animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-              transition={{ duration: 0.38, ease: "easeOut", delay: 0.12 }}
-              className="space-y-6"
-            >
-              <p className="font-sans text-[15px] sm:text-[16px] text-white/90 leading-[1.7] max-w-sm">
-                {step.description}
-              </p>
-
-              {/* Luxury Golden Button CTA */}
-              <div className="pt-2">
-                <Link href={buttonPath}>
-                  <div className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-ink font-sans text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-teal duration-300 transition-all shadow-md active:scale-95">
-                    <span>{buttonText}</span>
-                    <span>→</span>
-                  </div>
-                </Link>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+import React from "react";
+import { useLocation } from "wouter";
+import { ScrollReveal } from "./ScrollReveal";
+import { InteractiveButton } from "./InteractiveButton";
 
 export function HowItWorks() {
-  const steps = [
-    {
-      num: "01",
-      title: "Diagnose",
-      iconPath: "/images/icon-diagnostic.svg",
-      iconAim: "Abstract: a compass or measuring instrument",
-      description: "We start by understanding your organization's current reality, assessing leadership alignment, cultural readiness, governance maturity, adoption barriers, and where AI can create the greatest business value. You leave this phase knowing exactly where you stand and where the critical gaps are.",
-    },
-    {
-      num: "02",
-      title: "Design",
-      iconPath: "/images/icon-design.svg",
-      iconAim: "Abstract: a grid or blueprint motif",
-      description: "Together we define where your organization needs to go. We build a practical AI strategy, a clear roadmap, and the organizational design (roles, workflows, governance structures, and decision-making frameworks) that make transformation executable, not theoretical.",
-    },
-    {
-      num: "03",
-      title: "Deploy",
-      iconPath: "/images/icon-deploy.svg",
-      iconAim: "Abstract: an upward arrow or expanding shape",
-      description: "We guide execution through the phases that most organizations get wrong: leadership alignment, workforce adoption, and the measurement frameworks that connect AI investments directly to business outcomes. The goal is not a successful pilot. It is irreversible clarity and lasting change.",
-    },
-  ];
+  const [, setLocation] = useLocation();
 
-  const optionBImages = [
-    "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=800", // Diagnose
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800", // Design
-    "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800"  // Deploy
+  const stages = [
+    {
+      letter: "E",
+      title: "Evaluate",
+      description: "Understand your current organizational reality."
+    },
+    {
+      letter: "V",
+      title: "Visualize",
+      description: "Define what the future needs to look like."
+    },
+    {
+      letter: "O",
+      title: "Organize",
+      description: "Align leadership, teams, and systems."
+    },
+    {
+      letter: "L",
+      title: "Lead",
+      description: "Drive adoption across the organization."
+    },
+    {
+      letter: "V",
+      title: "Validate",
+      description: "Measure what is actually working."
+    },
+    {
+      letter: "E",
+      title: "Embody",
+      description: "Sustain transformation at the leadership level."
+    }
   ];
 
   return (
-    <section id="how-it-works" className="relative bg-[#F7F4EF]/25 py-12 md:py-16 overflow-hidden border-b border-gold/15">
+    <section id="how-it-works" className="relative bg-[#F7F4EF]/25 py-20 border-b border-gold/15 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <ScrollReveal duration={0.6}>
-          <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="text-left">
-              <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink max-w-xl text-balance">
-                How we work together.
+        <ScrollReveal duration={0.65}>
+          {/* Header Area */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
+            <div className="lg:col-span-7 text-left">
+              <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
+                HOW WE WORK
+              </span>
+              <h2 className="font-serif text-[36px] md:text-[48px] leading-[1.15] font-bold text-ink mb-6">
+                The Forward Org Blueprint™
               </h2>
+              <p className="font-serif text-xl md:text-2xl text-teal leading-relaxed font-semibold">
+                A structured approach to turning AI from isolated activity into organizational capability.
+              </p>
+            </div>
+            
+            <div className="lg:col-span-5 text-left lg:pt-8">
+              <p className="font-sans text-[16px] text-ink-muted leading-[1.75] font-light mb-4">
+                Most organizations try to layer AI onto existing structures.
+              </p>
+              <p className="font-sans text-[16px] text-ink-muted leading-[1.75] font-light">
+                We help redesign the operating system of your org — so AI can scale, sustain, and deliver measurable outcomes. It is the blueprint for creating AI-native transformation.
+              </p>
             </div>
           </div>
-        </ScrollReveal>
 
-        <StaggerContainer>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-2 lg:gap-2 relative">
-            
-            {steps.map((step, idx) => (
-              <div key={idx} className="relative flex flex-col">
-                <StaggerItem index={idx}>
-                  <OptionBCard
-                    step={step}
-                    idx={idx}
-                    imageSrc={optionBImages[idx]}
-                  />
-                </StaggerItem>
-              </div>
-            ))}
+          {/* EVOLVE Trademark block */}
+          <div className="bg-white/80 border border-gold/15 p-8 md:p-12 text-left mb-16">
+            <div className="max-w-3xl mb-12">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-[#1A3C34] mb-3 inline-flex items-center">
+                EVOLVE™
+              </h3>
+              <p className="font-sans text-base text-ink-muted leading-relaxed font-light">
+                Each stage of EVOLVE™ moves your organization from scattered pilots to an AI-native culture — with governance built in and leadership ready to hold it.
+              </p>
+            </div>
 
+            {/* Stage Letters Diagram Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+              {stages.map((stage, idx) => (
+                <div 
+                  key={idx}
+                  className="relative group bg-[#F7F4EF]/30 border border-gold/10 p-6 flex flex-col justify-between min-h-[220px] transition-all duration-300 hover:bg-[#1A3C34] hover:border-transparent"
+                >
+                  {/* Big background letter watermark */}
+                  <span className="absolute top-4 right-6 font-serif text-[72px] font-bold text-gold/10 group-hover:text-gold/5 leading-none select-none transition-colors duration-300">
+                    {stage.letter}
+                  </span>
+
+                  {/* Letter Header */}
+                  <div>
+                    <span className="font-serif text-[36px] font-extrabold text-gold block leading-none mb-4 group-hover:text-white transition-colors duration-300">
+                      {stage.letter}
+                    </span>
+                    <h4 className="font-serif text-lg font-bold text-ink group-hover:text-white transition-colors duration-300">
+                      {stage.title}
+                    </h4>
+                  </div>
+
+                  {/* Description */}
+                  <p className="font-sans text-[13px] text-ink-muted leading-relaxed mt-4 group-hover:text-white/80 transition-colors duration-300">
+                    {stage.description}
+                  </p>
+
+                  {/* Bottom Index Line */}
+                  <div className="w-full h-[2px] bg-gold/20 group-hover:bg-gold transition-all duration-300 mt-6" />
+                </div>
+              ))}
+            </div>
           </div>
-        </StaggerContainer>
+
+          {/* Footer CTA */}
+          <div className="flex flex-col items-center justify-center text-center space-y-6 pt-4">
+            <InteractiveButton 
+              variant="primary"
+              onClick={() => setLocation("/index")}
+            >
+              Discover Your AI Transformation Readiness
+            </InteractiveButton>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

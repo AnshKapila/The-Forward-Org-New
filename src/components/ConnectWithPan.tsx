@@ -67,10 +67,13 @@ export function ConnectWithPan() {
 
                 <div className="border-t border-white/10 pt-5 lg:mt-auto">
                   <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl">
-                    Pan has spent more than a decade inside the organizations she now advises, including Citi, PagerDuty, and NielsenIQ, building the AI infrastructure that most consultants only theorize about. She holds two AI patents and has seen, firsthand, what separates organizations that make AI work from those that keep experimenting with it.
+                    Pan’s advisory is reserved for leaders who aren’t looking for off-the-shelf answers.
                   </p>
                   <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl mt-4">
-                    Her approach is different because her experience is different. She does not advise on AI from a distance. She has built it, governed it, and driven adoption inside the same kinds of organizations her clients lead today.
+                    He works directly with a small number of executive teams each year to move them from AI noise to organizational leverage.
+                  </p>
+                  <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl mt-4">
+                    If your organization has high stakes around AI, you can connect with Pan directly to explore what a custom blueprint or advisory relationship looks like.
                   </p>
                 </div>
               </div>
@@ -119,7 +122,7 @@ export function ConnectWithPan() {
                       data-cal-namespace="focused-aireadiness-debrief"
                       data-cal-config='{"layout":""}'
                     >
-                      Book your call
+                      Connect with Pan directly
                     </InteractiveButton>
                     <p className="font-sans text-[11px] text-[#F7F4EF]/60 text-center tracking-wide leading-tight mt-2">
                       30 minutes. No pitch. <br />Just clarity on where you stand.

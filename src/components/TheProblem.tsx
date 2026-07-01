@@ -1,114 +1,134 @@
-import { useState } from "react";
+import React from "react";
 import { useLocation } from "wouter";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveButton } from "./InteractiveButton";
 
-// IMAGE: Use architectural/environmental photography.
-// NO stock business people. NO AI/robot imagery.
-// Preferred: boardrooms, glass architecture, 
-// structural details, natural light office spaces.
-// Pan's own photos for sections 07 and 12 only.
-
 export function TheProblem() {
-  const [imageError, setImageError] = useState(false);
   const [, setLocation] = useLocation();
 
+  const rows = [
+    {
+      surface: "“We’re exploring what AI can do for us.”",
+      underneath: "No shared direction—teams are moving in different directions."
+    },
+    {
+      surface: "“We haven’t fully defined our AI strategy yet.”",
+      underneath: "Uncertainty spreads, creates job fear and culture begins to decay quietly."
+    },
+    {
+      surface: "“We’re running multiple AI initiatives.”",
+      underneath: "No clear link to business outcomes, ROI remains unproven."
+    },
+    {
+      surface: "“Our leadership team is aligned on AI.”",
+      underneath: "All top leaders has different views on where the org is going with AI."
+    },
+    {
+      surface: "“We’re upskilling our teams.”",
+      underneath: "Learning isn’t translating into real execution."
+    }
+  ];
+
   return (
-    <section id="the-problem" className="relative bg-canvas py-12 md:py-16 overflow-hidden">
+    <section id="the-problem" className="relative bg-canvas py-20 border-b border-gold/10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <ScrollReveal duration={0.65}>
-          <div className="grid grid-cols-1 md:grid-cols-[9fr_11fr] gap-12 md:gap-14 items-center w-full min-w-0">
-            
-            {/* Left 45%: Large Sourced Image with shadow offset */}
-            <div 
-              className="relative w-full h-[320px] md:h-[480px] bg-sand/30 image-hover-wrapper min-w-0"
-              style={{
-                boxShadow: "6px 6px 0 0 #C9A55A"
-              }}
-            >
-              {!imageError ? (
-                <>
-                  <img
-                    src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=800"
-                    alt="Empty executive meeting room seen through glass"
-                    className="w-full h-full object-cover transform transition-all duration-300"
-                    onError={() => {
-                      setImageError(true);
-                    }}
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="hover-overlay" />
-                </>
-              ) : (
-                /* Sourced metadata fallback description visual block */
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8 select-none border border-gold/40">
-                  <span className="font-mono text-xs text-[#C9A55A] font-bold uppercase tracking-widest block mb-2">
-                    Executive Room
+          {/* Header */}
+          <div className="max-w-3xl mb-16 text-left">
+            <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
+              THE CONTEXT
+            </span>
+            <h2 className="font-serif text-[36px] md:text-[48px] leading-[1.15] font-bold text-ink mb-6">
+              The Organization You See Isn't Always the Organization You Have
+            </h2>
+            <div className="space-y-4">
+              <p className="font-serif text-xl md:text-2xl text-teal leading-relaxed font-semibold">
+                Most executive teams see AI activity.
+              </p>
+              <p className="font-sans text-lg text-ink-muted leading-relaxed font-light">
+                We help them understand organizational readiness.
+              </p>
+            </div>
+          </div>
+
+          {/* 5 Comparison Rows */}
+          <div className="space-y-6 mb-20">
+            {rows.map((row, idx) => (
+              <div 
+                key={idx}
+                className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 items-stretch border-l-2 border-gold/20 pl-4 md:pl-6 py-2 transition-all duration-300 hover:border-gold"
+              >
+                {/* Surface */}
+                <div className="flex flex-col justify-center text-left py-2 pr-4">
+                  <span className="font-sans text-[11px] font-bold text-ink-muted uppercase tracking-[0.12em] mb-1">
+                    On the surface
                   </span>
-                  <p className="font-serif text-sm italic text-ink max-w-[280px]">
-                    "Empty executive meeting room seen through glass. Chairs arranged around a table. No people. Morning light. Minimal and slightly austere."
+                  <p className="font-serif italic text-lg text-ink font-medium">
+                    {row.surface}
                   </p>
                 </div>
-              )}
-            </div>
-
-            {/* Right 55%: Existing Copy and Editorial Typography */}
-            <div className="space-y-6 md:pl-6 text-left min-w-0">
-              <div>
-                <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-2">
-                  THE CONTEXT
-                </span>
-                <h2 className="font-serif text-[32px] md:text-[40px] leading-[1.1] font-bold text-ink">
-                  The Gap Is Never the Technology
-                </h2>
+                
+                {/* Underneath */}
+                <div className="flex flex-col justify-center text-left py-2 pl-0 md:pl-6 border-t md:border-t-0 md:border-l border-gold/10">
+                  <span className="font-sans text-[11px] font-bold text-gold uppercase tracking-[0.12em] mb-1">
+                    Underneath
+                  </span>
+                  <p className="font-sans text-[15px] md:text-base text-ink-muted leading-relaxed">
+                    {row.underneath}
+                  </p>
+                </div>
               </div>
+            ))}
+          </div>
 
-              {/* Premium Pull Quote */}
-              <blockquote className="font-serif italic text-2xl md:text-[28px] leading-relaxed text-teal text-balance">
-                "Organizations aren't struggling to access AI; they're struggling to align strategy, people, processes, and technology to generate measurable business outcomes from it."
-              </blockquote>
-
-              {/* Body Text */}
-              <p className="font-sans text-[17px] text-ink-muted leading-[1.75] font-light">
-                Most organizations already have AI tools. What they lack is the strategic clarity, governance maturity, leadership alignment, and cultural readiness to make those tools produce real results. This gap costs senior leaders millions in wasted software licensing, uncoordinated pilots, and hidden compliance risks. We close this gap by aligning strategy, governance, and culture to turn technology investments into sustainable results.
+          {/* Conclusion and CTA Block */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-8 border-t border-gold/10">
+            <div className="lg:col-span-7 text-left space-y-6">
+              <h3 className="font-serif text-2xl md:text-3xl font-bold text-ink leading-snug">
+                This is where most organizations misread the situation.
+              </h3>
+              <p className="font-sans text-lg text-ink-muted leading-relaxed font-light">
+                What looks like progress on the surface is often misalignment underneath. And misalignment doesn’t stay contained. <strong className="text-teal font-semibold">It compounds.</strong>
               </p>
-
-              {/* Action Button */}
+              
               <div className="pt-2">
                 <InteractiveButton 
-                  variant="outline-teal"
-                  onClick={() => setLocation("/scorecard")}
+                  variant="primary"
+                  onClick={() => setLocation("/index")}
                   id="problem-take-index-btn"
                 >
                   Discover Your AI Transformation Readiness
                 </InteractiveButton>
               </div>
-
-              {/* McKinsey Stat Chips */}
-              <div className="pt-4 space-y-3">
-                <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 md:gap-10 w-full">
-                  {/* Chip 1 */}
-                  <div className="flex-1 flex flex-col justify-start items-start text-left">
-                    <span className="font-serif text-[32px] md:text-[36px] font-bold text-gold leading-none">88%</span>
-                    <span className="font-sans text-[13px] text-ink-muted mt-2 leading-tight">of companies report AI use</span>
-                  </div>
-                  {/* Chip 2 */}
-                  <div className="flex-1 flex flex-col justify-start items-start text-left">
-                    <span className="font-serif text-[32px] md:text-[36px] font-bold text-gold leading-none">40%</span>
-                    <span className="font-sans text-[13px] text-ink-muted mt-2 leading-tight">actually generate real value</span>
-                  </div>
-                  {/* Chip 3 */}
-                  <div className="flex-1 flex flex-col justify-start items-start text-left">
-                    <span className="font-serif text-[32px] md:text-[36px] font-bold text-gold leading-none">10x</span>
-                    <span className="font-sans text-[13px] text-ink-muted mt-2 leading-tight">output in forward organizations</span>
-                  </div>
-                </div>
-                <div className="text-left pt-1">
-                  <span className="font-sans text-[11px] text-ink-faint">Source: McKinsey Global AI Report</span>
-                </div>
-              </div>
             </div>
 
+            {/* Statistics Sidebar Column */}
+            <div className="lg:col-span-5 bg-sand/20 border border-gold/15 p-8 md:p-10 text-left space-y-8">
+              {/* Stat 1 */}
+              <div>
+                <div className="flex items-baseline gap-2">
+                  <span className="font-serif text-[42px] md:text-[52px] font-bold text-gold leading-none">88%</span>
+                  <span className="font-sans text-xs text-ink-muted italic">HBR, Feb 2026</span>
+                </div>
+                <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed">
+                  of companies report regular AI use.
+                </p>
+              </div>
+
+              {/* Divider line */}
+              <div className="h-[1px] bg-gold/15 w-full" />
+
+              {/* Stat 2 */}
+              <div>
+                <div className="flex items-baseline gap-2">
+                  <span className="font-serif text-[42px] md:text-[52px] font-bold text-gold leading-none">60%</span>
+                  <span className="font-sans text-xs text-ink-muted italic">BCG, Dec 2025</span>
+                </div>
+                <p className="font-sans text-sm text-ink-muted mt-2 leading-relaxed">
+                  generate zero material value from that investment.
+                </p>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
       </div>
