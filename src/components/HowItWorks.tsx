@@ -143,21 +143,21 @@ export function HowItWorks() {
     {
       num: "01",
       title: "Assess",
-      description: "We begin with an honest evaluation of where your organization actually stands — not where leadership assumes it stands. We examine AI readiness, leadership alignment, cultural openness to change, workforce capabilities, governance maturity, and where your current ways of working are creating the most friction. Most organizations find the real gaps are not in their technology. They are in the conditions underneath it. You leave this phase with a complete organizational diagnostic — a precise picture of your strengths, your risks, and the highest-value opportunities for transformation.",
+      description: "We begin with an honest evaluation of where your organization actually stands—examining AI readiness, leadership alignment, culture, governance, and structural friction. Most find that critical gaps lie not in technology, but in the organizational conditions underneath. You leave this phase with a precise diagnostic of your strengths, risks, and highest-value opportunities.",
       question: "Where are we today — and why?",
       cta: "Discover Your Readiness"
     },
     {
       num: "02",
       title: "Architect",
-      description: "Most organizations know they need to change. Few have clarity on what they are becoming. Together we define the future state your organization needs to reach — a clear AI transformation strategy, a practical roadmap, and the structural design that makes it executable. This means redesigning how work happens: roles, workflows, decision-making processes, governance frameworks, and the human-AI operating model that positions your people and your technology where each creates the greatest value. The output is not a presentation. It is a plan your organization can actually execute without us in the room.",
+      description: "Many organizations know they need to change, but lack clarity on what they are becoming. Together, we define a clear AI transformation strategy, roadmap, and executable structural design. We redesign workflows, roles, and governance to position your people and technology where each creates the greatest value, producing a plan your organization can execute independently.",
       question: "What must we become — and how do we get there?",
       cta: "Book a Strategy Call"
     },
     {
       num: "03",
       title: "Activate",
-      description: "Strategy and structure only create value when people change how they work. This is where most transformations fail — and where the depth of our methodology matters most. We guide executive alignment, workforce adoption, change communication, and the measurement frameworks that connect every initiative to a business outcome your board can see. Then we build the governance rhythms, learning systems, and leadership habits that make this transformation permanent. The goal is an organization that no longer needs external support to keep evolving. We use the EVOLVE™ framework to get you there — because transformation is not a project with an end date. It is a capability your organization owns.",
+      description: "Strategy only creates value when people change how they work. This is where most transformations fail. We guide executive alignment, workforce adoption, change communication, and the measurement frameworks connecting initiatives to visible business outcomes. By establishing the governance, learning systems, and leadership habits using our EVOLVE™ framework, we make this transformation a permanent capability your organization owns.",
       question: "How do we make this last?",
       cta: "Get Started"
     },
@@ -170,8 +170,8 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="relative bg-[#F7F4EF]/25 py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden border-b border-gold/15">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px]">
+    <section id="how-it-works" className="relative bg-[#F7F4EF]/25 py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden border-b border-gold/15">
+      <div className="w-full px-6 lg:px-[120px]">
         <ScrollReveal duration={0.6}>
           <div className="mb-12 flex flex-col gap-4">
             <div className="text-left">

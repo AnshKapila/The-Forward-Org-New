@@ -18,10 +18,10 @@ export function CredibilityBar() {
   ];
 
   return (
-    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas py-4 md:py-6 lg:py-8 xl:py-[30px] 2xl:py-[40px] relative overflow-hidden">
+    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas py-2 lg:py-[15px] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gold opacity-40" />
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px]">
+      <div className="w-full px-6 lg:px-[120px]">
         <ScrollReveal duration={0.6}>
           <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-8 md:gap-4 w-full">
             {/* Left Eyebrow Label */}

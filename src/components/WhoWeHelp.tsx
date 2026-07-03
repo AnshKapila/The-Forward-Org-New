@@ -69,9 +69,9 @@ export function WhoWeHelp() {
     <section
       ref={sectionRef}
       id="who-we-help"
-      className="relative bg-[#F7F4EF]/40 py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden border-t border-b border-[#1A3C34]/5"
+      className="relative bg-[#F7F4EF]/40 py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden border-t border-b border-[#1A3C34]/5"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10">
+      <div className="w-full px-6 lg:px-[120px] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-stretch">
             
             {/* Left Column: Title and interactive accordion list */}

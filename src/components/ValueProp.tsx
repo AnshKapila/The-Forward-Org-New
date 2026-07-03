@@ -23,8 +23,8 @@ export function ValueProp() {
   ];
 
   return (
-    <section id="value-prop" className="relative bg-white py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden border-b border-gold/15">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10">
+    <section id="value-prop" className="relative bg-white py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden border-b border-gold/15">
+      <div className="w-full px-6 lg:px-[120px] relative z-10">
         
         {/* Header section */}
         <ScrollReveal duration={0.65}>

@@ -77,7 +77,7 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative bg-canvas py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden">
+    <section id="faq" className="relative bg-canvas py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden">
       
       {/* Inline SVG faint topographic contour lines pattern */}
       <div className="absolute inset-0 pointer-events-none select-none opacity-[0.05]">
@@ -95,7 +95,7 @@ export function FAQ() {
         </svg>
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10 text-left">
+      <div className="w-full px-6 lg:px-[120px] relative z-10 text-left">
         <ScrollReveal duration={0.6}>
           <div className="mb-16">
             <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">

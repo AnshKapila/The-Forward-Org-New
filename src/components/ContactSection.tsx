@@ -66,12 +66,12 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
   };
 
   return (
-    <section id="contact-section" className="relative bg-[#F4F1EA]/80 py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] border-t border-[#E5DEC9] overflow-hidden">
+    <section id="contact-section" className="relative bg-[#F4F1EA]/80 py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] border-t border-[#E5DEC9] overflow-hidden">
       {/* Ambient background glows */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-[#1A3C34]/3 rounded-full blur-[100px] pointer-events-none -mr-48 -mt-24" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#C9A55A]/3 rounded-full blur-[100px] pointer-events-none -ml-48 -mb-24" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10">
+      <div className="w-full px-6 lg:px-[120px] relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-20 items-stretch">
           
           {/* Left Column: Contact details and headers as structurally modeled */}

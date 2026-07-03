@@ -46,7 +46,7 @@ export function Nav() {
             : "bg-transparent py-6"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
+        <div className="w-full px-6 lg:px-[120px] flex items-center justify-between">
           {/* Logo click routes to home */}
           <Link href="/">
             <button className="flex items-center gap-1 group focus-visible:outline-2 focus-visible:outline-gold cursor-pointer text-left leading-none">

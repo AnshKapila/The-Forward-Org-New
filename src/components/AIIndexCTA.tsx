@@ -10,8 +10,8 @@ export function AIIndexCTA() {
   const [isRightHovered, setIsRightHovered] = useState(false);
 
   return (
-    <section id="ai-index" className="w-full bg-[#F7F4EF]/25 py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] border-t border-b border-[#1A3C34]/5">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px]">
+    <section id="ai-index" className="w-full bg-[#F7F4EF]/25 py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] border-t border-b border-[#1A3C34]/5">
+      <div className="w-full px-6 lg:px-[120px]">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* Left Column (col-span-5): Dark premium card with vertical bar metric chart */}
