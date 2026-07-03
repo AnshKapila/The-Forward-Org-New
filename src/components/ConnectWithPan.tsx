@@ -67,13 +67,7 @@ export function ConnectWithPan() {
 
                 <div className="border-t border-white/10 pt-5 lg:mt-auto">
                   <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl">
-                    Pan’s advisory is reserved for leaders who aren’t looking for off-the-shelf answers.
-                  </p>
-                  <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl mt-4">
-                    He works directly with a small number of executive teams each year to move them from AI noise to organizational leverage.
-                  </p>
-                  <p className="font-sans text-[15px] md:text-[16px] text-white/85 leading-relaxed font-normal max-w-xl mt-4">
-                    If your organization has high stakes around AI, you can connect with Pan directly to explore what a custom blueprint or advisory relationship looks like.
+                    Pan spent a decade building and governing real AI systems at Citi, PagerDuty, and NielsenIQ, driving $600M+ in revenue impact and filing two patents. Having witnessed brilliant technology scale and critical initiatives fail, she knows success depends on aligning the people, not just the models. Today, she helps leaders build the practical strategy, governance, and organizational culture needed to deliver the AI return your board expects.
                   </p>
                 </div>
               </div>
@@ -122,11 +116,8 @@ export function ConnectWithPan() {
                       data-cal-namespace="focused-aireadiness-debrief"
                       data-cal-config='{"layout":""}'
                     >
-                      Connect with Pan directly
+                      Book your call
                     </InteractiveButton>
-                    <p className="font-sans text-[11px] text-[#F7F4EF]/60 text-center tracking-wide leading-tight mt-2">
-                      30 minutes. No pitch. <br />Just clarity on where you stand.
-                    </p>
                   </div>
 
                 </div>

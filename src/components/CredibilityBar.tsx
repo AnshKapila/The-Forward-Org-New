@@ -41,10 +41,7 @@ export function CredibilityBar() {
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="h-10 w-auto object-contain transition-all duration-300"
-                  style={{
-                    filter: "grayscale(100%) brightness(0.6) contrast(1.8) sepia(1) saturate(3) hue-rotate(110deg)"
-                  }}
+                  className="h-10 w-auto object-contain grayscale brightness-50 contrast-125 sepia saturate-[2.2] hue-rotate-[115deg] mix-blend-multiply transition-all duration-300"
                   referrerPolicy="no-referrer"
                 />
               </div>

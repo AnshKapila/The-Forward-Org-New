@@ -33,7 +33,7 @@ export function Hero() {
   useEffect(() => {
     const timer = setInterval(() => {
       setPhraseIdx((prev) => (prev + 1) % phrases.length);
-    }, 3500);
+    }, 3000);
     return () => clearInterval(timer);
   }, [phrases.length]);
 
@@ -142,8 +142,8 @@ export function Hero() {
           animate="visible"
           className="max-w-3xl flex flex-col items-start"
         >
-          {/* Rotating Taglines styled exactly like Selection Two (now occupying Selection Two's place) */}
-          <div className="h-5 overflow-hidden mb-1.5">
+          {/* Tagline Ticker with gold font-sans wrapper */}
+          <div className="min-h-[24px] overflow-hidden">
             <AnimatePresence mode="wait">
               <motion.span
                 key={phraseIdx}
@@ -151,7 +151,7 @@ export function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="font-sans font-bold text-[10px] md:text-xs text-gold uppercase tracking-[0.2em] block"
+                className="font-sans font-semibold text-xs md:text-sm text-gold tracking-wider block"
               >
                 {phrases[phraseIdx]}
               </motion.span>
@@ -163,7 +163,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
           >
-            Building organizations that lead - and keep leading - in the Age of AI
+            Building organizations that lead and keep leading in the Age of AI
           </motion.h1>
 
           {/* Subheadline description with white-dimmed styling for accessibility */}
@@ -201,9 +201,9 @@ export function Hero() {
           {/* New Trust Line below CTAs */}
           <motion.p
             variants={itemVariants}
-            className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left max-w-2xl"
+            className="font-sans text-xs md:text-sm text-off-white/60 mt-6 tracking-wide text-left"
           >
-            Trusted by leaders transforming organizations across finance, healthcare, insurance, enterprise technology, and other regulated industries.
+            Trusted by leaders transforming organizations across Industries
           </motion.p>
         </motion.div>
       </div>

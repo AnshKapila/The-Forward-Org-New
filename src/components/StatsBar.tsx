@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
-function CountUp({ end, duration = 1800, prefix = "", suffix = "" }: { end: number; duration?: number; prefix?: string; suffix: string }) {
+function CountUp({ end, duration = 1800, suffix = "" }: { end: number; duration?: number; suffix: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
@@ -31,7 +31,6 @@ function CountUp({ end, duration = 1800, prefix = "", suffix = "" }: { end: numb
 
   return (
     <h2 ref={ref} className="font-serif text-[42px] md:text-[54px] font-bold text-gold inline-flex items-center">
-      {prefix}
       {count}
       <span className="font-serif">{suffix}</span>
     </h2>
@@ -61,7 +60,9 @@ export function StatsBar() {
           {/* Column 2 - Left Aligned */}
           <div className="flex-1 flex flex-col text-left items-start justify-start md:pr-12">
             <div className="mb-2">
-              <CountUp end={600} prefix="$" suffix="M+" />
+              <h2 className="font-serif text-[42px] md:text-[54px] font-bold text-gold inline-flex items-center">
+                $600M+
+              </h2>
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
               Business value influenced through AI, digital, and organizational transformation initiatives.
@@ -87,10 +88,10 @@ export function StatsBar() {
           {/* Column 3 - Left Aligned */}
           <div className="flex-1 flex flex-col text-left items-start justify-start md:pl-12">
             <div className="mb-2">
-              <CountUp end={2} suffix=" AI patents" />
+              <CountUp end={2} suffix="" />
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
-              Innovation grounded in practice - not theory.
+              AI patents representing innovation grounded in practice not theory.
             </p>
           </div>
         </div>

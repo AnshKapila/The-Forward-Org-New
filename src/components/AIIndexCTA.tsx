@@ -140,32 +140,15 @@ export function AIIndexCTA() {
             className="lg:col-span-7 bg-[#F7F4EF] hover:bg-[#FAF8F5] border border-[#1A3C34]/10 rounded-[1.5rem] p-8 md:p-10 flex flex-col justify-between relative overflow-hidden group shadow-lg min-h-[420px] lg:min-h-0 text-left transition-colors duration-400"
           >
             {/* Main copy and header contents */}
-            <div className="relative z-10 space-y-5">
-              <span className="font-mono text-[10px] text-teal font-semibold uppercase tracking-[0.25em] block">
-                THE AI TRANSFORMATION READINESS SCORE
+            <div className="relative z-10 space-y-4">
+              <span className="font-mono text-[10px] text-[#1A3C34]/70 uppercase tracking-[0.25em] block">
+                THE ALIGNMENT INDEX
               </span>
               <h3 className="font-serif text-[30px] md:text-[36px] font-bold leading-[1.15] text-[#1A3C34] max-w-xl">
-                Find out exactly where your organization stands. And what to fix first.
+                Find out exactly where your AI transformation stands, and what to fix first.
               </h3>
-              
-              <div className="space-y-3">
-                <p className="font-sans text-sm md:text-base text-[#1A3C34]/80 font-medium">
-                  A strategic diagnostic built across five dimensions:
-                </p>
-                <div className="flex flex-wrap gap-2 pt-1">
-                  {["Strategy", "Governance", "Leadership", "Workforce Adoption", "ROI"].map((dim, idx) => (
-                    <span 
-                      key={idx} 
-                      className="px-3 py-1 bg-[#1A3C34]/10 text-[#1A3C34] text-xs font-sans font-semibold uppercase tracking-wider"
-                    >
-                      {dim}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <p className="font-sans text-[15px] md:text-[16px] text-[#1A3C34]/80 leading-relaxed font-light italic">
-                Designed for senior leaders who need clarity — not another AI survey.
+              <p className="font-sans text-[15px] md:text-[16px] text-[#1A3C34]/80 leading-relaxed max-w-xl">
+                A 15-question organizational diagnostic across five dimensions: strategy, governance, leadership, workforce adoption, and ROI. Designed for senior leaders who need clarity, not another AI readiness survey.
               </p>
             </div>
 
