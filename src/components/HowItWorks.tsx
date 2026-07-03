@@ -170,8 +170,8 @@ export function HowItWorks() {
   ];
 
   return (
-    <section id="how-it-works" className="relative bg-[#F7F4EF]/25 py-12 md:py-16 overflow-hidden border-b border-gold/15">
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+    <section id="how-it-works" className="relative bg-[#F7F4EF]/25 py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden border-b border-gold/15">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px]">
         <ScrollReveal duration={0.6}>
           <div className="mb-12 flex flex-col gap-4">
             <div className="text-left">

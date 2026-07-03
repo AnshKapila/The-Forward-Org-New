@@ -86,12 +86,12 @@
   --font-body:      'Figtree', system-ui, sans-serif;
 
   /* TYPE SCALE (Multiples of 8, fluid design via clamp()) */
-  --text-display:   clamp(40px, 5vw, 64px);          /* Hero Headline Main */
-  --text-h1:        clamp(32px, 4vw, 56px);          /* Page Headlines */
-  --text-h2:        clamp(24px, 3vw, 40px);          /* Section Headlines */
-  --text-h3:        clamp(20px, 2vw, 32px);          /* Card & Subsection Titles (Mobile floor: 20px) */
-  --text-h4:        24px;                            /* Fixed — Smaller Section/FAQ titles */
-  --text-lead:      clamp(18px, 1.5vw, 20px);        /* Subheadlines and introductions */
+  --text-display:   clamp(36px, 4.5vw, 56px);          /* Hero Headline Main */
+  --text-h1:        clamp(28px, 3.5vw, 48px);          /* Page Headlines */
+  --text-h2:        clamp(22px, 2.75vw, 36px);          /* Section Headlines */
+  --text-h3:        clamp(18px, 2.25vw, 28px);          /* Card & Subsection Titles (Mobile floor: 18px) */
+  --text-h4:        20px;                            /* Fixed — Smaller Section/FAQ titles */
+  --text-lead:      clamp(16px, 1.25vw, 18px);        /* Subheadlines and introductions */
   --text-body:      16px;                            /* Standard body copy */
   --text-body-lg:   18px;                            /* Deliberate exception — Large body sections */
   --text-small:     14px;                            /* Deliberate exception — Captions / metadata */

@@ -18,10 +18,10 @@ export function CredibilityBar() {
   ];
 
   return (
-    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas py-10 relative overflow-hidden">
+    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas py-4 md:py-6 lg:py-8 xl:py-[30px] 2xl:py-[40px] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gold opacity-40" />
       
-      <div className="max-w-7xl mx-auto px-6 md:px-12">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px]">
         <ScrollReveal duration={0.6}>
           <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-8 md:gap-4 w-full">
             {/* Left Eyebrow Label */}
@@ -41,7 +41,7 @@ export function CredibilityBar() {
                 <img
                   src={logo.src}
                   alt={logo.name}
-                  className="h-10 w-auto object-contain grayscale brightness-50 contrast-125 sepia saturate-[2.2] hue-rotate-[115deg] mix-blend-multiply transition-all duration-300"
+                  className="h-10 w-auto object-contain saturate-20 mix-blend-multiply transition-all duration-300"
                   referrerPolicy="no-referrer"
                 />
               </div>

@@ -69,9 +69,9 @@ export function WhoWeHelp() {
     <section
       ref={sectionRef}
       id="who-we-help"
-      className="relative bg-[#F7F4EF]/40 py-12 md:py-16 overflow-hidden border-t border-b border-[#1A3C34]/5"
+      className="relative bg-[#F7F4EF]/40 py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden border-t border-b border-[#1A3C34]/5"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-[55%_45%] gap-12 lg:gap-16 items-stretch">
             
             {/* Left Column: Title and interactive accordion list */}
@@ -142,7 +142,7 @@ export function WhoWeHelp() {
             {/* Right Column: Big editorial boardroom image with Get Started card */}
             <motion.div
               style={{ x: rightX, opacity }}
-              className="relative w-full h-full min-h-[440px] lg:min-h-0 max-w-[480px] lg:max-w-[400px] mx-auto lg:ml-auto lg:mr-8 shadow-lg"
+              className="relative w-full h-full min-h-[440px] lg:min-h-0 max-w-[480px] lg:max-w-[400px] mx-auto lg:ml-auto lg:mr-0 shadow-lg"
             >
               <div className="relative w-full h-full overflow-hidden image-hover-wrapper bg-[#1A3C34]">
                 <img

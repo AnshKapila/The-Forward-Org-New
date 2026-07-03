@@ -15,7 +15,7 @@ export function ConnectWithPan() {
   };
 
   return (
-    <section id="connect-with-pan" className="relative bg-canvas py-12 md:py-16 overflow-hidden border-t border-[#1A3C34]/5">
+    <section id="connect-with-pan" className="relative bg-canvas py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden border-t border-[#1A3C34]/5">
       {/* Secondary background paper texture blended with sand/canvas */}
       <img
         src="/images/texture-paper.jpg"
@@ -26,7 +26,7 @@ export function ConnectWithPan() {
         }}
         referrerPolicy="no-referrer"
       />
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10">
         <ScrollReveal duration={0.65}>
           {/* Main Rounded Frame inspired by the reference image, using our premium teal palette */}
           <div className="bg-teal text-white rounded-[2rem] md:rounded-[2.5rem] p-8 md:p-12 lg:p-14 shadow-2xl relative overflow-hidden border border-[#235048]/30">

@@ -8,7 +8,7 @@ import { ScrollReveal } from "./ScrollReveal";
 
 export function VisionStatement() {
   return (
-    <section id="vision" className="relative bg-ink py-32 md:py-40 overflow-hidden">
+    <section id="vision" className="relative bg-ink py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden">
       
       {/* Full-bleed background image texture */}
       <img
@@ -50,7 +50,7 @@ export function VisionStatement() {
       </div>
 
       {/* Content wrapper with position relative and elevated z-index */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] relative z-10 text-center">
         <ScrollReveal duration={0.7} y={32}>
           <div className="max-w-4xl mx-auto">
             <h3 className="font-serif text-[26px] md:text-[38px] lg:text-[46px] leading-[1.25] font-bold text-off-white tracking-tight text-balance">

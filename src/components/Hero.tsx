@@ -135,7 +135,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/80 to-transparent md:hidden z-10 pointer-events-none" />
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-7xl px-6 md:px-12 z-20 text-left">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 w-full max-w-7xl px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] z-20 text-left">
         <motion.div
           variants={containerVariants}
           initial="hidden"

@@ -28,7 +28,7 @@ export function Footer() {
         />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 md:px-12 py-12 z-10">
+      <div className="relative max-w-7xl mx-auto px-6 md:px-12 lg:px-24 xl:px-[120px] 2xl:px-[160px] py-12 z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 items-center text-center md:text-left">
           
           {/* Left Column: Logo mark & Wordmark */}
