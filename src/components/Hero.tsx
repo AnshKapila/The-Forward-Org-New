@@ -140,7 +140,7 @@ export function Hero() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl flex flex-col items-start"
+          className="max-w-5xl lg:max-w-6xl xl:max-w-7xl w-full flex flex-col items-start"
         >
           {/* Tagline Ticker with gold font-sans wrapper */}
           <div className="min-h-[24px] overflow-hidden">
@@ -161,7 +161,7 @@ export function Hero() {
           {/* Heading H1 set strictly fluid using custom --text-hero property clamp */}
           <motion.h1
             variants={itemVariants}
-            className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
+            className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white w-full text-left mt-3 md:mt-4"
           >
             Building organizations that lead and keep leading in the Age of AI
           </motion.h1>

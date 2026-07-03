@@ -8,7 +8,7 @@ import { ScrollReveal } from "./ScrollReveal";
 
 export function VisionStatement() {
   return (
-    <section id="vision" className="relative bg-ink py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden">
+    <section id="vision" className="relative bg-ink py-16 md:py-24 lg:py-32 xl:py-[120px] 2xl:py-[160px] overflow-hidden">
       
       {/* Full-bleed background image texture */}
       <img
