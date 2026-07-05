@@ -3,15 +3,16 @@ import { PanImage } from "./PanImage";
 import { ScrollReveal } from "./ScrollReveal";
 import { Calendar } from "lucide-react";
 import { InteractiveButton } from "./InteractiveButton";
+import { useLocation } from "wouter";
 import prof1Img from "../assets/images/prof1.jpg";
 
 // Premium high-fidelity likeness representing a South Asian female advisor with a warm wooden library/bookshelf background
 const PAN_PORTRAIT_FALLBACK = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=600&h=750";
 
 export function ConnectWithPan() {
+  const [_, setLocation] = useLocation();
   const handleScrollToCall = () => {
-    const el = document.getElementById("book-a-call");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    setLocation("/book-a-call");
   };
 
   return (
@@ -112,9 +113,7 @@ export function ConnectWithPan() {
                     <InteractiveButton
                       variant="primary"
                       className="w-full text-center"
-                      data-cal-link="pan-seth/focused-aireadiness-debrief"
-                      data-cal-namespace="focused-aireadiness-debrief"
-                      data-cal-config='{"layout":""}'
+                      onClick={() => setLocation("/book-a-call")}
                     >
                       Book your call
                     </InteractiveButton>

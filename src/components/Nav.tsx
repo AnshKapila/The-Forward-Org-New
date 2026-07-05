@@ -19,20 +19,6 @@ export function Nav() {
     // { label: "Posts", path: "/posts" },
   ];
 
-  const handleBookACall = () => {
-    setIsMobileMenuOpen(false);
-    if (location === "/") {
-      const el = document.getElementById("book-a-call");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      setLocation("/");
-      setTimeout(() => {
-        const el = document.getElementById("book-a-call");
-        if (el) el.scrollIntoView({ behavior: "smooth" });
-      }, 150);
-    }
-  };
-
   const isTransparentNavbarPage = location === "/" || location === "/masterclass";
   const showDarkNavbar = !isTransparentNavbarPage || isScrolled;
 

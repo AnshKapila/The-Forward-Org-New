@@ -1,10 +1,12 @@
 import React, { useRef, useState } from "react";
 import { useInView, motion } from "framer-motion";
+import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
 import founderImg from "../assets/images/prof1.jpg";
 
 export default function About() {
+  const [_, setLocation] = useLocation();
   const timelineRef = useRef<HTMLDivElement>(null);
   const isTimelineInView = useInView(timelineRef, { once: true, margin: "-10% 0px" });
   const [lineWillChange, setLineWillChange] = useState(true);
@@ -33,8 +35,7 @@ export default function About() {
   ];
 
   const handleBookClick = () => {
-    // Navigate home   and scroll to call section
-    window.location.href = "/#book-a-call";
+    setLocation("/book-a-call");
   };
 
   return (

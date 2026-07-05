@@ -11,7 +11,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
   const [willChangeActive, setWillChangeActive] = useState(true);
 
   // Link destinations
-  const buttonPath = "/index"; 
+  const buttonPath = idx === 1 ? "/book-a-call" : idx === 2 ? "/contact" : "/index"; 
 
   return (
     <div

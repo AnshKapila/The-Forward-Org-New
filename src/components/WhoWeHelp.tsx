@@ -2,6 +2,7 @@ import { useState, useRef } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { useLocation } from "wouter";
 import chessboardImg from "../assets/images/regenerated_image_1780369204282.jpg";
 
 interface AccordionItem {
@@ -14,6 +15,7 @@ export function WhoWeHelp() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const [_, setLocation] = useLocation();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -57,12 +59,7 @@ export function WhoWeHelp() {
   ];
 
   const handleGetStartedClick = () => {
-    const el = document.getElementById("book-a-call");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      window.location.href = "/#book-a-call";
-    }
+    setLocation("/book-a-call");
   };
 
   return (

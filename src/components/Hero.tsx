@@ -52,19 +52,6 @@ export function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleScrollToCall = () => {
-    const el = document.getElementById("book-a-call");
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    } else {
-      setLocation("/");
-      setTimeout(() => {
-        const target = document.getElementById("book-a-call");
-        if (target) target.scrollIntoView({ behavior: "smooth" });
-      }, 200);
-    }
-  };
-
   // Entry animation   parameters
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -186,15 +173,6 @@ export function Hero() {
               className="text-center"
             >
               Discover Your AI Transformation Readiness
-            </InteractiveButton>
-            
-            {/* Secondary Action Button (Outline transparent) */}
-            <InteractiveButton
-              onClick={handleScrollToCall}
-              variant="secondary"
-              className="text-center"
-            >
-              Book a Call
             </InteractiveButton>
           </motion.div>
 
