@@ -59,8 +59,8 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
 
       {/* Static Step Title at the bottom left (visible when NOT hovered) */}
       {!isHovered && (
-        <div className="absolute bottom-0 left-0 p-8 z-20 text-left">
-          <h3 className="font-serif text-[32px] md:text-[38px] font-bold text-white tracking-wide leading-none">
+        <div className="absolute bottom-0 left-0 p-8 z-20 text-left pr-12">
+          <h3 className="font-serif text-[22px] sm:text-[24px] md:text-[26px] lg:text-[28px] font-bold text-white tracking-wide leading-tight">
             {step.title}
           </h3>
         </div>
@@ -87,9 +87,9 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
                className="pt-2 shrink-0"
             >
               <span className="font-mono text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">
-                STEP {step.num}
+                WAY {step.num}
               </span>
-              <h3 className="font-serif text-[28px] md:text-[34px] font-bold text-white tracking-wide leading-tight">
+              <h3 className="font-serif text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-bold text-white tracking-wide leading-tight">
                 {step.title}
               </h3>
             </motion.div>
@@ -108,7 +108,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
 
                 <div className="border-t border-white/20 pt-3 space-y-1">
                   <span className="font-sans text-[10px] uppercase tracking-widest text-gold font-semibold block">
-                    Key question your organization will answer:
+                    Strategic Shift:
                   </span>
                   <p className="font-serif italic text-sm md:text-base text-white/95">
                     "{step.question}"
@@ -142,24 +142,24 @@ export function HowItWorks() {
   const steps = [
     {
       num: "01",
-      title: "Assess",
-      description: "We begin with an honest evaluation of where your organization actually stands—examining AI readiness, leadership alignment, culture, governance, and structural friction. Most find that critical gaps lie not in technology, but in the organizational conditions underneath. You leave this phase with a precise diagnostic of your strengths, risks, and highest-value opportunities.",
-      question: "Where are we today — and why?",
-      cta: "Discover Your Readiness"
+      title: "AI Strategy & Implementation Support",
+      description: "Shift from disconnected tools and isolated pilots to a unified AI strategy. We map high-value opportunities and support the leadership and implementation needed to succeed.",
+      question: "Where can AI create the greatest strategic value for us?",
+      cta: "Explore Strategy"
     },
     {
       num: "02",
-      title: "Architect",
-      description: "Many organizations know they need to change, but lack clarity on what they are becoming. Together, we define a clear AI transformation strategy, roadmap, and executable structural design. We redesign workflows, roles, and governance to position your people and technology where each creates the greatest value, producing a plan your organization can execute independently.",
-      question: "What must we become — and how do we get there?",
-      cta: "Book a Strategy Call"
+      title: "AI Leadership & Cultural Alignment",
+      description: "Transform employee resistance and uneven adoption into aligned leaders, confident teams, and clear workflows to embed AI throughout the organization.",
+      question: "How do we align our leaders and teams for AI adoption?",
+      cta: "Explore Alignment"
     },
     {
       num: "03",
-      title: "Activate",
-      description: "Strategy only creates value when people change how they work. This is where most transformations fail. We guide executive alignment, workforce adoption, change communication, and the measurement frameworks connecting initiatives to visible business outcomes. By establishing the governance, learning systems, and leadership habits using our EVOLVE™ framework, we make this transformation a permanent capability your organization owns.",
-      question: "How do we make this last?",
-      cta: "Get Started"
+      title: "AI Governance & Risk Framework",
+      description: "For high-trust organizations, we bring governance frameworks built inside demanding enterprises, including global banks and regulated SaaS. Shift from uncontrolled AI use and data exposure to a practical framework enabling controlled, confident, and credible adoption.",
+      question: "From unmanaged AI risk to governed, defensible growth.",
+      cta: "Explore Governance"
     },
   ];
 
@@ -175,11 +175,11 @@ export function HowItWorks() {
         <ScrollReveal duration={0.6}>
           <div className="mb-12 flex flex-col gap-4">
             <div className="text-left">
-              <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink max-w-xl text-balance">
-                How we work together.
+              <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink max-w-2xl text-balance">
+                WAYS WE WORK
               </h2>
-              <p className="font-sans text-sm md:text-base text-ink-muted mt-3 max-w-3xl leading-relaxed">
-                We guide organizations through transformation using a structured methodology — from honest assessment to lasting capability. The work has a name. What matters is what it produces.
+              <p className="font-sans text-sm md:text-base text-ink-muted mt-3 max-w-4xl leading-relaxed">
+                Three focused ways to use the Forward Org Blueprint to turn AI from a source of pressure, fragmentation, or risk into a practical organizational business advantage.
               </p>
             </div>
           </div>
