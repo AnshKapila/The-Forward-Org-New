@@ -12,6 +12,7 @@ import { ValueProp } from "../components/ValueProp";
 import { ConnectWithPan } from "../components/ConnectWithPan";
 import { FAQ } from "../components/FAQ";
 import { ContactSection } from "../components/ContactSection";
+import { ThoughtLeadership } from "../components/ThoughtLeadership";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
       <VisionStatement />
       <ValueProp />
       <ConnectWithPan />
-      {/* <ThoughtLeadership /> */}
+      <ThoughtLeadership />
       <FAQ />
       <ContactSection />
     </>

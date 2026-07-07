@@ -158,7 +158,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
           >
-            Empowering Leaders to align their Strategy, People and Processes to unlock greater freedom, and achieve extraordinary results fast
+            Empowering leaders and executive teams align strategy, leadership, people, and operations- so AI becomes a competitive advantage that delivers real business value, not a fragmented initiative.
           </motion.p>
 
           {/* Double Active Hero Action Buttons side-by-side inspired by the wireframe */}

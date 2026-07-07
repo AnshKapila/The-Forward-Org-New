@@ -25,6 +25,7 @@
   --color-ink: var(--primitive-ink-900);
   --color-ink-muted: var(--primitive-ink-500);
   --color-ink-faint: var(--primitive-ink-300);
+  --color-ink-light: #707672; /* Lighter than ink-muted, WCAG AA compliant (4.6:1 contrast ratio against white) */
   --color-teal-text: var(--primitive-green-900);
   --color-off-white: var(--primitive-sand-100);
 

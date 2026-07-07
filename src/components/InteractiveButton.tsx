@@ -64,7 +64,7 @@ interface InteractiveButtonProps extends React.ButtonHTMLAttributes<HTMLButtonEl
   disabled?: boolean;
   className?: string;
   id?: string;
-  variant?: "primary" | "secondary" | "gold" | "teal" | "dark" | "outline-dark" | "outline-teal";
+  variant?: "primary" | "secondary" | "gold" | "teal" | "dark" | "outline-dark" | "outline-teal" | "outline-gold";
   size?: "sm" | "md";
   icon?: LucideIcon | React.ComponentType<{ className?: string; size?: number }>;
   noIcon?: boolean;
@@ -121,6 +121,9 @@ export function InteractiveButton({
       // On hover: Forest green fill slides in from left using clip-path, text transitions to light green simultaneously.
       isGhostOutline = true;
       variantStyle = "border-[#1A3C34] bg-transparent text-[#1A3C34] hover:text-[#E8F0EE] transition-colors duration-200";
+      break;
+    case "outline-gold":
+      variantStyle = "border-gold bg-transparent text-gold hover:bg-gold hover:text-ink hover:border-gold transition-colors duration-200";
       break;
     default:
       variantStyle = "bg-off-white text-ink border-transparent hover:bg-ink hover:text-white";

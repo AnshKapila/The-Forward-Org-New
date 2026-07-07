@@ -7,7 +7,8 @@ import About from "./pages/About";
 import IndexPage from "./pages/Index";
 import Scorecard from "./pages/Scorecard";
 import BookCallPage from "./pages/BookCall";
-import Posts from "./pages/Posts";
+import Newsletter from "./pages/Newsletter";
+import NewsletterDetail from "./pages/NewsletterDetail";
 import ContactPage from "./pages/Contact";
 import Masterclass from "./pages/Masterclass";
 import NotFound from "./pages/NotFound";
@@ -33,7 +34,8 @@ function MainAppContent() {
           <Route path="/index" component={IndexPage} />
           <Route path="/scorecard" component={Scorecard} />
           <Route path="/book-a-call" component={BookCallPage} />
-          <Route path="/posts" component={Posts} />
+          <Route path="/newsletter" component={Newsletter} />
+          <Route path="/newsletter/:id" component={NewsletterDetail} />
           <Route path="/contact" component={ContactPage} />
           <Route path="/masterclass" component={Masterclass} />
           {/* Default fallback route pointing to beautiful 404 handler */}
