@@ -18,7 +18,7 @@ export function CredibilityBar() {
   ];
 
   return (
-    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas py-2 lg:py-[15px] relative overflow-hidden">
+    <div ref={containerRef} id="credibility-bar" className="w-full bg-canvas pt-4 pb-2 lg:pt-[30px] lg:pb-[15px] relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gold opacity-40" />
       
       <div className="w-full px-6 lg:px-[120px]">
@@ -49,8 +49,6 @@ export function CredibilityBar() {
           </div>
         </ScrollReveal>
       </div>
-
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gold opacity-40" />
     </div>
   );
 }
