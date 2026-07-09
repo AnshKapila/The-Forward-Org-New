@@ -287,7 +287,9 @@ export default function Scorecard() {
     setGateSubmitting(true);
 
     try {
-      const listId = Number(import.meta.env.VITE_BREVO_LIST_INDEX);
+      const rawEnvListId = import.meta.env.VITE_BREVO_LIST_INDEX;
+      console.log("Resolved VITE_BREVO_LIST_INDEX:", rawEnvListId);
+      const listId = Number(rawEnvListId) || 6;
       const attributes = {
         FIRSTNAME: gateName.trim(),
         MATURITY_STAGE: rating,

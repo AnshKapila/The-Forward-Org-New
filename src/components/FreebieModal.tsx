@@ -40,7 +40,9 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
 
     setIsSubmitting(true);
     try {
-      const listId = Number(import.meta.env.VITE_BREVO_LIST_FREEBIE);
+      const rawEnvListId = import.meta.env.VITE_BREVO_LIST_FREEBIE;
+      console.log("Resolved VITE_BREVO_LIST_FREEBIE:", rawEnvListId);
+      const listId = Number(rawEnvListId) || 5;
       const attributes = {
         FIRSTNAME: name,
         SOURCE: "freebie_download"

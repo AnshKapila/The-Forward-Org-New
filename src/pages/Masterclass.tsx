@@ -104,7 +104,9 @@ export default function Masterclass() {
 
     setIsSubmitting(true);
     try {
-      const listId = Number(import.meta.env.VITE_BREVO_LIST_MASTERCLASS);
+      const rawEnvListId = import.meta.env.VITE_BREVO_LIST_MASTERCLASS;
+      console.log("Resolved VITE_BREVO_LIST_MASTERCLASS:", rawEnvListId);
+      const listId = Number(rawEnvListId) || 4;
       const nameParts = name.trim().split(" ");
       const firstName = nameParts[0];
       const lastName = nameParts.slice(1).join(" ");

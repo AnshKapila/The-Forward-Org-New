@@ -71,7 +71,9 @@ export default function BookCallPage() {
 
     setStatus("submitting");
     try {
-      const listId = Number(import.meta.env.VITE_BREVO_LIST_CALL_REQUESTS);
+      const rawEnvListId = import.meta.env.VITE_BREVO_LIST_CALL_REQUESTS;
+      console.log("Resolved VITE_BREVO_LIST_CALL_REQUESTS:", rawEnvListId);
+      const listId = Number(rawEnvListId) || 3;
       const attributes = {
         JOB_TITLE: role.trim(),
         SOURCE: "call_request",
