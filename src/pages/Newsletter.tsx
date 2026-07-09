@@ -32,7 +32,7 @@ export default function Newsletter() {
 
   const filterTabStyles = (name: string) => {
     const isActive = activeFilter === name;
-    return `px-5 py-2.5 rounded-full text-xs font-sans font-semibold border tracking-wider uppercase transition-all duration-150 cursor-pointer ${
+    return `px-5 py-2.5 rounded-full text-xs font-sans font-semibold border tracking-wider capitalize transition-all duration-150 cursor-pointer ${
       isActive
         ? "bg-teal text-white border-teal shadow-smScale"
         : "bg-white text-teal border-teal/30 hover:bg-teal/10"
@@ -53,11 +53,11 @@ export default function Newsletter() {
           </div>
 
           <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 space-y-4">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block">
-              THE NEWSLETTER
+            <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block">
+              The Newsletter
             </span>
             <h1 className="font-serif text-[38px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
-              AI Strategy Insider
+              One Step Forward
             </h1>
             
             <div className="flex items-center gap-3.5 pt-2">
@@ -73,7 +73,7 @@ export default function Newsletter() {
               </div>
               <div>
                 <p className="font-sans font-semibold text-[14px] text-off-white">
-                  Pan Seth <span className="text-gold/50 mx-2">•</span> <span className="text-gold uppercase tracking-wider text-xs font-bold">AI Strategy Advisor</span>
+                  Pan Seth <span className="text-gold/50 mx-2">•</span> <span className="text-gold capitalize tracking-wider text-xs font-bold">AI Strategy Advisor</span>
                 </p>
                 <p className="font-sans text-[11px] text-off-white/70">
                   Weekly breakdowns of what is actually happening at the intersection of AI and organizational transformation.
@@ -117,7 +117,7 @@ export default function Newsletter() {
                           className="group relative flex flex-col justify-between p-4 bg-white border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none text-left h-full shadow-sm cursor-pointer"
                         >
                           <div>
-                            <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] uppercase mb-1 block">
+                            <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] capitalize mb-1 block">
                               {newsletter.tag}
                             </span>
 

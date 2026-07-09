@@ -173,7 +173,7 @@ export default function BookCallPage() {
           
           {/* Left Column: Context copy (Sticky on desktop) */}
           <div className="lg:sticky lg:top-28 space-y-6 text-left">
-            <span className="font-sans font-semibold text-xs text-[#C9A55A] uppercase tracking-[0.25em] block leading-none">
+            <span className="font-sans font-semibold text-xs text-[#C9A55A] capitalize tracking-[0.25em] block leading-none">
               {label}
             </span>
             <h1 className="font-serif text-[36px] md:text-[44px] font-bold text-[#1A3C34] leading-[1.1] tracking-tight">
@@ -187,7 +187,7 @@ export default function BookCallPage() {
             <div className="mt-8 pt-8 border-t border-[#1A3C34]/10 space-y-5">
               <div className="flex items-center justify-between">
                 <h2 className="font-serif text-2xl font-bold text-[#1A3C34]">AI Readiness Debrief</h2>
-                <span className="bg-[#C9A55A]/10 text-[#C9A55A] font-mono text-[11px] font-bold px-2.5 py-1 uppercase tracking-wider select-none">
+                <span className="bg-[#C9A55A]/10 text-[#C9A55A] font-mono text-[11px] font-bold px-2.5 py-1 capitalize tracking-wider select-none">
                   30 Min
                 </span>
               </div>
@@ -196,7 +196,7 @@ export default function BookCallPage() {
                 <p className="font-sans text-[15px] text-[#1A322C]/75 leading-relaxed font-light">
                   You've completed the AI Readiness Assessment. This session is where your results come to life.
                 </p>
-                <p className="font-sans text-xs font-semibold text-[#1A3C34] tracking-[0.1em] uppercase pt-1">
+                <p className="font-sans text-xs font-semibold text-[#1A3C34] tracking-[0.1em] capitalize pt-1">
                   In 30 minutes we will:
                 </p>
               </div>
@@ -290,7 +290,7 @@ export default function BookCallPage() {
                     {/* Field 1: Email */}
                     <div className="space-y-2 text-left">
                       <label htmlFor="email" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
-                        YOUR EMAIL ADDRESS*
+                        Your Email Address*
                       </label>
                       <input
                         id="email"
@@ -316,7 +316,7 @@ export default function BookCallPage() {
                     {/* Field 2: Role and Organization */}
                     <div className="space-y-2 text-left">
                       <label htmlFor="role" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
-                        YOUR ROLE AND ORGANIZATION*
+                        Your Role And Organization*
                       </label>
                       <input
                         id="role"
@@ -346,7 +346,7 @@ export default function BookCallPage() {
                     <div className="space-y-2 text-left relative">
                       <div className="flex justify-between items-center">
                         <label htmlFor="purpose" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
-                          WHAT WOULD YOU LIKE TO GET FROM THIS CONVERSATION?*
+                          What Would You Like To Get From This Conversation?*
                         </label>
                         <span className="text-[11px] font-sans text-ink-muted/50 font-medium">
                           {purpose.length} / 500
@@ -391,7 +391,7 @@ export default function BookCallPage() {
                         type="submit"
                         variant="gold"
                         disabled={status === "submitting"}
-                        className="w-full uppercase tracking-[0.15em] text-xs font-bold select-none flex items-center justify-center gap-2"
+                        className="w-full capitalize tracking-[0.15em] text-xs font-bold select-none flex items-center justify-center gap-2"
                       >
                         {status === "submitting" ? (
                           <>

@@ -36,10 +36,10 @@ export function Footer() {
             <LogoMark width={22} height={22} className="shrink-0" />
             <div className="flex flex-col text-left justify-center">
               <span className="font-serif text-[13px] font-bold tracking-wider text-ink leading-none">
-                THE FORWARD ORG
+                The Forward Org
               </span>
-              <span className="text-[8px] font-mono tracking-widest text-gold uppercase mt-[1px] leading-none">
-                PAN SETH ADVISORY
+              <span className="text-[8px] font-mono tracking-widest text-gold capitalize mt-[1px] leading-none">
+                Pan Seth Advisory
               </span>
             </div>
           </div>

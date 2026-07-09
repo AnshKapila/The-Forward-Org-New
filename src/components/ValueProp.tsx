@@ -30,8 +30,8 @@ export function ValueProp() {
         <ScrollReveal duration={0.65}>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-20">
             <div className="text-left max-w-2xl">
-              <span className="font-sans font-semibold text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-                THE VALUE PROPOSITION
+              <span className="font-sans font-semibold text-xs text-gold capitalize tracking-[0.2em] block mb-3">
+                The Value Proposition
               </span>
               <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink text-balance">
                 Why Leading Firms Partner With Us
@@ -40,7 +40,7 @@ export function ValueProp() {
             <div className="flex items-start justify-start shrink-0 pb-1 md:pb-2">
               <Link href="/masterclass">
                 <span className="group inline-flex items-center gap-3 cursor-pointer text-ink hover:text-gold transition-colors duration-300">
-                  <span className="font-sans font-bold text-xs uppercase tracking-[0.2em] border-b border-gold/30 group-hover:border-gold pb-1.5 transition-all duration-300">
+                  <span className="font-sans font-bold text-xs capitalize tracking-[0.2em] border-b border-gold/30 group-hover:border-gold pb-1.5 transition-all duration-300">
                     Establish Real Enterprise Leverage
                   </span>
                   <span className="flex items-center justify-center w-8 h-8 rounded-full border border-gold/20 group-hover:border-gold group-hover:bg-[#F7F4EF]/50 transition-all duration-300">
@@ -61,7 +61,7 @@ export function ValueProp() {
                   <div className="flex flex-col text-left space-y-4 p-8 border border-gold/10 hover:border-gold/30 bg-[#F7F4EF]/10 hover:bg-[#F7F4EF]/20 transition-all duration-300 rounded-[2px] h-full justify-between">
                     <div className="space-y-4">
                       {/* Golden bold number */}
-                      <span className="font-mono text-xs font-bold text-gold tracking-widest uppercase block">
+                      <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize block">
                         {point.num}
                       </span>
                       {/* Serif Heading */}

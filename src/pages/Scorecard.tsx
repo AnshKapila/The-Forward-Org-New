@@ -368,14 +368,14 @@ export default function Scorecard() {
               {/* Back button to go back to the scorecard */}
               <button
                 onClick={() => setShowEmailGate(false)}
-                className="absolute top-6 left-6 flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
+                className="absolute top-6 left-6 flex text-xs font-sans capitalize tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
               >
                 <ArrowLeft size={14} /> Back to Survey
               </button>
 
               <div className="text-center space-y-4 mb-8 mt-4">
-                <span className="font-sans font-semibold text-[11px] text-[#C9A55A] uppercase tracking-[0.25em] block">
-                  YOUR RESULT IS READY
+                <span className="font-sans font-semibold text-[11px] text-[#C9A55A] capitalize tracking-[0.25em] block">
+                  Your Result Is Ready
                 </span>
                 
                 <h2 className="font-serif text-[28px] sm:text-[34px] font-bold text-[#1A3C34] leading-[1.2] tracking-tight text-balance">
@@ -437,7 +437,7 @@ export default function Scorecard() {
                     type="submit"
                     variant="gold"
                     disabled={gateSubmitting}
-                    className="w-full justify-center px-8 py-3.5 uppercase tracking-[0.15em] text-xs font-semibold select-none flex items-center gap-2"
+                    className="w-full justify-center px-8 py-3.5 capitalize tracking-[0.15em] text-xs font-semibold select-none flex items-center gap-2"
                   >
                     <span>{gateSubmitting ? "Generating Score Report..." : "Reveal My Score & Analysis"}</span>
                   </InteractiveButton>
@@ -454,7 +454,7 @@ export default function Scorecard() {
             {/* Cancel / Back floating menu, displayed on both mobile & desktop aligned with left margin */}
             <button
               onClick={clampedIdx === 0 ? () => setLocation("/index") : handleBack}
-              className="flex text-xs font-sans uppercase tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
+              className="flex text-xs font-sans capitalize tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
             >
               <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Back"}
             </button>
@@ -535,7 +535,7 @@ export default function Scorecard() {
             
             {/* Category of the Question */}
             <div className="text-left">
-              <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] uppercase tracking-widest block mb-1">
+              <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] capitalize tracking-widest block mb-1">
                 {currentQuestion.category}
               </span>
               <h3 className="font-serif text-[18px] sm:text-[20px] md:text-[23px] font-bold text-ink leading-snug">
@@ -596,7 +596,7 @@ export default function Scorecard() {
               {/* Mobile bottom-left Cancel/Back button */}
               <button
                 onClick={clampedIdx === 0 ? () => setLocation("/index") : handleBack}
-                className="md:hidden text-xs font-sans uppercase tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-2 focus:outline-none"
+                className="md:hidden text-xs font-sans capitalize tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-2 focus:outline-none"
               >
                 <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Back"}
               </button>
@@ -607,7 +607,7 @@ export default function Scorecard() {
                     <InteractiveButton 
                       onClick={handleSubmit}
                       variant="gold" 
-                      className="w-full md:w-auto text-center py-2.5 px-8 uppercase tracking-wider text-xs font-semibold"
+                      className="w-full md:w-auto text-center py-2.5 px-8 capitalize tracking-wider text-xs font-semibold"
                       id="scorecard-submit-button"
                     >
                       Submit Diagnostic
@@ -632,8 +632,8 @@ export default function Scorecard() {
         <div className="min-h-screen pt-6 md:pt-12 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
           <div className="max-w-[720px] w-full bg-[#F7F4EF] border border-[#E8D5B5] p-6 sm:p-8 md:p-12 text-left rounded-sm shadow-sm space-y-8">
             <div className="text-center space-y-4 pb-8 border-b border-ink/10">
-              <span className="font-sans font-semibold text-xs text-[#1A3C34] uppercase tracking-[0.2em] block">
-                YOUR DIAGNOSTIC SCORE
+              <span className="font-sans font-semibold text-xs text-[#1A3C34] capitalize tracking-[0.2em] block">
+                Your Diagnostic Score
               </span>
 
               <div className="flex items-baseline justify-center gap-1.5">
@@ -643,8 +643,8 @@ export default function Scorecard() {
                 <span className="font-serif text-2xl text-[#C9A55A]">/ 100</span>
               </div>
 
-              <div className={`inline-block px-4 py-1.5 border font-mono text-xs font-bold tracking-widest uppercase rounded-none ${badgeColor}`}>
-                MATURITY RATING: {rating}
+              <div className={`inline-block px-4 py-1.5 border font-mono text-xs font-bold tracking-widest capitalize rounded-none ${badgeColor}`}>
+                Maturity Rating: {Rating}
               </div>
             </div>
 
@@ -658,7 +658,7 @@ export default function Scorecard() {
               </div>
 
               <div className={`p-5 bg-white border-l-2 space-y-1 rounded-none shadow-sm ${totalScore >= 80 ? "border-emerald-600" : totalScore >= 50 ? "border-amber-500" : "border-rose-600"}`}>
-                <h5 className={`font-mono text-xs font-bold uppercase tracking-wider ${totalScore >= 80 ? "text-emerald-700" : totalScore >= 50 ? "text-amber-700" : "text-rose-700"}`}>
+                <h5 className={`font-mono text-xs font-bold capitalize tracking-wider ${totalScore >= 80 ? "text-emerald-700" : totalScore >= 50 ? "text-amber-700" : "text-rose-700"}`}>
                   PRIMARY GAP EXPOSURE KEY
                 </h5>
                 <p className="font-sans text-[15px] text-ink leading-relaxed">
@@ -680,7 +680,7 @@ export default function Scorecard() {
                   <InteractiveButton
                     onClick={() => setLocation("/book-a-call")}
                     variant="gold"
-                    className="w-full md:w-auto uppercase tracking-wider text-xs font-semibold py-3.5 px-6 shrink-0 text-center"
+                    className="w-full md:w-auto capitalize tracking-wider text-xs font-semibold py-3.5 px-6 shrink-0 text-center"
                     id="scorecard-book-call-cta"
                   >
                     Book a Call

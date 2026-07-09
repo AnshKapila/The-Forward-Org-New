@@ -77,8 +77,8 @@ export function WhoWeHelp() {
               className="flex flex-col text-left justify-center lg:pr-4"
             >
               <div className="mb-10 lg:mb-12">
-                <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-                  WHO WE HELP
+                <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block mb-3">
+                  Who We Help
                 </span>
                 <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink">
                   Built for leaders navigating a defining business transition.
@@ -167,7 +167,7 @@ export function WhoWeHelp() {
                       className="text-[#1A3C34] group-hover/gs:text-[#E8F0EE] group-hover/gs:translate-x-1 group-hover/gs:-translate-y-1 transition-all duration-300"
                     />
                   </div>
-                  <span className="font-sans text-[13px] font-bold text-[#1A3C34] group-hover/gs:text-[#E8F0EE] uppercase tracking-wider block transition-colors duration-300">
+                  <span className="font-sans text-[13px] font-bold text-[#1A3C34] group-hover/gs:text-[#E8F0EE] capitalize tracking-wider block transition-colors duration-300">
                     Get started
                   </span>
                 </div>

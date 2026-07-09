@@ -27,8 +27,8 @@ export default function NotFound() {
         {/* Error Header */}
         <ScrollReveal duration={0.5}>
           <div className="space-y-4">
-            <span className="font-mono text-[10px] font-bold text-red-600 bg-red-50 border border-red-150 px-3 py-1 rounded-sm tracking-wider uppercase inline-block">
-              HTTP_ERROR_404
+            <span className="font-mono text-[10px] font-bold text-red-600 bg-red-50 border border-red-150 px-3 py-1 rounded-sm tracking-wider capitalize inline-block">
+              Http_error_404
             </span>
             <h1 className="font-serif text-[84px] md:text-[110px] text-[#122D27] leading-none font-bold tracking-tight">
               404
@@ -46,7 +46,7 @@ export default function NotFound() {
         {/* Diagnostic Panel */}
         <ScrollReveal duration={0.6} delay={0.15}>
           <div className="bg-white border border-[#D4C9B8] p-6 text-left space-y-4 shadow-sm rounded-none">
-            <h3 className="font-sans font-bold text-xs uppercase tracking-wider text-teal flex items-center gap-2">
+            <h3 className="font-sans font-bold text-xs capitalize tracking-wider text-teal flex items-center gap-2">
               <ShieldAlert size={14} className="text-gold" /> Critical Error Diagnostics
             </h3>
             
@@ -55,19 +55,19 @@ export default function NotFound() {
                 <span className="text-ink-faint flex items-center gap-1.5">
                   <Network size={12} className="opacity-70" /> Path Request
                 </span>
-                <span className="font-bold text-red-600">FAILED</span>
+                <span className="font-bold text-red-600">Failed</span>
               </div>
               <div className="flex items-center justify-between border-b border-[#F0ECE3] pb-1.5">
                 <span className="text-ink-faint flex items-center gap-1.5">
                   <Cpu size={12} className="opacity-70" /> Server Edge
                 </span>
-                <span className="font-bold text-teal">ONLINE</span>
+                <span className="font-bold text-teal">Online</span>
               </div>
               <div className="flex items-center justify-between border-b border-[#F0ECE3] pb-1.5">
                 <span className="text-ink-faint flex items-center gap-1.5">
                   <HardDrive size={12} className="opacity-70" /> Static Nodes
                 </span>
-                <span className="font-bold text-teal">OPERATIONAL</span>
+                <span className="font-bold text-teal">Operational</span>
               </div>
               <div className="flex items-center justify-between border-b border-[#F0ECE3] pb-1.5">
                 <span className="text-ink-faint">Handshake Ping</span>
@@ -86,7 +86,7 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
             <button
               onClick={() => setLocation("/")}
-              className="w-full sm:w-auto px-6 py-3.5 bg-[#122D27] hover:bg-gold text-white hover:text-ink font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 select-none cursor-pointer border-none rounded-none"
+              className="w-full sm:w-auto px-6 py-3.5 bg-[#122D27] hover:bg-gold text-white hover:text-ink font-sans text-xs font-bold capitalize tracking-wider transition-all duration-300 flex items-center justify-center gap-2 select-none cursor-pointer border-none rounded-none"
             >
               <ArrowLeft size={14} />
               <span>Return Home</span>
@@ -94,7 +94,7 @@ export default function NotFound() {
             <button
               onClick={handleRefresh}
               disabled={isRefreshing}
-              className="w-full sm:w-auto px-6 py-3.5 border border-[#122D27]/20 hover:border-[#122D27] text-[#122D27] hover:bg-[#122D27]/5 font-sans text-xs font-bold uppercase tracking-wider transition-all duration-300 flex items-center justify-center gap-2 select-none cursor-pointer rounded-none"
+              className="w-full sm:w-auto px-6 py-3.5 border border-[#122D27]/20 hover:border-[#122D27] text-[#122D27] hover:bg-[#122D27]/5 font-sans text-xs font-bold capitalize tracking-wider transition-all duration-300 flex items-center justify-center gap-2 select-none cursor-pointer rounded-none"
             >
               <RefreshCw size={14} className={isRefreshing ? "animate-spin" : ""} />
               <span>{isRefreshing ? "Testing Ping..." : "Verify Connection"}</span>

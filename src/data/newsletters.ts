@@ -1373,7 +1373,7 @@ export const newsletters: Newsletter[] = [
       },
       {
         type: "paragraph",
-        value: "Subscribe to the AI Strategy Insider today to learn from the best industry examples. Cheers."
+        value: "Subscribe to One Step Forward today to learn from the best industry examples. Cheers."
       }
     ]
   },

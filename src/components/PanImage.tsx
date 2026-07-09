@@ -26,7 +26,7 @@ export function PanImage({ src, fallbackSrc, alt, className = "", style }: PanIm
     <div className={`relative overflow-hidden bg-teal-dim/10 ${className}`} style={style}>
       {isLoading && (
         <div className="absolute inset-0 bg-teal-dim/15 flex items-center justify-center">
-          <span className="text-xs font-mono text-gold tracking-widest uppercase animate-pulse">LOADING...</span>
+          <span className="text-xs font-mono text-gold tracking-widest capitalize animate-pulse">Loading...</span>
         </div>
       )}
       <motion.img

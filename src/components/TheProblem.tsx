@@ -120,8 +120,8 @@ export function TheProblem() {
           <div className="w-full flex flex-col text-left">
             {/* Heading row (Full-width) */}
             <div className="space-y-2 mb-10">
-              <span className="font-sans font-semibold text-xs text-gold uppercase tracking-[0.2em] block">
-                THE CONTEXT
+              <span className="font-sans font-semibold text-xs text-gold capitalize tracking-[0.2em] block">
+                The Context
               </span>
               <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[40px] leading-[1.15] font-bold text-ink text-balance">
                 Organizations are struggling to access AI, they are struggling to align with it.
@@ -151,7 +151,7 @@ export function TheProblem() {
                     </>
                   ) : (
                     <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8 select-none border border-gold/40 rounded-[1.5rem]">
-                      <span className="font-mono text-xs text-[#C9A55A] font-bold uppercase tracking-widest block mb-2">
+                      <span className="font-mono text-xs text-[#C9A55A] font-bold capitalize tracking-widest block mb-2">
                         Executive Room
                       </span>
                       <p className="font-serif text-sm italic text-ink max-w-[280px]">

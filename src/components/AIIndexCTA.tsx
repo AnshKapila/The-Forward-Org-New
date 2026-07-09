@@ -29,8 +29,8 @@ export function AIIndexCTA() {
             <div className="absolute inset-0 pointer-events-none bg-radial-gradient from-transparent to-black/30 opacity-40" />
 
             <div className="relative z-10 space-y-4">
-              <span className="font-mono text-[10px] text-gold uppercase tracking-[0.25em] block">
-                THE PROBLEM WE SOLVE
+              <span className="font-mono text-[10px] text-gold capitalize tracking-[0.25em] block">
+                The Problem We Solve
               </span>
               <h3 className="font-serif text-[28px] md:text-[32px] font-bold leading-[1.2] text-white">
                 Most organizations are experimenting with AI. Few are building with it.
@@ -49,7 +49,7 @@ export function AIIndexCTA() {
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="mb-3 px-3 py-1 bg-gold text-[#122D27] text-[10px] font-mono font-bold rounded-full border border-white/20 shadow-md flex items-center gap-1"
               >
-                <span>ACCURACY GAP: 15%</span>
+                <span>Accuracy Gap: 15%</span>
               </motion.div>
 
               {/* Chart Bars Grid */}
@@ -68,7 +68,7 @@ export function AIIndexCTA() {
                     className="w-7 bg-white/10 rounded-t-sm group-hover:bg-white/20 transition-all duration-300"
                     style={{ height: "35px" }}
                   />
-                  <span className="font-mono text-[8px] text-white/45">SILO</span>
+                  <span className="font-mono text-[8px] text-white/45">Silo</span>
                 </div>
 
                 {/* Bar 2 */}
@@ -78,7 +78,7 @@ export function AIIndexCTA() {
                     className="w-7 bg-white/10 rounded-t-sm group-hover:bg-white/20 transition-all duration-300"
                     style={{ height: "60px" }}
                   />
-                  <span className="font-mono text-[8px] text-white/45">RISK</span>
+                  <span className="font-mono text-[8px] text-white/45">Risk</span>
                 </div>
 
                 {/* Central Key Highlighted Bar with Rising Upwards Arrow inside */}
@@ -99,7 +99,7 @@ export function AIIndexCTA() {
                       <ArrowUpRight className="w-5 h-5 stroke-[2.5]" />
                     </motion.div>
                   </motion.div>
-                  <span className="font-mono text-[8px] font-bold text-gold">GAP</span>
+                  <span className="font-mono text-[8px] font-bold text-gold">Gap</span>
                 </div>
 
                 {/* Bar 4 */}
@@ -109,7 +109,7 @@ export function AIIndexCTA() {
                     className="w-7 bg-white/10 rounded-t-sm group-hover:bg-white/20 transition-all duration-300"
                     style={{ height: "75px" }}
                   />
-                  <span className="font-mono text-[8px] text-white/45">ROI</span>
+                  <span className="font-mono text-[8px] text-white/45">Roi</span>
                 </div>
 
                 {/* Bar 5 */}
@@ -119,7 +119,7 @@ export function AIIndexCTA() {
                     className="w-7 bg-white/10 rounded-t-sm group-hover:bg-white/20 transition-all duration-300"
                     style={{ height: "45px" }}
                   />
-                  <span className="font-mono text-[8px] text-white/45">TECH</span>
+                  <span className="font-mono text-[8px] text-white/45">Tech</span>
                 </div>
               </div>
             </div>
@@ -141,8 +141,8 @@ export function AIIndexCTA() {
           >
             {/* Main copy and header contents */}
             <div className="relative z-10 space-y-4">
-              <span className="font-mono text-[10px] text-[#1A3C34]/70 uppercase tracking-[0.25em] block">
-                THE ALIGNMENT INDEX
+              <span className="font-mono text-[10px] text-[#1A3C34]/70 capitalize tracking-[0.25em] block">
+                The Alignment Index
               </span>
               <h3 className="font-serif text-[30px] md:text-[36px] font-bold leading-[1.15] text-[#1A3C34] max-w-xl">
                 Find out exactly where your AI transformation stands, and what to fix first.

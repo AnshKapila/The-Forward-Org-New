@@ -39,10 +39,10 @@ export function Nav() {
               <LogoMark width={30.6} height={30.6} className="shrink-0" />
               <div className="flex flex-col select-none leading-none">
                 <span className="font-serif text-[15px] font-bold tracking-wider text-white leading-none">
-                  THE FORWARD ORG
+                  The Forward Org
                 </span>
-                <span className="text-[9px] font-mono tracking-widest text-gold uppercase mt-[1.5px] leading-none">
-                  PAN SETH ADVISORY
+                <span className="text-[9px] font-mono tracking-widest text-gold capitalize mt-[1.5px] leading-none">
+                  Pan Seth Advisory
                 </span>
               </div>
             </button>
@@ -156,8 +156,8 @@ export function Nav() {
                 Book a Call
               </InteractiveButton>
               
-              <div className="text-center font-mono text-[10px] uppercase tracking-widest text-[#F0E6D3]/50">
-                INTELLIGENCE. STRUCTURE. DIRECTION.
+              <div className="text-center font-mono text-[10px] capitalize tracking-widest text-[#F0E6D3]/50">
+                Intelligence. Structure. Direction.
               </div>
             </div>
           </motion.div>

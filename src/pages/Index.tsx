@@ -114,7 +114,7 @@ export default function IndexPage() {
               {/* Category tag as structurally shown inside the reference image */}
               <div className="flex items-center justify-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block animate-pulse" />
-                <span className="font-sans font-bold text-[10px] md:text-xs text-gold uppercase tracking-[0.25em] block">
+                <span className="font-sans font-bold text-[10px] md:text-xs text-gold capitalize tracking-[0.25em] block">
                   The AI Transformation Readiness Index
                 </span>
               </div>
@@ -141,7 +141,7 @@ export default function IndexPage() {
                 <InteractiveButton
                   onClick={() => setLocation("/scorecard")}
                   variant="gold"
-                  className="px-10 py-3.5 uppercase tracking-[0.18em] text-xs font-bold shadow-sm"
+                  className="px-10 py-3.5 capitalize tracking-[0.18em] text-xs font-bold shadow-sm"
                   id="cta-take-index"
                 >
                   Begin Your Readiness Assessment
@@ -218,8 +218,8 @@ export default function IndexPage() {
         <div className="max-w-7xl mx-auto">
           <ScrollReveal duration={0.55}>
             <div className="text-left mb-16 md:mb-20">
-              <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-                ASSESSMENT BREAKDOWN
+              <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block mb-3">
+                Assessment Breakdown
               </span>
               <h2 className="font-serif text-[32px] md:text-[44px] leading-tight font-bold text-ink max-w-2xl">
                 The Five Dimensions of AI Alignment
@@ -263,7 +263,7 @@ export default function IndexPage() {
                     <div className="flex items-center gap-8 justify-between md:justify-end shrink-0 w-full md:w-auto">
                       {/* Outline Progress Weight Meter */}
                       <div className="flex items-center gap-3">
-                        <span className="font-mono text-[10px] uppercase tracking-wider text-ink-muted text-right">
+                        <span className="font-mono text-[10px] capitalize tracking-wider text-ink-muted text-right">
                           {dim.weightLabel}
                         </span>
                         {/* Micro horizontal meter */}
@@ -301,7 +301,7 @@ export default function IndexPage() {
                         <div className="px-4 sm:px-6 pb-10 pt-4 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 border-b border-[#1A3C34]/5 ml-0 md:ml-16">
                           {/* Column 1 - Measures */}
                           <div className="space-y-3">
-                            <span className="font-sans font-bold text-[10px] text-[#1A3C34] uppercase tracking-widest block">
+                            <span className="font-sans font-bold text-[10px] text-[#1A3C34] capitalize tracking-widest block">
                               What We Measure
                             </span>
                             <p className="font-sans text-[15px] text-ink leading-relaxed font-normal">
@@ -311,7 +311,7 @@ export default function IndexPage() {
 
                           {/* Column 2 - Matters */}
                           <div className="space-y-3">
-                            <span className="font-sans font-bold text-[10px] text-gold uppercase tracking-widest block">
+                            <span className="font-sans font-bold text-[10px] text-gold capitalize tracking-widest block">
                               Why It Matters
                             </span>
                             <p className="font-serif text-[14px] italic text-ink-muted leading-relaxed">

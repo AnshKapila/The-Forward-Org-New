@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } fr
 import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { InteractiveButton } from "../components/InteractiveButton";
 import masterclassHeroImg from "../assets/images/masterclass.jpg";
+import heroImage from "../../hero2.png";
 import { submitToBrevo } from "../utils/submitToBrevo";
 
 interface FAQItem {
@@ -280,9 +281,9 @@ export default function Masterclass() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block"
+                  className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block"
                 >
-                  LIVE MASTERCLASS
+                  Live Masterclass
                 </motion.span>
               </AnimatePresence>
             </div>
@@ -290,9 +291,9 @@ export default function Masterclass() {
             {/* Main Title / Heading */}
             <motion.h1
               variants={itemVariants}
-              className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4 uppercase"
+              className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4 capitalize"
             >
-              HOW TO LEAD IN THE AI ERA WITHOUT HAVING ALL THE ANSWERS
+              How To Lead In The AI Era Without Having All The Answers
             </motion.h1>
 
             {/* Description Paragraph */}
@@ -300,7 +301,7 @@ export default function Masterclass() {
               variants={itemVariants}
               className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-4"
             >
-              Your team isn't resisting AI. They're resisting the silence around it. Come find out why, and what to do next.
+              Your team isn't resisting AI. They're resisting the silence around it. Come find out why and what to do next in this free masterclass.
             </motion.p>
 
             {/* CTA Button */}
@@ -333,20 +334,20 @@ export default function Masterclass() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:divide-x md:divide-gold/20">
             <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Length</span>
+              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Date</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">17 July 2026</span>
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Time</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">12 PM Eastern Time</span>
+            </div>
+            <div className="flex flex-col justify-center items-center">
+              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Length</span>
               <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">90 minutes</span>
             </div>
             <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Level</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Mid-Senior leaders</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Type</span>
+              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Type</span>
               <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Live Interactive</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] uppercase tracking-widest text-ink-muted">Access</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1 text-teal">Complimentary (Free)</span>
             </div>
           </div>
         </div>
@@ -354,32 +355,43 @@ export default function Masterclass() {
 
       {/* 3. One Core-Concept Section */}
       <section className="py-24 md:py-32 bg-white relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-left">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-left">
           <ScrollReveal duration={0.6}>
-            <div className="space-y-6">
-              <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block">
-                THE CORE CHALLENGE
-              </span>
-              <h2 className="font-serif text-[32px] md:text-[45px] leading-tight font-bold text-ink">
-                THE REAL REASON AI STALLS
-              </h2>
-              
-              <p className="font-serif text-xl md:text-2xl text-teal font-medium leading-relaxed border-l-2 border-gold/40 pl-6 my-8">
-                It's never the model. It's never the tool. AI fails inside companies for one reason: nobody addressed the human side first.
-              </p>
-              
-              <p className="font-sans text-base md:text-lg text-ink-muted leading-relaxed font-light mt-6">
-                Your team isn't resisting AI. They're resisting the silence around what it means for them. This masterclass shows you the three gaps behind every stalled rollout, and how to close them, even if you didn't write a line of the strategy yourself.
-              </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
+              <div className="space-y-6">
+                <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block">
+                  The Core Challenge
+                </span>
+                <h2 className="font-serif text-[32px] md:text-[45px] leading-tight font-bold text-ink">
+                  The Real Reason AI Stalls
+                </h2>
+                
+                <p className="font-serif text-xl md:text-2xl text-teal font-medium leading-relaxed border-l-2 border-gold/40 pl-6 my-8">
+                  It's never the model. It's never the tool. AI fails inside companies for one reason: nobody addressed the human side first.
+                </p>
+                
+                <p className="font-sans text-base md:text-lg text-ink-muted leading-relaxed font-light mt-6">
+                  Your team isn't resisting AI. They're resisting the silence around what it means for them. This masterclass shows you the three gaps behind every stalled rollout, and how to close them, even if you didn't write a line of the strategy yourself.
+                </p>
 
-              <div className="pt-8">
-                <InteractiveButton
-                  onClick={handleScrollToForm}
-                  variant="gold"
-                  className="px-8 py-4 font-bold"
-                >
-                  Save My Seat
-                </InteractiveButton>
+                <div className="pt-8">
+                  <InteractiveButton
+                    onClick={handleScrollToForm}
+                    variant="gold"
+                    className="px-8 py-4 font-bold"
+                  >
+                    Save My Seat
+                  </InteractiveButton>
+                </div>
+              </div>
+
+              {/* Image side */}
+              <div className="relative aspect-[4/5] w-full rounded-[2px] overflow-hidden shadow-md">
+                <img 
+                  src={heroImage} 
+                  alt="Business session mentor explaining concepts offline" 
+                  className="w-full h-full object-cover object-right" 
+                />
               </div>
             </div>
           </ScrollReveal>
@@ -391,11 +403,11 @@ export default function Masterclass() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <ScrollReveal duration={0.6}>
             <div className="mb-16 text-center md:text-left">
-              <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-                PROGRAM STRUCTURE
+              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block mb-3">
+                Program Structure
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
-                WHAT TO EXPECT
+                What To Expect
               </h2>
             </div>
           </ScrollReveal>
@@ -472,8 +484,8 @@ export default function Masterclass() {
       <section id="register-form" className="bg-white py-24 md:py-32">
         <div className="max-w-xl mx-auto px-6 text-center space-y-8">
           <div className="space-y-3">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
-              SECURE YOUR PLACE
+            <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+              Secure Your Place
             </span>
             <h2 className="font-serif text-[32px] font-bold text-ink">
               Save Your Seat
@@ -487,7 +499,7 @@ export default function Masterclass() {
             <form onSubmit={handleSubmit} className="space-y-6 text-left bg-[#F7F4EF]/40 p-8 md:p-10 border border-gold/15 shadow-sm rounded-[2px]">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="mc-name" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
+                  <label htmlFor="mc-name" className="block text-[13px] font-semibold text-teal capitalize tracking-wide">
                     Full Name
                   </label>
                   <input
@@ -502,7 +514,7 @@ export default function Masterclass() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="mc-email" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
+                  <label htmlFor="mc-email" className="block text-[13px] font-semibold text-teal capitalize tracking-wide">
                     Email
                   </label>
                   <input
@@ -519,7 +531,7 @@ export default function Masterclass() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label htmlFor="mc-company" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
+                  <label htmlFor="mc-company" className="block text-[13px] font-semibold text-teal capitalize tracking-wide">
                     Organization <span className="text-ink-muted/60 text-xs font-normal lowercase">(optional)</span>
                   </label>
                   <input
@@ -533,7 +545,7 @@ export default function Masterclass() {
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="mc-role" className="block text-[13px] font-semibold text-teal uppercase tracking-wide">
+                  <label htmlFor="mc-role" className="block text-[13px] font-semibold text-teal capitalize tracking-wide">
                     Your Title / Role <span className="text-ink-muted/60 text-xs font-normal lowercase">(optional)</span>
                   </label>
                   <input
@@ -552,7 +564,7 @@ export default function Masterclass() {
                   type="submit"
                   disabled={isSubmitting}
                   variant="gold"
-                  className="w-full py-4 text-center text-sm font-bold uppercase tracking-wider"
+                  className="w-full py-4 text-center text-sm font-bold capitalize tracking-wider"
                 >
                   {isSubmitting ? "Processing Reservation..." : "Save My Seat"}
                 </InteractiveButton>
@@ -567,9 +579,9 @@ export default function Masterclass() {
               <div className="w-12 h-12 text-teal border border-teal/20 mx-auto flex items-center justify-center">
                 <Check size={24} strokeWidth={1.5} />
               </div>
-              <h3 className="font-serif text-2xl font-bold text-ink">Seat Requested Successfully</h3>
+              <h3 className="font-serif text-2xl font-bold text-ink">Registration Confirmed</h3>
               <p className="font-sans text-[15px] text-ink-muted max-w-sm mx-auto">
-                Thank you. We have saved your request. Our team will review your application and follow up via email within 2 business days with cohort calendars.
+                Thank you for registering. Your seat has been successfully reserved. Full details and session confirmation will be sent to your email shortly. Please check your inbox.
               </p>
             </div>
           )}
@@ -596,8 +608,8 @@ export default function Masterclass() {
         <div className="max-w-4xl mx-auto px-6 md:px-12 relative z-10 text-left">
           <ScrollReveal duration={0.6}>
             <div className="mb-16">
-              <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-                COMMON QUESTIONS
+              <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block mb-3">
+                Common Questions
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-none">
                 FAQ

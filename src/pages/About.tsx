@@ -47,8 +47,8 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left Content Column (55%) */}
             <div className="lg:col-span-7 space-y-6 text-left">
-              <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
-                THE FOUNDER
+              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+                The Founder
               </span>
               <h1 className="font-serif text-[38px] md:text-[56px] font-bold text-ink leading-tight">
                 Pan Seth
@@ -110,8 +110,8 @@ export default function About() {
       <section className="bg-white border-y border-[#1A3C34]/10 py-20 px-6 md:px-12 max-w-7xl mx-auto">
         <ScrollReveal duration={0.65}>
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.25em] block">
-              OUR MISSION
+            <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+              Our Mission
             </span>
             <h2 className="font-serif text-[24px] md:text-[32px] font-bold text-[#1A3C34] leading-relaxed text-balance">
               At The Forward Org, Our mission is to help organizations confidently move forward in the age of AI by evolving their culture, leadership, and ways of working so their people can embrace change, unlock greater freedom, and achieve extraordinary results.
@@ -128,8 +128,8 @@ export default function About() {
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <ScrollReveal duration={0.65}>
             <div className="space-y-3">
-              <span className="font-sans font-bold text-xs text-[#C9A55A] uppercase tracking-[0.25em] block">
-                THE MESSAGE
+              <span className="font-sans font-bold text-xs text-[#C9A55A] capitalize tracking-[0.25em] block">
+                The Message
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
                 How we build aligned, AI-ready organizations.
@@ -162,8 +162,8 @@ export default function About() {
       <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-left mb-16">
-            <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-2">
-              THE PRACTICE
+            <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block mb-2">
+              The Practice
             </span>
             <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
               A decade of building inside the enterprise.
@@ -200,7 +200,7 @@ export default function About() {
                   </div>
 
                   <div className="md:pt-14 space-y-2">
-                    <span className="font-mono text-xs font-bold text-gold tracking-widest uppercase block">
+                    <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize block">
                       {node.years}
                     </span>
                     <h3 className="font-serif text-xl font-bold text-ink">
@@ -220,8 +220,8 @@ export default function About() {
       {/* Section 3 - Patents & Recognition */}
       <section className="bg-white py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
         <div className="text-left mb-12">
-          <span className="font-sans font-bold text-xs text-gold uppercase tracking-[0.2em] block mb-2">
-            RESEARCH & PATENTS
+          <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block mb-2">
+            Research & Patents
           </span>
           <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
             Defensible practitioner-level depth.
@@ -232,8 +232,8 @@ export default function About() {
           {/* Card 1 */}
           <div className="p-8 border border-[#1A3C34]/40 bg-white flex flex-col justify-between transition-all duration-200 hover:border-gold">
             <div className="space-y-4">
-              <span className="font-mono text-xs font-bold text-gold tracking-widest uppercase">
-                AI PATENT
+              <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize">
+                AI Patent
               </span>
               <h3 className="font-serif text-xl font-bold text-ink leading-snug">
                 US Patent 11,482,921
@@ -250,8 +250,8 @@ export default function About() {
           {/* Card 2 */}
           <div className="p-8 border border-[#1A3C34]/40 bg-white flex flex-col justify-between transition-all duration-200 hover:border-gold">
             <div className="space-y-4">
-              <span className="font-mono text-xs font-bold text-gold tracking-widest uppercase">
-                AI PATENT
+              <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize">
+                AI Patent
               </span>
               <h3 className="font-serif text-xl font-bold text-ink leading-snug">
                 US Patent 10,873,144
@@ -274,7 +274,7 @@ export default function About() {
             "Pan turns invisible misalignment into irreversible clarity, and then returns power to the people who need to act."
           </p>
           <div className="w-[60px] h-[1px] bg-gold/40 mx-auto pt-2" />
-          <p className="font-sans font-medium text-sm text-gold tracking-wide uppercase">
+          <p className="font-sans font-medium text-sm text-gold tracking-wide capitalize">
             - Philosophy
           </p>
         </div>

@@ -55,7 +55,7 @@ function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
       {/* Content Container */}
       <div className="absolute inset-0 p-5 flex flex-col justify-between z-10 text-left">
         <div>
-          <span className="font-mono text-[9px] uppercase tracking-widest text-gold font-bold block mb-1">
+          <span className="font-mono text-[9px] capitalize tracking-widest text-gold font-bold block mb-1">
             {tag}
           </span>
           <h3 className="font-serif text-lg sm:text-xl font-bold text-white tracking-wide leading-snug">
@@ -141,8 +141,8 @@ export function Freebie() {
               {/* Right Column: Clean stack text, headings, button, all styled on the right container column */}
               <div className="flex flex-col items-start lg:pl-4 space-y-6 text-left">
                 <div className="space-y-4">
-                  <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block">
-                    FREE RESOURCE
+                  <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block">
+                    Free Resource
                   </span>
                   
                   <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-off-white leading-[1.18] text-balance">

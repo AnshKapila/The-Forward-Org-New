@@ -19,8 +19,8 @@ export function ThoughtLeadership() {
         <ScrollReveal duration={0.6}>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="space-y-3">
-              <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block">
-                RECENT THINKING
+              <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block">
+                Recent Thinking
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight text-balance">
                 Insights from the field.
@@ -33,7 +33,7 @@ export function ThoughtLeadership() {
             <div className="shrink-0">
               <button
                 onClick={() => setLocation("/newsletter")}
-                className="group font-sans font-semibold text-xs tracking-wider uppercase text-gold hover:text-gold-hover inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold select-none cursor-pointer"
+                className="group font-sans font-semibold text-xs tracking-wider capitalize text-gold hover:text-gold-hover inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold select-none cursor-pointer"
               >
                 <span>See all newsletters</span>
                 <LoopingArrow className="text-gold" size={16} />
@@ -59,7 +59,7 @@ export function ThoughtLeadership() {
               <p className="font-sans font-bold text-sm text-ink leading-none">
                 Pan Seth
               </p>
-              <p className="font-sans text-[11px] font-bold text-teal tracking-widest uppercase mt-1 leading-none">
+              <p className="font-sans text-[11px] font-bold text-teal tracking-widest capitalize mt-1 leading-none">
                 AI Strategy Advisor
               </p>
             </div>
@@ -79,7 +79,7 @@ export function ThoughtLeadership() {
                     >
                       <div>
                         {/* Topic Tag */}
-                        <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] uppercase block mb-4">
+                        <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] capitalize block mb-4">
                           {newsletter.tag}
                         </span>
 
@@ -102,7 +102,7 @@ export function ThoughtLeadership() {
 
                       {/* Bottom Link Anchor */}
                       <div className="mt-auto pt-4 border-t border-gold/10 flex items-center justify-between">
-                        <span className="font-sans font-semibold text-xs text-gold uppercase tracking-wider block">
+                        <span className="font-sans font-semibold text-xs text-gold capitalize tracking-wider block">
                           Read Newsletter
                         </span>
                         <LoopingArrow className="text-gold" size={16} />

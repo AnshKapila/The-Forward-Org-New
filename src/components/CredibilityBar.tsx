@@ -26,8 +26,8 @@ export function CredibilityBar() {
           <div className="flex flex-wrap md:flex-nowrap items-center justify-between gap-8 md:gap-4 w-full">
             {/* Left Eyebrow Label */}
             <div className="shrink-0 flex items-center">
-              <span className="font-sans font-medium text-[11px] text-gold uppercase tracking-[0.16em]">
-                OUR EXPERIENCE BUILT INSIDE
+              <span className="font-sans font-medium text-[11px] text-gold capitalize tracking-[0.16em]">
+                Our Experience Built Inside
               </span>
             </div>
 

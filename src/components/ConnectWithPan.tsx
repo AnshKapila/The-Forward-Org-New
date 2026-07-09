@@ -55,14 +55,14 @@ export function ConnectWithPan() {
               {/* Middle Column (Component 2): Beautiful biography text with enhanced spacing & typography */}
               <div className="text-left lg:h-full lg:flex lg:flex-col lg:justify-between lg:py-2">
                 <div className="space-y-3">
-                  <span className="font-mono text-[11px] font-bold text-gold uppercase tracking-[0.25em] block leading-none">
-                    THE FOUNDER
+                  <span className="font-mono text-[11px] font-bold text-gold capitalize tracking-[0.25em] block leading-none">
+                    The Founder
                   </span>
                   <h2 className="font-serif text-[36px] md:text-[46px] font-bold text-white leading-none tracking-tight">
                     Pan Seth
                   </h2>
-                  <p className="font-sans text-[15px] md:text-[16px] font-medium text-gold uppercase tracking-wider block">
-                    FOUNDER · AI STRATEGY & LEADERSHIP ADVISOR
+                  <p className="font-sans text-[15px] md:text-[16px] font-medium text-gold capitalize tracking-wider block">
+                    Founder · AI Strategy & Leadership Advisor
                   </p>
                 </div>
 
@@ -101,8 +101,8 @@ export function ConnectWithPan() {
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
                         </span>
-                        <span className="font-mono text-[9px] font-bold tracking-widest text-gold uppercase">
-                          CALENDAR OPEN
+                        <span className="font-mono text-[9px] font-bold tracking-widest text-gold capitalize">
+                          Calendar Open
                         </span>
                       </div>
                     </div>

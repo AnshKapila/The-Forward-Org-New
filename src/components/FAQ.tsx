@@ -98,8 +98,8 @@ export function FAQ() {
       <div className="w-full px-6 lg:px-[120px] relative z-10 text-left">
         <ScrollReveal duration={0.6}>
           <div className="mb-16">
-            <span className="font-sans font-medium text-xs text-gold uppercase tracking-[0.2em] block mb-3">
-              COMMON QUESTIONS
+            <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block mb-3">
+              Common Questions
             </span>
             <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
               What leaders ask us <br className="hidden sm:inline" />before working together.

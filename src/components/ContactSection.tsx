@@ -78,7 +78,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
           <div className="md:col-span-5 flex flex-col justify-between h-full space-y-10">
             <ScrollReveal duration={0.6} delay={0.1}>
               <div className="space-y-6">
-                <span className="font-sans font-semibold text-xs text-[#C9A55A] uppercase tracking-[0.25em] block">
+                <span className="font-sans font-semibold text-xs text-[#C9A55A] capitalize tracking-[0.25em] block">
                   {subtitle}
                 </span>
                 
@@ -112,7 +112,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                     />
                   </div>
                   <div>
-                    <span className="block text-[11px] font-sans font-bold uppercase tracking-wider text-ink-muted leading-tight mb-0.5">
+                    <span className="block text-[11px] font-sans font-bold capitalize tracking-wider text-ink-muted leading-tight mb-0.5">
                       Email
                     </span>
                     <span className="font-serif text-sm sm:text-base font-bold text-[#1A3C34] underline decoration-gold/45 group-hover:text-[#C9A55A] transition-colors">
@@ -136,7 +136,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                     />
                   </div>
                   <div>
-                    <span className="block text-[11px] font-sans font-bold uppercase tracking-wider text-ink-muted leading-tight mb-0.5">
+                    <span className="block text-[11px] font-sans font-bold capitalize tracking-wider text-ink-muted leading-tight mb-0.5">
                       LinkedIn
                     </span>
                     <span className="font-serif text-sm sm:text-base font-bold text-[#1A3C34] underline decoration-gold/45 group-hover:text-[#C9A55A] transition-colors">
@@ -175,7 +175,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                       </p>
                       <button
                         onClick={handleReset}
-                        className="text-xs font-sans uppercase tracking-wider text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1.5 border-b border-[#1A3C34]/30 hover:border-[#C9A55A] focus:outline-none"
+                        className="text-xs font-sans capitalize tracking-wider text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1.5 border-b border-[#1A3C34]/30 hover:border-[#C9A55A] focus:outline-none"
                       >
                         Send another message
                       </button>
@@ -261,7 +261,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                           type="submit"
                           variant="gold"
                           disabled={status === "submitting"}
-                          className="px-8 py-3.5 uppercase tracking-[0.15em] text-xs font-semibold select-none flex items-center gap-2"
+                          className="px-8 py-3.5 capitalize tracking-[0.15em] text-xs font-semibold select-none flex items-center gap-2"
                         >
                           <span>{status === "submitting" ? "Sending..." : "Send Message"}</span>
                         </InteractiveButton>

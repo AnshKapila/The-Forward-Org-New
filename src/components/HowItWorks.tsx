@@ -86,7 +86,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
                transition={{ duration: 0.38, ease: "easeOut", delay: 0.06 }}
                className="pt-2 shrink-0"
             >
-              <span className="font-mono text-[11px] uppercase tracking-widest text-gold font-semibold block mb-1">
+              <span className="font-mono text-[11px] capitalize tracking-widest text-gold font-semibold block mb-1">
                 WAY {step.num}
               </span>
               <h3 className="font-serif text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-bold text-white tracking-wide leading-tight">
@@ -107,7 +107,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
                 </p>
 
                 <div className="border-t border-white/20 pt-3 space-y-1">
-                  <span className="font-sans text-[10px] uppercase tracking-widest text-gold font-semibold block">
+                  <span className="font-sans text-[10px] capitalize tracking-widest text-gold font-semibold block">
                     Strategic Shift:
                   </span>
                   <p className="font-serif italic text-sm md:text-base text-white/95">
@@ -125,7 +125,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
               className="pt-2 shrink-0"
             >
               <Link href={buttonPath}>
-                <div className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-ink font-sans text-xs font-bold uppercase tracking-wider hover:bg-white hover:text-teal duration-300 transition-all shadow-md active:scale-95">
+                <div className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-ink font-sans text-xs font-bold capitalize tracking-wider hover:bg-white hover:text-teal duration-300 transition-all shadow-md active:scale-95">
                   <span>{step.cta}</span>
                   <span>→</span>
                 </div>

@@ -38,11 +38,11 @@ export default function NewsletterDetail() {
           <div className="absolute bottom-8 left-0 w-full z-10">
             <div className="max-w-4xl mx-auto px-6 md:px-12 flex flex-col items-start gap-4">
               <Link href="/newsletter">
-                <button className="flex items-center gap-2 text-off-white/80 hover:text-white text-xs font-sans font-bold uppercase tracking-wider transition-colors cursor-pointer mb-2">
+                <button className="flex items-center gap-2 text-off-white/80 hover:text-white text-xs font-sans font-bold capitalize tracking-wider transition-colors cursor-pointer mb-2">
                   <ArrowLeft size={14} /> Back to Newsletters
                 </button>
               </Link>
-              <span className="font-mono text-xs font-bold text-gold uppercase tracking-[0.2em] border border-gold/40 px-2 py-0.5 bg-black/45">
+              <span className="font-mono text-xs font-bold text-gold capitalize tracking-[0.2em] border border-gold/40 px-2 py-0.5 bg-black/45">
                 {newsletter.tag}
               </span>
             </div>
@@ -68,7 +68,7 @@ export default function NewsletterDetail() {
                 </div>
                 <div>
                   <p className="font-sans font-bold text-sm text-ink">Pan Seth</p>
-                  <p className="font-sans text-[11px] font-semibold text-teal uppercase tracking-wider">AI Strategy Advisor</p>
+                  <p className="font-sans text-[11px] font-semibold text-teal capitalize tracking-wider">AI Strategy Advisor</p>
                 </div>
                 <div className="hidden sm:flex items-center gap-1.5 text-xs text-ink-faint font-mono ml-4">
                   <Calendar size={13} /> {newsletter.date}
