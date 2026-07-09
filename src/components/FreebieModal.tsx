@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { InteractiveButton } from "./InteractiveButton";
+import { submitToBrevo } from "../utils/submitToBrevo";
 
 interface FreebieModalProps {
   isOpen: boolean;
@@ -39,29 +40,21 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
 
     setIsSubmitting(true);
     try {
-      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://script.google.com/macros/s/AKfycbxGwOYxbmi2-dp08qNBC_c_jMBQJDhcivZd4ruDz6NKuRmgK188s5rLxxm8hk4YElT3/exec";
+      const listId = Number(import.meta.env.VITE_BREVO_LIST_FREEBIE);
+      const attributes = {
+        FIRSTNAME: name,
+        SOURCE: "freebie_download"
+      };
       
-      const response = await fetch(webhookUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain",
-        },
-        body: JSON.stringify({ 
-          name, 
-          email, 
-          resource: "AI Leadership Readiness Framework", 
-          source: window.location.origin 
-        }),
-      });
+      const { success } = await submitToBrevo(email, listId, attributes);
 
-      if (response.ok) {
+      if (success) {
         setIsSuccess(true);
       } else {
         setIsSuccess(true);
       }
     } catch (err) {
-      console.error("Webhook POST failed, continuing to PDF download", err);
+      console.error("Submission failed, continuing to PDF download", err);
       setIsSuccess(true);
     } finally {
       setIsSubmitting(false);

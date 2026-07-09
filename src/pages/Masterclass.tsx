@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } fr
 import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { InteractiveButton } from "../components/InteractiveButton";
 import masterclassHeroImg from "../assets/images/masterclass.jpg";
+import { submitToBrevo } from "../utils/submitToBrevo";
 
 interface FAQItem {
   id: number;
@@ -103,22 +104,20 @@ export default function Masterclass() {
 
     setIsSubmitting(true);
     try {
-      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://script.google.com/macros/s/AKfycbxGwOYxbmi2-dp08qNBC_c_jMBQJDhcivZd4ruDz6NKuRmgK188s5rLxxm8hk4YElT3/exec";
-      await fetch(webhookUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          company,
-          role,
-          resource: "AI Transformation Masterclass Inquiry",
-          source: window.location.href,
-        }),
-      });
+      const listId = Number(import.meta.env.VITE_BREVO_LIST_MASTERCLASS);
+      const nameParts = name.trim().split(" ");
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(" ");
+
+      const attributes = {
+        FIRSTNAME: firstName,
+        LASTNAME: lastName,
+        JOB_TITLE: role,
+        ORGANISATION: company,
+        SOURCE: "masterclass_registration"
+      };
+      
+      await submitToBrevo(email.trim(), listId, attributes);
       setIsSuccess(true);
     } catch (err) {
       console.error("Masterclass inquiry failed", err);

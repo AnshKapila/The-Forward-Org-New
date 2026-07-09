@@ -3,6 +3,7 @@ import { ArrowLeft, RotateCcw, Check, AlertCircle } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { motion, AnimatePresence } from "framer-motion";
+import { submitToBrevo } from "../utils/submitToBrevo";
 
 interface Question {
   id: number;
@@ -263,7 +264,7 @@ export default function Scorecard() {
     }
   };
 
-  const handleGateSubmit = (e: React.FormEvent) => {
+  const handleGateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!gateName.trim()) {
@@ -285,8 +286,16 @@ export default function Scorecard() {
     setGateError("");
     setGateSubmitting(true);
 
-    setTimeout(() => {
-      setGateSubmitting(false);
+    try {
+      const listId = Number(import.meta.env.VITE_BREVO_LIST_INDEX);
+      const attributes = {
+        FIRSTNAME: gateName.trim(),
+        MATURITY_STAGE: rating,
+        SOURCE: "index_completion"
+      };
+
+      await submitToBrevo(gateEmail.trim(), listId, attributes);
+      
       console.log("Scorecard Gated Submission:", {
         name: gateName,
         email: gateEmail,
@@ -296,7 +305,14 @@ export default function Scorecard() {
       });
       setQuizComplete(true);
       setShowEmailGate(false);
-    }, 1500);
+    } catch (err) {
+      console.error("Scorecard submission failed", err);
+      // Fallback
+      setQuizComplete(true);
+      setShowEmailGate(false);
+    } finally {
+      setGateSubmitting(false);
+    }
   };
 
   // Score Analysis scaled to 0-100 percentage (each of 15 questions has up to 4 points)

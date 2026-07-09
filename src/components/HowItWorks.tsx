@@ -176,7 +176,7 @@ export function HowItWorks() {
           <div className="mb-12 flex flex-col gap-4">
             <div className="text-left">
               <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink max-w-2xl text-balance">
-                WAYS WE WORK
+                Ways We Work
               </h2>
               <p className="font-sans text-sm md:text-base text-ink-muted mt-3 max-w-4xl leading-relaxed">
                 Three focused ways to use the Forward Org Blueprint to turn AI from a source of pressure, fragmentation, or risk into a practical organizational business advantage.

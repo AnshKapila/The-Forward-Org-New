@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, AlertCircle, Loader2 } from "lucide-react";
 import { InteractiveButton } from "../components/InteractiveButton";
+import { submitToBrevo } from "../utils/submitToBrevo";
 
 export default function BookCallPage() {
   const [email, setEmail] = useState("");
@@ -70,25 +71,21 @@ export default function BookCallPage() {
 
     setStatus("submitting");
     try {
-      const webhookUrl = (import.meta as any).env.VITE_APPS_SCRIPT_WEBHOOK || "https://script.google.com/macros/s/AKfycbxGwOYxbmi2-dp08qNBC_c_jMBQJDhcivZd4ruDz6NKuRmgK188s5rLxxm8hk4YElT3/exec";
+      const listId = Number(import.meta.env.VITE_BREVO_LIST_CALL_REQUESTS);
+      const attributes = {
+        JOB_TITLE: role.trim(),
+        SOURCE: "call_request",
+        NOTES: "Call purpose: " + purpose.trim()
+      };
       
-      await fetch(webhookUrl, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain",
-        },
-        body: JSON.stringify({
-          email: email.trim(),
-          role: role.trim(),
-          purpose: purpose.trim(),
-          source: "call_request",
-          timestamp: new Date().toISOString()
-        }),
-      });
+      const { success } = await submitToBrevo(email.trim(), listId, attributes);
 
-      setStatus("success");
-      setFormState(2);
+      if (success) {
+        setStatus("success");
+        setFormState(2);
+      } else {
+        setStatus("error");
+      }
     } catch (err) {
       console.error("Booking pre-qualification submission failed", err);
       setStatus("error");
