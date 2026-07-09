@@ -8,6 +8,7 @@
    ========================================================================== */
 
 /* 1. Import Tailwind v4 base directives */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
 @import "tailwindcss";
 
 /* 2. Import core tokens, typography, and component libraries */
