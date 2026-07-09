@@ -117,6 +117,7 @@ export default function Masterclass() {
         SOURCE: "masterclass_registration"
       };
       
+      console.log("Calling submitToBrevo with:", email.trim(), listId, JSON.stringify(attributes));
       await submitToBrevo(email.trim(), listId, attributes);
       setIsSuccess(true);
     } catch (err) {

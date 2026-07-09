@@ -78,6 +78,7 @@ export default function BookCallPage() {
         NOTES: "Call purpose: " + purpose.trim()
       };
       
+      console.log("Calling submitToBrevo with:", email.trim(), listId, JSON.stringify(attributes));
       const { success } = await submitToBrevo(email.trim(), listId, attributes);
 
       if (success) {

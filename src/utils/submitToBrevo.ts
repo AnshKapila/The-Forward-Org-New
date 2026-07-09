@@ -1,5 +1,6 @@
 export async function submitToBrevo(email: string, listId: number, attributes?: Record<string, any>): Promise<{ success: boolean; error?: string }> {
   try {
+    console.log("submitToBrevo sending:", email, listId, JSON.stringify(attributes));
     const response = await fetch('/api/submit-form', {
       method: 'POST',
       headers: {

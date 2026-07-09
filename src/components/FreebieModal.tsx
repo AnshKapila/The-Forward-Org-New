@@ -46,6 +46,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
         SOURCE: "freebie_download"
       };
       
+      console.log("Calling submitToBrevo with:", email, listId, JSON.stringify(attributes));
       const { success } = await submitToBrevo(email, listId, attributes);
 
       if (success) {

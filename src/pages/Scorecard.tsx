@@ -294,6 +294,7 @@ export default function Scorecard() {
         SOURCE: "index_completion"
       };
 
+      console.log("Calling submitToBrevo with:", gateEmail.trim(), listId, JSON.stringify(attributes));
       await submitToBrevo(gateEmail.trim(), listId, attributes);
       
       console.log("Scorecard Gated Submission:", {
