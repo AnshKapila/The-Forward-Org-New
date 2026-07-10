@@ -19,18 +19,36 @@ export function Nav() {
     { label: "Newsletter", path: "/newsletter" },
   ];
 
-  const isTransparentNavbarPage = location === "/" || location === "/masterclass";
+  const isTransparentNavbarPage = location === "/" || location === "/masterclass" || location.startsWith("/newsletter");
   const showDarkNavbar = !isTransparentNavbarPage || isScrolled;
 
   return (
     <>
+      {/* Homepage Top Banner (Nudge) */}
+      {location === "/" && (
+        <div className="fixed top-0 left-0 w-full z-[100] bg-sand text-ink text-xs sm:text-sm py-2 px-4 md:px-6 flex flex-wrap justify-center items-center text-center shadow-sm">
+          <span className="mr-1.5 md:mr-2">Not ready to talk yet?</span>
+          <button 
+            onClick={() => {
+              const el = document.getElementById("freebie");
+              if (el) {
+                el.scrollIntoView({ behavior: "smooth" });
+              }
+            }}
+            className="text-[#1A3C34] underline font-medium hover:text-[#1A3C34]/80 transition-colors cursor-pointer"
+          >
+            Start with the Free Framework &rarr;
+          </button>
+        </div>
+      )}
+
       <nav
         id="main-nav"
-        className={`fixed top-0 left-0 w-full z-[90] transition-all duration-300 ${
+        className={`fixed left-0 w-full z-[90] transition-all duration-300 ${
           showDarkNavbar
             ? "bg-[#1A1C1A]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.15)] py-4"
             : "bg-transparent py-6"
-        }`}
+        } ${location === "/" ? "top-[36px] sm:top-[36px]" : "top-0"}`}
       >
         <div className="w-full px-6 lg:px-[120px] flex items-center justify-between">
           {/* Logo click routes to home */}

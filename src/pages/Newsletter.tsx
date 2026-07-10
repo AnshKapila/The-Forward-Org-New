@@ -43,7 +43,7 @@ export default function Newsletter() {
     <div className="min-h-screen bg-white text-ink flex flex-col justify-between">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-[#1A3C34] pt-12 pb-20 md:pb-24 text-left relative overflow-hidden">
+        <section className="bg-[#1A3C34] pt-28 md:pt-36 pb-20 md:pb-24 text-left relative overflow-hidden">
           <div className="absolute right-[-100px] bottom-[-100px] w-96 h-96 opacity-10 pointer-events-none select-none text-off-white">
             <svg viewBox="0 0 100 100" className="w-full h-full stroke-current" strokeWidth="0.5">
               <circle cx="50" cy="50" r="45" strokeDasharray="2 2" />
@@ -52,7 +52,7 @@ export default function Newsletter() {
             </svg>
           </div>
 
-          <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 space-y-4">
+          <div className="w-full px-6 lg:px-[120px] relative z-10 space-y-4">
             <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block">
               The Newsletter
             </span>
@@ -84,7 +84,7 @@ export default function Newsletter() {
         </section>
 
         {/* Filter and Feed Section */}
-        <section id="newsletters-feed" className="py-16 md:py-20 max-w-7xl mx-auto px-6 md:px-12">
+        <section id="newsletters-feed" className="py-16 md:py-20 w-full px-6 lg:px-[120px]">
           
           {/* Topics Filter */}
           <div className="flex flex-wrap gap-2.5 mb-12 justify-start md:justify-center">

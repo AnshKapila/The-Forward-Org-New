@@ -197,7 +197,7 @@ export function AIIndexCTA() {
                   variant="gold"
                   className="shadow-md"
                 >
-                  Discover Your AI Transformation Readiness
+                  Discover Your AI Readiness
                 </InteractiveButton>
               </div>
 

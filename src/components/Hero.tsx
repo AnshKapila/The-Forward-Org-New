@@ -172,7 +172,7 @@ export function Hero() {
               variant="primary"
               className="text-center"
             >
-              Discover Your AI Transformation Readiness
+              Discover Your AI Readiness
             </InteractiveButton>
           </motion.div>
 

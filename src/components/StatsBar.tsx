@@ -65,7 +65,7 @@ export function StatsBar() {
               </h2>
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
-              Business value influenced through AI, digital, and organizational transformation initiatives.
+              In measurable business outcomes across AI strategy, governance, and organizational transformation programs
             </p>
           </div>
 

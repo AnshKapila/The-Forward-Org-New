@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound";
 
 function MainAppContent() {
   const [location] = useLocation();
-  const isOverlayPage = location === "/" || location === "/masterclass";
+  const isOverlayPage = location === "/" || location === "/masterclass" || location.startsWith("/newsletter");
 
   useEffect(() => {
     window.scrollTo(0, 0);

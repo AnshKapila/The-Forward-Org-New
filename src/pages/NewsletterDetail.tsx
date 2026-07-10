@@ -36,8 +36,9 @@ export default function NewsletterDetail() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
           
           <div className="absolute bottom-8 left-0 w-full z-10">
-            <div className="max-w-4xl mx-auto px-6 md:px-12 flex flex-col items-start gap-4">
-              <Link href="/newsletter">
+            <div className="w-full px-6 lg:px-[120px] flex flex-col items-start gap-4">
+              <div className="max-w-4xl w-full">
+                <Link href="/newsletter">
                 <button className="flex items-center gap-2 text-off-white/80 hover:text-white text-xs font-sans font-bold capitalize tracking-wider transition-colors cursor-pointer mb-2">
                   <ArrowLeft size={14} /> Back to Newsletters
                 </button>
@@ -47,11 +48,12 @@ export default function NewsletterDetail() {
               </span>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
         {/* Content Container */}
-        <section className="py-12 md:py-16 max-w-4xl mx-auto px-6 md:px-12">
-          <div className="space-y-8 text-left">
+        <section className="py-12 md:py-16 w-full px-6 lg:px-[120px]">
+          <div className="max-w-4xl mx-auto space-y-8 text-left">
             
             {/* Top Row: Date, Author & Read on LinkedIn CTA */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-teal/10 pb-6">
@@ -75,15 +77,15 @@ export default function NewsletterDetail() {
                 </div>
               </div>
 
-              {/* Top CTA: Read on LinkedIn */}
+              {/* Top CTA: Check out complete newsletter */}
               <InteractiveButton
-                onClick={() => window.open(newsletter.linkedinUrl, "_blank", "noopener,noreferrer")}
+                onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
                 variant="gold"
                 size="sm"
                 className="flex items-center gap-2 self-start md:self-auto"
               >
                 <Linkedin size={14} />
-                <span>Read on LinkedIn</span>
+                <span>Check out complete newsletter</span>
               </InteractiveButton>
             </div>
 
@@ -128,18 +130,18 @@ export default function NewsletterDetail() {
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                 <InteractiveButton
+                  onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
+                  variant="gold"
+                >
+                  Check out complete newsletter
+                </InteractiveButton>
+                <InteractiveButton
                   onClick={() => window.open("https://www.linkedin.com/in/pan-seth/", "_blank", "noopener,noreferrer")}
-                  variant="teal"
+                  variant="outline-teal"
                   className="flex items-center gap-2"
                 >
                   <Linkedin size={15} />
-                  <span>Follow her on LinkedIn</span>
-                </InteractiveButton>
-                <InteractiveButton
-                  onClick={() => window.open(newsletter.linkedinUrl, "_blank", "noopener,noreferrer")}
-                  variant="gold"
-                >
-                  Join LinkedIn Discussion
+                  <span>Connect on LinkedIn</span>
                 </InteractiveButton>
               </div>
             </div>
