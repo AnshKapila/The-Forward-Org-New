@@ -56,9 +56,19 @@ export default function Newsletter() {
             <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block">
               The Newsletter
             </span>
-            <h1 className="font-serif text-[38px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
-              One Step Forward
-            </h1>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+              <h1 className="font-serif text-[38px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
+                One Step Forward
+              </h1>
+              <InteractiveButton
+                onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
+                variant="gold"
+                size="sm"
+                className="inline-flex items-center gap-1.5 self-start sm:self-auto py-2.5 px-5 text-[11px] font-bold capitalize tracking-wider font-sans border-0 shadow-sm"
+              >
+                Follow on LinkedIn
+              </InteractiveButton>
+            </div>
             
             <div className="flex items-center gap-3.5 pt-2">
               <div className="w-10 h-10 rounded-full overflow-hidden border border-gold/40 shrink-0 bg-sand">
@@ -75,7 +85,7 @@ export default function Newsletter() {
                 <p className="font-sans font-semibold text-[14px] text-off-white">
                   Pan Seth <span className="text-gold/50 mx-2">•</span> <span className="text-gold capitalize tracking-wider text-xs font-bold">AI Strategy Advisor</span>
                 </p>
-                <p className="font-sans text-[13px] md:text-[14px] text-off-white/80 leading-relaxed mt-1">
+                <p className="font-sans text-[13px] md:text-[14px] text-off-white/80 leading-relaxed mt-1 max-w-[50vw]">
                   Weekly insights on AI leadership, organizational transformation and the future of work. Join executives preparing themselves and their organizations for the AI era.
                 </p>
               </div>
