@@ -109,8 +109,8 @@ export default function IndexPage() {
               <motion.img
                 src={scorecardLeft}
                 alt="Pan speaking at podium with corporate team listening"
-                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
-                style={{ y: yVal1, scale: scaleVal1, transformOrigin: "center center", willChange: "transform" }}
+                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-left"
+                style={{ y: yVal1, scale: scaleVal1, transformOrigin: "left center", willChange: "transform" }}
               />
             </motion.div>
 
@@ -126,8 +126,8 @@ export default function IndexPage() {
               <motion.img
                 src={scorecardMid}
                 alt="Corporate strategy whiteboard discussion zoomed"
-                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
-                style={{ y: yVal2, scale: scaleVal2, transformOrigin: "center center", willChange: "transform" }}
+                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-left"
+                style={{ y: yVal2, scale: scaleVal2, transformOrigin: "left center", willChange: "transform" }}
               />
             </motion.div>
 
