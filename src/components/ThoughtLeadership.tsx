@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
-import { LoopingArrow } from "./InteractiveButton";
+import { LoopingArrow, InteractiveButton } from "./InteractiveButton";
 import { newsletters } from "../data/newsletters";
 import panAvatar from "../assets/images/regenerated_image_1782056067058.png";
 
@@ -20,24 +20,26 @@ export function ThoughtLeadership() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
             <div className="space-y-3">
               <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block">
-                Recent Thinking
+                NEWSLETTER
               </span>
               <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight text-balance">
-                Insights from the field.
+                One Step Forward
               </h2>
-              <p className="font-sans text-sm md:text-base text-ink-muted leading-relaxed max-w-lg">
-                We publish weekly on AI strategy, governance, leadership alignment, and what it actually takes to make AI produce business value.
+              <p className="font-sans text-sm md:text-base text-ink-muted leading-relaxed max-w-xl">
+                Weekly insights on AI leadership, organizational transformation and the future of work.
+                <br />
+                <span className="block mt-1">Join executives preparing themselves and their organizations for the AI era.</span>
               </p>
             </div>
 
             <div className="shrink-0">
-              <button
+              <InteractiveButton
                 onClick={() => setLocation("/newsletter")}
-                className="group font-sans font-semibold text-xs tracking-wider capitalize text-gold hover:text-gold-hover inline-flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-gold select-none cursor-pointer"
+                variant="gold"
+                size="sm"
               >
-                <span>See all newsletters</span>
-                <LoopingArrow className="text-gold" size={16} />
-              </button>
+                See all newsletters
+              </InteractiveButton>
             </div>
           </div>
         </ScrollReveal>
@@ -79,12 +81,17 @@ export function ThoughtLeadership() {
                     >
                       <div>
                         {/* Topic Tag */}
-                        <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] capitalize block mb-4">
+                        <span className="font-sans font-semibold text-[11px] text-teal tracking-[0.16em] capitalize block mb-3">
                           {newsletter.tag}
                         </span>
 
-                        {/* Excerpt */}
-                        <p className="font-sans text-[15px] md:text-[16px] text-ink-muted leading-[1.7] mb-6 group-hover:text-ink transition-colors duration-150">
+                        {/* Title using P1 */}
+                        <p className="font-serif text-lg md:text-xl lg:text-2xl font-bold text-ink group-hover:text-gold transition-colors mb-3 leading-snug">
+                          {newsletter.title}
+                        </p>
+
+                        {/* Excerpt limited to P2 (3 lines) */}
+                        <p className="font-sans text-sm md:text-[15px] lg:text-[16px] text-ink-muted leading-[1.6] mb-6 group-hover:text-ink transition-colors duration-150 line-clamp-3">
                           "{newsletter.excerpt}"
                         </p>
 

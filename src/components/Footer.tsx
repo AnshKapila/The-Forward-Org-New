@@ -59,7 +59,7 @@ export function Footer() {
           <div className="flex flex-col items-center md:items-end gap-3 justify-center">
             <div className="flex items-center gap-4">
               <a
-                href="mailto:pan.seth93@gmail.com"
+                href="mailto:pan@theforwardorg.com"
                 className="text-teal hover:text-gold transition-colors duration-200"
                 aria-label="Email Pan Seth"
               >

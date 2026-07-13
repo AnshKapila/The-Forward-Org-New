@@ -101,7 +101,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                 
                 {/* Email Item */}
                 <a 
-                  href="mailto:pan.seth93@gmail.com" 
+                  href="mailto:pan@theforwardorg.com" 
                   className="flex items-center gap-5 p-2 rounded-sm hover:bg-[#1A3C34]/5 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-full bg-[#1A3C34]/10 flex items-center justify-center shrink-0 border border-[#1A3C34]/20 group-hover:bg-[#1A3C34] group-hover:text-white transition-all duration-300">
@@ -116,7 +116,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                       Email
                     </span>
                     <span className="font-serif text-sm sm:text-base font-bold text-[#1A3C34] underline decoration-gold/45 group-hover:text-[#C9A55A] transition-colors">
-                      pan.seth93@gmail.com
+                      pan@theforwardorg.com
                     </span>
                   </div>
                 </a>

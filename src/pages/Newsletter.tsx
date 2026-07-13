@@ -75,8 +75,8 @@ export default function Newsletter() {
                 <p className="font-sans font-semibold text-[14px] text-off-white">
                   Pan Seth <span className="text-gold/50 mx-2">•</span> <span className="text-gold capitalize tracking-wider text-xs font-bold">AI Strategy Advisor</span>
                 </p>
-                <p className="font-sans text-[11px] text-off-white/70">
-                  Weekly breakdowns of what is actually happening at the intersection of AI and organizational transformation.
+                <p className="font-sans text-[13px] md:text-[14px] text-off-white/80 leading-relaxed mt-1">
+                  Weekly insights on AI leadership, organizational transformation and the future of work. Join executives preparing themselves and their organizations for the AI era.
                 </p>
               </div>
             </div>

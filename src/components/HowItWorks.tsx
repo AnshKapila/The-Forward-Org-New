@@ -11,7 +11,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
   const [willChangeActive, setWillChangeActive] = useState(true);
 
   // Link destinations
-  const buttonPath = idx === 1 ? "/book-a-call" : idx === 2 ? "/contact" : "/index"; 
+  const buttonPath = idx === 0 ? "/index" : "/book-a-call"; 
 
   return (
     <div
@@ -86,15 +86,12 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
                transition={{ duration: 0.38, ease: "easeOut", delay: 0.06 }}
                className="pt-2 shrink-0"
             >
-              <span className="font-mono text-[11px] capitalize tracking-widest text-gold font-semibold block mb-1">
-                WAY {step.num}
-              </span>
               <h3 className="font-serif text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-bold text-white tracking-wide leading-tight">
                 {step.title}
               </h3>
             </motion.div>
 
-            {/* Scrollable Middle Area for description & key question */}
+            {/* Scrollable Middle Area for description */}
             <div className="flex-1 my-4 overflow-y-auto pr-1 select-text" style={{ scrollbarWidth: "none" }}>
               <motion.div 
                 initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
@@ -102,18 +99,9 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
                 transition={{ duration: 0.38, ease: "easeOut", delay: 0.12 }}
                 className="space-y-4"
               >
-                <p className="font-sans text-[13px] md:text-[14px] text-white/90 leading-[1.6]">
+                <p className="font-sans text-[13px] md:text-[14px] text-[#FAFAF8]/80 leading-[1.6]">
                   {step.description}
                 </p>
-
-                <div className="border-t border-white/20 pt-3 space-y-1">
-                  <span className="font-sans text-[10px] capitalize tracking-widest text-gold font-semibold block">
-                    Strategic Shift:
-                  </span>
-                  <p className="font-serif italic text-sm md:text-base text-white/95">
-                    "{step.question}"
-                  </p>
-                </div>
               </motion.div>
             </div>
 
@@ -142,24 +130,24 @@ export function HowItWorks() {
   const steps = [
     {
       num: "01",
-      title: "AI Strategy & Implementation Support",
-      description: "Shift from disconnected tools and isolated pilots to a unified AI strategy. We map high-value opportunities and support the leadership and implementation needed to succeed.",
-      question: "Where can AI create the greatest strategic value for us?",
-      cta: "Explore Strategy"
+      title: "Become an AI-First Leader",
+      description: "Develop the confidence, systems, and strategic thinking to become the leader your organization trusts to navigate AI.\nDesigned for ambitious senior leaders preparing to influence strategy, lead adoption, and accelerate their careers in the Age of AI.",
+      question: "Become the first Forward Leader inside your company.",
+      cta: "Take The Forward Score™"
     },
     {
       num: "02",
-      title: "AI Leadership & Cultural Alignment",
-      description: "Transform employee resistance and uneven adoption into aligned leaders, confident teams, and clear workflows to embed AI throughout the organization.",
-      question: "How do we align our leaders and teams for AI adoption?",
-      cta: "Explore Alignment"
+      title: "Align Leaders. Transform Culture.",
+      description: "Technology doesn't transform organizations. Leaders do.\nWe partner with executive teams to build leadership alignment, reduce resistance, develop AI champions, and create the organizational capability required for AI adoption at scale.",
+      question: "Your people and your AI, moving in the same direction.",
+      cta: "Book an Alignment Conversation"
     },
     {
       num: "03",
-      title: "AI Governance & Risk Framework",
-      description: "For high-trust organizations, we bring governance frameworks built inside demanding enterprises, including global banks and regulated SaaS. Shift from uncontrolled AI use and data exposure to a practical framework enabling controlled, confident, and credible adoption.",
-      question: "From unmanaged AI risk to governed, defensible growth.",
-      cta: "Explore Governance"
+      title: "Build an Organization Ready for AI",
+      description: "AI creates value only when strategy, governance, and decision-making evolve together.\nWe help executive teams define enterprise AI priorities, establish governance frameworks, evaluate risk, and create practical roadmaps that enable responsible, scalable transformation.",
+      question: "Confidence at the board level. Clarity at every level.",
+      cta: "Book a Strategy Conversation"
     },
   ];
 
@@ -176,7 +164,7 @@ export function HowItWorks() {
           <div className="mb-12 flex flex-col gap-4">
             <div className="text-left">
               <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink max-w-2xl text-balance">
-                Ways We Work
+                Three Ways to Begin Your AI Transformation
               </h2>
               <p className="font-sans text-sm md:text-base text-ink-muted mt-3 max-w-4xl leading-relaxed">
                 Three focused ways to use the Forward Org Blueprint to turn AI from a source of pressure, fragmentation, or risk into a practical organizational business advantage.

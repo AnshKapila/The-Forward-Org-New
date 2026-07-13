@@ -21,7 +21,6 @@ export default function Masterclass() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  // FAQ interactive states
   const [clickedId, setClickedId] = useState<number | null>(null);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
@@ -38,22 +37,6 @@ export default function Masterclass() {
 
   const scrollScale = useTransform(scrollYProgress, [0, 1], [1.0, 1.2]);
   const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
-
-  const phrases = [
-    "CHATHAM HOUSE RULES.",
-    "BUILT FOR THE C-SUITE.",
-    "ESTABLISH REAL LEVERAGE.",
-    "BEYOND THE AI PILOT.",
-  ];
-
-  const [phraseIdx, setPhraseIdx] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPhraseIdx((prev) => (prev + 1) % phrases.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [phrases.length]);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -120,7 +103,7 @@ export default function Masterclass() {
       setIsSuccess(true);
     } catch (err) {
       console.error("Masterclass inquiry failed", err);
-      setIsSuccess(true); // Graceful fallback
+      setIsSuccess(true); 
     } finally {
       setIsSubmitting(false);
     }
@@ -130,36 +113,42 @@ export default function Masterclass() {
     document.getElementById("register-form")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // FAQ ITEMS
   const faqItems: FAQItem[] = [
     {
       id: 1,
       question: "Who's hosting this?",
-      answer: "Pan Seth, founder of The Forward Org. She spent a decade building and governing production AI systems inside companies like Citi, PagerDuty, and NielsenIQ, and took AI adoption from 6% to 80% at PagerDuty through psychology-informed leadership design.",
+      answer: "Pan Seth, founder of The Forward Org. She spent a decade building and governing production AI systems inside regulated organizations → work tied to $600M+ in business impact and two AI patents.",
     },
     {
       id: 2,
       question: "What is The Forward Org?",
-      answer: "The Forward Org helps leaders become the kind of leader AI-native organizations need, using the EVOLVE Method, a framework built from a decade inside real AI systems, not theory about them.",
+      answer: "The Forward Org builds AI-first leaders and AI-first organizations → using the Forward Leader Blueprint™, built from a decade inside real AI systems.",
     },
     {
       id: 3,
       question: "What is this masterclass?",
-      answer: "A free, 90-minute live session on the identity shift required to become a Forward Leader. You'll score your own AI Leadership Readiness live, and leave with a clear next step.",
+      answer: "A free 90-minute live session. You'll score your own AI Leadership Readiness, name your stage on the leadership ladder, and leave with the one gap to close first.",
     },
     {
       id: 4,
       question: "Who is this for?",
-      answer: "Any leader who feels the pressure to become AI-first and refuses to freeze. You do not need a technical background, and you do not need to be running a full organization. You need to be ready to become the leader this moment requires.",
+      answer: "Any leader who feels the pressure to become AI-first and decides to act. No technical background required. No full organizational authority required. The only requirement is the decision to become the leader this moment is calling for.",
     },
     {
       id: 5,
       question: "What happens after the masterclass?",
-      answer: "Leaders ready to go deeper are invited into The Forward Leader Accelerator, a cohort-based program built entirely around the identity shift you'll see live in this session. You'll hear about it at the end. No pitch during the working part of the class.",
+      answer: "Leaders ready to go deeper are invited into the Forward Leader Accelerator™ → a six-month cohort built around the identity shift you'll see live in this session. You'll hear about it at the end. No pitch during the working part of the class.",
     },
     {
       id: 6,
       question: "Is this free?",
-      answer: "Yes. Completely free.",
+      answer: "Yes. A complimentary masterclass for everyone in Pan's network.",
+    },
+    {
+      id: 7,
+      question: "Will there be a replay?",
+      answer: "No. The scoring works because you do it live in the room. A replay removes the part that matters. If this date doesn't work, the masterclass runs monthly → reply to any email to be notified of the next one."
     }
   ];
 
@@ -202,13 +191,17 @@ export default function Masterclass() {
     },
   };
 
-  const calendarUrlGoogle = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Live+Masterclass%3A+Become+The+Leader+Your+Organization+Needs+In+The+Age+Of+AI&dates=20260717T160000Z%2F20260717T173000Z&details=You%27re+registered+for+a+live+90-minute+session+with+Pan+Seth%2C+founder+of+The+Forward+Org.+Come+ready+to+see+the+leader+you%27re+becoming%2C+and+score+your+own+AI+Readiness+live.&location=%5BZoom+%2F+webinar+link+to+be+inserted%5D";
+  // Calendar Event parameters
+  const eventTitle = "Live Masterclass: Become the Leader Your Organization Trusts to Navigate AI";
+  const eventDesc = "You're registered for a live 90-minute session with Pan Seth, founder of The Forward Org. Come ready to score your own AI Leadership Readiness live → and to meet the leader you're becoming.";
+  const eventLoc = "[Zoom / webinar link to be inserted]";
+
+  const calendarUrlGoogle = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=20260717T160000Z%2F20260717T173000Z&details=${encodeURIComponent(eventDesc)}&location=${encodeURIComponent(eventLoc)}`;
   
-  const calendarUrlYahoo = "https://calendar.yahoo.com/?v=60&view=d&type=20&title=Live+Masterclass%3A+Become+The+Leader+Your+Organization+Needs+In+The+Age+Of+AI&st=20260717T160000Z&et=20260717T173000Z&desc=You%27re+registered+for+a+live+90-minute+session+with+Pan+Seth%2C+founder+of+The+Forward+Org.+Come+ready+to+see+the+leader+you%27re+becoming%2C+and+score+your+own+AI+Readiness+live.&in_loc=%5BZoom+%2F+webinar+link+to+be+inserted%5D";
+  const calendarUrlYahoo = `https://calendar.yahoo.com/?v=60&view=d&type=20&title=${encodeURIComponent(eventTitle)}&st=20260717T160000Z&et=20260717T173000Z&desc=${encodeURIComponent(eventDesc)}&in_loc=${encodeURIComponent(eventLoc)}`;
 
-  const calendarUrlOutlook = "https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&subject=Live+Masterclass%3A+Become+The+Leader+Your+Organization+Needs+In+The+Age+Of+AI&startdt=2026-07-17T12:00:00-04:00&enddt=2026-07-17T13:30:00-04:00&body=You%27re+registered+for+a+live+90-minute+session+with+Pan+Seth%2C+founder+of+The+Forward+Org.+Come+ready+to+see+the+leader+you%27re+becoming%2C+and+score+your+own+AI+Readiness+live.&location=%5BZoom+%2F+webinar+link+to+be+inserted%5D";
+  const calendarUrlOutlook = `https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&subject=${encodeURIComponent(eventTitle)}&startdt=2026-07-17T12:00:00-04:00&enddt=2026-07-17T13:30:00-04:00&body=${encodeURIComponent(eventDesc)}&location=${encodeURIComponent(eventLoc)}`;
 
-  // Create absolute file data URL link for iCal / Apple calendar template
   const icsContent = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//The Forward Org//Masterclass Calendar//EN
@@ -217,9 +210,9 @@ UID:masterclass-20260717@theforwardorg.com
 DTSTAMP:20260717T120000Z
 DTSTART:20260717T160000Z
 DTEND:20260717T173000Z
-SUMMARY:Live Masterclass: Become The Leader Your Organization Needs In The Age Of AI
-DESCRIPTION:You're registered for a live 90-minute session with Pan Seth, founder of The Forward Org. Come ready to see the leader you're becoming, and score your own AI Leadership Readiness live.
-LOCATION:[Zoom / webinar link to be inserted]
+SUMMARY:${eventTitle}
+DESCRIPTION:${eventDesc}
+LOCATION:${eventLoc}
 END:VEVENT
 END:VCALENDAR`;
   const calendarUrlApple = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
@@ -228,7 +221,7 @@ END:VCALENDAR`;
 
   return (
     <div className="bg-white min-h-screen text-ink">
-      {/* 1. Hero Section in Homepage Format */}
+      {/* 1. Hero Section */}
       <section 
         ref={heroRef} 
         id="hero" 
@@ -236,7 +229,6 @@ END:VCALENDAR`;
         onMouseLeave={() => setIsHovered(false)}
         className="relative min-h-screen bg-ink pt-24 md:pt-0 flex flex-col justify-between overflow-hidden"
       >
-        {/* Background image */}
         <div 
           className="absolute inset-0 z-0 select-none overflow-hidden"
           style={{ transform: "translateZ(0)", isolation: "isolate" }}
@@ -280,20 +272,17 @@ END:VCALENDAR`;
             animate="visible"
             className="max-w-3xl flex flex-col items-start"
           >
-            {/* Tagline / Category Label */}
             <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block">
               Live Masterclass
             </span>
 
-            {/* Main Title / Heading */}
             <motion.h1
               variants={itemVariants}
               className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
             >
-              Become The Leader Your Organization Needs In The Age Of AI
+              Become the Leader Your Organization Trusts to Navigate AI
             </motion.h1>
 
-            {/* Sub-heading / Italic line */}
             <motion.p
               variants={itemVariants}
               className="font-serif text-base md:text-lg text-gold/90 italic tracking-wide mt-3 text-left font-normal"
@@ -301,15 +290,13 @@ END:VCALENDAR`;
               (Even if you don't have all the answers yet)
             </motion.p>
 
-            {/* Description Paragraph / Subhead */}
             <motion.p
               variants={itemVariants}
-              className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-4"
+              className="font-sans text-[17px] md:text-[19px] text-off-white/85 leading-relaxed font-light max-w-2xl mt-4 text-balance"
             >
-              Walk away knowing exactly who you must become to lead in the age of AI. See your own AI Leadership Readiness Score live, in the room.
+              Score your own AI Leadership Readiness live in the room. Name your stage on the AI leadership ladder. Leave with the one gap to close first → and the move to make this week.
             </motion.p>
 
-            {/* CTA Button */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col sm:flex-row gap-[24px] items-stretch sm:items-center mt-8 pt-0 w-full"
@@ -317,7 +304,7 @@ END:VCALENDAR`;
               <InteractiveButton
                 onClick={handleScrollToForm}
                 variant="gold"
-                className="text-center px-8 py-4 font-bold"
+                className="text-center px-8 py-4 font-bold animate-none"
               >
                 Save My Seat →
               </InteractiveButton>
@@ -344,13 +331,13 @@ END:VCALENDAR`;
             </div>
             <div className="flex flex-col justify-center items-center">
               <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Type</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Live Interactive</span>
+              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Live Only · No Replay</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 3. One Core-Concept Section */}
+      {/* 3. The Core Challenge Section */}
       <section className="py-24 md:py-32 bg-white relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 text-left">
           <ScrollReveal duration={0.6}>
@@ -360,16 +347,20 @@ END:VCALENDAR`;
                   The Core Challenge
                 </span>
                 <h2 className="font-serif text-[32px] md:text-[45px] leading-tight font-bold text-ink">
-                  The Real Reason You Feel Behind
+                  AI Decisions Are Already Being Made Around You
                 </h2>
                 
                 <p className="font-serif text-xl md:text-2xl text-teal font-medium leading-relaxed border-l-2 border-gold/40 pl-6 my-8">
-                  It's never the technology. It's never too late. Leaders fall behind because they never redefined who they needed to become with changing times.
+                  The question was never whether your organization adopts AI. The question is whether you shape those decisions or react to them.
                 </p>
                 
-                <p className="font-sans text-base md:text-lg text-ink-muted leading-relaxed font-light mt-6">
-                  The gap between AI-first leaders and everyone else is widening faster than most people realize, and it compounds every quarter you wait. This masterclass shows you the identity shift behind that gap, the one that separates leaders who scale with AI from leaders who quietly get replaced by it.
-                </p>
+                <div className="font-sans text-base md:text-lg text-ink-muted leading-relaxed font-light mt-6 space-y-4">
+                  <p>Somewhere in your organization right now an AI decision is moving forward without you.</p>
+                  <p>A budget line. A pilot. A vendor call.</p>
+                  <p>A colleague is speaking up in meetings where you stay quiet. A peer is getting pulled into strategy conversations you used to own. A less experienced leader is building credibility on a topic you never claimed.</p>
+                  <p>Leaders don't lose ground because technology moves fast. They lose ground one meeting at a time → the meeting where someone else had the clarity to speak.</p>
+                  <p>This masterclass shows you the identity shift behind that clarity → so the next AI conversation in your organization runs through you.</p>
+                </div>
 
                 <div className="pt-8">
                   <InteractiveButton
@@ -395,7 +386,7 @@ END:VCALENDAR`;
         </div>
       </section>
 
-      {/* 4. Two-Column "What's Included / What Changes For You" Block */}
+      {/* 4. What To Expect */}
       <section className="py-24 md:py-32 bg-[#F7F4EF]/50 border-t border-b border-gold/10 relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <ScrollReveal duration={0.6}>
@@ -410,56 +401,56 @@ END:VCALENDAR`;
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-start">
-            {/* Column 1: The 90 Minutes */}
+            {/* Box 01 */}
             <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
-              <h3 className="font-serif text-2xl font-bold text-ink border-b border-gold/10 pb-4 flex items-center gap-3">
-                <span className="text-gold font-mono text-xl">01/</span>
-                The 90 Minutes
-              </h3>
-              
-              <ul className="space-y-6 font-sans text-[15px] md:text-[16px] text-ink-muted">
-                <li className="space-y-1">
-                  <h4 className="font-bold text-ink">The Mirror (20 min)</h4>
-                  <p className="font-light">Where AI leadership is actually breaking down, and why it isn't about technology</p>
-                </li>
-                <li className="space-y-1">
-                  <h4 className="font-bold text-ink">The Shift (30 min)</h4>
-                  <p className="font-light">The Forward Leader identity, live. The same shift that took AI adoption from 6% to 80% at PagerDuty</p>
-                </li>
-                <li className="space-y-1">
-                  <h4 className="font-bold text-ink">Your Score (20 min)</h4>
-                  <p className="font-light">Score your own AI Leadership Readiness in real time, live in the room</p>
-                </li>
-                <li className="space-y-1">
-                  <h4 className="font-bold text-ink">Your Next Step (20 min)</h4>
-                  <p className="font-light">Leave with one clear next move, sized to where you scored</p>
-                </li>
-              </ul>
-            </div>
-
-            {/* Column 2: What Changes For You */}
-            <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
-              <h3 className="font-serif text-2xl font-bold text-teal border-b border-gold/10 pb-4 flex items-center gap-3">
-                <span className="text-teal font-mono text-xl">02/</span>
-                What Changes For You
+              <h3 className="font-serif text-2xl font-bold text-[#1A3C34] border-b border-gold/10 pb-4 flex items-center gap-3">
+                <span className="text-gold font-mono text-xl">01 /</span>
+                What You'll Walk Through
               </h3>
               
               <ul className="space-y-4 font-sans text-[15px] md:text-[16px] text-ink-muted">
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Stop guessing whether you're actually ahead or behind</span>
+                  <span>The six stages of AI leadership</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>See the leader you're becoming, not just the tools you're missing</span>
+                  <span>Your live position on the AI leadership ladder → a real number, named by you in the room</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Walk away with a real score, not an assumption</span>
+                  <span>The one capability gap between the leader you are now and the leader your organization needs</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Leave with one clear next step, already sized to you</span>
+                  <span>Why that gap costs you influence before it ever costs you your title</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Box 02 */}
+            <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
+              <h3 className="font-serif text-2xl font-bold text-teal border-b border-gold/10 pb-4 flex items-center gap-3">
+                <span className="text-teal font-mono text-xl">02 /</span>
+                What You Walk Out With
+              </h3>
+              
+              <ul className="space-y-4 font-sans text-[15px] md:text-[16px] text-ink-muted">
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>Your AI Leadership Readiness Score → a real number, scored by you in the room</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>Your named stage on the AI leadership ladder → L1 through L6</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>The one gap to close first → drawn from your own score, not a generic list</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
+                  <span>One move to lead the very next AI conversation in your organization → this week</span>
                 </li>
               </ul>
             </div>
@@ -477,71 +468,7 @@ END:VCALENDAR`;
         </div>
       </section>
 
-      {/* 5. Why This, Not That Section */}
-      <section className="py-24 md:py-32 bg-white border-b border-gold/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 text-left">
-          <ScrollReveal duration={0.6}>
-            <div className="mb-16">
-              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block mb-3">
-                Before You Decide
-              </span>
-              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
-                This Is Not Another AI Training
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-            {/* Box 1: Typical AI Training */}
-            <div className="p-8 md:p-10 bg-[#F7F4EF]/30 border border-gold/10 rounded-[2px]">
-              <h3 className="font-serif text-2xl font-bold text-ink-muted mb-6">A Typical AI Training</h3>
-              <ul className="space-y-4 font-sans text-base text-ink-muted/80">
-                <li className="flex items-start gap-3">
-                  <span className="text-ink-muted/40 font-bold">✕</span>
-                  <span>Teaches you a tool</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-ink-muted/40 font-bold">✕</span>
-                  <span>Assumes you're already behind and rushes to catch you up</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-ink-muted/40 font-bold">✕</span>
-                  <span>Ends when the session ends</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-ink-muted/40 font-bold">✕</span>
-                  <span>Built for whoever shows up</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* Box 2: This Masterclass */}
-            <div className="p-8 md:p-10 bg-ink border border-gold/20 rounded-[2px] text-white">
-              <h3 className="font-serif text-2xl font-bold text-gold mb-6">This Masterclass</h3>
-              <ul className="space-y-4 font-sans text-base text-off-white/95">
-                <li className="flex items-start gap-3">
-                  <span className="text-gold font-bold">✓</span>
-                  <span>Shows you the leader you need to become</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold font-bold">✓</span>
-                  <span>Shows you exactly where you stand, in real time</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold font-bold">✓</span>
-                  <span>Ends with a next step sized to your own score</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-gold font-bold">✓</span>
-                  <span>Built for the leader ready to become AI-first, not just AI-aware</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Booking/Registration Form Section */}
+      {/* 5. Booking/Registration Form Section */}
       <section id="register-form" className="bg-white py-24 md:py-32">
         <div className="max-w-xl mx-auto px-6 text-center space-y-8">
           <div className="space-y-3">
@@ -552,12 +479,12 @@ END:VCALENDAR`;
               Save Your Seat
             </h2>
             <p className="font-sans text-base text-ink-muted leading-relaxed font-light">
-              Submit your registration details below. This session is limited to leaders serious about becoming AI-first, to keep the room sharp and interactive.
+              This session is live only with no replays.
             </p>
           </div>
 
           {!isSuccess ? (
-            <form onSubmit={handleSubmit} className="space-y-6 text-left bg-[#F7F4EF]/40 p-8 md:p-10 border border-gold/15 shadow-sm rounded-[2px]">
+            <form onSubmit={handleSubmit} className="space-y-6 text-left bg-[#F7F4EF]/40 p-8 md:p-10 border border-gold/15 shadow-sm rounded-none">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
                   <label htmlFor="mc-name" className="block text-[13px] font-semibold text-teal capitalize tracking-wide">
@@ -570,7 +497,7 @@ END:VCALENDAR`;
                     placeholder="Full Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-none"
                   />
                 </div>
 
@@ -585,7 +512,7 @@ END:VCALENDAR`;
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-none"
                   />
                 </div>
               </div>
@@ -601,7 +528,7 @@ END:VCALENDAR`;
                     placeholder="Organization (optional)"
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-none"
                   />
                 </div>
 
@@ -615,7 +542,7 @@ END:VCALENDAR`;
                     placeholder="Your Title / Role (optional)"
                     value={role}
                     onChange={(e) => setRole(e.target.value)}
-                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-[2px]"
+                    className="w-full px-4 py-3 border border-ink/15 focus:border-teal bg-white text-ink text-[15px] focus-visible:outline-none rounded-none"
                   />
                 </div>
               </div>
@@ -636,42 +563,91 @@ END:VCALENDAR`;
               </p>
             </form>
           ) : (
-            <div className="bg-[#F7F4EF]/50 p-10 md:p-12 border border-gold/15 text-left space-y-10 rounded-[2px]">
+            /* POST-REGISTRATION SUCCESS CONTAINER */
+            <div className="bg-[#FAF9F6] p-8 md:p-12 border border-[#E8D5B5] text-left space-y-10 rounded-none shadow-sm select-text">
               
-              <div className="space-y-4 border-b border-gold/10 pb-8">
-                <div className="w-12 h-12 text-teal border border-teal/20 flex items-center justify-center mb-6">
-                  <Check size={24} strokeWidth={1.5} />
+              <div className="space-y-4 border-b border-[#C9A55A]/20 pb-8">
+                <div className="flex items-center gap-3">
+                  <h3 className="font-serif text-3xl font-bold text-ink leading-tight">You're In.</h3>
+                  {/* Inline green circle tick next to text */}
+                  <span className="inline-flex items-center justify-center bg-[#1A3C34] text-white rounded-full w-8 h-8 shrink-0">
+                    <Check size={18} strokeWidth={3} />
+                  </span>
                 </div>
-                <h3 className="font-serif text-3xl font-bold text-ink leading-tight">You're In.</h3>
-                <p className="font-sans text-[16px] text-ink-muted leading-relaxed font-light">
-                  Your seat for &ldquo;Become The Leader Your Organization Needs In The Age Of AI&rdquo; is saved.
+                
+                <p className="font-sans text-[16px] text-ink-muted leading-relaxed font-light mt-2">
+                  Your seat for &ldquo;Become the Leader Your Organization Trusts to Navigate AI&rdquo; is saved.
                 </p>
-                <div className="bg-white px-5 py-4 border-l-2 border-gold flex items-center gap-3 font-serif text-[15px] text-ink mt-6 font-bold shadow-sm">
-                  <span>17 July 2026 · 12 PM Eastern Time · 90 minutes</span>
+                
+                <div className="bg-white px-5 py-4 border-l-2 border-gold flex items-center font-serif text-[15px] text-ink font-bold shadow-sm mt-4 select-none">
+                  <span>17 July 2026 · 12 PM Eastern Time · 90 minutes · Live Only</span>
                 </div>
               </div>
 
-              {/* Calendar add block */}
+              {/* Swapped Calendar Buttons with Brand Logos and hover properties */}
               <div className="space-y-6">
-                <p className="font-sans font-bold text-xs text-gold uppercase tracking-wider">Never Miss It. Add To Your Calendar.</p>
-                <div className="grid grid-cols-2 gap-4">
-                  <a href={calendarUrlGoogle} target="_blank" rel="noopener noreferrer" className="px-4 py-3 bg-white hover:bg-gray-50 border border-gold/15 text-center text-xs font-semibold text-ink transition-colors rounded-[2px]">
-                    Add to Google Calendar
+                <p className="font-sans font-bold text-xs text-gold uppercase tracking-wider select-none">Never Miss It. Add To Your Calendar.</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* 1. Apple (Swapped positions) */}
+                  <a 
+                    href={calendarUrlApple} 
+                    className="flex items-center justify-center px-4 py-3 bg-white hover:bg-gold/5 border border-gold/15 hover:border-gold hover:text-gold text-xs font-semibold text-ink transition-all duration-200 rounded-none shadow-sm cursor-pointer"
+                  >
+                    <svg className="w-4 h-4 mr-2 shrink-0 fill-current" viewBox="0 0 24 24">
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.21.67-2.93 1.49-.62.69-1.16 1.84-1.01 2.96 1.12.09 2.27-.58 2.95-1.39z"/>
+                    </svg>
+                    <span>Add to Apple Calendar (iCal)</span>
                   </a>
-                  <a href={calendarUrlApple} className="px-4 py-3 bg-white hover:bg-gray-50 border border-gold/15 text-center text-xs font-semibold text-ink transition-colors rounded-[2px]">
-                    Add to Apple Calendar (iCal)
+
+                  {/* 2. Google (Swapped positions) */}
+                  <a 
+                    href={calendarUrlGoogle} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center justify-center px-4 py-3 bg-white hover:bg-gold/5 border border-gold/15 hover:border-gold hover:text-gold text-xs font-semibold text-ink transition-all duration-200 rounded-none shadow-sm cursor-pointer"
+                  >
+                    <svg className="w-4 h-4 mr-2 shrink-0" viewBox="0 0 24 24">
+                      <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                      <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.13-4.53z"/>
+                    </svg>
+                    <span>Add to Google Calendar</span>
                   </a>
-                  <a href={calendarUrlOutlook} target="_blank" rel="noopener noreferrer" className="px-4 py-3 bg-white hover:bg-gray-50 border border-gold/15 text-center text-xs font-semibold text-ink transition-colors rounded-[2px]">
-                    Add to Outlook
+
+                  {/* 3. Yahoo (Swapped positions) */}
+                  <a 
+                    href={calendarUrlYahoo} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center justify-center px-4 py-3 bg-white hover:bg-gold/5 border border-gold/15 hover:border-gold hover:text-gold text-xs font-semibold text-ink transition-all duration-200 rounded-none shadow-sm cursor-pointer"
+                  >
+                    <svg className="w-4 h-4 mr-2 shrink-0" viewBox="0 0 24 24">
+                      <path fill="#6001d2" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.5 5.5l2.25 4.5 2.25-4.5h2.5L14 13.5v4h-2.5v-4L8 7.5h2.5z"/>
+                    </svg>
+                    <span>Add to Yahoo Calendar</span>
                   </a>
-                  <a href={calendarUrlYahoo} target="_blank" rel="noopener noreferrer" className="px-4 py-3 bg-white hover:bg-gray-50 border border-gold/15 text-center text-xs font-semibold text-ink transition-colors rounded-[2px]">
-                    Add to Yahoo Calendar
+
+                  {/* 4. Outlook (Swapped positions) */}
+                  <a 
+                    href={calendarUrlOutlook} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="flex items-center justify-center px-4 py-3 bg-white hover:bg-gold/5 border border-gold/15 hover:border-gold hover:text-gold text-xs font-semibold text-ink transition-all duration-200 rounded-none shadow-sm cursor-pointer"
+                  >
+                    <svg className="w-4 h-4 mr-2 shrink-0" viewBox="0 0 24 24">
+                      <path fill="#0078d4" d="M1 5.5V18.5L9.5 22V2L1 5.5Z"/>
+                      <path fill="#106ebe" d="M9.5 2V22L23 18.5V5.5L9.5 2Z"/>
+                      <path fill="#ffffff" d="M12.5 7.5H20V15H12.5V7.5Z" opacity="0.8"/>
+                      <path fill="#106ebe" d="M14 9H18.5V13.5H14V9Z"/>
+                    </svg>
+                    <span>Add to Outlook</span>
                   </a>
                 </div>
               </div>
 
-              {/* What Happens Next info list */}
-              <div className="space-y-6 pt-6 border-t border-gold/10">
+              {/* What Happens Next list */}
+              <div className="space-y-6 pt-6 border-t border-[#C9A55A]/20">
                 <h4 className="font-serif text-lg font-bold text-ink">What Happens Next</h4>
                 <ul className="space-y-3 font-sans text-sm text-ink-muted leading-relaxed font-light">
                   <li className="flex items-start gap-3">
@@ -684,46 +660,38 @@ END:VCALENDAR`;
                   </li>
                   <li className="flex items-start gap-3">
                     <span className="text-gold mt-0.5">●</span>
-                    <span>Come ready to be honest with yourself. This works best live, not as a replay.</span>
+                    <span>Come ready to be honest with yourself. The scoring only works live.</span>
                   </li>
                 </ul>
               </div>
 
-              {/* Cohort Teaser block */}
-              <div className="p-6 bg-ink border border-gold/20 text-white rounded-[2px] space-y-2">
-                <span className="font-sans font-bold text-[10px] text-gold uppercase tracking-widest">Priority Access</span>
-                <p className="font-serif text-sm font-medium leading-relaxed text-off-white/95">
-                  Seats for The Forward Leader Accelerator open to this room first, right after the session.
-                </p>
-              </div>
-
-              {/* Secondary CTA bring a friend */}
-              <div className="space-y-4 pt-8 border-t border-gold/10">
-                <h4 className="font-serif text-xl font-bold text-ink">Know A Leader About To Be Left Behind?</h4>
+              {/* Bring A Leader secondary action */}
+              <div className="space-y-4 pt-8 border-t border-[#C9A55A]/20">
+                <h4 className="font-serif text-xl font-bold text-ink">Know a Leader Who Should Be in the AI Conversations &rarr; and Isn't Yet?</h4>
                 <p className="font-sans text-[14px] text-ink-muted leading-relaxed font-light">
-                  Bring them with you. The leaders who make this shift are rarely the ones who make it alone.
+                  Bring them with you. The leaders who make this shift do not make it alone.
                 </p>
-                <div className="flex items-center gap-2 mt-4">
+                <div className="flex items-center gap-2 mt-4 select-all">
                   <input
                     type="text"
                     readOnly
                     value={currentRegistrationUrl}
                     onClick={(e) => (e.target as HTMLInputElement).select()}
-                    className="w-full px-3 py-2 bg-white border border-gold/20 text-xs text-ink font-mono focus-visible:outline-none rounded-[2px]"
+                    className="w-full px-3 py-2 bg-white border border-[#E8D5B5] text-xs text-ink font-mono focus-visible:outline-none rounded-none"
                   />
                   <button 
                     onClick={() => {
                       navigator.clipboard.writeText(currentRegistrationUrl);
-                      alert("Registration link copied to clipboard!");
+                      alert("Link copied to clipboard!");
                     }}
-                    className="px-4 py-2 bg-teal text-white hover:bg-teal-dark text-xs font-semibold shrink-0 transition-colors rounded-[2px]"
+                    className="px-4 py-2 bg-[#1A3C34] text-white hover:bg-[#1A3C34]/85 text-xs font-semibold shrink-0 transition-colors rounded-none cursor-pointer"
                   >
                     Copy Link
                   </button>
                 </div>
               </div>
 
-              <div className="pt-6 text-center border-t border-gold/10">
+              <div className="pt-6 text-center border-t border-[#C9A55A]/20 select-none">
                 <p className="font-serif text-base italic text-gold font-bold">See you on the 17th. &mdash; Pan</p>
               </div>
 
@@ -732,7 +700,7 @@ END:VCALENDAR`;
         </div>
       </section>
 
-      {/* 7. FAQ Section */}
+      {/* 6. FAQ Section */}
       <section id="faq" className="relative bg-[#F7F4EF]/30 py-24 md:py-32 overflow-hidden border-t border-gold/10">
         <div className="absolute inset-0 pointer-events-none select-none opacity-[0.05]">
           <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">

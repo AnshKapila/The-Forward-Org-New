@@ -9,8 +9,57 @@ import { LogoMark } from "./LogoMark";
 
 export function Nav() {
   const isScrolled = useScrolled(12);
+  const isScrolledPastHero = useScrolled(400);
   const [location, setLocation] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const showNudge = location === "/" && !isScrolledPastHero;
+
+  React.useEffect(() => {
+    if (location !== "/") return;
+
+    const sections = [
+      "hero",
+      "context",
+      "who-we-help",
+      "how-it-works",
+      "ai-index",
+      "free-resource",
+      "connect-with-pan",
+      "newsletter",
+      "faq",
+      "contact"
+    ];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-45% 0px -45% 0px",
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          window.history.replaceState(null, "", `#${id}`);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => {
+      sections.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) observer.unobserve(el);
+      });
+    };
+  }, [location]);
 
   const navLinks = [
     { label: "Home", path: "/" },
@@ -25,12 +74,12 @@ export function Nav() {
   return (
     <>
       {/* Homepage Top Banner (Nudge) */}
-      {location === "/" && (
-        <div className="fixed top-0 left-0 w-full z-[100] bg-sand text-ink text-xs sm:text-sm py-2 px-4 md:px-6 flex flex-wrap justify-center items-center text-center shadow-sm">
+      {showNudge && (
+        <div className="fixed top-0 left-0 w-full z-[100] bg-sand text-ink text-xs sm:text-sm py-2 px-4 md:px-6 flex flex-wrap justify-center items-center text-center shadow-sm transition-all duration-300">
           <span className="mr-1.5 md:mr-2">Not ready to talk yet?</span>
           <button 
             onClick={() => {
-              const el = document.getElementById("freebie");
+              const el = document.getElementById("free-resource");
               if (el) {
                 el.scrollIntoView({ behavior: "smooth" });
               }
@@ -48,7 +97,7 @@ export function Nav() {
           showDarkNavbar
             ? "bg-[#1A1C1A]/95 backdrop-blur-md shadow-[0_4px_20px_rgba(26,28,26,0.15)] py-4"
             : "bg-transparent py-6"
-        } ${location === "/" ? "top-[36px] sm:top-[36px]" : "top-0"}`}
+        } ${showNudge ? "top-[36px]" : "top-0"}`}
       >
         <div className="w-full px-6 lg:px-[120px] flex items-center justify-between">
           {/* Logo click routes to home */}

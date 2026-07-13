@@ -77,21 +77,23 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="relative bg-canvas py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden">
+    <section id="faq" className="relative bg-white py-8 md:py-12 lg:py-16 xl:py-[60px] 2xl:py-[80px] overflow-hidden">
       
-      {/* Inline SVG faint topographic contour lines pattern */}
-      <div className="absolute inset-0 pointer-events-none select-none opacity-[0.05]">
+      {/* Blueprint grid design background matching vision statement structure */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.05] select-none z-0">
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="topo-contour" width="200" height="150" patternUnits="userSpaceOnUse">
-              {/* Wavy landscape contours */}
-              <path d="M0,25 C50,15 80,45 130,35 C180,25 150,55 200,45" fill="none" stroke="var(--color-teal)" strokeWidth="0.75" />
-              <path d="M0,65 C40,55 100,75 140,55 C180,35 160,85 200,75" fill="none" stroke="var(--color-teal)" strokeWidth="0.75" />
-              <path d="M0,105 C60,95 90,125 150,105 C180,85 160,115 200,115" fill="none" stroke="var(--color-teal)" strokeWidth="0.75" />
-              <path d="M0,140 C30,130 110,135 130,145 C170,125 180,140 200,135" fill="none" stroke="var(--color-teal)" strokeWidth="0.75" />
+            <pattern id="faq-grid" width="120" height="120" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="120" y2="0" stroke="#1A3C34" strokeWidth="1" />
+              <line x1="0" y1="0" x2="0" y2="120" stroke="#1A3C34" strokeWidth="1" />
+              <line x1="40" y1="0" x2="40" y2="120" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="2 2" />
+              <line x1="80" y1="0" x2="80" y2="120" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="2 2" />
+              <line x1="0" y1="40" x2="120" y2="40" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="2 2" />
+              <line x1="0" y1="80" x2="120" y2="80" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="2 2" />
+              <line x1="0" y1="0" x2="120" y2="120" stroke="#1A3C34" strokeWidth="0.5" opacity="0.5"/>
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#topo-contour)" />
+          <rect width="100%" height="100%" fill="url(#faq-grid)" />
         </svg>
       </div>
 

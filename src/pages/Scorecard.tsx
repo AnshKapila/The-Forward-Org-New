@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ArrowLeft, RotateCcw, Check, AlertCircle } from "lucide-react";
+import { ArrowLeft, RotateCcw, AlertCircle, Calendar } from "lucide-react";
 import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { motion, AnimatePresence } from "framer-motion";
@@ -7,19 +7,148 @@ import { submitToBrevo } from "../utils/submitToBrevo";
 
 interface Question {
   id: number;
-  category: string;
+  section: string;
   question: string;
-  options: {
-    label: string;
-    points: number;
-    text: string;
-  }[];
+  options: string[];
+}
+
+interface AnimatedBorderProps {
+  isHovered: boolean;
+  color: string;
+  borderRadius?: number;
+}
+
+function AnimatedBorder({ isHovered, color, borderRadius = 0 }: AnimatedBorderProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [coords, setCoords] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const updateSize = () => {
+      if (containerRef.current) {
+        setCoords({
+          w: containerRef.current.offsetWidth,
+          h: containerRef.current.offsetHeight,
+        });
+      }
+    };
+    updateSize();
+    const observer = new ResizeObserver(updateSize);
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const { w, h } = coords;
+
+  if (w === 0 || h === 0) {
+    return <div ref={containerRef} className="absolute inset-0 pointer-events-none" />;
+  }
+
+  const r = borderRadius;
+  const sw = 2; // stroke width
+  const offset = sw / 2;
+
+  // Clockwise path starting at top-center and ending at bottom-center
+  const path1 = r > 0 ? `
+    M ${w / 2} ${offset}
+    L ${w - r} ${offset}
+    A ${r - offset} ${r - offset} 0 0 1 ${w - offset} ${r}
+    L ${w - offset} ${h - r}
+    A ${r - offset} ${r - offset} 0 0 1 ${w - r} ${h - offset}
+    L ${w / 2} ${h - offset}
+  ` : `
+    M ${w / 2} ${offset}
+    L ${w - offset} ${offset}
+    L ${w - offset} ${h - offset}
+    L ${w / 2} ${h - offset}
+  `;
+
+  // Counter-clockwise path starting at top-center and ending at bottom-center
+  const path2 = r > 0 ? `
+    M ${w / 2} ${offset}
+    L ${r} ${offset}
+    A ${r - offset} ${r - offset} 0 0 0 ${offset} ${r}
+    L ${offset} ${h - r}
+    A ${r - offset} ${r - offset} 0 0 0 ${r} ${h - offset}
+    L ${w / 2} ${h - offset}
+  ` : `
+    M ${w / 2} ${offset}
+    L ${offset} ${offset}
+    L ${offset} ${h - offset}
+    L ${w / 2} ${h - offset}
+  `;
+
+  return (
+    <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden z-20">
+      <svg className="absolute inset-0 w-full h-full animate-none" fill="none">
+        <motion.path
+          d={path1}
+          stroke={color}
+          strokeWidth={sw}
+          strokeLinecap="square"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        />
+        <motion.path
+          d={path2}
+          stroke={color}
+          strokeWidth={sw}
+          strokeLinecap="square"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+        />
+      </svg>
+    </div>
+  );
+}
+
+// Capability Card Component with Gold Animated Border Hover and Grid Sizing
+function CapabilityCard({ title, description, status, score }: { title: string; description: string; status: string; score: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const getStatusColor = (st: string) => {
+    if (st === "Strong") return "text-emerald-700 bg-emerald-50 border-emerald-200";
+    if (st === "Developing") return "text-amber-700 bg-amber-50 border-amber-200";
+    return "text-rose-700 bg-rose-50 border-rose-200";
+  };
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="bg-white border border-[#E8D5B5] p-6 rounded-none shadow-sm flex flex-col justify-between h-full min-h-[240px] relative transition-all duration-200"
+    >
+      {/* Animated border changed to gold brand color #C9A55A */}
+      <AnimatedBorder isHovered={isHovered} color="#C9A55A" borderRadius={0} />
+      
+      <div className="space-y-3 text-left relative z-10 flex-grow">
+        {/* Card heading size visual hierarchy (smaller than parent section h2) */}
+        <h3 className="font-serif text-md md:text-lg font-bold text-ink leading-snug">{title}</h3>
+        <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
+          {description}
+        </p>
+      </div>
+
+      {/* Bottom status and score layout */}
+      <div className="mt-6 pt-4 border-t border-ink/5 flex items-end justify-between relative z-10 shrink-0">
+        <span className={`px-2.5 py-0.5 border font-mono text-[9px] font-bold uppercase tracking-widest select-none ${getStatusColor(status)}`}>
+          {status}
+        </span>
+        <div className="text-right flex items-baseline gap-0.5">
+          <span className="font-serif text-2xl font-bold text-ink leading-none">{score}</span>
+          <span className="font-sans text-[11px] text-ink-muted/70">/12</span>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default function Scorecard() {
   const [location, setLocation] = useLocation();
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(15).fill(null));
+  const [answers, setAnswers] = useState<(number | null)[]>(() => Array(12).fill(null));
   const [quizComplete, setQuizComplete] = useState(false);
   const [showEmailGate, setShowEmailGate] = useState(false);
   const [gateEmail, setGateEmail] = useState("");
@@ -27,6 +156,10 @@ export default function Scorecard() {
   const [gateSubmitting, setGateSubmitting] = useState(false);
   const [gateError, setGateError] = useState("");
   const timeoutRef = useRef<any>(null);
+
+  // Interactive Hover Graph tracker coordinates
+  const [hoveredX, setHoveredX] = useState<number | null>(null);
+  const graphSvgRef = useRef<SVGSVGElement>(null);
 
   useEffect(() => {
     return () => {
@@ -36,214 +169,155 @@ export default function Scorecard() {
     };
   }, []);
 
-
-
   const questions: Question[] = [
+    // SECTION 1: Lead Yourself
     {
       id: 1,
-      category: "AI Strategy & Vision Clarity",
-      question: "How would you describe your organization's current AI strategy?",
+      section: "Lead Yourself",
+      question: "When AI comes up during leadership discussions, what role do you usually play?",
       options: [
-        { label: "A", points: 1, text: "We have no formal AI strategy yet" },
-        { label: "B", points: 2, text: "We have informal discussions but nothing documented" },
-        { label: "C", points: 3, text: "We have a documented strategy but it isn't tied to specific business outcomes" },
-        { label: "D", points: 4, text: "We have a clear strategy, tied to goals, with ownership assigned" },
-      ],
+        "I mostly listen because I am still trying to understand what it means for our organization.",
+        "I contribute occasionally but would not feel confident leading the discussion.",
+        "I can connect AI to practical opportunities within my team or department.",
+        "Others regularly look to me for clarity, direction and informed judgement."
+      ]
     },
     {
       id: 2,
-      category: "AI Strategy & Vision Clarity",
-      question: "How is AI progress typically understood across your leadership team today?",
+      section: "Lead Yourself",
+      question: "At the end of a typical workday, how do you usually feel?",
       options: [
-        { label: "A", points: 1, text: "We don’t have a clear or consistent answer yet" },
-        { label: "B", points: 2, text: "We highlight tools we’ve purchased or experimented with" },
-        { label: "C", points: 3, text: "We share activity - pilots, teams, and initiatives in motion" },
-        { label: "D", points: 4, text: "We demonstrate measurable business outcomes tied to strategic goals" },
-      ],
+        "Busy all day but still behind.",
+        "Productive, although much of my day is reactive.",
+        "Mostly focused, with some systems helping me stay organized.",
+        "I have a deliberate operating system that protects my attention and keeps me focused on high-value work."
+      ]
     },
     {
       id: 3,
-      category: "AI Strategy & Vision Clarity",
-      question: "How are AI initiatives prioritized inside your organization today?",
+      section: "Lead Yourself",
+      question: "How do you currently use AI when preparing for important meetings, presentations or decisions?",
       options: [
-        { label: "A", points: 1, text: "Prioritization is reactive - driven by urgency or internal pressure" },
-        { label: "B", points: 2, text: "Decisions are influenced by vendors or external trends" },
-        { label: "C", points: 3, text: "We have informal criteria, but no consistent decision framework" },
-        { label: "D", points: 4, text: "We use a structured prioritization model balancing business impact, risk, and execution feasibility" },
-      ],
+        "I rarely use AI.",
+        "I occasionally use it for brainstorming or drafting.",
+        "AI helps me research, organize ideas and improve decisions.",
+        "AI is part of a repeatable leadership workflow that strengthens my thinking and judgement."
+      ]
     },
+    // SECTION 2: Lead Others
     {
       id: 4,
-      category: "Governance & Risk Infrastructure",
-      question: "Does your organization have policies governing how AI tools can be used by employees?",
+      section: "Lead Others",
+      question: "When someone asks how AI may affect their role, what usually happens?",
       options: [
-        { label: "A", points: 1, text: "No policies exist" },
-        { label: "B", points: 2, text: "Informal guidelines exist but aren't enforced" },
-        { label: "C", points: 3, text: "Policies exist for some departments only" },
-        { label: "D", points: 4, text: "Formal, enterprise-wide AI governance policies are in place" },
-      ],
+        "I do not yet have a clear answer.",
+        "I reassure them, but the conversation remains general.",
+        "I explain practical changes and next steps.",
+        "I help them understand how their role can evolve and where they create greater value."
+      ]
     },
     {
       id: 5,
-      category: "Governance & Risk Infrastructure",
-      question: "How visible and controlled is employee use of unsanctioned AI tools (shadow AI) in your organization?",
+      section: "Lead Others",
+      question: "When someone on your team is hesitant to use AI, what usually happens?",
       options: [
-        { label: "A", points: 1, text: "We have little to no visibility into how AI is being used" },
-        { label: "B", points: 2, text: "We are aware it’s happening but haven’t addressed it yet" },
-        { label: "C", points: 3, text: "We’ve started discussing it, but no structured response exists" },
-        { label: "D", points: 4, text: "We actively monitor, manage, and guide AI usage across the organization" },
-      ],
+        "The topic is avoided.",
+        "They are shown the tool and expected to figure it out.",
+        "We discuss concerns and provide practical support.",
+        "I actively coach people through the emotional, practical and role-specific changes until confidence grows."
+      ]
     },
     {
       id: 6,
-      category: "Governance & Risk Infrastructure",
-      question: "If an AI-related issue were to arise - impacting a client or a business decision, how prepared would your organization feel today?",
+      section: "Lead Others",
+      question: "After introducing a new AI-enabled workflow, what usually happens?",
       options: [
-        { label: "A", points: 1, text: "We are not prepared for that scenario" },
-        { label: "B", points: 2, text: "We would respond reactively without a defined approach" },
-        { label: "C", points: 3, text: "We have partial processes but no formal playbook" },
-        { label: "D", points: 4, text: "We have a defined incident response framework for AI-related risks" },
-      ],
+        "People gradually return to the old way of working.",
+        "A few people continue using it.",
+        "Most of the team adopts it, although momentum depends on reminders.",
+        "Adoption becomes part of the team's normal way of working through coaching, accountability and shared ownership."
+      ]
     },
+    // SECTION 3: Lead Transformation
     {
       id: 7,
-      category: "Leadership Alignment & Readiness",
-      question: "How aligned is your leadership team on the role AI should play in your business?",
+      section: "Lead Transformation",
+      question: "When someone proposes a new AI opportunity, how do you evaluate it?",
       options: [
-        { label: "A", points: 1, text: "There is significant disagreement or confusion" },
-        { label: "B", points: 2, text: "Some alignment at the top but not across departments" },
-        { label: "C", points: 3, text: "General agreement but no shared accountability" },
-        { label: "D", points: 4, text: "Full alignment with defined roles and ownership" },
-      ],
+        "We are unsure how to assess it.",
+        "We discuss whether it seems useful.",
+        "We consider value, effort, feasibility and risk.",
+        "We follow a structured process that prioritizes opportunities based on business impact and strategic value."
+      ]
     },
     {
       id: 8,
-      category: "Leadership Alignment & Readiness",
-      question: "How consistently does your leadership team communicate a shared AI vision to the rest of the organization?",
+      section: "Lead Transformation",
+      question: "When AI creates positive results, how clearly can you communicate its value?",
       options: [
-        { label: "A", points: 1, text: "It hasn't been communicated at all" },
-        { label: "B", points: 2, text: "It's been mentioned once or twice but not reinforced" },
-        { label: "C", points: 3, text: "Some leaders communicate it but messaging is inconsistent across teams" },
-        { label: "D", points: 4, text: "A clear, consistent AI vision is regularly communicated at all levels" },
-      ],
+        "We know it helped but have not measured it.",
+        "We can describe anecdotal improvements.",
+        "We track outcomes like time, quality or productivity.",
+        "We clearly connect results to business priorities and communicate them to senior leaders."
+      ]
     },
     {
       id: 9,
-      category: "Leadership Alignment & Readiness",
-      question: "To what extent does your leadership team personally model AI adoption in their own work?",
+      section: "Lead Transformation",
+      question: "If an executive asked, \"What is the strongest AI opportunity in your area?\" how prepared would you feel?",
       options: [
-        { label: "A", points: 1, text: "Leadership support is mostly verbal, not behavioural" },
-        { label: "B", points: 2, text: "A few leaders experiment, but it’s not visible or consistent" },
-        { label: "C", points: 3, text: "Some leaders actively demonstrate usage within their teams" },
-        { label: "D", points: 4, text: "Leadership consistently models AI use, setting the standard for the organization" },
-      ],
+        "I would struggle to answer.",
+        "I could suggest several ideas but not confidently recommend one.",
+        "I could explain the highest priority opportunity and expected value.",
+        "I could confidently present the business case, stakeholders, risks, measures and recommended next steps."
+      ]
     },
+    // SECTION 4: Lead Sustainably
     {
       id: 10,
-      category: "Workforce Adoption & Psychological Safety",
-      question: "What best describes your employees’ current mindset toward AI?",
+      section: "Lead Sustainably",
+      question: "If you stepped away from your role for two months, what would happen to your team's AI progress?",
       options: [
-        { label: "A", points: 1, text: "Significant fear, avoidance or active resistance" },
-        { label: "B", points: 2, text: "Passive compliance, meaning they use it when told to, not by choice" },
-        { label: "C", points: 3, text: "Mixed - some champions, some resistors" },
-        { label: "D", points: 4, text: "Genuine curiosity - people are experimenting and sharing what they find" },
-      ],
+        "Most progress would stop.",
+        "A few enthusiastic people would continue.",
+        "Most initiatives would continue but momentum would slow.",
+        "The team has enough ownership, capability and systems to continue improving without depending on me."
+      ]
     },
     {
       id: 11,
-      category: "Workforce Adoption & Psychological Safety",
-      question: "How equipped do your employees feel to actually use AI in their specific roles?",
+      section: "Lead Sustainably",
+      question: "When someone discovers a better way of working with AI, what usually happens?",
       options: [
-        { label: "A", points: 1, text: "Not at all, as most people don't know where to start" },
-        { label: "B", points: 2, text: "Basic awareness, as they've been introduced to tools but have no role-specific guidance" },
-        { label: "C", points: 3, text: "Partially, where some teams have training, others are figuring it out alone" },
-        { label: "D", points: 4, text: "Well equipped, meaning people have role-specific workflows, prompts, and ongoing support" },
-      ],
+        "The knowledge stays with that individual.",
+        "A few people hear about it informally.",
+        "We encourage sharing across the team.",
+        "We consistently capture, improve and embed successful practices into the way our team works."
+      ]
     },
     {
       id: 12,
-      category: "Workforce Adoption & Psychological Safety",
-      question: "How embedded is AI in your team's day-to-day workflows right now?",
+      section: "Lead Sustainably",
+      question: "Looking ahead 12 months, how confident are you that your team will be stronger because of AI?",
       options: [
-        { label: "A", points: 1, text: "Not at all, as it's separate from daily work" },
-        { label: "B", points: 2, text: "A few individuals use it on their own" },
-        { label: "C", points: 3, text: "Some teams have integrated it into specific workflows" },
-        { label: "D", points: 4, text: "AI is embedded across functions as a standard way of working" },
-      ],
-    },
-    {
-      id: 13,
-      category: "Roadmap Prioritization & ROI Clarity",
-      question: "How does your organization decide what to build or implement with AI first?",
-      options: [
-        { label: "A", points: 1, text: "We don't have a prioritization process - everything feels equally urgent" },
-        { label: "B", points: 2, text: "We prioritize based on what's easiest to implement" },
-        { label: "C", points: 3, text: "We prioritize based on business impact but it's informal" },
-        { label: "D", points: 4, text: "We use a structured framework that maps effort, risk, and business value before committing" },
-      ],
-    },
-    {
-      id: 14,
-      category: "Roadmap Prioritization & ROI Clarity",
-      question: "How clearly are your AI investments connected to measurable business outcomes?",
-      options: [
-        { label: "A", points: 1, text: "There is no defined connection" },
-        { label: "B", points: 2, text: "We have assumptions, but no clear measurement" },
-        { label: "C", points: 3, text: "Some initiatives have defined KPIs" },
-        { label: "D", points: 4, text: "Every initiative is tied to a measurable business outcome and tracked accordingly" },
-      ],
-    },
-    {
-      id: 15,
-      category: "Roadmap Prioritization & ROI Clarity",
-      question: "How visible is the return on your AI investments to your leadership team right now?",
-      options: [
-        { label: "A", points: 1, text: "There is no visibility, since we haven't defined what success looks like" },
-        { label: "B", points: 2, text: "Leadership knows we're investing but can't see what it's producing" },
-        { label: "C", points: 3, text: "Some initiatives have visible results but most don't" },
-        { label: "D", points: 4, text: "Every AI investment has a dashboard or metric that leadership reviews regularly" },
-      ],
-    },
+        "I am uncertain.",
+        "I hope we will improve but we do not yet have a clear direction.",
+        "We have a plan and are making steady progress.",
+        "We have a clear vision, strong leadership and the capability to continue evolving as AI changes."
+      ]
+    }
   ];
 
-  // Prevent currentIdx from ever exceeding the bounds of the questions array (clamping to the final question)
-  useEffect(() => {
-    if (currentIdx >= questions.length) {
-      setCurrentIdx(questions.length - 1);
-    }
-  }, [currentIdx, questions.length]);
-
   const handleSelectOptionLocal = (optionIdx: number) => {
-    const nextAnswers = [...answers];
-    nextAnswers[currentIdx] = optionIdx;
-    setAnswers(nextAnswers);
+    const updated = [...answers];
+    updated[currentIdx] = optionIdx;
+    setAnswers(updated);
 
-    // If it is not  the final question, proceed automatically to the next section after 450ms animation completed
     if (currentIdx < questions.length - 1) {
-      setTimeout(() => {
-        setCurrentIdx((prevIdx) => {
-          if (prevIdx < questions.length - 1) {
-            return prevIdx + 1;
-          }
-          return prevIdx;
-        });
-      }, 450);
+      timeoutRef.current = setTimeout(() => {
+        setCurrentIdx(currentIdx + 1);
+      }, 280);
     }
-  };
-
-  const handleSubmit = () => {
-    if (answers[questions.length - 1] === null) return;
-    setShowEmailGate(true);
-  };
-
-  const handleRestart = () => {
-    setAnswers(Array(questions.length).fill(null));
-    setCurrentIdx(0);
-    setQuizComplete(false);
-    setShowEmailGate(false);
-    setGateEmail("");
-    setGateName("");
-    setGateError("");
   };
 
   const handleBack = () => {
@@ -252,65 +326,51 @@ export default function Scorecard() {
     }
   };
 
-  const handleJumpBack = (targetIdx: number) => {
-    if (targetIdx < currentIdx) {
-      const nextAnswers = [...answers];
-      // Reset the target index and all subsequent answers
-      for (let i = targetIdx; i < nextAnswers.length; i++) {
-        nextAnswers[i] = null;
-      }
-      setAnswers(nextAnswers);
-      setCurrentIdx(targetIdx);
+  const handleJumpBack = (idx: number) => {
+    setCurrentIdx(idx);
+  };
+
+  const handleRestart = () => {
+    setAnswers(Array(12).fill(null));
+    setCurrentIdx(0);
+    setQuizComplete(false);
+    setShowEmailGate(false);
+    setGateError("");
+  };
+
+  const handleSubmit = () => {
+    if (answers.some(a => a === null)) {
+      setGateError("Please answer all questions before submitting.");
+      return;
     }
+    setShowEmailGate(true);
   };
 
   const handleGateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!gateName.trim()) {
-      setGateError("Please enter your name.");
+    if (!gateEmail || !gateName) {
+      setGateError("Please fill in all required fields.");
       return;
     }
-
-    if (!gateEmail.trim()) {
-      setGateError("Please enter your email address.");
-      return;
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(gateEmail.trim())) {
-      setGateError("Please enter a valid email address.");
-      return;
-    }
-
-    setGateError("");
     setGateSubmitting(true);
+    setGateError("");
 
     try {
-      const rawEnvListId = import.meta.env.VITE_BREVO_LIST_INDEX;
-      console.log("Resolved VITE_BREVO_LIST_INDEX:", rawEnvListId);
-      const listId = Number(rawEnvListId) || 6;
+      const listId = 3; 
       const attributes = {
-        FIRSTNAME: gateName.trim(),
-        MATURITY_STAGE: rating,
-        SOURCE: "index_completion"
+        FIRSTNAME: gateName.split(" ")[0] || gateName,
+        FULLNAME: gateName,
+        SCORE: totalScore,
+        LEVEL: levelLabel,
+        STRONGEST: strongestName,
+        OPPORTUNITY: opportunityName
       };
 
-      console.log("Calling submitToBrevo with:", gateEmail.trim(), listId, JSON.stringify(attributes));
       await submitToBrevo(gateEmail.trim(), listId, attributes);
-      
-      console.log("Scorecard Gated Submission:", {
-        name: gateName,
-        email: gateEmail,
-        score: totalScore,
-        rating: rating,
-        timestamp: new Date().toISOString()
-      });
       setQuizComplete(true);
       setShowEmailGate(false);
     } catch (err) {
       console.error("Scorecard submission failed", err);
-      // Fallback
       setQuizComplete(true);
       setShowEmailGate(false);
     } finally {
@@ -318,54 +378,126 @@ export default function Scorecard() {
     }
   };
 
-  // Score Analysis scaled to 0-100 percentage (each of 15 questions has up to 4 points)
-  const totalRawScore = answers.reduce<number>((sum, val, idx) => {
-    if (val === null || !questions[idx] || !questions[idx].options || !questions[idx].options[val]) return sum;
-    return sum + questions[idx].options[val].points;
-  }, 0);
+  // CALCULATIONS ENGINE
+  const getSectionScore = (qA: number, qB: number, qC: number) => {
+    const ansA = answers[qA] !== null ? (answers[qA] as number) + 1 : 0;
+    const ansB = answers[qB] !== null ? (answers[qB] as number) + 1 : 0;
+    const ansC = answers[qC] !== null ? (answers[qC] as number) + 1 : 0;
+    return ansA + ansB + ansC;
+  };
 
-  const totalScore = Math.round((totalRawScore / (questions.length * 4)) * 100);
+  const score1 = getSectionScore(0, 1, 2); 
+  const score2 = getSectionScore(3, 4, 5); 
+  const score3 = getSectionScore(6, 7, 8); 
+  const score4 = getSectionScore(9, 10, 11); 
 
-  let rating = "";
-  let feedback = "";
-  let gapFocus = "";
-  let ratingColor = "";
-  let badgeColor = "";
+  const totalScore = score1 + score2 + score3 + score4; 
 
-  if (totalScore >= 80) {
-    rating = "Vanguard Aligned";
-    feedback = "Your organization exhibits strong architectural maturity. Your strategic foundations, risk limits, and structural governance are positioned to scale and defend margins.";
-    gapFocus = "Refinement of operational execution margins and exploring custom intellectual property pipelines.";
-    ratingColor = "text-emerald-600 font-bold";
-    badgeColor = "border-emerald-600 bg-emerald-50 text-emerald-700";
-  } else if (totalScore >= 50) {
-    rating = "Operational Disconnect";
-    feedback = "While you have made active, positive preliminary moves, there is a distinct gap between the tools and the quantifiable business outcomes. Strategy or frontline adoption requires immediate structuring.";
-    gapFocus = "Establishing clear bottom-line ROI metrics and unified executive alignment regarding compliance.";
-    ratingColor = "text-amber-500 font-bold";
-    badgeColor = "border-amber-500 bg-amber-50 text-amber-700";
-  } else {
-    rating = "Highly Vulnerable";
-    feedback = "Your AI efforts are fragmented, ad-hoc, and likely exposing you to severe governance and compliance risks. Without cohesive leadership alignment, value is draining rapidly.";
-    gapFocus = "Drafting standard governance guidelines, securing enterprise endpoints, and formalizing a board-approved strategy.";
-    ratingColor = "text-rose-600 font-bold";
-    badgeColor = "border-rose-600 bg-rose-50 text-rose-700";
+  // Level Logic
+  let levelLabel = "Observer";
+  if (totalScore >= 36) levelLabel = "Forward Leader";
+  else if (totalScore >= 24) levelLabel = "Practitioner";
+
+  const status1 = getStatusLabel(score1);
+  const status2 = getStatusLabel(score2);
+  const status3 = getStatusLabel(score3);
+  const status4 = getStatusLabel(score4);
+
+  function getStatusLabel(s: number) {
+    if (s >= 9) return "Strong";
+    if (s >= 6) return "Developing";
+    return "Needs Attention";
   }
+
+  // Strongest / Weakest calculation with Tie Breaking
+  const sectionsData = [
+    { name: "Lead Yourself", score: score1 },
+    { name: "Lead Others", score: score2 },
+    { name: "Lead Transformation", score: score3 },
+    { name: "Lead Sustainably", score: score4 }
+  ];
+
+  let strongest = sectionsData[0];
+  for (let i = 1; i < sectionsData.length; i++) {
+    if (sectionsData[i].score > strongest.score) {
+      strongest = sectionsData[i];
+    }
+  }
+
+  let opportunity = sectionsData[3];
+  for (let i = sectionsData.length - 2; i >= 0; i--) {
+    if (sectionsData[i].score < opportunity.score) {
+      opportunity = sectionsData[i];
+    }
+  }
+
+  const allIdentical = score1 === score2 && score2 === score3 && score3 === score4;
+  const strongestName = strongest.name;
+  const opportunityName = opportunity.name;
 
   const clampedIdx = Math.max(0, Math.min(currentIdx, questions.length - 1));
   const selectedOptionIndex = answers[clampedIdx];
   const currentQuestion = questions[clampedIdx];
 
+  // RADAR CHART COORDINATES
+  const center = 150;
+  const maxScore = 12;
+  const getPointCoord = (val: number, angleDeg: number) => {
+    const radius = (val / maxScore) * 85;
+    const angleRad = (angleDeg - 90) * (Math.PI / 180);
+    return {
+      x: center + radius * Math.cos(angleRad),
+      y: center + radius * Math.sin(angleRad)
+    };
+  };
+
+  const pt1 = getPointCoord(score1, 0);   
+  const pt2 = getPointCoord(score2, 90);  
+  const pt3 = getPointCoord(score3, 185); 
+  const pt4 = getPointCoord(score4, 275); 
+  const userPolygonPoints = `${pt1.x},${pt1.y} ${pt2.x},${pt2.y} ${pt3.x},${pt3.y} ${pt4.x},${pt4.y}`;
+
+  const gridLine3 = `${getPointCoord(3, 0).x},${getPointCoord(3, 0).y} ${getPointCoord(3, 90).x},${getPointCoord(3, 90).y} ${getPointCoord(3, 185).x},${getPointCoord(3, 185).y} ${getPointCoord(3, 275).x},${getPointCoord(3, 275).y}`;
+  const gridLine6 = `${getPointCoord(6, 0).x},${getPointCoord(6, 0).y} ${getPointCoord(6, 90).x},${getPointCoord(6, 90).y} ${getPointCoord(6, 185).x},${getPointCoord(6, 185).y} ${getPointCoord(6, 275).x},${getPointCoord(6, 275).y}`;
+  const gridLine9 = `${getPointCoord(9, 0).x},${getPointCoord(9, 0).y} ${getPointCoord(9, 90).x},${getPointCoord(9, 90).y} ${getPointCoord(9, 185).x},${getPointCoord(9, 185).y} ${getPointCoord(9, 275).x},${getPointCoord(9, 275).y}`;
+  const gridLine12 = `${getPointCoord(12, 0).x},${getPointCoord(12, 0).y} ${getPointCoord(12, 90).x},${getPointCoord(12, 90).y} ${getPointCoord(12, 185).x},${getPointCoord(12, 185).y} ${getPointCoord(12, 275).x},${getPointCoord(12, 275).y}`;
+
+  // Interactive Hover Graph tracker handler
+  const handleMouseMove = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+    if (!graphSvgRef.current) return;
+    const rect = graphSvgRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    // Map to coordinate bounds
+    if (x >= 50 && x <= 550) {
+      setHoveredX(x);
+    } else {
+      setHoveredX(null);
+    }
+  };
+
+  // Curve calculations: expectation line is at y = 40 (flat horizontal). Compounding gap line curves downward:
+  // Starts at 50,40 and goes down to 550, 180 (steepened curve)
+  const getGraphYAtX = (x: number) => {
+    // Basic Q curve: y = a * x^2 + b * x + c
+    // points: (50, 40) at Month 1, (300, 110) at Month 6, (550, 180) at Month 12
+    const startX = 50;
+    const endX = 550;
+    const t = (x - startX) / (endX - startX); // 0 to 1
+    // Quadratic interpolation starting at 40 and ending at 180
+    // Increasing slope dynamically to represent fourth quadrant compounding gap:
+    const startY = 40;
+    const endY = 180;
+    return startY + t * t * (endY - startY); // Steep compounding curve
+  };
+
   return (
-    <div className="bg-canvas min-h-screen text-ink relative select-none">
+    <div className="bg-[#FAF9F6] min-h-screen text-ink relative select-none">
       
       {!quizComplete ? (
         showEmailGate ? (
           /* EMAIL GATE CONTAINER */
           <div className="w-full min-h-screen flex flex-col items-center justify-center pt-16 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
-            {/* Elegant Header and Form container styled perfectly with the homepage design theme */}
             <div className="max-w-[580px] w-full bg-[#FAF9F5] border border-[#D4C9B8] py-8 px-6 sm:p-10 md:p-12 shadow-sm relative flex flex-col justify-center">
-              {/* Back button to go back to the scorecard */}
               <button
                 onClick={() => setShowEmailGate(false)}
                 className="absolute top-6 left-6 flex text-xs font-sans capitalize tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
@@ -379,13 +511,11 @@ export default function Scorecard() {
                 </span>
                 
                 <h2 className="font-serif text-[28px] sm:text-[34px] font-bold text-[#1A3C34] leading-[1.2] tracking-tight text-balance">
-                  Unlock Your <span className="font-serif italic font-normal text-[#C9A55A]">Alignment Score</span>
+                  Unlock Your <span className="font-serif italic font-normal text-[#C9A55A]">Forward Score</span>
                 </h2>
               </div>
 
-              {/* Form fields styled exactly like homepage contact form */}
               <form onSubmit={handleGateSubmit} className="space-y-6">
-                {/* Name input */}
                 <div className="space-y-2 text-left">
                   <label htmlFor="gate-name" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
                     Full name*
@@ -402,7 +532,6 @@ export default function Scorecard() {
                   />
                 </div>
 
-                {/* Email input */}
                 <div className="space-y-2 text-left">
                   <label htmlFor="gate-email" className="block text-[12px] font-sans font-semibold text-[#1A3C34] tracking-wide">
                     Email address*
@@ -419,7 +548,6 @@ export default function Scorecard() {
                   />
                 </div>
 
-                {/* Error Banner */}
                 {gateError && (
                   <motion.div
                     initial={{ opacity: 0, y: -4 }}
@@ -431,7 +559,6 @@ export default function Scorecard() {
                   </motion.div>
                 )}
 
-                {/* Submit Trigger with matching luxury styling */}
                 <div className="pt-2 text-left">
                   <InteractiveButton
                     type="submit"
@@ -446,259 +573,514 @@ export default function Scorecard() {
             </div>
           </div>
         ) : (
-          /* SURVEY CONTAINER DESIGNED TO PERFECTLY OFFSET FIXED GLOBAL NAVIGATION */
+          /* SURVEY CONTAINER */
           <div className="w-full min-h-screen flex flex-col items-center justify-start pt-6 md:pt-12 pb-16 px-4 md:px-6 relative bg-[#F7F4EF]/30">
-          
-          {/* Header strip for controls to prevent colliding with the nav bar */}
-          <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
-            {/* Cancel / Back floating menu, displayed on both mobile & desktop aligned with left margin */}
-            <button
-              onClick={clampedIdx === 0 ? () => setLocation("/index") : handleBack}
-              className="flex text-xs font-sans capitalize tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
-            >
-              <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Back"}
-            </button>
- 
-            {/* Right-aligned Question tracking label */}
-            <span className="font-sans text-[12px] text-[#1A3C34]/65 font-medium">
-              Question {clampedIdx + 1} of {questions.length}
-            </span>
-          </div>
- 
-          {/* Progress Bar styled as a premium track with interactive hover/checkpoint to go back */}
-          <div className="w-full max-w-[620px] mx-auto flex items-center gap-[4px] mb-8 relative select-none">
-            {questions.map((q, idx) => {
-              const isCompleted = idx < clampedIdx;
-              const isActive = idx === clampedIdx;
- 
-              return (
-                <div 
-                  key={idx} 
-                  className="flex-1 relative group py-2"
-                >
-                  <button
-                    onClick={() => {
-                      if (isCompleted) {
-                        handleJumpBack(idx);
-                      }
-                    }}
-                    disabled={!isCompleted}
-                    className={`w-full h-[6px] transition-all duration-300 relative focus:outline-none ${
-                      isCompleted 
-                        ? "bg-[#C9A55A] hover:bg-[#1A3C34] hover:scale-y-[1.4] cursor-pointer" 
-                        : isActive 
-                          ? "bg-[#1A3C34]" 
-                          : "bg-[#1A3C34]/15"
-                    }`}
-                    style={{
-                      borderRadius: "1px"
-                    }}
-                    title={isCompleted ? `Go back to Question ${idx + 1}` : undefined}
-                  >
-                    {isActive && (
-                      <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 block bg-[#1A3C34] h-3 w-3 rounded-full border border-white" />
-                    )}
-                  </button>
- 
-                  {/* Tooltip on Hovering Completed Elements */}
-                  {isCompleted && (
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 whitespace-nowrap text-center">
-                      <div className="bg-[#FAF9F5] text-ink text-[11px] sm:text-xs font-sans font-medium py-1 px-2.5 rounded-none shadow border border-[#1A3C34]/15">
-                        <span className="text-ink/65">Return to question </span>
-                        <span className="text-[#1A3C34] font-extrabold text-[12px] sm:text-[13px]">
-                          {idx + 1}
-                        </span>
-                      </div>
-                      <div className="w-1.5 h-1.5 bg-[#FAF9F5] border-r border-b border-[#1A3C34]/15 rotate-45 mx-auto -mt-[4px]" />
-                    </div>
-                  )}
- 
-                  {/* Tooltip for Current Q */}
-                  {isActive && (
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 pb-1.5 opacity-0 group-hover:opacity-100 transition-all duration-200 pointer-events-none z-50 whitespace-nowrap text-center">
-                      <div className="bg-[#FAF9F5] text-ink text-[11px] sm:text-xs font-sans font-medium py-1 px-2.5 rounded-none shadow border border-[#1A3C34]/15">
-                        <span className="text-ink/65">Current question </span>
-                        <span className="text-[#1A3C34] font-extrabold text-[12px] sm:text-[13px]">
-                          {idx + 1}
-                        </span>
-                      </div>
-                      <div className="w-1.5 h-1.5 bg-[#FAF9F5] border-r border-b border-[#1A3C34]/15 rotate-45 mx-auto -mt-[4px]" />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
- 
-          {/* Card core contents centered */}
-          <div className="max-w-[620px] w-full flex flex-col gap-4 sm:gap-5 relative">
-            
-            {/* Category of the Question */}
-            <div className="text-left">
-              <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] capitalize tracking-widest block mb-1">
-                {currentQuestion.category}
-              </span>
-              <h3 className="font-serif text-[18px] sm:text-[20px] md:text-[23px] font-bold text-ink leading-snug">
-                {currentQuestion.question}
-              </h3>
-            </div>
- 
-            {/* Answer Options list with custom thick outline trail tracer */}
-            <div className="space-y-2.5 text-left">
-              {(currentQuestion?.options || []).map((opt, i) => {
-                const isSelected = selectedOptionIndex === i;
-                return (
-                  <button
-                    key={i}
-                    onClick={() => handleSelectOptionLocal(i)}
-                    className="w-full text-left p-3.5 sm:p-4 border cursor-pointer transition-all duration-150 flex items-start gap-4 rounded-none relative overflow-hidden focus:outline-none"
-                    style={{
-                      borderColor: isSelected ? "#1A3C34" : "#D4C9B8",
-                      backgroundColor: isSelected ? "rgba(26, 60, 52, 0.05)" : "white"
-                    }}
-                  >
-                    {/* Dark and thick Golden Outline Trail Tracker Animation (0.4s) */}
-                    {isSelected && (
-                      <div className="absolute inset-0 pointer-events-none z-30">
-                        <svg className="w-full h-full absolute inset-0">
-                          <motion.rect
-                            x="0"
-                            y="0"
-                            width="100%"
-                            height="100%"
-                            fill="none"
-                            stroke="#C9A55A"
-                            strokeWidth="5"
-                            strokeLinecap="round"
-                            initial={{ pathLength: 0 }}
-                            animate={{ pathLength: 1 }}
-                            transition={{ duration: 0.4, ease: "linear" }}
-                          />
-                        </svg>
-                      </div>
-                    )}
+            <div className="w-full max-w-[620px] mx-auto flex items-center justify-between mb-4">
+              {/* Back changed to Previous Question */}
+              <button
+                onClick={clampedIdx === 0 ? () => setLocation("/") : handleBack}
+                className="flex text-xs font-sans capitalize tracking-wider items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-1 focus:outline-none"
+              >
+                <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Previous Question"}
+              </button>
 
-                    <span className={`w-5 h-5 shrink-0 rounded-full border text-[11px] flex items-center justify-center font-serif bg-canvas/40 font-bold mt-0.5 relative z-10 ${
-                      isSelected ? "border-[#1A3C34] text-[#1A3C34] bg-white" : "border-[#1A3C34]/40 text-[#1A3C34]/70"
-                    }`}>
-                      {opt.label}
-                    </span>
-                    <span className="font-sans text-[13px] sm:text-[14px] text-ink leading-relaxed relative z-10">
-                      {opt.text}
-                    </span>
-                  </button>
+              <span className="font-sans text-[12px] text-[#1A3C34]/65 font-medium">
+                Question {clampedIdx + 1} of {questions.length}
+              </span>
+            </div>
+
+            {/* Progress Checkpoints */}
+            <div className="w-full max-w-[620px] mx-auto flex items-center gap-[4px] mb-8 relative select-none">
+              {questions.map((q, idx) => {
+                const isCompleted = idx < clampedIdx;
+                const isActive = idx === clampedIdx;
+
+                return (
+                  <div key={idx} className="flex-1 relative group py-2">
+                    <button
+                      onClick={() => {
+                        if (isCompleted) {
+                          handleJumpBack(idx);
+                        }
+                      }}
+                      disabled={!isCompleted}
+                      className={`w-full h-[6px] transition-all duration-300 relative focus:outline-none ${
+                        isCompleted 
+                          ? "bg-[#C9A55A] hover:bg-[#1A3C34] hover:scale-y-[1.4] cursor-pointer" 
+                          : isActive 
+                            ? "bg-[#1A3C34]" 
+                            : "bg-[#1A3C34]/15"
+                      }`}
+                      style={{ borderRadius: "1px" }}
+                    >
+                      {isActive && (
+                        <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 block bg-[#1A3C34] h-3 w-3 rounded-full border border-white" />
+                      )}
+                    </button>
+                  </div>
                 );
               })}
             </div>
- 
-            {/* Footer Control Actions with fixed height to prevent layout shifts */}
-            <div className="min-h-[44px] flex items-center justify-between gap-4 mt-2">
-              {/* Mobile bottom-left Cancel/Back button */}
-              <button
-                onClick={clampedIdx === 0 ? () => setLocation("/index") : handleBack}
-                className="md:hidden text-xs font-sans capitalize tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-2 focus:outline-none"
-              >
-                <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Back"}
-              </button>
 
-              <div className="ml-auto">
-                {clampedIdx === questions.length - 1 ? (
-                  answers[clampedIdx] !== null ? (
-                    <InteractiveButton 
-                      onClick={handleSubmit}
-                      variant="gold" 
-                      className="w-full md:w-auto text-center py-2.5 px-8 capitalize tracking-wider text-xs font-semibold"
-                      id="scorecard-submit-button"
+            <div className="max-w-[620px] w-full flex flex-col gap-4 sm:gap-5 relative">
+              <div className="text-left">
+                <span className="font-sans font-extrabold text-[10px] sm:text-[11px] text-[#1A3C34] capitalize tracking-widest block mb-1">
+                  {currentQuestion.section}
+                </span>
+                <h3 className="font-serif text-[18px] sm:text-[20px] md:text-[23px] font-bold text-ink leading-snug">
+                  {currentQuestion.question}
+                </h3>
+              </div>
+
+              <div className="space-y-2.5 text-left">
+                {currentQuestion.options.map((opt, i) => {
+                  const isSelected = selectedOptionIndex === i;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => handleSelectOptionLocal(i)}
+                      className="w-full text-left p-3.5 sm:p-4 border cursor-pointer transition-all duration-150 flex items-start gap-4 rounded-none relative overflow-hidden focus:outline-none"
+                      style={{
+                        borderColor: isSelected ? "#1A3C34" : "#D4C9B8",
+                        backgroundColor: isSelected ? "rgba(26, 60, 52, 0.05)" : "white"
+                      }}
                     >
-                      Submit Diagnostic
-                    </InteractiveButton>
+                      {isSelected && (
+                        <div className="absolute inset-0 pointer-events-none z-30">
+                          <svg className="w-full h-full absolute inset-0">
+                            <motion.rect
+                              x="0"
+                              y="0"
+                              width="100%"
+                              height="100%"
+                              fill="none"
+                              stroke="#C9A55A"
+                              strokeWidth="5"
+                              strokeLinecap="round"
+                              initial={{ pathLength: 0 }}
+                              animate={{ pathLength: 1 }}
+                              transition={{ duration: 0.4, ease: "linear" }}
+                            />
+                          </svg>
+                        </div>
+                      )}
+
+                      <span className={`w-5 h-5 shrink-0 rounded-full border text-[11px] flex items-center justify-center font-serif bg-canvas/40 font-bold mt-0.5 relative z-10 ${
+                        isSelected ? "border-[#1A3C34] text-[#1A3C34] bg-white" : "border-[#1A3C34]/40 text-[#1A3C34]/70"
+                      }`}>
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                      <span className="font-sans text-[13px] sm:text-[14px] text-ink leading-relaxed relative z-10">
+                        {opt}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="min-h-[44px] flex items-center justify-between gap-4 mt-2">
+                <button
+                  onClick={clampedIdx === 0 ? () => setLocation("/") : handleBack}
+                  className="md:hidden text-xs font-sans capitalize tracking-wider flex items-center gap-1.5 cursor-pointer text-[#1A3C34] hover:text-[#C9A55A] transition-colors py-2 focus:outline-none"
+                >
+                  <ArrowLeft size={14} /> {clampedIdx === 0 ? "Cancel" : "Previous Question"}
+                </button>
+
+                <div className="ml-auto">
+                  {clampedIdx === questions.length - 1 ? (
+                    answers[clampedIdx] !== null ? (
+                      <InteractiveButton 
+                        onClick={handleSubmit}
+                        variant="gold" 
+                        className="w-full md:w-auto text-center py-2.5 px-8 capitalize tracking-wider text-xs font-semibold"
+                        id="scorecard-submit-button"
+                      >
+                        Submit Diagnostic
+                      </InteractiveButton>
+                    ) : (
+                      <p className="text-xs font-sans text-ink-muted/50 italic text-right select-none pr-1">
+                        Select an option for the final question to submit
+                      </p>
+                    )
                   ) : (
                     <p className="text-xs font-sans text-ink-muted/50 italic text-right select-none pr-1">
-                      Select an option for the final question to submit
+                      Select an option above to proceed
                     </p>
-                  )
-                ) : (
-                  <p className="text-xs font-sans text-ink-muted/50 italic text-right select-none pr-1">
-                    Select an option above to proceed
-                  </p>
-                )}
+                  )}
+                </div>
               </div>
             </div>
- 
           </div>
-        </div>
-      )) : (
-        /* RESULTS SCREEN WITH REDUCED TOP MARGINS */
-        <div className="min-h-screen pt-6 md:pt-12 pb-16 px-4 md:px-6 bg-[#F7F4EF]/40 flex items-center justify-center">
-          <div className="max-w-[720px] w-full bg-[#F7F4EF] border border-[#E8D5B5] p-6 sm:p-8 md:p-12 text-left rounded-sm shadow-sm space-y-8">
-            <div className="text-center space-y-4 pb-8 border-b border-ink/10">
-              <span className="font-sans font-semibold text-xs text-[#1A3C34] capitalize tracking-[0.2em] block">
-                Your Diagnostic Score
-              </span>
-
-              <div className="flex items-baseline justify-center gap-1.5">
-                <span className={`font-serif text-[72px] font-bold leading-none ${ratingColor}`}>
-                  {totalScore}
+        )
+      ) : (
+        /* RESULTS OVERALL CONTAINER (covers full margin width, matching homepage boundaries) */
+        <div className="w-full bg-[#FAF9F6] py-16 text-left">
+          <div className="w-full px-6 lg:px-[120px] space-y-16">
+            
+            {/* Header section & Capabilities Overview (Linear Side-by-Side) */}
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 items-center border-b border-[#1A3C34]/10 pb-10">
+              {/* Left Column: Level Header Block */}
+              <div className="space-y-4">
+                <span className="font-mono text-[11px] font-bold text-gold capitalize tracking-[0.25em] block leading-none">
+                  {gateName}'s Forward Score™ Results
                 </span>
-                <span className="font-serif text-2xl text-[#C9A55A]">/ 100</span>
-              </div>
 
-              <div className={`inline-block px-4 py-1.5 border font-mono text-xs font-bold tracking-widest capitalize rounded-none ${badgeColor}`}>
-                Maturity Rating: {Rating}
-              </div>
-            </div>
-
-            {/* Feedback blocks */}
-            <div className="space-y-6">
-              <div>
-                <h4 className="font-serif text-lg font-bold text-ink mb-2">Executive Assessment:</h4>
-                <p className="font-sans text-[16px] leading-[1.65] text-ink-muted">
-                  {feedback}
-                </p>
-              </div>
-
-              <div className={`p-5 bg-white border-l-2 space-y-1 rounded-none shadow-sm ${totalScore >= 80 ? "border-emerald-600" : totalScore >= 50 ? "border-amber-500" : "border-rose-600"}`}>
-                <h5 className={`font-mono text-xs font-bold capitalize tracking-wider ${totalScore >= 80 ? "text-emerald-700" : totalScore >= 50 ? "text-amber-700" : "text-rose-700"}`}>
-                  PRIMARY GAP EXPOSURE KEY
-                </h5>
-                <p className="font-sans text-[15px] text-ink leading-relaxed">
-                  Focus operations primarily on: <span className="text-[#1A3C34] font-semibold">{gapFocus}</span>
-                </p>
-              </div>
-
-              {/* Elegant Book a Call CTA Card directly below the gap analysis block */}
-              <div className="mt-8 border-t border-[#C9A55A]/25 pt-8">
-                <div className="bg-white border border-[#E8D5B5] p-6 sm:p-8 rounded-none shadow-sm flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-                  <div className="space-y-2 max-w-[420px]">
-                    <h4 className="font-serif text-lg font-bold text-ink leading-snug">
-                      Discuss Your Diagnostic Assessment
-                    </h4>
-                    <p className="font-sans text-xs sm:text-sm text-ink-muted leading-relaxed">
-                      Connect with Pan Seth to dive deeper into your results, isolate compliance exposure risks, and structure your operational technology roadmap.
-                    </p>
+                <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
+                  <div className="space-y-1">
+                    <span className="font-mono text-[9px] font-bold tracking-widest text-[#1a3c34] uppercase bg-teal/5 py-1 px-3 border border-teal/10 inline-block">
+                      Level: {levelLabel}
+                    </span>
+                    <h1 className="font-serif text-[42px] font-bold text-[#1A3C34] leading-tight tracking-tight">
+                      {levelLabel}
+                    </h1>
                   </div>
-                  <InteractiveButton
-                    onClick={() => setLocation("/book-a-call")}
-                    variant="gold"
-                    className="w-full md:w-auto capitalize tracking-wider text-xs font-semibold py-3.5 px-6 shrink-0 text-center"
-                    id="scorecard-book-call-cta"
-                  >
-                    Book a Call
-                  </InteractiveButton>
+                  
+                  <div className="flex items-baseline gap-1.5 shrink-0 bg-white border border-[#E8D5B5] px-6 py-4">
+                    <span className="font-serif text-[56px] font-bold text-[#1A3C34] leading-none">
+                      {totalScore}
+                    </span>
+                    <span className="font-serif text-lg text-gold">/ 48</span>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <p className="font-sans text-[15px] md:text-[16px] text-ink leading-relaxed font-normal">
+                    {levelLabel === "Observer" && (
+                      <>You see the opportunity. You have not built the systems to act on it yet. Right now AI sits in conversations, not in decisions. That gap is not a flaw. It is where every AI-first leader starts.</>
+                    )}
+                    {levelLabel === "Practitioner" && (
+                      <>You are already ahead of most leaders in the room. The gap now is turning your progress into influence. You use AI. Your team sees it. What they do not see yet is a leader who has made that progress repeatable, teachable and impossible to ignore.</>
+                    )}
+                    {levelLabel === "Forward Leader" && (
+                      <>You are already leading the way most organizations hope someone will. Now it is time your CEO saw it too. This score puts you ahead of nearly every leader taking this assessment. The work left is not building more. It is making sure the right people upstream can see what you have already built.</>
+                    )}
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Column: Capabilities Assessment Overview & Radar side-by-side inside block */}
+              <div className="bg-[#FAF9F5] border border-[#E8D5B5] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div className="flex justify-center w-full md:w-auto shrink-0 mb-4 md:mb-0">
+                  <svg viewBox="0 0 300 300" className="w-full max-w-[220px] h-auto select-none overflow-visible">
+                    {/* Grid Checkpoints */}
+                    <polygon points={gridLine12} fill="none" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
+                    <polygon points={gridLine9} fill="none" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
+                    <polygon points={gridLine6} fill="none" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
+                    <polygon points={gridLine3} fill="none" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
+                    
+                    {/* User Filled Polygon */}
+                    <polygon points={userPolygonPoints} fill="rgba(201, 165, 90, 0.25)" stroke="#C9A55A" strokeWidth="2" />
+                    
+                    <circle cx={pt1.x} cy={pt1.y} r="3" fill="#C9A55A" />
+                    <circle cx={pt2.x} cy={pt2.y} r="3" fill="#C9A55A" />
+                    <circle cx={pt3.x} cy={pt3.y} r="3" fill="#C9A55A" />
+                    <circle cx={pt4.x} cy={pt4.y} r="3" fill="#C9A55A" />
+
+                    <text x={center} y="35" textAnchor="middle" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Self</text>
+                    <text x="250" y="153" textAnchor="start" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Others</text>
+                    <text x={center} y="275" textAnchor="middle" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Transform</text>
+                    <text x="50" y="153" textAnchor="end" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Sustain</text>
+                  </svg>
+                </div>
+
+                <div className="space-y-4 flex-1 text-left">
+                  <h3 className="font-serif text-md font-bold text-ink leading-tight">Capabilities Assessment</h3>
+                  
+                  {allIdentical ? (
+                    <p className="font-sans text-[12px] text-ink-muted leading-relaxed">
+                      Your capabilities are balanced. The next step is raising all four together.
+                    </p>
+                  ) : (
+                    <div className="space-y-3 font-sans text-[12px] leading-relaxed">
+                      <div className="border-l border-emerald-500 pl-2">
+                        <span className="font-mono text-[9px] font-bold text-emerald-700 uppercase tracking-wider block">Strongest</span>
+                        <span className="font-serif text-[13px] font-bold text-ink block mt-0.5">{strongestName}</span>
+                      </div>
+
+                      <div className="border-l border-rose-500 pl-2">
+                        <span className="font-mono text-[9px] font-bold text-rose-700 uppercase tracking-wider block">Opportunity</span>
+                        <span className="font-serif text-[13px] font-bold text-ink block mt-0.5">{opportunityName}</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="pt-6 border-t border-ink/10 flex flex-col sm:flex-row gap-4 items-stretch sm:items-center justify-end">
-              <InteractiveButton
-                onClick={handleRestart}
-                variant="dark"
-                className="shrink-0 text-center"
-              >
-                Reset Diagnostic
-              </InteractiveButton>
+            {/* Level Pull Quote block */}
+            <div className="border-l-4 border-gold pl-6 py-2">
+              <p className="font-serif text-[18px] md:text-[21px] italic text-[#1A3C34] font-medium leading-relaxed">
+                {levelLabel === "Observer" && (
+                  <>"You are not behind because you lack drive. You are behind because nobody gave you a system. A tool does not make you a leader. A system does."</>
+                )}
+                {levelLabel === "Practitioner" && (
+                  <>"You are not stuck. You are stalled at the exact point where good leaders either build a system or burn out repeating the same win."</>
+                )}
+                {levelLabel === "Forward Leader" && (
+                  <>"You built what most leaders are still asking permission for. The only risk now is staying the best-kept secret in your building."</>
+                )}
+              </p>
             </div>
+
+            {/* What your results are telling you section (covers full margin width) */}
+            <div className="space-y-6">
+              <h2 className="font-serif text-[28px] font-bold text-[#1A3C34] text-left">
+                What your results are telling you
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <CapabilityCard 
+                  title="Lead Yourself" 
+                  description={status1 === "Strong" ? "You have a real operating rhythm with AI. Protect it and make it visible to others." : status1 === "Developing" ? "You reach for AI sometimes. You do not yet have a routine that makes it automatic." : "Developing your own AI routine is critical. Right now, manual workflows consume valuable leadership attention."}
+                  status={status1} 
+                  score={score1} 
+                />
+                <CapabilityCard 
+                  title="Lead Others" 
+                  description={status2 === "Strong" ? "Your team trusts you to guide them through change. That trust is rare and it is your leverage point." : status2 === "Developing" ? "Some of your team has adopted AI. The rest is waiting for permission you have not fully given yet." : "Your team is watching you for direction on AI. Right now that direction is not clear, even to you."}
+                  status={status2} 
+                  score={score2} 
+                />
+                <CapabilityCard 
+                  title="Lead Transformation" 
+                  description={status3 === "Strong" ? "You can walk into a room and defend an AI opportunity with numbers, not enthusiasm." : status3 === "Developing" ? "You can name a strong opportunity. You have not yet built the case that gets it funded." : "Ideas come up. Few get evaluated, prioritized or connected to a result your CEO would notice."}
+                  status={status3} 
+                  score={score3} 
+                />
+                <CapabilityCard 
+                  title="Lead Sustainably" 
+                  description={status4 === "Strong" ? "Your team could likely continue without you for a while. Push until it could continue indefinitely." : status4 === "Developing" ? "Your team could likely continue without you for a while. Push until it could continue indefinitely." : "Nothing you have built with AI would survive you stepping away for a month. That is not scale. That is a bottleneck with your name on it."}
+                  status={status4} 
+                  score={score4} 
+                />
+              </div>
+            </div>
+
+            {/* Rebuilt Compounding Gap section with dark theme, grid background, and linear heading layout */}
+            <div className="bg-[#1C332D] text-white p-8 sm:p-12 relative overflow-hidden rounded-none border border-teal/10">
+              {/* Grid Design overlay matching homepage dark strips */}
+              <div className="absolute inset-0 bg-[linear-gradient(rgba(250,250,248,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(250,250,248,0.035)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+              
+              <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1.3fr] gap-8 md:gap-12 items-center relative z-10">
+                {/* Left side: Heading / Subheading */}
+                <div className="space-y-4 text-left">
+                  <h3 className="font-serif text-3xl font-bold text-[#FAFAF8] leading-tight">
+                    The gap is not staying the same. It is compounding.
+                  </h3>
+                  <p className="font-sans text-sm text-[#FAFAF8]/75 leading-relaxed">
+                    As marketplace AI tools evolve, the distance between executive expectation and team adoption capability widens exponentially. Unaligned organizations experience a structural failure gap.
+                  </p>
+                </div>
+
+                {/* Right side: Rebuilt SVG Line Graph (Expectation baseline flat at top, Gap curves downward) */}
+                <div className="w-full flex flex-col items-center">
+                  <div className="w-full bg-black/20 p-4 border border-white/5 relative">
+                    
+                    {/* Interactive hover tracker overlay coordinates */}
+                    <svg 
+                      ref={graphSvgRef}
+                      width="100%" 
+                      height="200" 
+                      viewBox="0 0 600 200" 
+                      className="overflow-visible select-none"
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={() => setHoveredX(null)}
+                    >
+                      {/* Grid Lines */}
+                      <line x1="50" y1="40" x2="550" y2="40" stroke="#FAFAF8" strokeWidth="0.5" opacity="0.08" />
+                      <line x1="50" y1="110" x2="550" y2="110" stroke="#FAFAF8" strokeWidth="0.5" opacity="0.08" />
+                      <line x1="50" y1="180" x2="550" y2="180" stroke="#FAFAF8" strokeWidth="0.5" opacity="0.08" />
+
+                      {/* Shaded Compounding Gap Area */}
+                      <path 
+                        d="M 50 40 L 550 40 Q 300 110 550 180 L 50 40 Z" 
+                        fill="rgba(201, 165, 90, 0.12)"
+                        opacity="0.85"
+                      />
+
+                      {/* Line 1: Expectation Baseline (Flat dotted line at y=40) */}
+                      <line 
+                        x1="50" 
+                        y1="40" 
+                        x2="550" 
+                        y2="40" 
+                        stroke="#FAFAF8" 
+                        strokeWidth="2" 
+                        strokeDasharray="4 4" 
+                        opacity="0.8"
+                      />
+
+                      {/* Line 2: Compounding AI Alignment Gap (Curves Steeply Downwards to y=180) */}
+                      <path 
+                        d="M 50 40 Q 300 110 550 180" 
+                        fill="none" 
+                        stroke="#C9A55A" 
+                        strokeWidth="3.5" 
+                        strokeLinecap="round"
+                      />
+
+                      {/* Endpoint dots */}
+                      <circle cx="50" cy="40" r="4" fill="#C9A55A" />
+                      <circle cx="550" cy="180" r="4" fill="#C9A55A" />
+
+                      {/* Interactive Hover Tracker Line & Tooltip */}
+                      {hoveredX !== null && (
+                        <>
+                          {/* Vertical tracker line */}
+                          <line 
+                            x1={hoveredX} 
+                            y1="20" 
+                            x2={hoveredX} 
+                            y2="190" 
+                            stroke="#C9A55A" 
+                            strokeWidth="1.5" 
+                            opacity="0.6" 
+                          />
+                          {/* Circle marker on compounding curve */}
+                          <circle 
+                            cx={hoveredX} 
+                            cy={getGraphYAtX(hoveredX)} 
+                            r="6" 
+                            fill="#FAF9F6" 
+                            stroke="#C9A55A" 
+                            strokeWidth="2.5" 
+                          />
+                          {/* Dynamic value display indicator */}
+                          <foreignObject 
+                            x={Math.max(50, Math.min(hoveredX - 60, 430))} 
+                            y="5" 
+                            width="120" 
+                            height="30"
+                          >
+                            <div className="bg-black/80 border border-gold/45 text-[10px] text-gold font-mono py-1 px-2 text-center rounded-none select-none tracking-wider">
+                              GAP: {Math.round(((getGraphYAtX(hoveredX) - 40) / 140) * 100)}% WIDER
+                            </div>
+                          </foreignObject>
+                        </>
+                      )}
+
+                      {/* Graph labels */}
+                      <text x="50" y="195" textAnchor="middle" className="font-mono text-[9px] fill-white/50 uppercase">Month 1</text>
+                      <text x="300" y="195" textAnchor="middle" className="font-mono text-[9px] fill-white/50 uppercase">Month 6</text>
+                      <text x="550" y="195" textAnchor="middle" className="font-mono text-[9px] fill-white/50 uppercase">Month 12</text>
+                    </svg>
+
+                    {/* Basic Legend details block */}
+                    <div className="flex justify-between items-center text-[10px] font-mono text-white/60 tracking-wider pt-2 select-none border-t border-white/5 mt-1">
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-3 bg-white/40 inline-block border border-dashed border-white" /> Expectation</span>
+                      <span className="flex items-center gap-1.5"><span className="h-1.5 w-3 bg-gold inline-block" /> Compounding Alignment Gap</span>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {/* What forward organizations look like section */}
+            <div className="space-y-6">
+              <h2 className="font-serif text-[28px] font-bold text-[#1A3C34] text-left">
+                What forward organizations look like
+              </h2>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div className="bg-white border border-[#E8D5B5] p-6 rounded-none flex flex-col justify-between gap-4 relative group">
+                  <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
+                  <div className="space-y-2">
+                    <span className="font-serif text-lg font-bold text-gold">01</span>
+                    <h4 className="font-sans font-bold text-xs text-ink uppercase tracking-wider">Cohesive AI Strategy</h4>
+                    <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
+                      Every department is aligned behind board-level metrics. Pilots have clear owners, targets, and direct financial margin tracking.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-[#E8D5B5] p-6 rounded-none flex flex-col justify-between gap-4 relative group">
+                  <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
+                  <div className="space-y-2">
+                    <span className="font-serif text-lg font-bold text-gold">02</span>
+                    <h4 className="font-sans font-bold text-xs text-ink uppercase tracking-wider">Defensible Compliance</h4>
+                    <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
+                      Safe endpoints exist for every employee. Unsanctioned AI tools are monitored and risk playbooks are tested regularly.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-[#E8D5B5] p-6 rounded-none flex flex-col justify-between gap-4 relative group">
+                  <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
+                  <div className="space-y-2">
+                    <span className="font-serif text-lg font-bold text-gold">03</span>
+                    <h4 className="font-sans font-bold text-xs text-ink uppercase tracking-wider">High Adoption velocity</h4>
+                    <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
+                      Teams confidently adapt workflows to AI capabilities without job security fear, building a lasting operational advantage.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom CTA block */}
+            <div className="border-t border-[#C9A55A]/20 pt-10">
+              <div className="bg-[#1A3C34] text-white p-8 sm:p-12 rounded-none shadow-xl relative overflow-hidden text-left space-y-6">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(250,250,248,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(250,250,248,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+                
+                <div className="space-y-2">
+                  <span className="font-mono text-[10px] font-bold text-gold uppercase tracking-[0.2em] block">
+                    Book Your Call
+                  </span>
+                  
+                  <h3 className="font-serif text-2xl md:text-3xl font-bold text-white leading-tight">
+                    {levelLabel === "Observer" && <>Book Your Advisory Call</>}
+                    {levelLabel === "Practitioner" && <>Schedule Your AI Strategy Session</>}
+                    {levelLabel === "Forward Leader" && <>Book Your Executive Briefing</>}
+                  </h3>
+                  
+                  <p className="font-sans text-sm text-white/85 leading-relaxed max-w-xl">
+                    {levelLabel === "Observer" && (
+                      <>You see the opportunity. Now connect with Pan Seth to build the strategic system that turns AI into leadership value.</>
+                    )}
+                    {levelLabel === "Practitioner" && (
+                      <>You have proof. Now book a call to align your leadership team, prove business value, and scale your progress.</>
+                    )}
+                    {levelLabel === "Forward Leader" && (
+                      <>You are leading the way. Let's book a call to turn what you have built into a board-level narrative and skip ahead.</>
+                    )}
+                  </p>
+                </div>
+
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                  <InteractiveButton
+                    onClick={() => setLocation("/book-a-call")}
+                    variant="gold"
+                    className="px-8 py-3.5 capitalize tracking-wider text-xs font-bold text-center"
+                  >
+                    Book a Call
+                  </InteractiveButton>
+                  
+                  <button 
+                    onClick={() => setLocation("/masterclass")}
+                    className="font-sans text-xs font-bold text-white hover:text-gold border-b border-white/20 hover:border-gold py-1 transition-all text-center"
+                  >
+                    {levelLabel === "Observer" && <>Or join the masterclass to learn more about your AI readiness</>}
+                    {levelLabel === "Practitioner" && <>Or join the masterclass to learn more about what we do</>}
+                    {levelLabel === "Forward Leader" && <>Join Complimentary Masterclass</>}
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+            {/* Reset anchor */}
+            <div className="pt-6 flex justify-center">
+              <button
+                onClick={handleRestart}
+                className="flex items-center gap-2 font-mono text-[10px] font-bold text-[#1A3C34]/60 hover:text-gold uppercase tracking-widest cursor-pointer select-none py-2"
+              >
+                <RotateCcw size={12} />
+                Reset Diagnostic Survey
+              </button>
+            </div>
+
           </div>
         </div>
       )}

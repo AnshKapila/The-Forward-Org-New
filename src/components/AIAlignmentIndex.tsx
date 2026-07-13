@@ -1,19 +1,20 @@
 import React, { useState } from "react";
-import { FreebieModal } from "./FreebieModal";
 import { ScrollReveal } from "./ScrollReveal";
 import { InteractiveButton } from "./InteractiveButton";
 import { motion } from "framer-motion";
+import { useLocation } from "wouter";
 
 interface BentoBlockProps {
   num: string;
   tag: string;
   title: string;
   desc: string;
+  question: string;
   image: string;
   key?: React.Key;
 }
 
-function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
+function BentoBlock({ num, tag, title, desc, question, image }: BentoBlockProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -21,7 +22,7 @@ function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onTouchStart={() => setIsHovered(!isHovered)}
-      className="relative w-full aspect-[1.1] sm:aspect-square overflow-hidden bg-neutral-800/20 border border-gold/15 group cursor-pointer transition-all duration-300 shadow-md"
+      className="relative w-full aspect-[1.1] sm:aspect-square overflow-hidden bg-neutral-800/20 border border-gold/15 group cursor-pointer transition-all duration-300 shadow-md animate-gpu"
     >
       {/* Background Image */}
       <motion.img
@@ -65,57 +66,65 @@ function BentoBlock({ num, tag, title, desc, image }: BentoBlockProps) {
 
         {/* Dynamic Glass Sliding Description */}
         <div className="overflow-hidden">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 15 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="font-sans text-[12px] sm:text-[13px] text-white/80 leading-relaxed"
+            className="font-sans text-[11px] sm:text-[12px] text-white/80 leading-relaxed space-y-1.5"
           >
-            {desc}
-          </motion.p>
+            <p>{desc}</p>
+            <p className="border-t border-white/10 pt-1 text-gold/90 font-medium">
+              <span className="text-[10px] uppercase font-mono tracking-wider block text-white/50">Question it answers:</span>
+              {question}
+            </p>
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
 
-export function Freebie() {
-  const [modalOpen, setModalOpen] = useState(false);
+export function AIAlignmentIndex() {
+  const [_, setLocation] = useLocation();
 
-  const benefits = [
+  const capabilities = [
     {
       num: "01",
-      tag: "ALIGNMENT",
-      title: "Strategic Clarity",
-      desc: "Define exactly what AI must achieve for your business, moving from technology pilots to board-aligned targets.",
+      tag: "LEAD YOURSELF",
+      title: "Personal Leadership",
+      desc: "Build the mindset, habits, and systems to become an AI-first leader. Measure how effectively you think, decide, prioritize, and integrate AI into your own leadership operating system.",
+      question: "Am I leading myself effectively in the Age of AI?",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400"
     },
     {
       num: "02",
-      tag: "CAPABILITY",
-      title: "Talent & Systems",
-      desc: "Assess if your organization has the engineering depth, data readiness, and leadership infrastructure to scale.",
+      tag: "LEAD OTHERS",
+      title: "Team Leadership",
+      desc: "Help your team adopt AI with confidence instead of resistance. Measure your ability to communicate change, influence others, and build lasting adoption across your team.",
+      question: "Can I bring my people with me?",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400"
     },
     {
       num: "03",
-      tag: "GOVERNANCE",
-      title: "Risk & Security",
-      desc: "Establish the policies, compliance checkpoints, and privacy controls needed to prevent liability.",
+      tag: "LEAD TRANSFORMATION",
+      title: "Strategic Impact",
+      desc: "Turn AI ideas into measurable change. Measure how well you identify opportunities, prioritize initiatives, and connect AI to business outcomes.",
+      question: "Can I turn AI into meaningful organizational change?",
       image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=400"
     },
     {
       num: "04",
-      tag: "ADOPTION",
-      title: "Cultural Integration",
-      desc: "Equip your teams to integrate AI into daily workflows so changes stick and drive real productivity.",
+      tag: "LEAD SUSTAINABLY",
+      title: "Sustainable Transformation",
+      desc: "Create change that continues beyond your own effort. Measure your ability to build systems, culture, governance, and leadership capability that lasts.",
+      question: "Will this continue even if I'm not driving it every day?",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400"
     }
   ];
 
   return (
     <>
-      <section id="freebie" className="relative bg-teal py-12 md:py-16 overflow-hidden">
+      <section id="ai-index" className="relative bg-teal py-12 md:py-16 overflow-hidden">
         
         {/* Fine gold horizontal rule divider top */}
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gold opacity-30" />
@@ -126,49 +135,47 @@ export function Freebie() {
               
               {/* Left Column: Four-Block Bentogram with hover effects */}
               <div className="grid grid-cols-2 gap-4 w-full">
-                {benefits.map((b, idx) => (
+                {capabilities.map((b, idx) => (
                   <BentoBlock
                     key={idx}
                     num={b.num}
                     tag={b.tag}
                     title={b.title}
                     desc={b.desc}
+                    question={b.question}
                     image={b.image}
                   />
                 ))}
               </div>
 
-              {/* Right Column: Clean stack text, headings, button, all styled on the right container column */}
+              {/* Right Column: Content and CTA */}
               <div className="flex flex-col items-start lg:pl-4 space-y-6 text-left">
                 <div className="space-y-4">
                   <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block">
-                    Free Resource
+                    AI Readiness Index
                   </span>
                   
                   <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-off-white leading-[1.18] text-balance">
-                    2x to 10x checklist
+                    The Forward Score™
                   </h2>
                   
                   <p className="font-sans text-[15px] md:text-[17px] text-off-white/80 leading-[1.7] max-w-xl">
-                    You have the same AI tools as the companies pulling ahead. So why are they at 10x and you're stuck at 2x?
+                    The Forward Score™ measures far more than AI knowledge.
                     <br />
-                    <span className="block mt-2">10 gaps. One checklist. Find yours before your board asks why.</span>
+                    <span className="block mt-2">
+                      It measures the leadership capabilities required to guide people, teams, and organizations through one of the most important business transformations of our time.
+                    </span>
                   </p>
                 </div>
 
-                {/* Instant Action Button and PDF tag */}
                 <div className="flex flex-col items-start gap-2.5 w-full">
                   <InteractiveButton
-                    onClick={() => setModalOpen(true)}
+                    onClick={() => setLocation("/index")}
                     variant="gold"
                     className="w-full sm:w-auto text-center"
                   >
-                    Get It Now
+                    Discover Your AI Readiness
                   </InteractiveButton>
-                  
-                  <p className="font-sans text-xs text-off-white/60 tracking-normal block pt-1 ml-0.5">
-                    Instant PDF download. No spam.
-                  </p>
                 </div>
               </div>
 
@@ -179,9 +186,6 @@ export function Freebie() {
         {/* Fine background arc element backdrop */}
         <div className="absolute right-0 bottom-0 w-64 h-32 border-t border-l border-gold/10 rounded-tl-full pointer-events-none select-none" />
       </section>
-
-      {/* Freebie modal portal anchor */}
-      <FreebieModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   );
 }

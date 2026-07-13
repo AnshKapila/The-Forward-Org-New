@@ -92,24 +92,16 @@ export function TheProblem() {
 
   const problemItems = [
     {
-      surface: "“We’re exploring what AI can do for us.”",
-      underneath: "No shared direction- teams are moving in different directions."
-    },
-    {
-      surface: "“We haven’t fully defined our AI strategy yet.”",
-      underneath: "Uncertainty spreads, creates job fear and culture begins to decay quietly."
-    },
-    {
       surface: "“We’re running multiple AI initiatives.”",
       underneath: "No clear link to business outcomes, ROI remains unproven."
     },
     {
       surface: "“Our leadership team is aligned on AI.”",
-      underneath: "All top leaders has different views on where the org is going with AI."
+      underneath: "Every leader holds a different picture of where AI is taking the company."
     },
     {
-      surface: "“We’re upskilling our teams.”",
-      underneath: "Learning isn’t translating into real execution."
+      surface: "“We're upskilling our teams.”",
+      underneath: "Learning isn't turning into execution."
     }
   ];
 
@@ -124,7 +116,7 @@ export function TheProblem() {
                 The Context
               </span>
               <h2 className="font-serif text-[28px] md:text-[36px] lg:text-[40px] leading-[1.15] font-bold text-ink text-balance">
-                Organizations are struggling to access AI, they are struggling to align with it.
+                Most organizations don't have an AI problem.<br />They have an organizational alignment problem.
               </h2>
             </div>
 
@@ -244,11 +236,11 @@ export function TheProblem() {
                   88%
                 </span>
                 <p className="font-sans text-[13px] text-ink-muted mt-3 leading-snug font-light z-10">
-                  of companies report AI use
+                  Organizations report regular AI use.
                 </p>
               </div>
 
-              {/* Fig 2: 40% */}
+              {/* Fig 2: 60% */}
               <div 
                 onMouseEnter={() => setHoveredFig(2)}
                 onMouseLeave={() => setHoveredFig(null)}
@@ -256,14 +248,14 @@ export function TheProblem() {
               >
                 <AnimatedBorder isHovered={hoveredFig === 2} color="rgba(26, 60, 52, 0.5)" />
                 <span className="font-serif text-[36px] lg:text-[42px] font-bold text-[#1A3C34] leading-none z-10">
-                  40%
+                  60%
                 </span>
                 <p className="font-sans text-[13px] text-ink-muted mt-3 leading-snug font-light z-10">
-                  actually generate real value
+                  Still generate little to no measurable business value.
                 </p>
               </div>
 
-              {/* Fig 3: 10x */}
+              {/* Fig 3: 5% */}
               <div 
                 onMouseEnter={() => setHoveredFig(3)}
                 onMouseLeave={() => setHoveredFig(null)}
@@ -271,10 +263,10 @@ export function TheProblem() {
               >
                 <AnimatedBorder isHovered={hoveredFig === 3} color="#C9A55A" />
                 <span className="font-serif text-[36px] lg:text-[42px] font-bold text-[#C9A55A] leading-none z-10">
-                  10x
+                  5%
                 </span>
                 <p className="font-sans text-[13px] text-[#C9A55A]/90 mt-3 leading-snug font-light z-10">
-                  output in forward organizations
+                  Only 5% successfully scale AI beyond isolated pilots.
                 </p>
               </div>
 

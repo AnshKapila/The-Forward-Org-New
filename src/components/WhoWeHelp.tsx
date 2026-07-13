@@ -43,18 +43,18 @@ export function WhoWeHelp() {
   const items: AccordionItem[] = [
     {
       num: "01",
-      title: "CEOs of Regulated Industries",
-      description: "\"My board asks about our AI strategy every quarter, but our legal and compliance teams block every initiative because of data privacy and security risks.\" We help you design a defensible AI roadmap and governance structure that satisfies regulators while producing measurable business results."
+      title: "AI doesn't fail because of technology.",
+      description: "Strategy, leadership and culture must evolve together. When they move at different speeds, AI stays trapped in pilots."
     },
     {
       num: "02",
-      title: "CEOs of Scaling Companies",
-      description: "\"We have invested heavily in AI tools and our teams are using them, but I cannot show my investors or board what that capital is actually producing on our bottom line.\" We establish clear ROI attribution and workflow metrics to turn isolated software experiments into a coordinated, margin-expanding capability."
+      title: "Organizations transform at the speed of leadership.",
+      description: "Every lasting AI transformation starts with leaders who create clarity, build trust and guide people through change."
     },
     {
       num: "03",
-      title: "CIOs and Chief Digital Officers",
-      description: "\"My team can build the technology stack, but leadership misalignment and cultural resistance are stalling workforce adoption and killing our initiatives.\" We address the organizational conditions directly, aligning your leadership team and redesigning day-to-day procedures to make adoption successful and sustainable."
+      title: "AI isn't the transformation. The organization is.",
+      description: "Adoption is real when decisions improve, work gets redesigned and business value becomes measurable. That's when AI stops being an initiative and becomes a capability."
     }
   ];
 
@@ -78,11 +78,11 @@ export function WhoWeHelp() {
             >
               <div className="mb-10 lg:mb-12">
                 <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block mb-3">
-                  Who We Help
+                  What We Believe
                 </span>
-                <h2 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink">
-                  Built for leaders navigating a defining business transition.
-                </h2>
+                <h3 className="font-serif text-[32px] md:text-[44px] leading-[1.15] font-bold text-ink">
+                  The future belongs to organizations that align people, culture, and intelligence.
+                </h3>
               </div>
 
               {/* Collapsible hover-driven accordion */}
@@ -104,11 +104,11 @@ export function WhoWeHelp() {
                     >
                       {/* Row Header */}
                       <div className="flex justify-between items-center w-full">
-                        <h3 className={`font-serif text-lg md:text-xl font-bold transition-colors duration-200 ${
+                        <p className={`font-serif text-lg md:text-xl lg:text-2xl font-bold transition-colors duration-200 ${
                           isExpanded ? "text-[#1A3C34]" : "text-ink group-hover:text-[#1A3C34]"
                         }`}>
                           {item.title}
-                        </h3>
+                        </p>
                         <span className="font-sans text-[13px] md:text-[14px] text-ink-muted/65 font-medium select-none">
                           {item.num}
                         </span>
@@ -124,7 +124,7 @@ export function WhoWeHelp() {
                             transition={{ duration: 0.25, ease: [0.25, 1, 0.5, 1] }}
                             className="overflow-hidden"
                           >
-                            <p className="font-sans text-[15px] text-ink-muted leading-[1.65] pt-3 pb-1 pr-4 max-w-xl">
+                            <p className="font-sans text-sm md:text-[15px] lg:text-[16px] text-ink-muted leading-[1.65] pt-3 pb-1 pr-4 max-w-xl">
                               {item.description}
                             </p>
                           </motion.div>
