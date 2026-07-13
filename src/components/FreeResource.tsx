@@ -4,8 +4,7 @@ import { Download } from "lucide-react";
 import { InteractiveButton } from "./InteractiveButton";
 import { FreebieModal } from "./FreebieModal";
 
-// Abstract monochromatic checklist/planner image
-const CHECKLIST_IMAGE = "https://images.unsplash.com/photo-1517842645767-c639042777db?auto=format&fit=crop&q=80&w=600&h=750";
+import checklistImg from "../assets/images/checklist_resource.png";
 
 export function FreeResource() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -27,7 +26,7 @@ export function FreeResource() {
               <div className="flex justify-center lg:justify-start lg:items-center">
                 <div className="relative w-full aspect-[4/5] max-w-[280px] rounded-[1.5rem] overflow-hidden shadow-[0_20px_50px_rgba(18,43,36,0.5)] border border-white/10 bg-teal-dim/40 image-hover-wrapper">
                   <img
-                    src={CHECKLIST_IMAGE}
+                    src={checklistImg}
                     alt="2x to 10x Checklist Concept"
                     className="w-full h-full object-cover rounded-[1.5rem]"
                   />
