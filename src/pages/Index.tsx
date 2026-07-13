@@ -4,6 +4,10 @@ import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 
+import scorecardLeft from "../assets/images/scorecard_left.png";
+import scorecardMid from "../assets/images/scorecard_mid.png";
+import scorecardRight from "../assets/images/scorecard_right.png";
+
 export default function IndexPage() {
   const [_, setLocation] = useLocation();
 
@@ -93,7 +97,7 @@ export default function IndexPage() {
         <div className="w-full max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <div className="grid grid-cols-3 gap-4 md:gap-8 items-start">
             
-            {/* Piece 1: Large company interacting with tech */}
+            {/* Piece 1: Speaking at Podium */}
             <motion.div 
               ref={imageRef1}
               initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
@@ -103,15 +107,14 @@ export default function IndexPage() {
               style={{ transform: "translateZ(0)", isolation: "isolate" }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200"
-                alt="Large corporations analyzing technology trends"
+                src={scorecardLeft}
+                alt="Pan speaking at podium with corporate team listening"
                 className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
                 style={{ y: yVal1, scale: scaleVal1, transformOrigin: "center center", willChange: "transform" }}
-                referrerPolicy="no-referrer"
               />
             </motion.div>
 
-            {/* Piece 2: C-Suite person in leadership leading team with tech */}
+            {/* Piece 2: Whiteboard Meeting (Zoomed & cropped 50% top-left) */}
             <motion.div 
               ref={imageRef2}
               initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
@@ -121,15 +124,14 @@ export default function IndexPage() {
               style={{ transform: "translateZ(0)", isolation: "isolate" }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=1200"
-                alt="C-suite executives leading operations"
+                src={scorecardMid}
+                alt="Corporate strategy whiteboard discussion zoomed"
                 className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
                 style={{ y: yVal2, scale: scaleVal2, transformOrigin: "center center", willChange: "transform" }}
-                referrerPolicy="no-referrer"
               />
             </motion.div>
 
-            {/* Piece 3: Growth of the team in corporate world */}
+            {/* Piece 3: Code on Laptop Screen */}
             <motion.div 
               ref={imageRef3}
               initial={{ opacity: 0, y: 30, filter: "blur(12px)" }}
@@ -139,11 +141,10 @@ export default function IndexPage() {
               style={{ transform: "translateZ(0)", isolation: "isolate" }}
             >
               <motion.img
-                src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=1200"
-                alt="Corporate team growth and collaboration"
+                src={scorecardRight}
+                alt="Development environment codebase editor visualization"
                 className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
                 style={{ y: yVal3, scale: scaleVal3, transformOrigin: "center center", willChange: "transform" }}
-                referrerPolicy="no-referrer"
               />
             </motion.div>
 
