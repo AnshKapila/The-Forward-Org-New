@@ -84,7 +84,7 @@ export function InteractiveButton({
   id,
   ...props
 }: InteractiveButtonProps) {
-  const sizeClasses = size === "sm" ? "py-2.5 px-5" : "py-4 px-8";
+  const sizeClasses = size === "sm" ? "py-2.5 px-5" : "py-2.5 px-8";
   
   // Base button styles
   const baseStyle = `group relative ${sizeClasses} font-sans font-bold text-xs capitalize tracking-wider select-none cursor-pointer flex items-center justify-center gap-2 border rounded-none overflow-hidden leading-none transition-all duration-300 active:scale-[0.98]`;

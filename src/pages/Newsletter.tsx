@@ -56,7 +56,7 @@ export default function Newsletter() {
             <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block">
               The Newsletter
             </span>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <h1 className="font-serif text-[38px] md:text-[54px] font-bold text-off-white leading-[1.1] tracking-tight">
                 One Step Forward
               </h1>
@@ -64,9 +64,9 @@ export default function Newsletter() {
                 onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
                 variant="gold"
                 size="sm"
-                className="inline-flex items-center gap-1.5 self-start sm:self-auto py-2.5 px-5 text-[11px] font-bold capitalize tracking-wider font-sans border-0 shadow-sm"
+                className="inline-flex items-center gap-1.5 self-start sm:self-auto py-2.5 px-5 text-[11px] font-bold capitalize tracking-wider font-sans border-0 shadow-sm shrink-0"
               >
-                Follow on LinkedIn
+                check out complete newsletter
               </InteractiveButton>
             </div>
             
