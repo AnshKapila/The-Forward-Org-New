@@ -82,7 +82,7 @@ export default function IndexPage() {
                   className="px-10 py-3.5 capitalize tracking-[0.18em] text-xs font-bold shadow-sm"
                   id="cta-take-index"
                 >
-                  Start Assessment
+                  Check Your AI Readiness
                 </InteractiveButton>
               </div>
             </div>

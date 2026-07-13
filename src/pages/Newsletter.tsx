@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/ScrollReveal";
 import { newsletters } from "../data/newsletters";
-import { BookOpen } from "lucide-react";
+
 import { InteractiveButton } from "../components/InteractiveButton";
 import panAvatar from "../assets/images/regenerated_image_1782056067058.png";
 
@@ -111,7 +111,7 @@ export default function Newsletter() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                   {filteredNewsletters.map((newsletter, idx) => (
                     <div key={newsletter.id} className="h-full">
-                      <StaggerItem index={idx}>
+                      <StaggerItem index={idx} className="h-full">
                         <div
                           onClick={() => setLocation(`/newsletter/${newsletter.id}`)}
                           className="group relative flex flex-col justify-between p-4 bg-white border border-teal hover:border-[#C9A55A] hover:-translate-y-[4px] transition-all duration-[250ms] ease-out rounded-none text-left h-full shadow-sm cursor-pointer"
@@ -149,9 +149,8 @@ export default function Newsletter() {
                               }}
                               variant="teal"
                               size="sm"
-                              className="flex items-center gap-1.5"
+                              className="flex items-center"
                             >
-                              <BookOpen size={13} />
                               <span>Continue reading</span>
                             </InteractiveButton>
                           </div>

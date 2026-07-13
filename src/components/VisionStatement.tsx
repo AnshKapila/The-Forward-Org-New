@@ -54,7 +54,7 @@ export function VisionStatement() {
         <ScrollReveal duration={0.7} y={32}>
           <div className="max-w-4xl mx-auto">
             <h3 className="font-serif text-[26px] md:text-[38px] lg:text-[46px] leading-[1.25] font-bold text-off-white tracking-tight text-balance">
-              Established organizations do not fail at AI because the vision fell behind. They fail because the strategy and culture were never aligned. The Forward Org exists to close that gap - so your people and your AI move forward together, by design.
+              Established organizations do not fail at AI because the vision fell behind. They fail because the strategy and culture were never aligned. The Forward Org exists to close that gap - so your people and your AI move <span className="font-serif italic font-normal text-gold">Forward Together</span>, by design.
             </h3>
           </div>
         </ScrollReveal>

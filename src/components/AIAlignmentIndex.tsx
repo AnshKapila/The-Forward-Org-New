@@ -14,7 +14,7 @@ interface BentoBlockProps {
   key?: React.Key;
 }
 
-function BentoBlock({ num, tag, title, desc, question, image }: BentoBlockProps) {
+function BentoBlock({ num, tag, title, desc, image }: Omit<BentoBlockProps, "question">) {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -70,13 +70,9 @@ function BentoBlock({ num, tag, title, desc, question, image }: BentoBlockProps)
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 15 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="font-sans text-[11px] sm:text-[12px] text-white/80 leading-relaxed space-y-1.5"
+            className="font-sans text-[11px] sm:text-[12px] text-white/80 leading-relaxed"
           >
             <p>{desc}</p>
-            <p className="border-t border-white/10 pt-1 text-gold/90 font-medium">
-              <span className="text-[10px] uppercase font-mono tracking-wider block text-white/50">Question it answers:</span>
-              {question}
-            </p>
           </motion.div>
         </div>
       </div>
@@ -93,7 +89,6 @@ export function AIAlignmentIndex() {
       tag: "LEAD YOURSELF",
       title: "Personal Leadership",
       desc: "Build the mindset, habits, and systems to become an AI-first leader. Measure how effectively you think, decide, prioritize, and integrate AI into your own leadership operating system.",
-      question: "Am I leading myself effectively in the Age of AI?",
       image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=400"
     },
     {
@@ -101,7 +96,6 @@ export function AIAlignmentIndex() {
       tag: "LEAD OTHERS",
       title: "Team Leadership",
       desc: "Help your team adopt AI with confidence instead of resistance. Measure your ability to communicate change, influence others, and build lasting adoption across your team.",
-      question: "Can I bring my people with me?",
       image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400"
     },
     {
@@ -109,7 +103,6 @@ export function AIAlignmentIndex() {
       tag: "LEAD TRANSFORMATION",
       title: "Strategic Impact",
       desc: "Turn AI ideas into measurable change. Measure how well you identify opportunities, prioritize initiatives, and connect AI to business outcomes.",
-      question: "Can I turn AI into meaningful organizational change?",
       image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=400"
     },
     {
@@ -117,7 +110,6 @@ export function AIAlignmentIndex() {
       tag: "LEAD SUSTAINABLY",
       title: "Sustainable Transformation",
       desc: "Create change that continues beyond your own effort. Measure your ability to build systems, culture, governance, and leadership capability that lasts.",
-      question: "Will this continue even if I'm not driving it every day?",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400"
     }
   ];
@@ -131,7 +123,7 @@ export function AIAlignmentIndex() {
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
           <ScrollReveal duration={0.65}>
-            <div className="grid grid-cols-1 lg:grid-cols-[52%_48%] gap-12 lg:gap-16 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
               
               {/* Left Column: Four-Block Bentogram with hover effects */}
               <div className="grid grid-cols-2 gap-4 w-full">
@@ -142,7 +134,6 @@ export function AIAlignmentIndex() {
                     tag={b.tag}
                     title={b.title}
                     desc={b.desc}
-                    question={b.question}
                     image={b.image}
                   />
                 ))}
@@ -152,7 +143,7 @@ export function AIAlignmentIndex() {
               <div className="flex flex-col items-start lg:pl-4 space-y-6 text-left">
                 <div className="space-y-4">
                   <span className="font-sans font-medium text-xs text-gold capitalize tracking-[0.2em] block">
-                    AI Readiness Index
+                    How AI Ready Are You?
                   </span>
                   
                   <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-off-white leading-[1.18] text-balance">

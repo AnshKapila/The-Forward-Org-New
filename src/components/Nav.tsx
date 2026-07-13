@@ -63,7 +63,7 @@ export function Nav() {
 
   const navLinks = [
     { label: "Home", path: "/" },
-    { label: "The Index", path: "/index" },
+    { label: "The Forward Score", path: "/index" },
     { label: "About", path: "/about" },
     { label: "Newsletter", path: "/newsletter" },
   ];

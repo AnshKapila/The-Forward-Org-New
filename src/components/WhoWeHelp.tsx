@@ -104,11 +104,11 @@ export function WhoWeHelp() {
                     >
                       {/* Row Header */}
                       <div className="flex justify-between items-center w-full">
-                        <p className={`font-serif text-lg md:text-xl lg:text-2xl font-bold transition-colors duration-200 ${
+                        <h4 className={`font-serif text-lg md:text-xl lg:text-2xl font-bold transition-colors duration-200 ${
                           isExpanded ? "text-[#1A3C34]" : "text-ink group-hover:text-[#1A3C34]"
                         }`}>
                           {item.title}
-                        </p>
+                        </h4>
                         <span className="font-sans text-[13px] md:text-[14px] text-ink-muted/65 font-medium select-none">
                           {item.num}
                         </span>

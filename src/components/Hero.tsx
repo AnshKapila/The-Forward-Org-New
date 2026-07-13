@@ -22,10 +22,10 @@ export function Hero() {
   const scaleValue = shouldReduceMotion ? 1.0 : scrollScale;
 
   const phrases = [
-    "Move forward. With full conviction.",
-    "Build with certainty in an uncertain market.",
-    "Make the call. Every time.",
-    "Own the AI conversation in your boardroom.",
+    "Move forward. With conviction.",
+    "Build certainty in an uncertain market.",
+    "Lead the conversations shaping tomorrow's organization.",
+    "Prepare your organization for what's next.",
   ];
 
   const [phraseIdx, setPhraseIdx] = useState(0);
@@ -148,9 +148,9 @@ export function Hero() {
           {/* Heading H1 set strictly fluid using custom --text-hero property clamp */}
           <motion.h1
             variants={itemVariants}
-            className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white w-full text-left mt-3 md:mt-4"
+            className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white w-full text-left mt-3 md:mt-4 text-balance"
           >
-            Building organizations that lead and keep leading in the Age of AI
+            Build an AI-Forward Organization Through AI-Forward Leadership
           </motion.h1>
 
           {/* Subheadline description with white-dimmed styling for accessibility */}
@@ -158,7 +158,7 @@ export function Hero() {
             variants={itemVariants}
             className="font-sans text-[17px] md:text-[19px] text-off-white/80 leading-relaxed font-light max-w-2xl mt-3 md:mt-4"
           >
-            Empowering leaders and executive teams align strategy, leadership, people, and operations- so AI becomes a competitive advantage that delivers real business value, not a fragmented initiative.
+            AI transformation is a leadership challenge before it is a technology one. We help executive teams align strategy, culture and leadership so AI becomes your lasting advantage - not another disconnected initiative.
           </motion.p>
 
           {/* Double Active Hero Action Buttons side-by-side inspired by the wireframe */}

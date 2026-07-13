@@ -29,7 +29,7 @@ export default function About() {
     },
     {
       company: "The Forward Org",
-      years: "2024–Present",
+      years: "2026–Present",
       desc: "Advising the leaders navigating the same structural challenges we solved from the inside.",
     },
   ];
@@ -113,49 +113,14 @@ export default function About() {
             <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
               Our Mission
             </span>
-            <h2 className="font-serif text-[24px] md:text-[32px] font-bold text-[#1A3C34] leading-relaxed text-balance">
-              At The Forward Org, Our mission is to help organizations confidently move forward in the age of AI by evolving their culture, leadership, and ways of working so their people can embrace change, unlock greater freedom, and achieve extraordinary results.
-            </h2>
+            <h3 className="font-serif text-[24px] md:text-[32px] font-bold text-[#1A3C34] leading-relaxed text-balance">
+              At The Forward Org, Our mission is to help organizations confidently <span className="font-serif italic font-normal text-gold">Move Forward</span> in the age of AI by evolving their culture, leadership, and ways of working so their people can embrace change, unlock <span className="font-serif italic font-normal text-gold">Greater Freedom</span>, and achieve extraordinary results.
+            </h3>
             <p className="font-sans text-[15px] md:text-[17px] text-ink-muted leading-[1.7] max-w-2xl mx-auto">
               By 2031, we will create more than $100 million in measurable economic impact for our clients while enabling their people to do their most meaningful and valuable work.
             </p>
           </div>
         </ScrollReveal>
-      </section>
-
-      {/* Section 1.5 - Video Segment */}
-      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <ScrollReveal duration={0.65}>
-            <div className="space-y-3">
-              <span className="font-sans font-bold text-xs text-[#C9A55A] capitalize tracking-[0.25em] block">
-                The Message
-              </span>
-              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
-                How we build aligned, AI-ready organizations.
-              </h2>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal duration={0.7} delay={0.1}>
-            <div className="max-w-[800px] mx-auto aspect-video bg-sand/30 shadow-md relative group">
-              <video
-                controls
-                poster="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&q=80&w=800"
-                className="w-full h-full object-cover border border-[#E8D5B5]"
-              >
-                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal duration={0.65} delay={0.15}>
-            <p className="font-sans text-[14px] text-ink/60">
-              A brief overview of our organizational alignment and strategy framework.
-            </p>
-          </ScrollReveal>
-        </div>
       </section>
 
       {/* Section 2 - Credibility Timeline */}
@@ -264,19 +229,6 @@ export default function About() {
               Foundation for high-frequency record categorization.
             </span>
           </div>
-        </div>
-      </section>
-
-      {/* Section 4 - Philosophy */}
-      <section className="bg-[#122B24] py-24 md:py-32 px-6 md:px-12 text-center text-off-white">
-        <div className="max-w-[720px] mx-auto space-y-6">
-          <p className="font-serif text-[22px] md:text-[32px] font-medium leading-relaxed text-off-white italic">
-            "Pan turns invisible misalignment into irreversible clarity, and then returns power to the people who need to act."
-          </p>
-          <div className="w-[60px] h-[1px] bg-gold/40 mx-auto pt-2" />
-          <p className="font-sans font-medium text-sm text-gold tracking-wide capitalize">
-            - Philosophy
-          </p>
         </div>
       </section>
     </div>

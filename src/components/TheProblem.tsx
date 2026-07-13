@@ -265,7 +265,7 @@ export function TheProblem() {
                 <span className="font-serif text-[36px] lg:text-[42px] font-bold text-[#C9A55A] leading-none z-10">
                   5%
                 </span>
-                <p className="font-sans text-[13px] text-[#C9A55A]/90 mt-3 leading-snug font-light z-10">
+                <p className="font-sans text-[13px] text-zinc-300 mt-3 leading-snug font-light z-10">
                   Only 5% successfully scale AI beyond isolated pilots.
                 </p>
               </div>

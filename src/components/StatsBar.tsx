@@ -65,7 +65,7 @@ export function StatsBar() {
               </h2>
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
-              In measurable business outcomes across AI strategy, governance, and organizational transformation programs
+              Business Value Delivered
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export function StatsBar() {
               <CountUp end={10} suffix="+" />
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
-              Building AI capabilities inside global enterprises before advising others how to do it.
+              Years in Global Enterprise AI Transformation
             </p>
           </div>
 
@@ -88,10 +88,10 @@ export function StatsBar() {
           {/* Column 3 - Left Aligned */}
           <div className="flex-1 flex flex-col text-left items-start justify-start md:pl-12">
             <div className="mb-2">
-              <CountUp end={2} suffix="" />
+              <CountUp end={80} suffix="%+" />
             </div>
             <p className="font-sans font-semibold text-base text-teal leading-tight text-left">
-              AI patents representing innovation grounded in practice not theory.
+              AI Adoption Achieved
             </p>
           </div>
         </div>
