@@ -27,33 +27,22 @@ export default function NewsletterDetail() {
     <div className="min-h-screen bg-white text-ink flex flex-col justify-between">
       <main className="flex-grow">
         {/* Hero Banner Section */}
-        <section className="relative w-full h-[320px] md:h-[450px] overflow-hidden bg-sand">
+        <section className="relative w-full h-[220px] md:h-[350px] overflow-hidden bg-sand border-b border-teal/10">
           <img
             src={newsletter.thumbnailUrl}
             alt={newsletter.title}
-            className="w-full h-full object-cover brightness-[0.85]"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-          
-          <div className="absolute bottom-8 left-0 w-full z-10">
-            <div className="w-full px-6 lg:px-[120px] flex flex-col items-start gap-4">
-              <div className="max-w-4xl w-full">
-                <Link href="/newsletter">
-                <button className="flex items-center gap-2 text-off-white/80 hover:text-white text-xs font-sans font-bold capitalize tracking-wider transition-colors cursor-pointer mb-2">
-                  <ArrowLeft size={14} /> Back to Newsletters
-                </button>
-              </Link>
-              <span className="font-mono text-xs font-bold text-gold capitalize tracking-[0.2em] border border-gold/40 px-2 py-0.5 bg-black/45">
-                {newsletter.tag}
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
         {/* Content Container */}
         <section className="py-12 md:py-16 w-full px-6 lg:px-[120px]">
           <div className="max-w-4xl mx-auto space-y-8 text-left">
+            <Link href="/newsletter">
+              <button className="flex items-center gap-2 text-ink/70 hover:text-teal text-xs font-sans font-bold capitalize tracking-wider transition-colors cursor-pointer mb-2">
+                <ArrowLeft size={14} /> Back to Newsletters
+              </button>
+            </Link>
             
             {/* Top Row: Date, Author & Read on LinkedIn CTA */}
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-teal/10 pb-6">
@@ -72,9 +61,6 @@ export default function NewsletterDetail() {
                   <p className="font-sans font-bold text-sm text-ink">Pan Seth</p>
                   <p className="font-sans text-[11px] font-semibold text-teal capitalize tracking-wider">AI Strategy Advisor</p>
                 </div>
-                <div className="hidden sm:flex items-center gap-1.5 text-xs text-ink-faint font-mono ml-4">
-                  <Calendar size={13} /> {newsletter.date}
-                </div>
               </div>
 
               {/* Top CTA: Check out complete newsletter */}
@@ -87,6 +73,16 @@ export default function NewsletterDetail() {
                 <Linkedin size={14} />
                 <span>Check out complete newsletter</span>
               </InteractiveButton>
+            </div>
+
+            {/* Date and Tag Line */}
+            <div className="flex justify-between items-center text-xs font-mono font-medium text-ink-muted/80">
+              <span className="flex items-center gap-1.5 uppercase tracking-wider">
+                <Calendar size={13} className="text-gold" /> {newsletter.date}
+              </span>
+              <span className="font-mono text-xs font-bold text-gold capitalize tracking-[0.2em] border border-gold/40 px-2 py-0.5 bg-[#1A3C34]/5">
+                {newsletter.tag}
+              </span>
             </div>
 
             {/* Main Header */}
