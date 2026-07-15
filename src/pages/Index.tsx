@@ -38,9 +38,9 @@ export default function IndexPage() {
   const yParallax2 = useTransform(scrollY2, [0, 1], ["-25%", "8%"]);
   const yParallax3 = useTransform(scrollY3, [0, 1], ["-10%", "20%"]);
 
-  const scaleZoom1 = useTransform(scrollY1, [0, 1], [1.02, 1.18]);
-  const scaleZoom2 = useTransform(scrollY2, [0, 1], [1.0, 1.25]);
-  const scaleZoom3 = useTransform(scrollY3, [0, 1], [1.05, 1.15]);
+  const scaleZoom1 = useTransform(scrollY1, [0, 1], [1.0, 1.0]);
+  const scaleZoom2 = useTransform(scrollY2, [0, 1], [1.0, 1.0]);
+  const scaleZoom3 = useTransform(scrollY3, [0, 1], [1.0, 1.0]);
 
   const yVal1 = shouldReduceMotion ? "0%" : yParallax1;
   const yVal2 = shouldReduceMotion ? "0%" : yParallax2;
@@ -109,8 +109,8 @@ export default function IndexPage() {
               <motion.img
                 src={scorecardLeft}
                 alt="Pan speaking at podium with corporate team listening"
-                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover"
-                style={{ y: yVal1, scale: scaleVal1, transformOrigin: "left center", willChange: "transform", objectPosition: "-30% center" }}
+                className="absolute inset-0 w-full h-full object-cover"
+                style={{ y: yVal1, scale: scaleVal1, transformOrigin: "center center", willChange: "transform", objectPosition: "center center" }}
               />
             </motion.div>
 
@@ -126,8 +126,8 @@ export default function IndexPage() {
               <motion.img
                 src={scorecardMid}
                 alt="Corporate strategy whiteboard discussion zoomed"
-                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-left"
-                style={{ y: yVal2, scale: scaleVal2, transformOrigin: "left center", willChange: "transform" }}
+                className="absolute inset-0 w-full h-full object-cover object-center"
+                style={{ y: yVal2, scale: scaleVal2, transformOrigin: "center center", willChange: "transform" }}
               />
             </motion.div>
 
@@ -143,7 +143,7 @@ export default function IndexPage() {
               <motion.img
                 src={scorecardRight}
                 alt="Development environment codebase editor visualization"
-                className="absolute inset-x-0 top-0 w-full h-[150%] object-cover object-center"
+                className="absolute inset-0 w-full h-full object-cover object-center"
                 style={{ y: yVal3, scale: scaleVal3, transformOrigin: "center center", willChange: "transform" }}
               />
             </motion.div>
