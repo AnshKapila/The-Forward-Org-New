@@ -728,7 +728,7 @@ export default function Scorecard() {
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
                   <div className="space-y-1">
                     <span className="font-mono text-[9px] font-bold tracking-widest text-[#1a3c34] uppercase bg-teal/5 py-1 px-3 border border-teal/10 inline-block">
-                      Level: {levelLabel}
+                      YOUR RESULTS: {levelLabel}
                     </span>
                     <h1 className="font-serif text-[42px] font-bold text-[#1A3C34] leading-tight tracking-tight">
                       {levelLabel}
@@ -746,13 +746,13 @@ export default function Scorecard() {
                 <div className="pt-2">
                   <p className="font-sans text-[15px] md:text-[16px] text-ink leading-relaxed font-normal">
                     {levelLabel === "Observer" && (
-                      <>You see the opportunity. You have not built the systems to act on it yet. Right now AI sits in conversations, not in decisions. That gap is not a flaw. It is where every AI-first leader starts.</>
+                      <>You are aware that AI is changing leadership, but you may still be waiting for greater clarity before taking action. Your opportunity is to move from observation to confident personal use.</>
                     )}
                     {levelLabel === "Practitioner" && (
-                      <>You are already ahead of most leaders in the room. The gap now is turning your progress into influence. You use AI. Your team sees it. What they do not see yet is a leader who has made that progress repeatable, teachable and impossible to ignore.</>
+                      <>You are beginning to use AI, but your approach may still be occasional or fragmented. Your opportunity is to create a repeatable way of operating and begin modelling AI-enabled leadership. It is the best time to turn your progress into influence. You use AI. Your team sees it. What they do not see yet is a leader who has made that progress repeatable, teachable and impossible to ignore.</>
                     )}
                     {levelLabel === "Forward Leader" && (
-                      <>You are already leading the way most organizations hope someone will. Now it is time your CEO saw it too. This score puts you ahead of nearly every leader taking this assessment. The work left is not building more. It is making sure the right people upstream can see what you have already built.</>
+                      <>You are already guiding meaningful change. Your opportunity is to scale your influence, build stronger systems, and shape broader organizational direction. Now it is time your CEO saw it too. This score puts you ahead of nearly every leader taking this assessment. The work left is not building more. It is making sure the right people upstream can see what you have already built.</>
                     )}
                   </p>
                 </div>
@@ -1026,44 +1026,44 @@ export default function Scorecard() {
                 
                 <div className="space-y-2">
                   <span className="font-mono text-[10px] font-bold text-gold uppercase tracking-[0.2em] block">
-                    Book Your Call
+                    YOUR NEXT STEP
                   </span>
                   
                   <h3 className="font-serif text-2xl md:text-3xl font-bold text-white leading-tight">
-                    {levelLabel === "Observer" && <>Book Your Advisory Call</>}
-                    {levelLabel === "Practitioner" && <>Schedule Your AI Strategy Session</>}
-                    {levelLabel === "Forward Leader" && <>Book Your Executive Briefing</>}
+                    {levelLabel === "Observer" && <>You do not need more AI tools. You need the system that turns them into leadership.</>}
+                    {levelLabel === "Practitioner" && <>Build the influence that gets you in the room where decisions get made.</>}
+                    {levelLabel === "Forward Leader" && <>You are ready for the room, not just the result.</>}
                   </h3>
                   
                   <p className="font-sans text-sm text-white/85 leading-relaxed max-w-xl">
                     {levelLabel === "Observer" && (
-                      <>You see the opportunity. Now connect with Pan Seth to build the strategic system that turns AI into leadership value.</>
+                      <>That is exactly what the Forward Leader Accelerator™ builds, starting with the free masterclass.</>
                     )}
                     {levelLabel === "Practitioner" && (
-                      <>You have proof. Now book a call to align your leadership team, prove business value, and scale your progress.</>
+                      <>The Forward Leader Accelerator™ is built for exactly this stage. Start with the free masterclass.</>
                     )}
                     {levelLabel === "Forward Leader" && (
-                      <>You are leading the way. Let's book a call to turn what you have built into a board-level narrative and skip ahead.</>
+                      <>The Forward Leader Accelerator™ turns what you have built into your Forward Leader Talk™ in front of your own VP. Start with the free masterclass.</>
                     )}
                   </p>
                 </div>
 
                 <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                   <InteractiveButton
-                    onClick={() => setLocation("/book-a-call")}
+                    onClick={() => setLocation("/masterclass")}
                     variant="gold"
                     className="px-8 py-3.5 capitalize tracking-wider text-xs font-bold text-center"
                   >
-                    Book a Call
+                    Save Your Seat
                   </InteractiveButton>
                   
                   <button 
-                    onClick={() => setLocation("/masterclass")}
+                    onClick={() => setLocation("/book-a-call")}
                     className="font-sans text-xs font-bold text-white hover:text-gold border-b border-white/20 hover:border-gold py-1 transition-all text-center"
                   >
-                    {levelLabel === "Observer" && <>Or join the masterclass to learn more about your AI readiness</>}
-                    {levelLabel === "Practitioner" && <>Or join the masterclass to learn more about what we do</>}
-                    {levelLabel === "Forward Leader" && <>Join Complimentary Masterclass</>}
+                    {levelLabel === "Observer" && <>Prefer to talk it through first? Book a call.</>}
+                    {levelLabel === "Practitioner" && <>Ready to move faster? Book a call.</>}
+                    {levelLabel === "Forward Leader" && <>Want to skip ahead? Book a call.</>}
                   </button>
                 </div>
 

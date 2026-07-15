@@ -117,8 +117,7 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
             >
               <Link href={buttonPath}>
                 <div className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-ink font-sans text-xs font-bold capitalize tracking-wider hover:bg-white hover:text-teal duration-300 transition-all shadow-md active:scale-95">
-                  <span>{step.cta}</span>
-                  <span>→</span>
+                   <span>{step.cta}</span>
                 </div>
               </Link>
             </motion.div>

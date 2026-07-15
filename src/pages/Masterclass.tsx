@@ -306,7 +306,7 @@ END:VCALENDAR`;
                 variant="gold"
                 className="text-center px-8 py-4 font-bold animate-none"
               >
-                Save My Seat →
+                Save My Seat
               </InteractiveButton>
             </motion.div>
           </motion.div>
@@ -368,7 +368,7 @@ END:VCALENDAR`;
                     variant="gold"
                     className="px-8 py-4 font-bold"
                   >
-                    Save My Seat →
+                    Save My Seat
                   </InteractiveButton>
                 </div>
               </div>
@@ -462,7 +462,7 @@ END:VCALENDAR`;
               variant="gold"
               className="px-10 py-4 font-bold"
             >
-              Save My Seat →
+              Save My Seat
             </InteractiveButton>
           </div>
         </div>
@@ -554,7 +554,7 @@ END:VCALENDAR`;
                   variant="gold"
                   className="w-full py-4 text-center text-sm font-bold capitalize tracking-wider"
                 >
-                  {isSubmitting ? "Processing Reservation..." : "Save My Seat →"}
+                  {isSubmitting ? "Processing Reservation..." : "Save My Seat"}
                 </InteractiveButton>
               </div>
 

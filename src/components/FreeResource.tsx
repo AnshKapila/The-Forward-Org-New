@@ -83,7 +83,7 @@ export function FreeResource() {
                       className="w-full text-center"
                       onClick={() => setModalOpen(true)}
                     >
-                      Get It Now →
+                      Get It Now
                     </InteractiveButton>
                   </div>
 

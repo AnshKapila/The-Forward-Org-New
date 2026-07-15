@@ -106,7 +106,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                   
                   {/* Subline: Figtree Regular, 16px, --color-ink-muted */}
                   <p className="font-sans text-[16px] text-ink-muted leading-relaxed font-normal">
-                    Assess your organization's strategy, governance, and alignment. Complete the form to get immediate access to the PDF.
+                    The Executive Diagnostic for Identifying the Leadership, Governance, and Adoption Gaps Limiting your AI Transformation at 2x instead of 10x
                   </p>
                 </div>
 
