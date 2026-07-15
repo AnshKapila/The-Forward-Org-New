@@ -84,11 +84,14 @@ function OptionBCard({ step, idx, imageSrc }: { step: any; idx: number; imageSrc
                initial={{ opacity: 0, filter: "blur(8px)", y: 15 }}
                animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
                transition={{ duration: 0.38, ease: "easeOut", delay: 0.06 }}
-               className="pt-2 shrink-0"
+               className="pt-2 shrink-0 space-y-2"
             >
               <h3 className="font-serif text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-bold text-white tracking-wide leading-tight">
                 {step.title}
               </h3>
+              <p className="font-serif italic text-base sm:text-lg text-gold font-normal leading-normal">
+                {step.subheading}
+              </p>
             </motion.div>
 
             {/* Scrollable Middle Area for description */}
@@ -131,6 +134,7 @@ export function HowItWorks() {
     {
       num: "01",
       title: "Become an AI-First Leader",
+      subheading: "Join Forward Leader Accelerator™",
       description: "Develop the confidence, systems, and strategic thinking to become the leader your organization trusts to navigate AI.\nDesigned for ambitious senior leaders preparing to influence strategy, lead adoption, and accelerate their careers in the Age of AI.",
       question: "Become the first Forward Leader inside your company.",
       cta: "Take The Forward Score™"
@@ -138,6 +142,7 @@ export function HowItWorks() {
     {
       num: "02",
       title: "Align Leaders. Transform Culture.",
+      subheading: "Leadership & Organizational Alignment",
       description: "Technology doesn't transform organizations. Leaders do.\nWe partner with executive teams to build leadership alignment, reduce resistance, develop AI champions, and create the organizational capability required for AI adoption at scale.",
       question: "Your people and your AI, moving in the same direction.",
       cta: "Book an Alignment Conversation"
@@ -145,6 +150,7 @@ export function HowItWorks() {
     {
       num: "03",
       title: "Build an Organization Ready for AI",
+      subheading: "AI Strategy & Governance",
       description: "AI creates value only when strategy, governance, and decision-making evolve together.\nWe help executive teams define enterprise AI priorities, establish governance frameworks, evaluate risk, and create practical roadmaps that enable responsible, scalable transformation.",
       question: "Confidence at the board level. Clarity at every level.",
       cta: "Book a Strategy Conversation"

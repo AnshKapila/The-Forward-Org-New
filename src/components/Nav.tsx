@@ -86,7 +86,7 @@ export function Nav() {
             }}
             className="text-[#1A3C34] underline font-medium hover:text-[#1A3C34]/80 transition-colors cursor-pointer"
           >
-            Start with the Free Framework &rarr;
+            Start with a free resource &rarr;
           </button>
         </div>
       )}

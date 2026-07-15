@@ -108,7 +108,7 @@ export function AIAlignmentIndex() {
     {
       num: "04",
       tag: "LEAD SUSTAINABLY",
-      title: "Sustainable Transformation",
+      title: "Build Lasting Change",
       desc: "Create change that continues beyond your own effort. Measure your ability to build systems, culture, governance, and leadership capability that lasts.",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=400"
     }
