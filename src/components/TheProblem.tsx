@@ -178,7 +178,7 @@ export function TheProblem() {
                         <span className="font-sans text-xs text-gold font-bold mt-1">
                           {`0${index + 1}`}
                         </span>
-                        <p className="font-serif text-[15px] lg:text-[16px] text-ink leading-relaxed italic">
+                        <p className="font-sans text-[14px] lg:text-[15px] text-ink leading-relaxed italic">
                           {item.surface}
                         </p>
                       </div>
