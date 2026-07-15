@@ -118,37 +118,42 @@ export default function Masterclass() {
     {
       id: 1,
       question: "Who's hosting this?",
-      answer: "Pan Seth, founder of The Forward Org. She spent a decade building and governing production AI systems inside regulated organizations → work tied to $600M+ in business impact and two AI patents.",
+      answer: "Pan Seth, Founder of The Forward Org. After more than a decade building enterprise AI solutions that contributed to $600M+ in business impact and 2 AI patents, she now helps leaders build AI-forward organizations through leadership, strategy, and organizational transformation.",
     },
     {
       id: 2,
       question: "What is The Forward Org?",
-      answer: "The Forward Org builds AI-first leaders and AI-first organizations → using the Forward Leader Blueprint™, built from a decade inside real AI systems.",
+      answer: "The Forward Org is an AI leadership and transformation advisory that helps organizations become AI-forward by developing AI-forward leaders, aligning strategy, strengthening culture, and building practical governance for lasting business value.",
     },
     {
       id: 3,
-      question: "What is this masterclass?",
-      answer: "A free 90-minute live session. You'll score your own AI Leadership Readiness, name your stage on the leadership ladder, and leave with the one gap to close first.",
+      question: "What will I gain from this masterclass?",
+      answer: "You'll discover your Forward Leadership Score, identify your current leadership stage, uncover your biggest capability gap, and leave with practical action items to become a more effective AI leader that you can apply tomorrow.",
     },
     {
       id: 4,
-      question: "Who is this for?",
-      answer: "Any leader who feels the pressure to become AI-first and decides to act. No technical background required. No full organizational authority required. The only requirement is the decision to become the leader this moment is calling for.",
+      question: "Who is this designed for?",
+      answer: "Senior managers, directors, executives, and transformation leaders who want to lead AI initiatives with greater confidence, influence, and business impact- no technical background required.",
     },
     {
       id: 5,
-      question: "What happens after the masterclass?",
-      answer: "Leaders ready to go deeper are invited into the Forward Leader Accelerator™ → a six-month cohort built around the identity shift you'll see live in this session. You'll hear about it at the end. No pitch during the working part of the class.",
+      question: "Do I need AI or technical experience?",
+      answer: "No. This masterclass focuses on leadership, not programming. If you're responsible for leading people, teams, or change, you'll benefit from the frameworks you'll learn.",
     },
     {
       id: 6,
-      question: "Is this free?",
-      answer: "Yes. A complimentary masterclass for everyone in Pan's network.",
+      question: "What happens after the masterclass?",
+      answer: "If you're ready to continue your journey, you'll be invited to join the Forward Leader Accelerator™, a six-month program designed to help leaders build the capabilities needed to lead AI transformation with confidence.",
     },
     {
       id: 7,
+      question: "Is the masterclass free?",
+      answer: "Yes. This complimentary masterclass is part of The Forward Org's mission to prepare leaders for the future of AI-powered organizations.",
+    },
+    {
+      id: 8,
       question: "Will there be a replay?",
-      answer: "No. The scoring works because you do it live in the room. A replay removes the part that matters. If this date doesn't work, the masterclass runs monthly → reply to any email to be notified of the next one."
+      answer: "No. The assessment, discussions, and coaching are designed to be experienced live. If you can't attend this session, you'll have the opportunity to join a future masterclass.",
     }
   ];
 
@@ -280,21 +285,14 @@ END:VCALENDAR`;
               variants={itemVariants}
               className="font-serif text-hero leading-[1.12] font-bold tracking-tight text-white text-balance mt-3 md:mt-4"
             >
-              Become the Leader Your Organization Trusts to Navigate AI
+              How to Future-Proof Your Leadership Career - Even If AI Feels Overwhelming
             </motion.h1>
-
-            <motion.p
-              variants={itemVariants}
-              className="font-serif text-base md:text-lg text-gold/90 italic tracking-wide mt-3 text-left font-normal"
-            >
-              (Even if you don't have all the answers yet)
-            </motion.p>
 
             <motion.p
               variants={itemVariants}
               className="font-sans text-[17px] md:text-[19px] text-off-white/85 leading-relaxed font-light max-w-2xl mt-4 text-balance"
             >
-              Score your own AI Leadership Readiness live in the room. Name your stage on the AI leadership ladder. Leave with the one gap to close first → and the move to make this week.
+              Discover the leadership mindset, practical frameworks, and AI strategies that will help you confidently lead change, create greater influence, and become the leader your organization needs in the Age of AI.
             </motion.p>
 
             <motion.div
@@ -316,23 +314,14 @@ END:VCALENDAR`;
       {/* 2. Quick Stats / Metadata Bar */}
       <section className="py-8 bg-[#F7F4EF] border-y border-gold/15 relative z-30">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:divide-x md:divide-gold/20">
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Date</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">17 July 2026</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Time</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">12 PM Eastern Time</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Length</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">90 minutes</span>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <span className="font-sans text-[11px] capitalize tracking-widest text-ink-muted">Type</span>
-              <span className="font-serif text-base md:text-lg font-bold text-ink mt-1">Live Only · No Replay</span>
-            </div>
+          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-4 text-center text-sm font-sans font-medium text-ink-muted uppercase tracking-widest">
+            <span>Length: 90 minutes</span>
+            <span className="hidden md:inline text-gold/60">•</span>
+            <span>Type: Live Interactive</span>
+            <span className="hidden md:inline text-gold/60">•</span>
+            <span>Live Only</span>
+            <span className="hidden md:inline text-gold/60">•</span>
+            <span>No Replay</span>
           </div>
         </div>
       </section>
@@ -347,19 +336,17 @@ END:VCALENDAR`;
                   The Core Challenge
                 </span>
                 <h2 className="font-serif text-[32px] md:text-[45px] leading-tight font-bold text-ink">
-                  AI Decisions Are Already Being Made Around You
+                  The Next AI Conversation Needs a Different Kind of Leader.
                 </h2>
                 
                 <p className="font-serif text-xl md:text-2xl text-teal font-medium leading-relaxed border-l-2 border-gold/40 pl-6 my-8">
-                  The question was never whether your organization adopts AI. The question is whether you shape those decisions or react to them.
+                  AI transformation doesn't begin with technology. It begins with leaders who are prepared to guide it.
                 </p>
                 
                 <div className="font-sans text-base md:text-lg text-ink-muted leading-relaxed font-light mt-6 space-y-4">
-                  <p>Somewhere in your organization right now an AI decision is moving forward without you.</p>
-                  <p>A budget line. A pilot. A vendor call.</p>
-                  <p>A colleague is speaking up in meetings where you stay quiet. A peer is getting pulled into strategy conversations you used to own. A less experienced leader is building credibility on a topic you never claimed.</p>
-                  <p>Leaders don't lose ground because technology moves fast. They lose ground one meeting at a time → the meeting where someone else had the clarity to speak.</p>
-                  <p>This masterclass shows you the identity shift behind that clarity → so the next AI conversation in your organization runs through you.</p>
+                  <p>Every organization is making AI decisions.</p>
+                  <p>The question is whether you'll help shape them or simply respond to them.</p>
+                  <p>This masterclass helps you understand where you stand today, uncover the leadership capability that matters most, and take the next step toward becoming the leader your organization will trust to guide AI transformation.</p>
                 </div>
 
                 <div className="pt-8">
@@ -368,7 +355,7 @@ END:VCALENDAR`;
                     variant="gold"
                     className="px-8 py-4 font-bold"
                   >
-                    Save My Seat
+                    Reserve My Seat
                   </InteractiveButton>
                 </div>
               </div>
@@ -405,25 +392,25 @@ END:VCALENDAR`;
             <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
               <h3 className="font-serif text-2xl font-bold text-[#1A3C34] border-b border-gold/10 pb-4 flex items-center gap-3">
                 <span className="text-gold font-mono text-xl">01 /</span>
-                What You'll Walk Through
+                During the Masterclass
               </h3>
               
               <ul className="space-y-4 font-sans text-[15px] md:text-[16px] text-ink-muted">
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>The six stages of AI leadership</span>
+                  <span>Discover the five stages of AI leadership.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Your live position on the AI leadership ladder → a real number, named by you in the room</span>
+                  <span>Measure your Forward Leadership Score.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>The one capability gap between the leader you are now and the leader your organization needs</span>
+                  <span>Identify your strongest leadership capability and your biggest growth opportunity.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Why that gap costs you influence before it ever costs you your title</span>
+                  <span>Learn what it takes to confidently lead AI transformation inside your organization.</span>
                 </li>
               </ul>
             </div>
@@ -432,21 +419,21 @@ END:VCALENDAR`;
             <div className="space-y-6 bg-white p-8 md:p-10 border border-gold/10 rounded-[2px] shadow-sm text-left">
               <h3 className="font-serif text-2xl font-bold text-teal border-b border-gold/10 pb-4 flex items-center gap-3">
                 <span className="text-teal font-mono text-xl">02 /</span>
-                What You Walk Out With
+                You'll Leave With
               </h3>
               
               <ul className="space-y-4 font-sans text-[15px] md:text-[16px] text-ink-muted">
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Your AI Leadership Readiness Score → a real number, scored by you in the room</span>
+                  <span>Your personalized Forward Leadership Score.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>Your named stage on the AI leadership ladder → L1 through L6</span>
+                  <span>Your current AI leadership stage.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
-                  <span>The one gap to close first → drawn from your own score, not a generic list</span>
+                  <span>The one capability to strengthen first.</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-teal font-bold text-lg shrink-0 mt-0.5">→</span>
@@ -473,13 +460,13 @@ END:VCALENDAR`;
         <div className="max-w-xl mx-auto px-6 text-center space-y-8">
           <div className="space-y-3">
             <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
-              Secure Your Place
+              Join the Waitlist for the Next Live Masterclass
             </span>
             <h2 className="font-serif text-[32px] font-bold text-ink">
               Save Your Seat
             </h2>
             <p className="font-sans text-base text-ink-muted leading-relaxed font-light">
-              This session is live only with no replays.
+              Join Leaders Preparing for the Future of AI. Folks in the waitlist would be first to get invited to the next masterclass, along with AI leadership insights and practical resources from The Forward Org.
             </p>
           </div>
 
@@ -554,7 +541,7 @@ END:VCALENDAR`;
                   variant="gold"
                   className="w-full py-4 text-center text-sm font-bold capitalize tracking-wider"
                 >
-                  {isSubmitting ? "Processing Reservation..." : "Save My Seat"}
+                  {isSubmitting ? "Processing Reservation..." : "Join the Waitlist"}
                 </InteractiveButton>
               </div>
 
