@@ -18,7 +18,20 @@ function MainAppContent() {
   const isOverlayPage = location === "/" || location === "/masterclass" || location.startsWith("/newsletter");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const hash = window.location.hash;
+    if (hash) {
+      // If a hash exists, delay scrolling slightly to let page contents render
+      const timer = setTimeout(() => {
+        const id = hash.replace("#", "");
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 350);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   return (
