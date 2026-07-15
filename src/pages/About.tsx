@@ -4,35 +4,13 @@ import { useLocation } from "wouter";
 import { InteractiveButton } from "../components/InteractiveButton";
 import { ScrollReveal } from "../components/ScrollReveal";
 import founderImg from "../assets/images/prof1.jpg";
+import maternityImg from "../assets/images/maternity.jpg";
+import bookImg from "../assets/images/book_do_hard_things.jpg";
+import mentorImg from "../assets/images/mentor.jpg";
+import todayImg from "../assets/images/today.jpg";
 
 export default function About() {
   const [_, setLocation] = useLocation();
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const isTimelineInView = useInView(timelineRef, { once: true, margin: "-10% 0px" });
-  const [lineWillChange, setLineWillChange] = useState(true);
-
-  const timelineNodes = [
-    {
-      company: "Citi",
-      years: "2013-2016",
-      desc: "Architected early machine learning fraud detection systems. Scaled predictive trading models on global enterprise infrastructure.",
-    },
-    {
-      company: "PagerDuty",
-      years: "2016-2020",
-      desc: "Developed real-time incident clustering algorithms and authored core patents on automated operations alerting.",
-    },
-    {
-      company: "NielsenIQ",
-      years: "2020-2024",
-      desc: "Supervised global retail classification AI systems, modernizing model architectures to handle billions of market records.",
-    },
-    {
-      company: "The Forward Org",
-      years: "2026–Present",
-      desc: "Advising the leaders navigating the same structural challenges we solved from the inside.",
-    },
-  ];
 
   const handleBookClick = () => {
     setLocation("/book-a-call");
@@ -41,196 +19,221 @@ export default function About() {
   return (
     <div className="bg-white min-h-screen text-ink">
       
-      {/* Section 1 - Founder Hero */}
-      <section className="pt-12 pb-24 md:py-20 px-6 md:px-12 max-w-7xl mx-auto">
-        <ScrollReveal duration={0.65}>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left Content Column (55%) */}
-            <div className="lg:col-span-7 space-y-6 text-left">
-              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
-                The Founder
-              </span>
-              <h1 className="font-serif text-[38px] md:text-[56px] font-bold text-ink leading-tight">
-                Pan Seth
-              </h1>
-              <p className="font-sans text-[17px] md:text-[20px] font-medium text-ink-muted leading-relaxed">
-                AI Strategy & Leadership Advisor
-              </p>
-              
-              <div className="space-y-4 font-sans text-base text-ink-muted leading-relaxed">
-                <p>
-                  Pan Seth helps leaders in regulated and high-consequence organizations successfully navigate one of the most important transitions of their careers: the shift into the AI era. She works with CEOs, CDOs, and CIOs who are already experimenting with AI but struggle to translate pilots into actual business value.
-                </p>
-                <p>
-                  Unlike theoretical advisors, Pan spent more than a decade inside top-tier enterprises, including Citi, PagerDuty, and NielsenIQ, building and governing real AI infrastructure. Holding two AI patents, she turns invisible organizational misalignment into irreversible clarity, and then returns power to the people who need to act.
-                </p>
-                <p>
-                  What makes her approach different is that she does not just focus on technology. She focuses on the specific organizational conditions (strategy, governance, leadership, and cultural adoption) that determine whether AI investments produce measurable outcomes or quietly fail.
-                </p>
-              </div>
-
-              <div className="pt-4">
-                <InteractiveButton onClick={handleBookClick} variant="gold">
-                  Book a Call
-                </InteractiveButton>
-              </div>
-            </div>
-
-            {/* Right Photo Column (45%) */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end">
-              <div 
-                className="relative w-full aspect-[4/5] max-w-[420px] bg-sand image-hover-wrapper"
-                style={{
-                  boxShadow: "8px 8px 0 0 rgba(201, 165, 90, 0.4)"
-                }}
-              >
-                {/* Visual placeholder box with details */}
-                <div className="absolute inset-0 bg-teal/20 mix-blend-multiply z-10 pointer-events-none" />
-                <div className="w-full h-full">
-                  {/* STANDBY IMAGE: Manually replace the asset file in `/src/assets/images/prof1.jpg` or swap the image path below */}
-                  <img
-                    src={founderImg}
-                    alt="Pan Seth, AI Strategy & Leadership Advisor"
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      // Fallback professional executive advisor portrait if the local asset is missing or fails
-                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000";
-                    }}
-                  />
-                </div>
-                <div className="hover-overlay" />
-              </div>
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Section 1.2 - Our Mission */}
-      <section className="bg-white border-y border-[#1A3C34]/10 py-20 px-6 md:px-12 max-w-7xl mx-auto">
-        <ScrollReveal duration={0.65}>
-          <div className="max-w-4xl mx-auto text-center space-y-6">
-            <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
-              Our Mission
-            </span>
-            <h3 className="font-serif text-[24px] md:text-[32px] font-bold text-[#1A3C34] leading-relaxed text-balance">
-              At The Forward Org, Our mission is to help organizations confidently <span className="font-serif italic font-normal text-gold">Move Forward</span> in the age of AI by evolving their culture, leadership, and ways of working so their people can embrace change, unlock <span className="font-serif italic font-normal text-gold">Greater Freedom</span>, and achieve extraordinary results.
-            </h3>
-            <p className="font-sans text-[15px] md:text-[17px] text-ink-muted leading-[1.7] max-w-2xl mx-auto">
-              By 2031, we will create more than $100 million in measurable economic impact for our clients while enabling their people to do their most meaningful and valuable work.
-            </p>
-          </div>
-        </ScrollReveal>
-      </section>
-
-      {/* Section 2 - Credibility Timeline */}
-      <section className="bg-[#F7F4EF] py-24 md:py-32 px-6 md:px-12 w-full overflow-hidden">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-left mb-16">
-            <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block mb-2">
-              The Practice
-            </span>
-            <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
-              A decade of building inside the enterprise.
-            </h2>
-          </div>
-
-          <div ref={timelineRef} className="relative pt-8">
-            {/* SVG Connecting Line */}
-            <div className="absolute left-4 md:left-0 md:top-[44px] w-[2px] md:w-full h-[80%] md:h-[2px] bg-teal/15 hidden md:block">
-              <svg width="100%" height="8" className="absolute top-[-3px] left-0 overflow-visible hidden md:block">
-                <motion.line
-                  x1="0%"
-                  y1="4"
-                  x2="100%"
-                  y2="4"
-                  stroke="#1A3C34"
-                  strokeWidth="2"
-                  initial={{ pathLength: 0 }}
-                  animate={isTimelineInView ? { pathLength: 1 } : { pathLength: 0 }}
-                  onAnimationComplete={() => setLineWillChange(false)}
-                  style={{ willChange: lineWillChange ? "transform" : "auto" }}
-                  transition={{ duration: 1.2, ease: "easeOut" }}
-                />
-              </svg>
-            </div>
-
-            {/* Nodes Container */}
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 relative z-10 text-left">
-              {timelineNodes.map((node, i) => (
-                <div key={i} className="relative pl-10 md:pl-0 flex flex-col justify-start">
-                  {/* Timeline circle node */}
-                  <div className="absolute left-0 md:left-0 md:top-[34px] w-5 h-5 rounded-full border-[3px] border-[#1A3C34] bg-white flex items-center justify-center transform md-translate-y-1/2 z-20">
-                    <div className="w-1.5 h-1.5 rounded-full bg-gold" />
-                  </div>
-
-                  <div className="md:pt-14 space-y-2">
-                    <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize block">
-                      {node.years}
-                    </span>
-                    <h3 className="font-serif text-xl font-bold text-ink">
-                      {node.company}
-                    </h3>
-                    <p className="font-sans text-[14px] text-ink-muted leading-relaxed">
-                      {node.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Section 3 - Patents & Recognition */}
-      <section className="bg-white py-24 md:py-32 px-6 md:px-12 max-w-7xl mx-auto">
-        <div className="text-left mb-12">
-          <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.2em] block mb-2">
-            Research & Patents
+      {/* Hero Section */}
+      <section className="pt-24 pb-16 bg-[#1A3C34] text-white relative overflow-hidden">
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(250,250,248,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(250,250,248,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-6 text-center space-y-6 relative z-10 py-8">
+          <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+            We Believe
           </span>
-          <h2 className="font-serif text-[28px] md:text-[40px] font-bold text-ink">
-            Defensible practitioner-level depth.
-          </h2>
+          <h1 className="font-serif text-[38px] md:text-[52px] font-bold text-white leading-tight">
+            Organizations transform at the speed of leadership.
+          </h1>
+          <p className="font-serif italic text-lg md:text-xl text-gold/90 font-normal">
+            Technology doesn't transform organizations. People do.
+          </p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Card 1 */}
-          <div className="p-8 border border-[#1A3C34]/40 bg-white flex flex-col justify-between transition-all duration-200 hover:border-gold">
-            <div className="space-y-4">
-              <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize">
-                AI Patent
+      {/* Main Story Container */}
+      <section className="py-20 px-6 md:px-12 max-w-5xl mx-auto space-y-32">
+        
+        {/* Section 1 - Meet Pan Seth */}
+        <ScrollReveal duration={0.65}>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="md:col-span-7 space-y-6 text-left">
+              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+                Our Story
               </span>
-              <h3 className="font-serif text-xl font-bold text-ink leading-snug">
-                US Patent 11,482,921
-              </h3>
-              <p className="font-sans text-[15px] text-ink-muted leading-relaxed">
-                A patent for system and method for automated operational alert clustering and threat triage using context-aware heuristics.
-              </p>
+              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
+                Meet Pan Seth
+              </h2>
+              <div className="space-y-4 font-sans text-base md:text-[17px] text-ink-muted leading-relaxed font-light">
+                <p>
+                  For more than a decade, Pan built AI and data solutions inside global enterprises, helping solve toughest challenges across financial services, enterprise SaaS, and technology organizations including Citi, PagerDuty, and NielsenIQ.
+                </p>
+                <p>
+                  Along the way, she contributed to more than $600 million in business impact, filed two AI patents, and trained alongside some of Silicon Valley's leading AI strategy, leadership, and organizational transformation experts.
+                </p>
+                <p>
+                  From the outside, her career looked exactly as planned. She believed she was building the career she had always wanted.
+                </p>
+              </div>
             </div>
-            <span className="font-sans text-xs text-ink/40 mt-6 block">
-              Foundation for predictive alarm engines.
-            </span>
+            <div className="md:col-span-5 flex justify-center">
+              <div 
+                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+              >
+                <img
+                  src={founderImg}
+                  alt="Pan Seth Corporate Portrait"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1000";
+                  }}
+                />
+              </div>
+            </div>
           </div>
+        </ScrollReveal>
 
-          {/* Card 2 */}
-          <div className="p-8 border border-[#1A3C34]/40 bg-white flex flex-col justify-between transition-all duration-200 hover:border-gold">
-            <div className="space-y-4">
-              <span className="font-mono text-xs font-bold text-gold tracking-widest capitalize">
-                AI Patent
-              </span>
-              <h3 className="font-serif text-xl font-bold text-ink leading-snug">
-                US Patent 10,873,144
-              </h3>
-              <p className="font-sans text-[15px] text-ink-muted leading-relaxed">
-                A patent for multi-modal neural feature alignment and dynamic weighting for high-velocity transaction records.
-              </p>
+        {/* Section 2 - The Turning Point */}
+        <ScrollReveal duration={0.65}>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="md:col-span-5 flex justify-center order-last md:order-first">
+              <div 
+                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+              >
+                <img
+                  src={maternityImg}
+                  alt="Maternity / reflective moments"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
             </div>
-            <span className="font-sans text-xs text-ink/40 mt-6 block">
-              Foundation for high-frequency record categorization.
-            </span>
+            <div className="md:col-span-7 space-y-6 text-left">
+              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+                The Turning Point
+              </span>
+              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
+                Jan 2023 everything changed.
+              </h2>
+              <div className="space-y-4 font-sans text-base md:text-[17px] text-ink-muted leading-relaxed font-light">
+                <p>
+                  On the day before she was due to welcome her first daughter into the world, Pan's role was eliminated.
+                </p>
+                <p>
+                  At first, it felt like one difficult moment. But during countless nights awake with her newborn daughter, she began reflecting on something much deeper.
+                </p>
+                <p>
+                  She noticed a pattern that had quietly followed her throughout her career. Like many ambitious professionals, she had spent years believing that exceptional work would eventually speak for itself.
+                </p>
+                <p>
+                  She worked harder, sacrificed more, and waited for recognition that never quite came. That experience challenged her definition of success - and became the catalyst for everything that followed.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Section 3 - Choosing A Different Path */}
+        <ScrollReveal duration={0.65}>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="md:col-span-7 space-y-6 text-left">
+              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+                Choosing A Different Path
+              </span>
+              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
+                Evolving our Definition of Success
+              </h2>
+              <div className="space-y-4 font-sans text-base md:text-[17px] text-ink-muted leading-relaxed font-light">
+                <p>
+                  Pan didn't want her daughter to grow up believing that success meant sacrificing. Rather than returning to the same cycle in another role, Pan made a different decision.
+                </p>
+                <p>
+                  She invested in learning from mentors who had already built the kind of leadership, business, and life she wanted to create. She discovered something that transformed not only her career, but the way she viewed organizations.
+                </p>
+                <p>
+                  Technology wasn't the biggest barrier to AI transformation. <span className="font-serif italic text-gold font-semibold">Leadership was.</span>
+                </p>
+                <p>
+                  The mentors and community she found didn't just teach her new skills. They changed the way she thought, giving her the confidence to stop proving herself and start building something aligned with the life she wanted to live.
+                </p>
+              </div>
+            </div>
+            <div className="md:col-span-5 flex flex-col gap-4 items-center">
+              <div 
+                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+              >
+                <img
+                  src={mentorImg}
+                  alt="Graduation / Mentor guidance"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+              <div 
+                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+              >
+                <img
+                  src={bookImg}
+                  alt="Steve Magness Do Hard Things book"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+        {/* Section 4 - Why The Forward Org Exists */}
+        <ScrollReveal duration={0.65}>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+            <div className="md:col-span-5 flex justify-center order-last md:order-first">
+              <div 
+                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+              >
+                <img
+                  src={todayImg}
+                  alt="Pan Seth today in active workspace"
+                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                />
+              </div>
+            </div>
+            <div className="md:col-span-7 space-y-6 text-left">
+              <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+                Purpose
+              </span>
+              <h2 className="font-serif text-[32px] md:text-[40px] font-bold text-ink leading-tight">
+                Why The Forward Org Exists
+              </h2>
+              <div className="space-y-4 font-sans text-base md:text-[17px] text-ink-muted leading-relaxed font-light">
+                <p>
+                  The Forward Org wasn't created because organizations needed another AI consultant. It was created because leaders deserve a better way to navigate one of the greatest transformations of our time.
+                </p>
+                <ul className="space-y-3 pl-2 border-l border-gold/30">
+                  <li className="flex items-start gap-3">
+                    <span className="text-gold mt-1">✓</span>
+                    <span>A way that helps organizations embrace AI without losing their people.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-gold mt-1">✓</span>
+                    <span>A way that develops leaders who can create confidence instead of fear.</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-gold mt-1">✓</span>
+                    <span>A way that enables organizations to achieve extraordinary results while helping people do their most meaningful work.</span>
+                  </li>
+                </ul>
+                <p className="font-serif italic text-teal font-medium mt-4">
+                  Because Pan believes that organizations don't transform through technology. They transform through leaders.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
+      </section>
+
+      {/* Section 5 - Our Mission Statement */}
+      <section className="bg-[#FAF9F5] border-t border-b border-gold/15 py-24 px-6 md:px-12 w-full overflow-hidden">
+        <div className="max-w-4xl mx-auto text-left space-y-8">
+          <span className="font-sans font-bold text-xs text-gold capitalize tracking-[0.25em] block">
+            Our Mission
+          </span>
+          <h2 className="font-serif text-[36px] md:text-[45px] font-bold text-[#1A3C34] leading-tight">
+            At The Forward Org, our mission is to help organizations confidently move forward in the Age of AI by developing the leaders, cultures, and ways of working that enable people to embrace change, unlock greater freedom, and achieve extraordinary results.
+          </h2>
+          <p className="font-sans text-[17px] md:text-[19px] text-ink-muted leading-[1.7] font-light max-w-3xl">
+            By 2031, we aim to create more than $100 million in measurable economic impact for our clients while helping build organizations where people and technology thrive together - and where success never comes at the cost of the people who create it.
+          </p>
+          <div className="pt-4">
+            <InteractiveButton onClick={handleBookClick} variant="gold">
+              Book a Call
+            </InteractiveButton>
           </div>
         </div>
       </section>
+
     </div>
   );
 }
