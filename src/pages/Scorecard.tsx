@@ -727,9 +727,6 @@ export default function Scorecard() {
 
                 <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-4">
                   <div className="space-y-1">
-                    <span className="font-mono text-[9px] font-bold tracking-widest text-[#1a3c34] uppercase bg-teal/5 py-1 px-3 border border-teal/10 inline-block">
-                      YOUR RESULTS: {levelLabel}
-                    </span>
                     <h1 className="font-serif text-[42px] font-bold text-[#1A3C34] leading-tight tracking-tight">
                       {levelLabel}
                     </h1>
@@ -758,10 +755,10 @@ export default function Scorecard() {
                 </div>
               </div>
 
-              {/* Right Column: Capabilities Assessment Overview & Radar side-by-side inside block */}
-              <div className="bg-[#FAF9F5] border border-[#E8D5B5] p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-                <div className="flex justify-center w-full md:w-auto shrink-0 mb-4 md:mb-0">
-                  <svg viewBox="0 0 300 300" className="w-full max-w-[220px] h-auto select-none overflow-visible">
+              {/* Right Column: Capabilities Radar Map & Details below (Re-aligned to stack vertically & horizontally next to each other) */}
+              <div className="bg-[#FAF9F5] border border-[#E8D5B5] p-6 sm:p-8 flex flex-col items-center justify-between gap-6">
+                <div className="flex justify-center w-full shrink-0">
+                  <svg viewBox="0 0 300 300" className="w-full max-w-[280px] h-auto select-none overflow-visible">
                     {/* Grid Checkpoints */}
                     <polygon points={gridLine12} fill="none" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
                     <polygon points={gridLine9} fill="none" stroke="#1A3C34" strokeWidth="0.5" strokeDasharray="3 3" opacity="0.15" />
@@ -776,28 +773,27 @@ export default function Scorecard() {
                     <circle cx={pt3.x} cy={pt3.y} r="3" fill="#C9A55A" />
                     <circle cx={pt4.x} cy={pt4.y} r="3" fill="#C9A55A" />
 
-                    <text x={center} y="35" textAnchor="middle" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Self</text>
-                    <text x="250" y="153" textAnchor="start" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Others</text>
-                    <text x={center} y="275" textAnchor="middle" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Transform</text>
-                    <text x="50" y="153" textAnchor="end" className="font-mono text-[9px] font-bold fill-[#1A3C34] uppercase tracking-wider">Sustain</text>
+                    {/* Labels written in P2 font style (font-serif italic text-gold) */}
+                    <text x={center} y="30" textAnchor="middle" className="font-serif italic text-[12px] fill-[#C9A55A] uppercase tracking-wide">Self</text>
+                    <text x="250" y="153" textAnchor="start" className="font-serif italic text-[12px] fill-[#C9A55A] uppercase tracking-wide">Others</text>
+                    <text x={center} y="280" textAnchor="middle" className="font-serif italic text-[12px] fill-[#C9A55A] uppercase tracking-wide">Transform</text>
+                    <text x="50" y="153" textAnchor="end" className="font-serif italic text-[12px] fill-[#C9A55A] uppercase tracking-wide">Sustain</text>
                   </svg>
                 </div>
 
-                <div className="space-y-4 flex-1 text-left">
-                  <h3 className="font-serif text-md font-bold text-ink leading-tight">Capabilities Assessment</h3>
-                  
+                <div className="w-full border-t border-[#E8D5B5]/60 pt-4 text-left">
                   {allIdentical ? (
-                    <p className="font-sans text-[12px] text-ink-muted leading-relaxed">
+                    <p className="font-sans text-[12px] text-ink-muted leading-relaxed text-center">
                       Your capabilities are balanced. The next step is raising all four together.
                     </p>
                   ) : (
-                    <div className="space-y-3 font-sans text-[12px] leading-relaxed">
-                      <div className="border-l border-emerald-500 pl-2">
+                    <div className="flex flex-row items-center justify-center gap-8 md:gap-12 font-sans text-[12px] leading-relaxed w-full">
+                      <div className="border-l border-emerald-500 pl-3">
                         <span className="font-mono text-[9px] font-bold text-emerald-700 uppercase tracking-wider block">Strongest</span>
                         <span className="font-serif text-[13px] font-bold text-ink block mt-0.5">{strongestName}</span>
                       </div>
 
-                      <div className="border-l border-rose-500 pl-2">
+                      <div className="border-l border-rose-500 pl-3">
                         <span className="font-mono text-[9px] font-bold text-rose-700 uppercase tracking-wider block">Opportunity</span>
                         <span className="font-serif text-[13px] font-bold text-ink block mt-0.5">{opportunityName}</span>
                       </div>
@@ -868,7 +864,7 @@ export default function Scorecard() {
                     The gap is not staying the same. It is compounding.
                   </h3>
                   <p className="font-sans text-sm text-[#FAFAF8]/75 leading-relaxed">
-                    As marketplace AI tools evolve, the distance between executive expectation and team adoption capability widens exponentially. Unaligned organizations experience a structural failure gap.
+                    Organizations won't wait until every leader feels ready. The people who develop the confidence to lead AI transformation will shape the future. Everyone else will be asked to follow.
                   </p>
                 </div>
 
