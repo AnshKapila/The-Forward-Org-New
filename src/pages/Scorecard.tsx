@@ -886,79 +886,73 @@ export default function Scorecard() {
                       <line x1="50" y1="40" x2="550" y2="40" stroke="#FAFAF8" strokeWidth="0.5" opacity="0.08" />
                       <line x1="50" y1="110" x2="550" y2="110" stroke="#FAFAF8" strokeWidth="0.5" opacity="0.08" />
                       <line x1="50" y1="180" x2="550" y2="180" stroke="#FAFAF8" strokeWidth="0.5" opacity="0.08" />
-
-                      {/* Shaded Compounding Gap Area */}
-                      <path 
-                        d="M 50 40 L 550 40 Q 300 110 550 180 L 50 40 Z" 
-                        fill="rgba(201, 165, 90, 0.12)"
-                        opacity="0.85"
-                      />
-
-                      {/* Line 1: Expectation Baseline (Flat dotted line at y=40) */}
-                      <line 
-                        x1="50" 
-                        y1="40" 
-                        x2="550" 
-                        y2="40" 
-                        stroke="#FAFAF8" 
-                        strokeWidth="2" 
-                        strokeDasharray="4 4" 
-                        opacity="0.8"
-                      />
-
-                      {/* Line 2: Compounding AI Alignment Gap (Curves Steeply Downwards to y=180) */}
-                      <path 
-                        d="M 50 40 Q 300 110 550 180" 
-                        fill="none" 
-                        stroke="#C9A55A" 
-                        strokeWidth="3.5" 
-                        strokeLinecap="round"
-                      />
-
-                      {/* Endpoint dots */}
-                      <circle cx="50" cy="40" r="4" fill="#C9A55A" />
-                      <circle cx="550" cy="180" r="4" fill="#C9A55A" />
-
-                      {/* Interactive Hover Tracker Line & Tooltip */}
-                      {hoveredX !== null && (
-                        <>
-                          {/* Vertical tracker line */}
-                          <line 
-                            x1={hoveredX} 
-                            y1="20" 
-                            x2={hoveredX} 
-                            y2="190" 
-                            stroke="#C9A55A" 
-                            strokeWidth="1.5" 
-                            opacity="0.6" 
-                          />
-                          {/* Circle marker on compounding curve */}
-                          <circle 
-                            cx={hoveredX} 
-                            cy={getGraphYAtX(hoveredX)} 
-                            r="6" 
-                            fill="#FAF9F6" 
-                            stroke="#C9A55A" 
-                            strokeWidth="2.5" 
-                          />
-                          {/* Dynamic value display indicator */}
-                          <foreignObject 
-                            x={Math.max(50, Math.min(hoveredX - 60, 430))} 
-                            y="5" 
-                            width="120" 
-                            height="30"
-                          >
-                            <div className="bg-black/80 border border-gold/45 text-[10px] text-gold font-mono py-1 px-2 text-center rounded-none select-none tracking-wider">
-                              GAP: {Math.round(((getGraphYAtX(hoveredX) - 40) / 140) * 100)}% WIDER
-                            </div>
-                          </foreignObject>
-                        </>
-                      )}
-
-                      {/* Graph labels */}
-                      <text x="50" y="195" textAnchor="middle" className="font-mono text-[9px] fill-white/50 uppercase">Month 1</text>
-                      <text x="300" y="195" textAnchor="middle" className="font-mono text-[9px] fill-white/50 uppercase">Month 6</text>
-                      <text x="550" y="195" textAnchor="middle" className="font-mono text-[9px] fill-white/50 uppercase">Month 12</text>
+                       {/* Shaded Compounding Gap Area (follows curve path) */}
+                       <path 
+                         d="M 50 40 L 550 40 L 550 180 Q 300 40 50 40 Z" 
+                         fill="rgba(201, 165, 90, 0.12)"
+                         opacity="0.85"
+                       />
+ 
+                       {/* Line 1: Expectation Baseline (Flat dotted line at y=40) */}
+                       <line 
+                         x1="50" 
+                         y1="40" 
+                         x2="550" 
+                         y2="40" 
+                         stroke="#FAFAF8" 
+                         strokeWidth="2" 
+                         strokeDasharray="4 4" 
+                         opacity="0.8"
+                       />
+ 
+                       {/* Line 2: Compounding AI Alignment Gap (Exponential downward curve using quadratic Bézier curve: control point at 350, 40 pulls curve flat at first then compounding downwards) */}
+                       <path 
+                         d="M 50 40 Q 350 40 550 180" 
+                         fill="none" 
+                         stroke="#C9A55A" 
+                         strokeWidth="3.5" 
+                         strokeLinecap="round"
+                       />
+ 
+                       {/* Endpoint dots */}
+                       <circle cx="50" cy="40" r="4" fill="#C9A55A" />
+                       <circle cx="550" cy="180" r="4" fill="#C9A55A" />
+ 
+                       {/* Interactive Hover Tracker Line & Tooltip */}
+                       {hoveredX !== null && (
+                         <>
+                           {/* Vertical tracker line */}
+                           <line 
+                             x1={hoveredX} 
+                             y1="20" 
+                             x2={hoveredX} 
+                             y2="190" 
+                             stroke="#C9A55A" 
+                             strokeWidth="1.5" 
+                             opacity="0.6" 
+                           />
+                           {/* Circle marker on compounding curve */}
+                           <circle 
+                             cx={hoveredX} 
+                             cy={getGraphYAtX(hoveredX)} 
+                             r="6" 
+                             fill="#FAF9F6" 
+                             stroke="#C9A55A" 
+                             strokeWidth="2.5" 
+                           />
+                           {/* Dynamic value display indicator */}
+                           <foreignObject 
+                             x={Math.max(50, Math.min(hoveredX - 60, 430))} 
+                             y="5" 
+                             width="120" 
+                             height="30"
+                           >
+                             <div className="bg-black/80 border border-gold/45 text-[10px] text-gold font-mono py-1 px-2 text-center rounded-none select-none tracking-wider">
+                               GAP: {Math.round(((getGraphYAtX(hoveredX) - 40) / 140) * 100)}% WIDER
+                             </div>
+                           </foreignObject>
+                         </>
+                       )}
                     </svg>
 
                     {/* Basic Legend details block */}
