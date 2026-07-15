@@ -175,6 +175,37 @@ export default function Newsletter() {
             </div>
           )}
         </section>
+
+        {/* Bottom Engagement CTA Block */}
+        <section className="pb-24 pt-4 w-full px-6 lg:px-[120px]">
+          <div className="max-w-4xl mx-auto p-8 bg-[#FAFAF8] border border-teal/20 text-center space-y-6">
+            <h3 className="font-serif text-xl md:text-2xl font-bold text-ink">
+              Subscribe to our newsletter
+            </h3>
+            <p className="font-sans text-sm md:text-base text-ink-muted max-w-xl mx-auto leading-relaxed">
+              Stay updated with weekly executive insights on AI strategy, governance, and leadership directly in your inbox.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+              <InteractiveButton
+                onClick={() => setIsModalOpen(true)}
+                variant="gold"
+              >
+                Subscribe to our newsletter
+              </InteractiveButton>
+              <InteractiveButton
+                onClick={() => window.open("https://www.linkedin.com/in/pan-seth/", "_blank", "noopener,noreferrer")}
+                variant="outline-teal"
+                className="flex items-center gap-2"
+              >
+                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.8v8.37h2.8v-4.87c0-.25.05-.5.12-.69a1 1 0 0 1 .93-.67c.72 0 .86.54.86 1.33v4.9h2.8M6.5 8.37a1.37 1.37 0 1 0 0-2.75 1.37 1.37 0 0 0 0 2.75M8 18.5V10.13H5V18.5h3z"/>
+                </svg>
+                <span>Connect on LinkedIn</span>
+              </InteractiveButton>
+            </div>
+          </div>
+        </section>
+
       </main>
       <NewsletterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
