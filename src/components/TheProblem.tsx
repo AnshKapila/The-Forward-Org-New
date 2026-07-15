@@ -160,11 +160,11 @@ export function TheProblem() {
                   <span className="w-2.5 h-2.5 rounded-none bg-gold" />
                   On the surface
                 </h3>
-                <div className="flex-1 flex flex-col justify-between gap-5">
+                <div className="flex-grow flex flex-col gap-6">
                   {problemItems.map((item, index) => (
                     <div 
                       key={index}
-                      className={`transition-all duration-300 rounded-lg p-2 -mx-2 cursor-pointer ${
+                      className={`transition-all duration-300 rounded-lg p-2 -mx-2 cursor-pointer min-h-[70px] flex items-center ${
                         hoveredIndex === index 
                           ? "bg-gold/10 scale-[1.02] translate-x-1" 
                           : hoveredIndex !== null 
@@ -193,11 +193,11 @@ export function TheProblem() {
                   <span className="w-2.5 h-2.5 rounded-none bg-gold" />
                   Underneath the surface
                 </h3>
-                <div className="flex-1 flex flex-col justify-between gap-5">
+                <div className="flex-grow flex flex-col gap-6">
                   {problemItems.map((item, index) => (
                     <div 
                       key={index}
-                      className={`transition-all duration-300 rounded-lg p-2 -mx-2 cursor-pointer ${
+                      className={`transition-all duration-300 rounded-lg p-2 -mx-2 cursor-pointer min-h-[70px] flex items-center ${
                         hoveredIndex === index 
                           ? "bg-[#235048] scale-[1.02] -translate-x-1" 
                           : hoveredIndex !== null 
