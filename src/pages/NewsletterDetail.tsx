@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useRoute } from "wouter";
 import { newsletters } from "../data/newsletters";
-import { ArrowLeft, Linkedin, Calendar, Tag } from "lucide-react";
+import { ArrowLeft, Linkedin, Calendar } from "lucide-react";
 import { ScrollReveal } from "../components/ScrollReveal";
 import { InteractiveButton } from "../components/InteractiveButton";
+import { NewsletterModal } from "../components/NewsletterModal";
 import panAvatar from "../assets/images/regenerated_image_1782056067058.png";
 
 export default function NewsletterDetail() {
   const [match, params] = useRoute("/newsletter/:id");
   const newsletterId = params?.id;
   const newsletter = newsletters.find((n) => n.id === newsletterId);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   if (!newsletter) {
     return (
@@ -63,15 +65,14 @@ export default function NewsletterDetail() {
                 </div>
               </div>
 
-              {/* Top CTA: Check out complete newsletter */}
+              {/* Top CTA: Subscribe to our newsletter */}
               <InteractiveButton
-                onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
+                onClick={() => setIsModalOpen(true)}
                 variant="gold"
                 size="sm"
                 className="flex items-center gap-2 self-start md:self-auto"
               >
-                <Linkedin size={14} />
-                <span>Check out complete newsletter</span>
+                <span>Subscribe to our newsletter</span>
               </InteractiveButton>
             </div>
 
@@ -116,20 +117,20 @@ export default function NewsletterDetail() {
               })}
             </div>
 
-            {/* Bottom Engagement CTA Block */}
+            {/* Bottom Engagement CTA Block (Uses component card layout and appropriate copy) */}
             <div className="mt-16 p-8 bg-[#FAFAF8] border border-teal/20 text-center space-y-6">
               <h3 className="font-serif text-xl md:text-2xl font-bold text-ink">
-                Enjoyed this breakdown?
+                Subscribe to our newsletter
               </h3>
               <p className="font-sans text-sm md:text-base text-ink-muted max-w-xl mx-auto leading-relaxed">
                 Stay updated with weekly executive insights on AI strategy, governance, and leadership directly in your feed.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
                 <InteractiveButton
-                  onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
+                  onClick={() => setIsModalOpen(true)}
                   variant="gold"
                 >
-                  Check out complete newsletter
+                  Subscribe to our newsletter
                 </InteractiveButton>
                 <InteractiveButton
                   onClick={() => window.open("https://www.linkedin.com/in/pan-seth/", "_blank", "noopener,noreferrer")}
@@ -145,6 +146,7 @@ export default function NewsletterDetail() {
           </div>
         </section>
       </main>
+      <NewsletterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }

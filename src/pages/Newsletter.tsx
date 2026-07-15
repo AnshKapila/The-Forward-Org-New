@@ -4,11 +4,13 @@ import { ScrollReveal, StaggerContainer, StaggerItem } from "../components/Scrol
 import { newsletters } from "../data/newsletters";
 
 import { InteractiveButton } from "../components/InteractiveButton";
+import { NewsletterModal } from "../components/NewsletterModal";
 import panAvatar from "../assets/images/regenerated_image_1782056067058.png";
 
 export default function Newsletter() {
   const [_, setLocation] = useLocation();
   const [activeFilter, setActiveFilter] = useState("All");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const matchesFilter = (tag: string) => {
     if (activeFilter === "All") return true;
@@ -61,12 +63,12 @@ export default function Newsletter() {
                 One Step Forward
               </h1>
               <InteractiveButton
-                onClick={() => window.open("https://www.linkedin.com/newsletters/one-step-forward-%25E2%2599%25A0-7333630738220666882/", "_blank", "noopener,noreferrer")}
+                onClick={() => setIsModalOpen(true)}
                 variant="gold"
                 size="sm"
                 className="inline-flex items-center gap-1.5 self-start sm:self-auto py-2.5 px-5 text-[11px] font-bold capitalize tracking-wider font-sans border-0 shadow-sm shrink-0"
               >
-                check out complete newsletter
+                Subscribe to our newsletter
               </InteractiveButton>
             </div>
             
@@ -174,6 +176,7 @@ export default function Newsletter() {
           )}
         </section>
       </main>
+      <NewsletterModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
