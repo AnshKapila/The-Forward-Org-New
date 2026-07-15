@@ -26,38 +26,33 @@ export function FAQ() {
   const faqItems: FAQItem[] = [
     {
       id: 1,
-      question: "What makes your approach different from a typical AI consultant?",
-      answer: "Most AI consultants focus on technology implementation. We focus on the organizational conditions that determine whether AI succeeds or fails: strategy, governance, leadership alignment, workforce adoption, and measurable ROI. We have also built AI inside the kinds of organizations we now advise, which means our frameworks come from real enterprise experience, not theory.",
+      question: "Do you work with individual leaders or entire organizations?",
+      answer: "Both. Individual leaders can join the Forward Leader Accelerator™, while organizations engage with Pan on retainer basis to align AI strategy, leadership, culture, and governance across teams.",
     },
     {
       id: 2,
-      question: "Do we need to have an AI strategy already?",
-      answer: "No. In fact, starting without a fixed strategy often produces better results. We begin by diagnosing your organization's current reality (what is working, what is not, and where the highest-value opportunities actually are). The strategy emerges from that diagnosis, not the other way around.",
+      question: "We're experimenting with AI. How do we know if we're ready to scale?",
+      answer: "Most organizations don't struggle because of technology, they struggle because leadership, priorities, and adoption aren't aligned. We help identify the highest-leverage next step based on your current stage.",
     },
     {
       id: 3,
-      question: "What industries do you work with?",
-      answer: "Our work is concentrated in regulated industries, such as financial services, insurance, and healthcare, as well as enterprise technology and high-growth companies. These are environments where the stakes are high, governance matters, and the gap between AI experimentation and actual transformation is most costly. That is where our experience is deepest.",
+      question: "Do you implement AI solutions or focus on leadership?",
+      answer: "Our focus is organizational transformation. We help leaders develop the strategy, leadership capability, governance, and culture needed for AI to deliver measurable business value.",
     },
     {
       id: 4,
-      question: "What do we actually get from working with you?",
-      answer: "Depending on the engagement, you get a clear organizational AI diagnostic, a prioritized transformation roadmap, governance frameworks your compliance and legal teams can work with, leadership alignment sessions, and adoption strategies designed for your specific organizational context. The deliverable is always clarity and a plan, not a report that sits on a shelf.",
+      question: "What industries do you work with?",
+      answer: "We primarily work with established organizations, including regulated industries, enterprise technology companies, and businesses preparing to scale AI responsibly.",
     },
     {
       id: 5,
-      question: "What is the AI Alignment Index and why should I take it?",
-      answer: "The AI Alignment Index is a 15-question organizational diagnostic that measures your maturity across five dimensions: strategy, governance, leadership alignment, workforce adoption, and ROI. It takes three minutes and produces a clear picture of where your organization is strong, where it is exposed, and what to address first. It is the fastest way to move from uncertainty to a specific, prioritized starting point.",
+      question: "How do you typically work with organizations?",
+      answer: "We partner with executive teams as a trusted AI Leadership & Strategy Advisor, tailoring our support through executive advisory, leadership development, governance, and organizational transformation.",
     },
     {
       id: 6,
-      question: "How long does a typical engagement take?",
-      answer: "Initial diagnostic and strategy engagements typically run four to eight weeks. Longer transformation partnerships vary by organizational scope and complexity. We structure every engagement around your timeline and decision-making cadence, rather than a fixed consulting methodology.",
-    },
-    {
-      id: 7,
-      question: "How do we know if our organization is ready?",
-      answer: "If your leadership team is asking questions about AI strategy, governance, or adoption, and you do not yet have clear answers, you are ready. Readiness is not about how advanced your AI tools are. It is about whether your organization has the strategic clarity and organizational conditions to turn those tools into real business outcomes. Take the index to find out where you stand.",
+      question: "How do we know if we're a good fit?",
+      answer: "If you're looking to move beyond isolated AI initiatives and build lasting organizational capability, let's start with an AI Strategy Conversation to explore your goals and challenges.",
     },
   ];
 
