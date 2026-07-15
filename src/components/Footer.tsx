@@ -33,7 +33,7 @@ export function Footer() {
           
           {/* Left Column: Logo mark & Wordmark */}
           <div className="flex items-center justify-center md:justify-start gap-1">
-            <LogoMark width={22} height={22} className="shrink-0" />
+            <LogoMark width={26.4} height={26.4} className="shrink-0" />
             <div className="flex flex-col text-left justify-center">
               <span className="font-serif text-[13px] font-bold tracking-wider text-ink leading-none">
                 The Forward Org
