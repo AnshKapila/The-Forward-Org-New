@@ -20,7 +20,7 @@ export default function About() {
     <div className="bg-white min-h-screen text-ink">
       
       {/* Hero Section */}
-      <section className="pt-24 pb-16 bg-[#1A3C34] text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-[#1A3C34] text-white relative overflow-hidden">
         {/* Subtle grid background */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(250,250,248,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(250,250,248,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 text-center space-y-6 relative z-10 py-8">
@@ -142,23 +142,31 @@ export default function About() {
                 </p>
               </div>
             </div>
-            <div className="md:col-span-5 flex flex-col gap-4 items-center">
+            <div className="md:col-span-5 relative w-full aspect-[4/5] max-w-[400px] h-[450px] mx-auto select-none mt-8 md:mt-0">
+              {/* Back Image: Mentor and Pan by the water */}
               <div 
-                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+                className="absolute top-0 right-0 w-[65%] aspect-[4/5] bg-sand overflow-hidden shadow-xl border border-gold/15 z-10 transition-transform duration-300 hover:z-30 hover:scale-[1.02]"
               >
                 <img
                   src={mentorImg}
                   alt="Graduation / Mentor guidance"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
               </div>
+              
+              {/* Golden Background Sandwich Layer in between the two images */}
               <div 
-                className="relative w-full aspect-[4/5] max-w-[360px] bg-sand overflow-hidden shadow-md border border-gold/10"
+                className="absolute top-[18%] left-[18%] w-[60%] aspect-[4/5] bg-gold opacity-95 shadow-md border border-[#E8D5B5] z-20 pointer-events-none"
+              />
+
+              {/* Front Image: Book cover 'Do Hard Things' */}
+              <div 
+                className="absolute bottom-0 left-0 w-[65%] aspect-[4/5] bg-sand overflow-hidden shadow-2xl border border-gold/20 z-30 transition-transform duration-300 hover:scale-[1.02]"
               >
                 <img
                   src={bookImg}
                   alt="Steve Magness Do Hard Things book"
-                  className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>

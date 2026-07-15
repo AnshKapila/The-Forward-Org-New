@@ -132,10 +132,7 @@ function CapabilityCard({ title, description, status, score }: { title: string; 
       </div>
 
       {/* Bottom status and score layout */}
-      <div className="mt-6 pt-4 border-t border-ink/5 flex items-end justify-between relative z-10 shrink-0">
-        <span className={`px-2.5 py-0.5 border font-mono text-[9px] font-bold uppercase tracking-widest select-none ${getStatusColor(status)}`}>
-          {status}
-        </span>
+      <div className="mt-6 pt-4 border-t border-ink/5 flex items-end justify-end relative z-10 shrink-0">
         <div className="text-right flex items-baseline gap-0.5">
           <span className="font-serif text-2xl font-bold text-ink leading-none">{score}</span>
           <span className="font-sans text-[11px] text-ink-muted/70">/12</span>
@@ -970,17 +967,17 @@ export default function Scorecard() {
             {/* What forward organizations look like section */}
             <div className="space-y-6">
               <h2 className="font-serif text-[28px] font-bold text-[#1A3C34] text-left">
-                What forward organizations look like
+                What an AI-Forward Leader Looks Like
               </h2>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
                 <div className="bg-white border border-[#E8D5B5] p-6 rounded-none flex flex-col justify-between gap-4 relative group">
                   <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
                   <div className="space-y-2">
                     <span className="font-serif text-lg font-bold text-gold">01</span>
-                    <h4 className="font-sans font-bold text-xs text-ink uppercase tracking-wider">Cohesive AI Strategy</h4>
+                    <h4 className="font-sans font-bold text-[14px] text-ink uppercase tracking-wider">They operate differently</h4>
                     <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
-                      Every department is aligned behind board-level metrics. Pilots have clear owners, targets, and direct financial margin tracking.
+                      They use AI to improve how they think, prepare, organize, decide, and execute.
                     </p>
                   </div>
                 </div>
@@ -989,9 +986,9 @@ export default function Scorecard() {
                   <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
                   <div className="space-y-2">
                     <span className="font-serif text-lg font-bold text-gold">02</span>
-                    <h4 className="font-sans font-bold text-xs text-ink uppercase tracking-wider">Defensible Compliance</h4>
+                    <h4 className="font-sans font-bold text-[14px] text-ink uppercase tracking-wider">They lead differently</h4>
                     <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
-                      Safe endpoints exist for every employee. Unsanctioned AI tools are monitored and risk playbooks are tested regularly.
+                      They create clarity, reduce fear, model the behaviour they expect, and help their people adapt.
                     </p>
                   </div>
                 </div>
@@ -1000,9 +997,20 @@ export default function Scorecard() {
                   <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
                   <div className="space-y-2">
                     <span className="font-serif text-lg font-bold text-gold">03</span>
-                    <h4 className="font-sans font-bold text-xs text-ink uppercase tracking-wider">High Adoption velocity</h4>
+                    <h4 className="font-sans font-bold text-[14px] text-ink uppercase tracking-wider">They create value differently</h4>
                     <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
-                      Teams confidently adapt workflows to AI capabilities without job security fear, building a lasting operational advantage.
+                      They identify meaningful opportunities, connect AI to business outcomes, and communicate progress with confidence.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-[#E8D5B5] p-6 rounded-none flex flex-col justify-between gap-4 relative group">
+                  <AnimatedBorder isHovered={true} color="rgba(26,60,52,0.15)" borderRadius={0} />
+                  <div className="space-y-2">
+                    <span className="font-serif text-lg font-bold text-gold">04</span>
+                    <h4 className="font-sans font-bold text-[14px] text-ink uppercase tracking-wider">They sustain change differently</h4>
+                    <p className="font-sans text-[13px] text-ink-muted leading-relaxed">
+                      They build habits, systems, champions, and learning rhythms so progress does not depend on one person.
                     </p>
                   </div>
                 </div>

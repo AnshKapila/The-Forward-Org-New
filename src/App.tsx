@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound";
 
 function MainAppContent() {
   const [location] = useLocation();
-  const isOverlayPage = location === "/" || location === "/masterclass" || location.startsWith("/newsletter");
+  const isOverlayPage = location === "/" || location === "/about" || location === "/masterclass" || location.startsWith("/newsletter");
 
   useEffect(() => {
     const hash = window.location.hash;

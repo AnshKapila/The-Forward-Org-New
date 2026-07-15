@@ -68,7 +68,7 @@ export function Nav() {
     { label: "Newsletter", path: "/newsletter" },
   ];
 
-  const isTransparentNavbarPage = location === "/" || location === "/masterclass" || location.startsWith("/newsletter");
+  const isTransparentNavbarPage = location === "/" || location === "/about" || location === "/masterclass" || location.startsWith("/newsletter");
   const showDarkNavbar = !isTransparentNavbarPage || isScrolled;
 
   return (

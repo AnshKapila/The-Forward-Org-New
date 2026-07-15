@@ -8,6 +8,22 @@ import checklistImg from "../assets/images/checklist_resource.png";
 
 export function FreeResource() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [accessGranted, setAccessGranted] = useState(() => {
+    return localStorage.getItem("freebie_access_granted") === "true";
+  });
+
+  const handleOpenModal = () => {
+    // Check state again on click
+    const granted = localStorage.getItem("freebie_access_granted") === "true";
+    setAccessGranted(granted);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    const granted = localStorage.getItem("freebie_access_granted") === "true";
+    setAccessGranted(granted);
+    setModalOpen(false);
+  };
 
   return (
     <section id="free-resource" className="relative bg-canvas py-8 md:py-12 lg:py-16 overflow-hidden border-t border-[#1A3C34]/5">
@@ -81,9 +97,9 @@ export function FreeResource() {
                     <InteractiveButton
                       variant="gold"
                       className="w-full text-center"
-                      onClick={() => setModalOpen(true)}
+                      onClick={handleOpenModal}
                     >
-                      Get It Now
+                      {accessGranted ? "Download access granted" : "Get It Now"}
                     </InteractiveButton>
                   </div>
 
@@ -96,7 +112,7 @@ export function FreeResource() {
         </ScrollReveal>
       </div>
 
-      <FreebieModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
+      <FreebieModal isOpen={modalOpen} onClose={handleCloseModal} />
     </section>
   );
 }

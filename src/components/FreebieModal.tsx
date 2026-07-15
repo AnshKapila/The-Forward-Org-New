@@ -53,12 +53,15 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
 
       if (success) {
         setIsSuccess(true);
+        localStorage.setItem("freebie_access_granted", "true");
       } else {
         setIsSuccess(true);
+        localStorage.setItem("freebie_access_granted", "true");
       }
     } catch (err) {
       console.error("Submission failed, continuing to PDF download", err);
       setIsSuccess(true);
+      localStorage.setItem("freebie_access_granted", "true");
     } finally {
       setIsSubmitting(false);
     }
