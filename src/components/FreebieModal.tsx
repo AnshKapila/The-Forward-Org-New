@@ -104,7 +104,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                 <div className="space-y-3">
                   {/* Headline: Libre Baskerville Bold, 28px, --color-ink */}
                   <h3 className="font-serif text-[28px] font-bold tracking-tight text-ink leading-tight">
-                    Get The AI Transformation Readiness Framework
+                    Get The 2x to 10x Checklist
                   </h3>
                   
                   {/* Subline: Figtree Regular, 16px, --color-ink-muted */}

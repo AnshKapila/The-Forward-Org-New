@@ -438,9 +438,9 @@ export default function Scorecard() {
 
   // RADAR CHART COORDINATES
   const center = 150;
-  const maxScore = 12;
   const getPointCoord = (val: number, angleDeg: number) => {
-    const radius = (val / maxScore) * 85;
+    // Amplify visual variance: map score range 3-12 to radius range 15-85px
+    const radius = 15 + ((val - 3) / 9) * 70;
     const angleRad = (angleDeg - 90) * (Math.PI / 180);
     return {
       x: center + radius * Math.cos(angleRad),
@@ -450,14 +450,14 @@ export default function Scorecard() {
 
   const pt1 = getPointCoord(score1, 0);   
   const pt2 = getPointCoord(score2, 90);  
-  const pt3 = getPointCoord(score3, 185); 
-  const pt4 = getPointCoord(score4, 275); 
+  const pt3 = getPointCoord(score3, 180); 
+  const pt4 = getPointCoord(score4, 270); 
   const userPolygonPoints = `${pt1.x},${pt1.y} ${pt2.x},${pt2.y} ${pt3.x},${pt3.y} ${pt4.x},${pt4.y}`;
 
-  const gridLine3 = `${getPointCoord(3, 0).x},${getPointCoord(3, 0).y} ${getPointCoord(3, 90).x},${getPointCoord(3, 90).y} ${getPointCoord(3, 185).x},${getPointCoord(3, 185).y} ${getPointCoord(3, 275).x},${getPointCoord(3, 275).y}`;
-  const gridLine6 = `${getPointCoord(6, 0).x},${getPointCoord(6, 0).y} ${getPointCoord(6, 90).x},${getPointCoord(6, 90).y} ${getPointCoord(6, 185).x},${getPointCoord(6, 185).y} ${getPointCoord(6, 275).x},${getPointCoord(6, 275).y}`;
-  const gridLine9 = `${getPointCoord(9, 0).x},${getPointCoord(9, 0).y} ${getPointCoord(9, 90).x},${getPointCoord(9, 90).y} ${getPointCoord(9, 185).x},${getPointCoord(9, 185).y} ${getPointCoord(9, 275).x},${getPointCoord(9, 275).y}`;
-  const gridLine12 = `${getPointCoord(12, 0).x},${getPointCoord(12, 0).y} ${getPointCoord(12, 90).x},${getPointCoord(12, 90).y} ${getPointCoord(12, 185).x},${getPointCoord(12, 185).y} ${getPointCoord(12, 275).x},${getPointCoord(12, 275).y}`;
+  const gridLine3 = `${getPointCoord(3, 0).x},${getPointCoord(3, 0).y} ${getPointCoord(3, 90).x},${getPointCoord(3, 90).y} ${getPointCoord(3, 180).x},${getPointCoord(3, 180).y} ${getPointCoord(3, 270).x},${getPointCoord(3, 270).y}`;
+  const gridLine6 = `${getPointCoord(6, 0).x},${getPointCoord(6, 0).y} ${getPointCoord(6, 90).x},${getPointCoord(6, 90).y} ${getPointCoord(6, 180).x},${getPointCoord(6, 180).y} ${getPointCoord(6, 270).x},${getPointCoord(6, 270).y}`;
+  const gridLine9 = `${getPointCoord(9, 0).x},${getPointCoord(9, 0).y} ${getPointCoord(9, 90).x},${getPointCoord(9, 90).y} ${getPointCoord(9, 180).x},${getPointCoord(9, 180).y} ${getPointCoord(9, 270).x},${getPointCoord(9, 270).y}`;
+  const gridLine12 = `${getPointCoord(12, 0).x},${getPointCoord(12, 0).y} ${getPointCoord(12, 90).x},${getPointCoord(12, 90).y} ${getPointCoord(12, 180).x},${getPointCoord(12, 180).y} ${getPointCoord(12, 270).x},${getPointCoord(12, 270).y}`;
 
   // Interactive Hover Graph tracker handler
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
