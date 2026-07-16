@@ -158,7 +158,7 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                   variant="gold"
                   className="w-full text-center py-4"
                 >
-                  {isSubmitting ? "Sending..." : "Send Me the Framework"}
+                  {isSubmitting ? "Sending..." : "Send Me the Checklist"}
                 </InteractiveButton>
 
                 <p className="text-center text-[11px] text-ink-faint">
@@ -176,24 +176,24 @@ export function FreebieModal({ isOpen, onClose }: FreebieModalProps) {
                     Access Granted
                   </h3>
                   <p className="font-sans text-[16px] text-ink-muted max-w-sm mx-auto">
-                    The framework has been prepared for download. Click below to download your copy immediately.
+                    The checklist has been prepared for download. Click below to download your copy immediately.
                   </p>
                 </div>
 
                 <div className="pt-2 flex flex-col items-center">
                   <a
                     href="/downloads/ai-readiness-framework.pdf"
-                    download="AI_Transformation_Readiness_Framework.pdf"
+                    download="2x_to_10x_Checklist.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={handleDownloadClick}
                     className="inline-flex justify-center items-center py-4 px-8 bg-gold hover:bg-gold-hover text-ink font-sans font-semibold text-[15px] cursor-pointer transition-all"
                   >
-                    Download Framework (PDF)
+                    Download Checklist (PDF)
                   </a>
                   {fileMissing && (
                     <p className="font-sans font-normal text-[13px] text-[#C9A55A] text-center mt-3 max-w-xs">
-                      The framework is being prepared. We'll email it to you within 24 hours.
+                      The checklist is being prepared. We'll email it to you within 24 hours.
                     </p>
                   )}
                 </div>
