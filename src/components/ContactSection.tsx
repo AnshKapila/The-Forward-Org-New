@@ -102,12 +102,12 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                 {/* Email Item */}
                 <a 
                   href="mailto:pan@theforwardorg.com" 
-                  className="flex items-center gap-5 p-2 rounded-sm hover:bg-[#1A3C34]/5 transition-colors group"
+                  className="flex items-center gap-5 p-2 rounded-none hover:bg-[#1A3C34]/5 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#1A3C34]/10 flex items-center justify-center shrink-0 border border-[#1A3C34]/20 group-hover:bg-[#1A3C34] group-hover:text-white transition-all duration-300">
+                  <div className="w-12 h-12 rounded-none bg-[#1A3C34]/5 flex items-center justify-center shrink-0 border border-[#1A3C34]/15 group-hover:bg-[#1A3C34] group-hover:text-white transition-all duration-200">
                     <Mail 
                       size={18} 
-                      className="text-[#1A3C34] group-hover:text-white transition-colors duration-300" 
+                      className="text-[#1A3C34] group-hover:text-white transition-colors duration-200" 
                       strokeWidth={1.5} 
                     />
                   </div>
@@ -126,12 +126,12 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                   href="https://www.linkedin.com/in/pan-seth/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="flex items-center gap-5 p-2 rounded-sm hover:bg-[#1A3C34]/5 transition-colors group"
+                  className="flex items-center gap-5 p-2 rounded-none hover:bg-[#1A3C34]/5 transition-colors group"
                 >
-                  <div className="w-12 h-12 rounded-full bg-[#1A3C34]/10 flex items-center justify-center shrink-0 border border-[#1A3C34]/20 group-hover:bg-[#1A3C34] group-hover:text-white transition-all duration-300">
+                  <div className="w-12 h-12 rounded-none bg-[#1A3C34]/5 flex items-center justify-center shrink-0 border border-[#1A3C34]/15 group-hover:bg-[#1A3C34] group-hover:text-white transition-all duration-200">
                     <Linkedin 
                       size={18} 
-                      className="text-[#1A3C34] group-hover:text-white transition-colors duration-300" 
+                      className="text-[#1A3C34] group-hover:text-white transition-colors duration-200" 
                       strokeWidth={1.5} 
                     />
                   </div>
@@ -152,7 +152,7 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
           {/* Right Column: Premium Form Card modeled after reference */}
           <div className="md:col-span-7">
             <ScrollReveal duration={0.8} delay={0.2} className="h-full">
-              <div className="bg-[#FAF9F5] border border-[#D4C9B8] py-8 px-6 sm:p-10 md:p-12 shadow-sm relative h-full flex flex-col justify-center">
+              <div className="bg-[#FAF9F5] border border-[#D4C9B8]/80 py-8 px-6 sm:p-10 md:p-12 shadow-none relative h-full flex flex-col justify-center">
                 
                 <AnimatePresence mode="wait">
                   {status === "success" ? (
@@ -164,14 +164,14 @@ export function ContactSection({ title = "Drop Us a Message", subtitle = "REACH 
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="text-center py-10 flex flex-col items-center justify-center h-full"
                     >
-                      <div className="w-16 h-16 rounded-full bg-[#1A3C34]/5 border border-[#1A3C34]/20 flex items-center justify-center mb-6">
+                      <div className="w-16 h-16 rounded-none bg-[#1A3C34]/5 border border-[#1A3C34]/15 flex items-center justify-center mb-6">
                         <Check className="text-[#1A3C34]" size={28} strokeWidth={1.5} />
                       </div>
                       <h3 className="font-serif text-[24px] font-bold text-[#1A3C34] mb-3">
                         Inquiry logged successfully.
                       </h3>
                       <p className="font-sans text-xs sm:text-sm text-ink-muted leading-relaxed max-w-[360px] mb-8 font-light">
-                        We're happy to connect. The advisory team will respond at <strong className="text-pink-dark font-semibold">{formData.email}</strong> as soon as possible.
+                        We're happy to connect. The advisory team will respond at <strong className="text-[#1A3C34] font-semibold">{formData.email}</strong> as soon as possible.
                       </p>
                       <button
                         onClick={handleReset}
