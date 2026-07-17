@@ -143,29 +143,29 @@ export default function About() {
               </div>
             </div>
             <div className="md:col-span-5 relative w-full aspect-[4/5] max-w-[400px] h-[450px] mx-auto select-none mt-8 md:mt-0">
-              {/* Back Image: Mentor and Pan by the water (previously top, now bottom) */}
+              {/* Back Image: Book cover 'Do Hard Things' (positioned at bottom-left) */}
               <div 
-                className="absolute bottom-0 left-0 w-[65%] aspect-[4/5] bg-sand overflow-hidden shadow-xl border border-gold/15 z-10 transition-transform duration-300 hover:z-30 hover:scale-[1.02]"
-              >
-                <img
-                  src={mentorImg}
-                  alt="Graduation / Mentor guidance"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              
-              {/* Golden Background Sandwich Layer aligned behind the top image with 10% offset (revealing only 10% of its corners/edges) */}
-              <div 
-                className="absolute top-[3%] right-[-3%] w-[65%] aspect-[4/5] bg-gold opacity-95 shadow-none border border-[#E8D5B5] z-20 pointer-events-none"
-              />
-
-              {/* Front Image: Book cover 'Do Hard Things' (previously bottom, now top) */}
-              <div 
-                className="absolute top-0 right-0 w-[65%] aspect-[4/5] bg-sand overflow-hidden shadow-none border border-gold/20 z-30 transition-transform duration-300 hover:scale-[1.02]"
+                className="absolute bottom-0 left-0 w-[65%] aspect-[4/5] bg-sand overflow-hidden shadow-none border border-gold/20 z-10 transition-transform duration-300 hover:scale-[1.02]"
               >
                 <img
                   src={bookImg}
                   alt="Steve Magness Do Hard Things book"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              
+              {/* Golden Background Sandwich Layer aligned behind the top image (mentorImg) at top-right with 10% offset */}
+              <div 
+                className="absolute top-[3%] right-[-3%] w-[65%] aspect-[4/5] bg-gold opacity-95 shadow-none border border-[#E8D5B5] z-20 pointer-events-none"
+              />
+
+              {/* Front Image: Mentor and Pan by the water (positioned at top-right, overlapping the book image) */}
+              <div 
+                className="absolute top-0 right-0 w-[65%] aspect-[4/5] bg-sand overflow-hidden shadow-xl border border-gold/15 z-30 transition-transform duration-300 hover:z-30 hover:scale-[1.02]"
+              >
+                <img
+                  src={mentorImg}
+                  alt="Graduation / Mentor guidance"
                   className="w-full h-full object-cover"
                 />
               </div>
