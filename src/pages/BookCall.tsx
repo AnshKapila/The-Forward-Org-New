@@ -167,10 +167,10 @@ export default function BookCallPage() {
 
           {/* Right Column: Inline Lunacal Embed */}
           <div ref={calendarRef} className="w-full">
-            <div className="relative bg-white p-4 sm:p-6 rounded-none shadow-sm border border-[#D4C9B8] overflow-hidden">
+            <div className="relative bg-white p-4 sm:p-6 rounded-none shadow-sm border border-[#D4C9B8] overflow-visible">
               <div 
                 id="my-lunacal-inline-focused-ai-strategy-pan" 
-                style={{ width: "100%", height: "850px", overflow: "hidden" }} 
+                style={{ width: "100%", height: "850px", overflow: "visible" }} 
                 className="relative z-10"
               />
             </div>
